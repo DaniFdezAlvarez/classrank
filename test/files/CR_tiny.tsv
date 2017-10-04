@@ -1,0 +1,13 @@
+[
+ {
+  "CR_score": 0.3789127545927735, 
+  "INSTANCES": 2, 
+  "cps": {
+   "http://example.org/a": [
+    "http://example.org/B", 
+    "http://example.org/A"
+   ]
+  }, 
+  "class": "http://example.org/C"
+ }
+]
