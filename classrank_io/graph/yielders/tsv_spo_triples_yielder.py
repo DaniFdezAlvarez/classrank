@@ -34,7 +34,7 @@ class TsvSpoTriplesYielder(TriplesYielderInterface):
         return pieces[0], pieces[1], pieces[2]
 
     @property
-    def parsed_triples(self):
+    def yielded_triples(self):
         return self._triples_count
 
     @property

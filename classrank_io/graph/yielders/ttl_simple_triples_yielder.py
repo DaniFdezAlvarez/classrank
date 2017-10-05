@@ -42,7 +42,7 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
             return remove_corners(pieces[0]), remove_corners(pieces[1]), remove_corners(pieces[2])
 
     @property
-    def parsed_triples(self):
+    def yielded_triples(self):
         return self._triples_count
 
     @property

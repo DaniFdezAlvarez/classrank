@@ -22,6 +22,15 @@ class ClassRanker(object):
         self._classrank_formatter = classrank_formatter
         self._max_edges = max_edges
 
+    @property
+    def triples_analized(self):
+        return self._triple_yielder.yielded_triples
+
+    @property
+    def triples_with_error(self):
+        return self._triple_yielder.error_triples
+
+
     def generate_classrank(self):
         ### Collecting inputs
         graph = self._graph_parser.parse_graph(max_edges=self._max_edges)

@@ -74,3 +74,5 @@ classranker = ClassRanker(digraph_parser=parser,
 
 result_2 = classranker.generate_classrank()
 print result_2
+print classranker.triples_analized
+print classranker.triples_with_error
