@@ -27,7 +27,7 @@ from classrank_io.graph.yielders.ttl_simple_triples_yielder import TtlSimpleTrip
 #
 #
 # triple_yielder = TsvSpoTriplesYielder(source_file="files\\tsv_spo_tiny.tsv")
-# classrank_formater = SortedJsonFormatedInterface(target_file="files\\CR_tiny.tsv")
+# classrank_formater = SortedJsonFormatedInterface(target_file="files\\out\\CR_tiny.tsv")
 #
 # classranker = ClassRanker(digraph_parser=parser,
 #                           triple_yielder=triple_yielder,
@@ -61,7 +61,7 @@ classpointer_str = RawClasspointerFormater().format_classpointers_set(classpoint
 
 
 triple_yielder = TtlSimpleTriplesYielder(source_file=db_es_path)
-classrank_formater = SortedJsonFormatedInterface(target_file="files\\CR_dbp_es_tiny.tsv")
+classrank_formater = SortedJsonFormatedInterface(target_file="files\\out\\CR_dbp_es_tiny.tsv")
 
 classranker = ClassRanker(digraph_parser=parser,
                           triple_yielder=triple_yielder,

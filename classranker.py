@@ -12,7 +12,7 @@ _KEY_CLASS_POINTERS = "cps"
 
 class ClassRanker(object):
     def __init__(self, digraph_parser, triple_yielder, classpointers_parser, classrank_formatter, damping_factor=0.85,
-                 class_security_threshold=15, instantiation_security_threshold=15):
+                 class_security_threshold=15, instantiation_security_threshold=15, max_edges=-1):
         self._graph_parser = digraph_parser
         self._triple_yielder = triple_yielder
         self._classpointer_parser = classpointers_parser
@@ -20,10 +20,11 @@ class ClassRanker(object):
         self._class_security_threshold = class_security_threshold
         self._instantiation_security_threshold = instantiation_security_threshold
         self._classrank_formatter = classrank_formatter
+        self._max_edges = max_edges
 
     def generate_classrank(self):
         ### Collecting inputs
-        graph = self._graph_parser.parse_graph()
+        graph = self._graph_parser.parse_graph(max_edges=self._max_edges)
         classpointers_set = self._classpointer_parser.parse_classpointers()
         # damping factor (self)
         # class_threshold(self
@@ -49,7 +50,7 @@ class ClassRanker(object):
     def _detect_classes(self, triple_yielder, classpointers, threshold):
         result = {}
         # Build dict of triples (object as primary key)
-        for a_triple in triple_yielder.yield_triples():
+        for a_triple in triple_yielder.yield_triples(max_triples=self._max_edges):
             if a_triple[_P] in classpointers:
                 if a_triple[_O] not in result:  # Adding the O to the dict in case
                     # it was not already there
