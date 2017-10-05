@@ -35,9 +35,11 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
         a_line = a_line.strip()
         pieces = a_line.split(_SEPARATOR)
         if len(pieces) != 4:
-            return None, None
+            print pieces
+            return None, None, None
         elif pieces[3] != ".":
-            return None, None
+            print pieces
+            return None, None, None
         else:
             return remove_corners(pieces[0]), remove_corners(pieces[1]), remove_corners(pieces[2])
 
