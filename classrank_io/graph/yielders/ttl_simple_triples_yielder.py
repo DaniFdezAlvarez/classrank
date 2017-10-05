@@ -16,13 +16,13 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
         self._error_count = 0
 
     def yield_triples(self, max_triples=-1):
+        self._reset_count()
         with open(self._source_file, "r") as in_stream:
             in_stream.readline()  # Skipping the first line
             for a_line in in_stream:
                 s,p,o = self._get_triple_from_line(a_line)
                 if s is not None:  # Nor p and o
                     yield s,p,o
-                    print s,p,o
                     self._triples_count += 1
                     if self._triples_count == max_triples:
                         break
@@ -40,3 +40,15 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
             return None, None
         else:
             return remove_corners(pieces[0]), remove_corners(pieces[1]), remove_corners(pieces[2])
+
+    @property
+    def yielded_triples(self):
+        return self._triples_count
+
+    @property
+    def error_triples(self):
+        return self._error_count
+
+    def _reset_count(self):
+        self._error_count = 0
+        self._triples_count = 0

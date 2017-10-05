@@ -70,7 +70,9 @@ classranker = ClassRanker(digraph_parser=parser,
                           damping_factor=0.9,
                           class_security_threshold=20,
                           instantiation_security_threshold=20,
-                          max_edges=2000)
+                          max_edges=1000000)
 
 result_2 = classranker.generate_classrank()
 print result_2
+print classranker.triples_analized
+print classranker.triples_with_error

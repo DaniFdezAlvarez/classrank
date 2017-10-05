@@ -13,3 +13,11 @@ class PageRanker(object):
         graph = self._graph_parser.parse_graph(max_edges=self._max_edges)
         raw_pagerank = calculate_pagerank(graph, damping_factor=self._damping_factor)
         return self._pagerank_formatter.format_pagerank_dict(raw_pagerank)
+
+    @property
+    def triples_analized(self):
+        return self._graph_parser.yielded_triples
+
+    @property
+    def triples_with_error(self):
+        return self._graph_parser.error_triples

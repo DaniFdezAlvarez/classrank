@@ -11,6 +11,7 @@ class TsvSpoGraphParser(DiGraphParserInterface):
         self._line_count = 0
 
     def parse_graph(self, max_edges=-1):
+        self._reset_count()
         result = nx.DiGraph()
         with open(self._source_file, "r") as input_io:
             for a_line in input_io:
@@ -30,3 +31,15 @@ class TsvSpoGraphParser(DiGraphParserInterface):
             return
 
         return pieces[0], pieces[2]
+
+    @property
+    def parsed_triples(self):
+        return self._line_count
+
+    @property
+    def error_triples(self):
+        return self._error_count
+
+    def _reset_count(self):
+        self._error_count = 0
+        self._line_count = 0
