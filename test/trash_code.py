@@ -44,8 +44,9 @@ from classrank_io.graph.yielders.ttl_simple_triples_yielder import TtlSimpleTrip
 ########################################### DBPEDIA SPANISH
 
 db_es_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\mappingbased_objects_en_uris_es.ttl\\mappingbased_objects_en_uris_es.ttl"
+db_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\mappingbased_objects_en.ttl\\db_en.ttl"
 
-parser = TtlSimpleDigraphParser(db_es_path)
+parser = TtlSimpleDigraphParser(db_en_path)
 
 formater = RawPageRankFormatter()
 
@@ -60,8 +61,8 @@ classpointer_set = classpointers_parser.parse_classpointers()
 classpointer_str = RawClasspointerFormater().format_classpointers_set(classpointer_set)
 
 
-triple_yielder = TtlSimpleTriplesYielder(source_file=db_es_path)
-classrank_formater = SortedJsonFormatedInterface(target_file="files\\out\\CR_dbp_es_tiny.tsv")
+triple_yielder = TtlSimpleTriplesYielder(source_file=db_en_path)
+classrank_formater = SortedJsonFormatedInterface(target_file="files\\out\\CR_dbp_en_tiny.json")
 
 classranker = ClassRanker(digraph_parser=parser,
                           triple_yielder=triple_yielder,
@@ -70,9 +71,13 @@ classranker = ClassRanker(digraph_parser=parser,
                           damping_factor=0.9,
                           class_security_threshold=20,
                           instantiation_security_threshold=20,
-                          max_edges=1000000)
+                          max_edges=5000000)
 
 result_2 = classranker.generate_classrank()
+
 print result_2
 print classranker.triples_analized
 print classranker.triples_with_error
+print "--------"
+print classranker.number_of_classes
+print classranker.number_of_entities

@@ -21,6 +21,8 @@ class ClassRanker(object):
         self._instantiation_security_threshold = instantiation_security_threshold
         self._classrank_formatter = classrank_formatter
         self._max_edges = max_edges
+        self._number_of_classes = 0
+        self._number_of_entities = 0
 
     @property
     def triples_analized(self):
@@ -29,6 +31,14 @@ class ClassRanker(object):
     @property
     def triples_with_error(self):
         return self._triple_yielder.error_triples
+
+    @property
+    def number_of_classes(self):
+        return self._number_of_classes
+
+    @property
+    def number_of_entities(self):
+        return self._number_of_entities
 
 
     def generate_classrank(self):
@@ -41,17 +51,23 @@ class ClassRanker(object):
 
 
         ### Stage 1 - PageRank
+        print "stage 1"
         raw_pagerank = calculate_pagerank(graph, damping_factor=self._damping_factor)
+        self._number_of_entities = len(raw_pagerank)
 
         ### Stage 2 - ClassDetection
+        print "Stage 2"
         graph = None  # Here we do not need anymore the directed graph.
         # We must free that memory
         classes_dict = self._detect_classes(self._triple_yielder, classpointers_set, self._class_security_threshold)
+        self._number_of_classes = len(classes_dict)
 
         ###  Stage 3 - ClassRank calculations
+        print "stage 3"
         self._calculate_classrank(classes_dict, raw_pagerank, self._instantiation_security_threshold)
 
         ###  Outputs
+        print "Outputs"
         result = self._classrank_formatter.format_classrank_dict(classes_dict)
 
         return result
@@ -102,6 +118,6 @@ class ClassRanker(object):
                             classes_dict[a_class][_KEY_INSTANCES].add(an_s)
                             classes_dict[a_class][_KEY_CLASSRANK] += raw_pagerank[an_s]  # It must be there! KeyError?
 
-                # The set of instances in no more useful. Change it by the total number of isntances.
-                classes_dict[a_class][_KEY_INSTANCES] = len(classes_dict[a_class][_KEY_INSTANCES])
+            # The set of instances in no more useful. Change it by the total number of instances.
+            classes_dict[a_class][_KEY_INSTANCES] = len(classes_dict[a_class][_KEY_INSTANCES])
         # No return needed, modyfying received param
