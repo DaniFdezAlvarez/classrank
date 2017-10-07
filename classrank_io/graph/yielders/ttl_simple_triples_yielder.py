@@ -26,6 +26,8 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
                     self._triples_count += 1
                     if self._triples_count == max_triples:
                         break
+                    # if self._triples_count %100000 == 0:
+                    #     print self._triples_count
                 else:
                     self._error_count += 1
 

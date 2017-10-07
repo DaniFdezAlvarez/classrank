@@ -9,12 +9,12 @@ class CpCandidatesFinder(object):
         self._triple_yielder = triple_yielder
         self._classpointers_formatter = classpointers_formater
         self._class_security_threshold = class_security_threshold
-        self._max_triples = -1
+        self._max_triples = max_triples
 
     def generate_classpointer_candidates(self):
         set_result = set()
         classes_dict = {}
-        for a_triple in self._triple_yielder.yield_triples(max_triples=-1)
+        for a_triple in self._triple_yielder.yield_triples(max_triples=self._max_triples):
             if a_triple[_PERDICATE] not in set_result:
                 if a_triple[_OBJECT] not in classes_dict:
                     classes_dict[a_triple[_OBJECT]] = {}
