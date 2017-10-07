@@ -152,3 +152,8 @@ crashlytics-build.properties
 fabric.properties
 
 .idea/
+
+
+#Ignoring out files in tests
+
+test/files/out/

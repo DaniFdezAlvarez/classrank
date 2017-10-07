@@ -13,6 +13,7 @@ class TtlSimpleDigraphParser(DiGraphParserInterface):
         self._error_count = 0
 
     def parse_graph(self, max_edges=-1):
+        self._reset_count()
         result = nx.DiGraph()
         with open(self._source_file, "r") as in_stream:
             in_stream.readline() # Just to skip the first one
@@ -21,9 +22,10 @@ class TtlSimpleDigraphParser(DiGraphParserInterface):
                 if s is not None:  # (the 0 should not be None)
                     self._triple_count += 1
                     result.add_edge(s, o)
-                    print (s,o)
                     if self._triple_count == max_edges:
                         break
+                    if self._triple_count % 100000 == 0:
+                        print self._triple_count
                 else:
                     self._error_count += 1
         return result
@@ -37,3 +39,15 @@ class TtlSimpleDigraphParser(DiGraphParserInterface):
             return None, None
         else:
             return remove_corners(pieces[0]), remove_corners(pieces[2])
+
+    @property
+    def parsed_triples(self):
+        return self._triple_count
+
+    @property
+    def error_triples(self):
+        return self._error_count
+
+    def _reset_count(self):
+        self._error_count = 0
+        self._triple_count = 0
