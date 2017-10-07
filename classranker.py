@@ -24,23 +24,6 @@ class ClassRanker(object):
         self._number_of_classes = 0
         self._number_of_entities = 0
 
-    @property
-    def triples_analized(self):
-        return self._triple_yielder.yielded_triples
-
-    @property
-    def triples_with_error(self):
-        return self._triple_yielder.error_triples
-
-    @property
-    def number_of_classes(self):
-        return self._number_of_classes
-
-    @property
-    def number_of_entities(self):
-        return self._number_of_entities
-
-
     def generate_classrank(self):
         ### Collecting inputs
         graph = self._graph_parser.parse_graph(max_edges=self._max_edges)
@@ -121,3 +104,19 @@ class ClassRanker(object):
             # The set of instances in no more useful. Change it by the total number of instances.
             classes_dict[a_class][_KEY_INSTANCES] = len(classes_dict[a_class][_KEY_INSTANCES])
         # No return needed, modyfying received param
+
+    @property
+    def triples_analized(self):
+        return self._triple_yielder.yielded_triples
+
+    @property
+    def triples_with_error(self):
+        return self._triple_yielder.error_triples
+
+    @property
+    def number_of_classes(self):
+        return self._number_of_classes
+
+    @property
+    def number_of_entities(self):
+        return self._number_of_entities
