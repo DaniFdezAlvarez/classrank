@@ -157,3 +157,7 @@ fabric.properties
 #Ignoring out files in tests
 
 test/files/out/
+
+#some local code
+
+local_code/
