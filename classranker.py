@@ -12,7 +12,7 @@ _KEY_CLASS_POINTERS = "cps"
 
 class ClassRanker(object):
     def __init__(self, digraph_parser, triple_yielder, classpointers_parser, classrank_formatter, damping_factor=0.85,
-                 class_security_threshold=15, instantiation_security_threshold=15, max_edges=-1):
+                 max_iter_pagerank=100, class_security_threshold=15, instantiation_security_threshold=15, max_edges=-1):
         self._graph_parser = digraph_parser
         self._triple_yielder = triple_yielder
         self._classpointer_parser = classpointers_parser
@@ -23,6 +23,7 @@ class ClassRanker(object):
         self._max_edges = max_edges
         self._number_of_classes = 0
         self._number_of_entities = 0
+        self._max_iter_pagerank = max_iter_pagerank
 
     def generate_classrank(self):
         ### Collecting inputs
@@ -35,7 +36,9 @@ class ClassRanker(object):
 
         ### Stage 1 - PageRank
         print "stage 1"
-        raw_pagerank = calculate_pagerank(graph, damping_factor=self._damping_factor)
+        raw_pagerank = calculate_pagerank(graph=graph,
+                                          damping_factor=self._damping_factor,
+                                          max_iter=self._max_iter_pagerank)
         self._number_of_entities = len(raw_pagerank)
 
         ### Stage 2 - ClassDetection
