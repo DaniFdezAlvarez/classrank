@@ -107,7 +107,7 @@ from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesY
 ############### Full TTl parsers
 
 parser1 = TtlFullDigraphParser(source_file="files\\sample_ttl_full_tiny.ttl")
-graph1 = parser1.parse_graph()
+graph1 = parser1.parse_graph(max_edges=4)
 for an_edge in graph1.edges_iter():
     print an_edge
 
@@ -118,7 +118,7 @@ print "Error", parser1.error_triples
 print "----------------"
 
 yielder2 = TtlFullTriplesYielder(source_file="files\\sample_ttl_full_tiny.ttl")
-for a_triple in yielder2.yield_triples():
+for a_triple in yielder2.yield_triples(max_triples=4):
     print a_triple
 
 print "Yielded", yielder2.yielded_triples

@@ -24,6 +24,8 @@ class TtlFullDigraphParser(DiGraphParserInterface):
             if type(s) == term.URIRef and type(o) == term.URIRef:
                 result.add_edge(str(s), str(o))
                 self._triple_count += 1
+                if self.parsed_triples == max_edges:
+                    break
             else:
                 self._ignored += 1
         return result

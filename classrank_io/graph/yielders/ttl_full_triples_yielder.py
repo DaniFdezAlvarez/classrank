@@ -28,6 +28,8 @@ class TtlFullTriplesYielder(TriplesYielderInterface):
             if type(s) == term.URIRef and type(o) == term.URIRef:
                 yield str(s), str(p), str(o)
                 self._triples_count += 1
+                if self._triples_count == max_triples:
+                    break
             else:
                 self._ignored += 1
 
