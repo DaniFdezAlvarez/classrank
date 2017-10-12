@@ -20,7 +20,7 @@ class TtlFullDigraphParser(DiGraphParserInterface):
         result = nx.DiGraph()
         rdfgraph = Graph()
         rdfgraph.parse(self._source_file, format=self._format)
-        for s,o in rdfgraph.subject_objects(predicate=None):
+        for s,o in rdfgraph.subject_objects():
             if type(s) == term.URIRef and type(o) == term.URIRef:
                 result.add_edge(str(s), str(o))
                 self._triple_count += 1

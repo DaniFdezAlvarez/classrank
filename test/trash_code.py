@@ -12,6 +12,7 @@ from classrank_io.graph.yielders.ttl_simple_triples_yielder import TtlSimpleTrip
 from classrank_io.classpointers.formatters.one_per_line_classpointers_formatter import OnePerLineClasspointerFormatter
 from classpointer_candidates_finder import CpCandidatesFinder
 from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
+from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
 
 #
 # parser = TsvSpoGraphParser("files\\tsv_spo_tiny.tsv")
@@ -110,4 +111,17 @@ graph1 = parser1.parse_graph()
 for an_edge in graph1.edges_iter():
     print an_edge
 
+print "Parsed", parser1.parsed_triples
+print "Ignored", parser1.ignored_triples
+print "Error", parser1.error_triples
+
+print "----------------"
+
+yielder2 = TtlFullTriplesYielder(source_file="files\\sample_ttl_full_tiny.ttl")
+for a_triple in yielder2.yield_triples():
+    print a_triple
+
+print "Yielded", yielder2.yielded_triples
+print "Ignored", yielder2.ignored_triples
+print "Error", yielder2.error_triples
 
