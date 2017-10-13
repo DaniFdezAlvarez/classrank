@@ -13,6 +13,7 @@ from classrank_io.classpointers.formatters.one_per_line_classpointers_formatter 
 from classpointer_candidates_finder import CpCandidatesFinder
 from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
+from classrank_io.graph.yielders.ttl_explicit_spo_triples_yielder import TtlExplicitSpoTriplesYielder
 
 #
 # parser = TsvSpoGraphParser("files\\tsv_spo_tiny.tsv")
@@ -106,22 +107,36 @@ from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesY
 
 ############### Full TTl parsers
 
-parser1 = TtlFullDigraphParser(source_file="files\\sample_ttl_full_tiny.ttl")
-graph1 = parser1.parse_graph(max_edges=4)
-for an_edge in graph1.edges_iter():
-    print an_edge
+# parser1 = TtlFullDigraphParser(source_file="files\\sample_ttl_full_tiny.ttl")
+# graph1 = parser1.parse_graph(max_edges=4)
+# for an_edge in graph1.edges_iter():
+#     print an_edge
+#
+# print "Parsed", parser1.parsed_triples
+# print "Ignored", parser1.ignored_triples
+# print "Error", parser1.error_triples
+#
+# print "----------------"
+#
+# yielder2 = TtlFullTriplesYielder(source_file="files\\sample_ttl_full_tiny.ttl")
+# for a_triple in yielder2.yield_triples(max_triples=4):
+#     print a_triple
+#
+# print "Yielded", yielder2.yielded_triples
+# print "Ignored", yielder2.ignored_triples
+# print "Error", yielder2.error_triples
 
-print "Parsed", parser1.parsed_triples
-print "Ignored", parser1.ignored_triples
-print "Error", parser1.error_triples
 
-print "----------------"
+############### SImple Ttl parsers with triples involving literals and possibly b-nodes
 
-yielder2 = TtlFullTriplesYielder(source_file="files\\sample_ttl_full_tiny.ttl")
-for a_triple in yielder2.yield_triples(max_triples=4):
-    print a_triple
+person_data_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\persondata_en.ttl\\persondata_en.ttl"
+instances_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\instance_types_en.ttl\\instance_types_en.ttl"
+skos_cats_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\skos_categories_en.ttl\\skos_categories_en.ttl"
 
-print "Yielded", yielder2.yielded_triples
-print "Ignored", yielder2.ignored_triples
-print "Error", yielder2.error_triples
+yielder = TtlExplicitSpoTriplesYielder(source_file=skos_cats_en_path)
+for a_triple in yielder.yield_triples(max_triples=2000):
+    print a_triple, yielder.yielded_triples
 
+print "Yielded", yielder.yielded_triples
+print "Ignored", yielder.ignored_triples
+print "Error", yielder.error_triples

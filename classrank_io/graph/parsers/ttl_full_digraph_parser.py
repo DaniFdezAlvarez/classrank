@@ -36,7 +36,6 @@ class TtlFullDigraphParser(DiGraphParserInterface):
     def ignored_triples(self):  # Just in this parser... should it be in other ones?
         return self._ignored
 
-
     @property
     def parsed_triples(self):
         return self._triple_count
