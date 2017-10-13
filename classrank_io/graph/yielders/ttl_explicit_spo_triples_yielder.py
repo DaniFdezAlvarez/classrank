@@ -29,8 +29,6 @@ class TtlExplicitSpoTriplesYielder(TriplesYielderInterface):
                         break
                     # if self._triples_count %100000 == 0:
                     #     print self._triples_count
-                else:
-                    self._error_count += 1
 
 
     def _get_triple_from_line(self, a_line):
