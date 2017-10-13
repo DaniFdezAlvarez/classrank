@@ -14,6 +14,7 @@ from classpointer_candidates_finder import CpCandidatesFinder
 from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
 from classrank_io.graph.yielders.ttl_explicit_spo_triples_yielder import TtlExplicitSpoTriplesYielder
+from classrank_io.graph.parsers.ttl_explicit_spo_digraph_parser import TtlExplicitSpoDigraphParser
 
 #
 # parser = TsvSpoGraphParser("files\\tsv_spo_tiny.tsv")
@@ -133,10 +134,23 @@ person_data_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIO
 instances_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\instance_types_en.ttl\\instance_types_en.ttl"
 skos_cats_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\skos_categories_en.ttl\\skos_categories_en.ttl"
 
-yielder = TtlExplicitSpoTriplesYielder(source_file=skos_cats_en_path)
-for a_triple in yielder.yield_triples(max_triples=2000):
+yielder = TtlExplicitSpoTriplesYielder(source_file=person_data_en_path)
+for a_triple in yielder.yield_triples(max_triples=1000):
     print a_triple, yielder.yielded_triples
 
 print "Yielded", yielder.yielded_triples
 print "Ignored", yielder.ignored_triples
 print "Error", yielder.error_triples
+
+print "--------------------"
+
+parser = TtlExplicitSpoDigraphParser(person_data_en_path)
+graph = parser.parse_graph(max_edges=1000)
+for an_edge in graph.edges_iter():
+    print an_edge
+
+print "Parser", parser.parsed_triples
+print "Ignored", parser.ignored_triples
+print "Error", parser.error_triples
+
+
