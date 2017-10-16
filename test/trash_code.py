@@ -15,6 +15,7 @@ from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphPar
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
 from classrank_io.graph.yielders.ttl_explicit_spo_triples_yielder import TtlExplicitSpoTriplesYielder
 from classrank_io.graph.parsers.ttl_explicit_spo_digraph_parser import TtlExplicitSpoDigraphParser
+from classrank_io.graph.adapters.classrank.full_json_to_summarized_json_classrank_adapter import FullJsonToSummarizedJsonClassrankAdapter
 
 #
 # parser = TsvSpoGraphParser("files\\tsv_spo_tiny.tsv")
@@ -93,22 +94,22 @@ from classrank_io.graph.parsers.ttl_explicit_spo_digraph_parser import TtlExplic
 
 ###### Classpointer candidates
 
-
-db_es_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\mappingbased_objects_en_uris_es.ttl\\mappingbased_objects_en_uris_es.ttl"
-db_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\mappingbased_objects_en.ttl\\db_en.ttl"
-person_data_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\persondata_en.ttl\\persondata_en.ttl"
-instances_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\instance_types_en.ttl\\instance_types_en.ttl"
-skos_cats_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\skos_categories_en.ttl\\skos_categories_en.ttl"
-
-
-
-# triple_yielder = TtlSimpleTriplesYielder(source_file=skos_cats_en_path)
-
-triple_yielder = TtlExplicitSpoTriplesYielder(source_file=person_data_en_path)
-candidates_finder = CpCandidatesFinder(triple_yielder=triple_yielder,
-                                       classpointers_formater=OnePerLineClasspointerFormatter(target_file="files\\out\\instances_en_cps_candidates.tsv"),
-                                       class_security_threshold=15)
-print candidates_finder.generate_classpointer_candidates()
+#
+# db_es_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\mappingbased_objects_en_uris_es.ttl\\mappingbased_objects_en_uris_es.ttl"
+# db_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\mappingbased_objects_en.ttl\\db_en.ttl"
+# person_data_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\persondata_en.ttl\\persondata_en.ttl"
+# instances_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\instance_types_en.ttl\\instance_types_en.ttl"
+# skos_cats_en_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\skos_categories_en.ttl\\skos_categories_en.ttl"
+#
+#
+#
+# # triple_yielder = TtlSimpleTriplesYielder(source_file=skos_cats_en_path)
+#
+# triple_yielder = TtlExplicitSpoTriplesYielder(source_file=person_data_en_path)
+# candidates_finder = CpCandidatesFinder(triple_yielder=triple_yielder,
+#                                        classpointers_formater=OnePerLineClasspointerFormatter(target_file="files\\out\\instances_en_cps_candidates.tsv"),
+#                                        class_security_threshold=15)
+# print candidates_finder.generate_classpointer_candidates()
 
 
 ############### Full TTl parsers
@@ -157,3 +158,14 @@ print candidates_finder.generate_classpointer_candidates()
 # print "Parser", parser.parsed_triples
 # print "Ignored", parser.ignored_triples
 # print "Error", parser.error_triples
+
+
+
+##############  CR summarization
+source_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\CR_dbp_en_joined.json"
+target_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\CR_dbp_en_joined_summarized.json"
+
+adapter = FullJsonToSummarizedJsonClassrankAdapter(source_path, target_path)
+result = adapter.adapt_file()
+
+print result
