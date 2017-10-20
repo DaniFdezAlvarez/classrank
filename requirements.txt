@@ -1,2 +1,6 @@
 networkx
 rdflib
+flask
+flask-jsonpify
+flask-restful
+requests

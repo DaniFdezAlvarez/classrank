@@ -11,9 +11,10 @@ from rdflib import Graph, term
 
 class TtlFullTriplesYielder(TriplesYielderInterface):
 
-    def __init__(self, source_file, source_format="n3"):
+    def __init__(self, source_file=None, string_graph=None, source_format="n3"):
         super(TtlFullTriplesYielder, self).__init__()
         self._source_file = source_file
+        self._string_graph = string_graph
         self._triples_count = 0
         self._error_count = 0
         self._ignored = 0
@@ -22,8 +23,12 @@ class TtlFullTriplesYielder(TriplesYielderInterface):
     def yield_triples(self, max_triples=-1):
         self._reset_count()
         rdfgraph = Graph()
-        rdfgraph.parse(source=self._source_file,
-                       format=self._source_format)
+        if self._source_file is not None:
+            rdfgraph.parse(source=self._source_file,
+                           format=self._source_format)
+        else:
+            rdfgraph.parse(data=self._string_graph,
+                           format=self._source_format)
         for s,p,o in rdfgraph.triples((None, None, None)):
             if type(s) == term.URIRef and type(o) == term.URIRef:
                 yield str(s), str(p), str(o)

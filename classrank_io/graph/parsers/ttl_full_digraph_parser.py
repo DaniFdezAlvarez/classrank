@@ -7,9 +7,10 @@ _SEPARATOR = " "
 
 class TtlFullDigraphParser(DiGraphParserInterface):
 
-    def __init__(self, source_file, source_format="n3"):
+    def __init__(self, source_file=None, string_graph=None, source_format="n3"):
         super(TtlFullDigraphParser, self).__init__()
         self._source_file = source_file
+        self._string_graph = string_graph
         self._triple_count = 0
         self._error_count = 0
         self._ignored = 0
@@ -19,7 +20,11 @@ class TtlFullDigraphParser(DiGraphParserInterface):
         self._reset_count()
         result = nx.DiGraph()
         rdfgraph = Graph()
-        rdfgraph.parse(self._source_file, format=self._format)
+        if self._source_file is not None:
+            rdfgraph.parse(self._source_file, format=self._format)
+        else:
+            rdfgraph.parse(data=self._string_graph, format=self._format)
+
         for s,o in rdfgraph.subject_objects():
             if type(s) == term.URIRef and type(o) == term.URIRef:
                 result.add_edge(str(s), str(o))
