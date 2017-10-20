@@ -162,10 +162,111 @@ from classrank_io.graph.adapters.classrank.full_json_to_summarized_json_classran
 
 
 ##############  CR summarization
-source_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\CR_dbp_en_joined.json"
-target_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\CR_dbp_en_joined_summarized.json"
 
-adapter = FullJsonToSummarizedJsonClassrankAdapter(source_path, target_path)
-result = adapter.adapt_file()
+# source_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\CR_dbp_en_joined.json"
+# target_path = "C:\\Users\\Dani\\Documents\\EII\\doctorado\\PAPERS_PROPIOS\\classrank_dbpedia\\datasets\\CR_dbp_en_joined_summarized.json"
+#
+# adapter = FullJsonToSummarizedJsonClassrankAdapter(source_path, target_path)
+# result = adapter.adapt_file()
+#
+# print result
 
-print result
+
+############### POST CALL
+import json
+import requests
+
+# from api.classrank_rest import CLASSPOINTERS_KEY, THRESHOLD_CLASSES_KEY, \
+#     DAMPING_FACTOR_KEY, GRAPH_KEY, THRESHOLD_INSTANCES_KEY
+
+GRAPH_KEY = "G"
+CLASSPOINTERS_KEY = "CP"
+THRESHOLD_INSTANCES_KEY = "TI"
+THRESHOLD_CLASSES_KEY = "TC"
+DAMPING_FACTOR_KEY = "D"
+
+
+graph_str = """
+@prefix txn: <http://example.org/data/transaction/> .
+@prefix srv: <http://example.org/data/server/> .
+@prefix log: <http://example.org/ont/transaction-log/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+txn:123 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:A ;
+	log:processedAt "2015-10-16T10:22:23"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:124 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:B ;
+	log:processedAt "2015-10-16T10:22:24"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:125 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:C ;
+	log:processedAt "2015-10-16T10:22:24"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:126 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:A ;
+	log:processedAt "2015-10-16T10:22:25"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:127 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:B ;
+	log:processedAt "2015-10-16T10:22:25"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:128 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:C ;
+	log:processedAt "2015-10-16T10:22:26"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:129 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:A ;
+	log:processedAt "2015-10-16T10:22:28"^^xsd:dateTime ;
+	log:statusCode 500 .
+
+txn:130 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:B ;
+	log:processedAt "2015-10-16T10:22:31"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:131 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:C ;
+	log:processedAt "2015-10-16T10:22:31"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:132 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:A ;
+	log:processedAt "2015-10-16T10:22:32"^^xsd:dateTime ;
+	log:statusCode 500 .
+
+txn:133 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:B ;
+	log:processedAt "2015-10-16T10:22:33"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:134 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:C ;
+	log:processedAt "2015-10-16T10:22:33"^^xsd:dateTime ;
+	log:statusCode 200 .
+
+txn:135 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+	log:processedBy srv:A ;
+	log:processedAt "2015-10-16T10:22:35"^^xsd:dateTime ;
+	log:statusCode 401 .
+"""
+print type(graph_str)
+data = {DAMPING_FACTOR_KEY : 0.90,
+        THRESHOLD_INSTANCES_KEY: 1,
+        THRESHOLD_CLASSES_KEY: 1,
+        CLASSPOINTERS_KEY : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+        GRAPH_KEY : graph_str
+        }
+data_json = json.dumps(data)
+headers = {'Content-type': 'application/json'}
+print "Algo!"
+response = requests.post("http://localhost:5002/classrank", data=data_json, headers=headers)
+print response
+print response.json()

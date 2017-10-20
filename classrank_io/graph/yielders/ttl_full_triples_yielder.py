@@ -14,7 +14,7 @@ class TtlFullTriplesYielder(TriplesYielderInterface):
     def __init__(self, source_file=None, string_graph=None, source_format="n3"):
         super(TtlFullTriplesYielder, self).__init__()
         self._source_file = source_file
-        self._string_graph = None
+        self._string_graph = string_graph
         self._triples_count = 0
         self._error_count = 0
         self._ignored = 0
