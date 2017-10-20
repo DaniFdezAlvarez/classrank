@@ -4,7 +4,7 @@ from classrank_io.graph.formatters.pagerank.raw_pagerank_formatter import RawPag
 from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import OnePerLineClasspointerParser
 from classrank_io.classpointers.formatters.raw_classpointer_formatter import RawClasspointerFormater
 from classrank_io.graph.yielders.tsv_spo_triples_yielder import TsvSpoTriplesYielder
-from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter import SortedJsonFormatedInterface
+from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter import SortedJsonClassrankFormatter
 from pageranker import PageRanker
 from classranker import ClassRanker
 from classrank_io.graph.parsers.ttl_simple_digraph_parser import TtlSimpleDigraphParser
@@ -34,7 +34,7 @@ from classrank_io.graph.adapters.classrank.full_json_to_summarized_json_classran
 #
 #
 # triple_yielder = TsvSpoTriplesYielder(source_file="files\\tsv_spo_tiny.tsv")
-# classrank_formater = SortedJsonFormatedInterface(target_file="files\\out\\CR_tiny.tsv")
+# classrank_formater = SortedJsonClassrankFormatter(target_file="files\\out\\CR_tiny.tsv")
 #
 # classranker = ClassRanker(digraph_parser=parser,
 #                           triple_yielder=triple_yielder,
@@ -69,7 +69,7 @@ from classrank_io.graph.adapters.classrank.full_json_to_summarized_json_classran
 #
 #
 # triple_yielder = TtlSimpleTriplesYielder(source_file=db_en_path)
-# classrank_formater = SortedJsonFormatedInterface(target_file="files\\out\\CR_dbp_en_tiny.json")
+# classrank_formater = SortedJsonClassrankFormatter(target_file="files\\out\\CR_dbp_en_tiny.json")
 #
 # classranker = ClassRanker(digraph_parser=parser,
 #                           triple_yielder=triple_yielder,
