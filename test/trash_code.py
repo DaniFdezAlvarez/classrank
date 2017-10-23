@@ -267,6 +267,7 @@ data = {DAMPING_FACTOR_KEY : 0.90,
 data_json = json.dumps(data)
 headers = {'Content-type': 'application/json'}
 print "Algo!"
-response = requests.post("http://localhost:5002/classrank", data=data_json, headers=headers)
+response = requests.post("http://156.35.82.113:5002/classrank", data=data_json, headers=headers)
+# response = requests.post("http://boa.weso.es:5002/classrank", data=data_json, headers=headers)
 print response
 print response.json()

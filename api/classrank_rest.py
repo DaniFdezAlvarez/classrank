@@ -4,7 +4,7 @@ from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphPar
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
 from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import OnePerLineClasspointerParser
 from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter import SortedJsonClassrankFormatter
-from flask_cors import CORS
+
 
 
 GRAPH_KEY = "G"
@@ -14,6 +14,7 @@ THRESHOLD_CLASSES_KEY = "TC"
 DAMPING_FACTOR_KEY = "D"
 
 PORT = 5002
+HOST = "0.0.0.0"
 MAX_LEN = 100000
 
 app = Flask(__name__)
@@ -97,6 +98,6 @@ def classrank():
     result = classranker.generate_classrank()
     return result
 
-CORS(app)
-app.run(port=PORT)
+# CORS(app)
+# app.run(port=PORT)
 

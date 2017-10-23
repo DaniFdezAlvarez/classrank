@@ -5,3 +5,4 @@ flask-jsonpify
 flask-restful
 flask-cors
 requests
+gunicorn
