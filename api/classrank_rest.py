@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 from classranker import ClassRanker
 from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
@@ -98,6 +99,7 @@ def classrank():
     result = classranker.generate_classrank()
     return result
 
-# CORS(app)
-# app.run(port=PORT)
+CORS(app)
+if __name__ == "__main__":
+    app.run(port=PORT, host=HOST)
 
