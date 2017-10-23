@@ -4,6 +4,7 @@ from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphPar
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
 from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import OnePerLineClasspointerParser
 from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter import SortedJsonClassrankFormatter
+from flask_cors import CORS
 
 
 GRAPH_KEY = "G"
@@ -76,7 +77,9 @@ def classrank():
         ttl_graph = _parse_ttl_graph(data[GRAPH_KEY])
 
     except BaseException as e:
-        return "Unexpected data format: " + e.message
+        message =  "Unexpected data format: " + e.message
+        return '{"Error" : "' + message + '"}'
+
 
     parser = TtlFullDigraphParser(string_graph=ttl_graph)
     yielder = TtlFullTriplesYielder(string_graph=ttl_graph)
@@ -94,5 +97,6 @@ def classrank():
     result = classranker.generate_classrank()
     return result
 
+CORS(app)
 app.run(port=PORT)
 

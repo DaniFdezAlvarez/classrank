@@ -3,4 +3,5 @@ rdflib
 flask
 flask-jsonpify
 flask-restful
+flask-cors
 requests
