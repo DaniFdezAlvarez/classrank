@@ -40,6 +40,10 @@ class TsvSpoGraphParser(DiGraphParserInterface):
     def error_triples(self):
         return self._error_count
 
+    @property
+    def ignored_triples(self):
+        return 0
+
     def _reset_count(self):
         self._error_count = 0
         self._line_count = 0

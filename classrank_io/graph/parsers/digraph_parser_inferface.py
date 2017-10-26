@@ -31,6 +31,10 @@ class DiGraphParserInterface(object):
     def error_triples(self):
         raise NotImplementedError("Method should be redefined")
 
+    @property
+    def ignored_triples(self):
+        raise NotImplementedError("Method should be redefined")
+
     def _reset_count(self):
         """
         Just to remember that the counts may be managed if the object is used to parse
