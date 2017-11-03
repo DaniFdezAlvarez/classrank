@@ -6,6 +6,9 @@ outputs of different type. Ex: result to a file.
 
 """
 
+KEY_ELEM = "class"
+KEY_RANK_POSITION = "rank"
+
 class ClassRankFormatterInterface(object):
 
     def __init__(self):

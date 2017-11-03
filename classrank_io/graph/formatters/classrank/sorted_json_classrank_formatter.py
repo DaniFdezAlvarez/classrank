@@ -1,8 +1,7 @@
-from classrank_io.graph.formatters.classrank.classrank_formatter_interface import ClassRankFormatterInterface
+from classrank_io.graph.formatters.classrank.classrank_formatter_interface import ClassRankFormatterInterface, KEY_ELEM
 from classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_INSTANCES
 import json
 
-KEY_ELEM = "class"
 
 class SortedJsonClassrankFormatter(ClassRankFormatterInterface):
     def __init__(self, target_file=None, string_output=False):

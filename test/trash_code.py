@@ -352,6 +352,16 @@ txn:135 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
 """
 
 results = generate_classrank(raw_graph=graph_str,
+                   raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+                   string_return=True,
+                   instantiation_threshold=1,
+                   class_threshold=1,
+                   output_format="ttl")
+
+print results
+
+
+results = generate_classrank(raw_graph=graph_str,
                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
                              string_return=True,
                              instantiation_threshold=1,
