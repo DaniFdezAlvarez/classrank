@@ -13,22 +13,12 @@ from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import 
 from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter import SortedJsonClassrankFormatter
 from classrank_io.graph.formatters.classrank.ttl_classrank_formatter import TtlClassrankFormatter
 
+from helpers.const import *
+
 from classranker import ClassRanker
-
-
-
-
-TTL_FULL_FORMAT = "ttl"
-TSV_SPO_FORMAT = "tsv_spo"
-TTL_SIMPLE_FORMAT = "ttl_simple"  # All triples are complete and are relevant
-TTL_EXPLICIT_SPO_FORMAT = "ttl_explicit"  # All the triples are complete, but there may be literals or bnodes.
-
-JSON_FULL_OUTPUT = "json"
-TTL_OUTPUT = "ttl"
 
 _ACCEPTED_GRAPH_FORMATS = [TTL_FULL_FORMAT, TSV_SPO_FORMAT, TTL_SIMPLE_FORMAT, TTL_EXPLICIT_SPO_FORMAT]
 _ACCEPTED_OUTPUT_FORMATS = [JSON_FULL_OUTPUT, TTL_OUTPUT]
-
 
 
 def _build_graph_yielder(graph_format, graph_file, raw_graph):
