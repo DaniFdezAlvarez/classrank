@@ -1,5 +1,4 @@
 from classrank_io.graph.parsers.digraph_parser_inferface import DiGraphParserInterface
-from classrank_utils.uri import remove_corners
 import networkx as nx
 from rdflib import Graph, term
 _SEPARATOR = " "

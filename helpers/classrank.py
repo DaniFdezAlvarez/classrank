@@ -2,11 +2,13 @@ from classrank_io.graph.parsers.tsv_spo_digraph_parser import TsvSpoGraphParser
 from classrank_io.graph.parsers.ttl_explicit_spo_digraph_parser import TtlExplicitSpoDigraphParser
 from classrank_io.graph.parsers.ttl_simple_digraph_parser import TtlSimpleDigraphParser
 from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
+from classrank_io.graph.parsers.ttl_full_memory_kind_digraph_parser import TtlFullMemoryKindDigraphParser
 
 from classrank_io.graph.yielders.tsv_spo_triples_yielder import TsvSpoTriplesYielder
 from classrank_io.graph.yielders.ttl_explicit_spo_triples_yielder import TtlExplicitSpoTriplesYielder
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
 from classrank_io.graph.yielders.ttl_simple_triples_yielder import TtlSimpleTriplesYielder
+from classrank_io.graph.yielders.ttl_full_memory_kind_triples_yielder import TtlFullMemoryKindTriplesYielder
 
 from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import OnePerLineClasspointerParser
 
@@ -21,12 +23,15 @@ _ACCEPTED_GRAPH_FORMATS = [TTL_FULL_FORMAT, TSV_SPO_FORMAT, TTL_SIMPLE_FORMAT, T
 _ACCEPTED_OUTPUT_FORMATS = [JSON_FULL_OUTPUT, TTL_OUTPUT]
 
 
-def _build_graph_yielder(graph_format, graph_file, raw_graph):
+def _build_graph_yielder(graph_format, graph_file, raw_graph, save_memory_mode):
     if raw_graph is not None and graph_format in [TTL_FULL_FORMAT, TTL_SIMPLE_FORMAT, TTL_EXPLICIT_SPO_FORMAT]:
         return TtlFullTriplesYielder(string_graph=raw_graph)
     else:
         if graph_format == TTL_FULL_FORMAT:
-            return TtlFullTriplesYielder(source_file=graph_file)
+            if save_memory_mode:
+                return TtlFullMemoryKindTriplesYielder(source_file=graph_file)
+            else:
+                return TtlFullTriplesYielder(source_file=graph_file)
         elif graph_format == TTL_EXPLICIT_SPO_FORMAT:
             return TtlExplicitSpoTriplesYielder(source_file=graph_file)
         elif graph_format == TTL_SIMPLE_FORMAT:
@@ -37,12 +42,15 @@ def _build_graph_yielder(graph_format, graph_file, raw_graph):
             raise ValueError("Unsupported graph format building yielder")
 
 
-def _build_digraph_parser(graph_format, graph_file, raw_graph):
+def _build_digraph_parser(graph_format, graph_file, raw_graph, save_memory_mode):
     if raw_graph is not None and graph_format in [TTL_FULL_FORMAT, TTL_SIMPLE_FORMAT, TTL_EXPLICIT_SPO_FORMAT]:
         return TtlFullDigraphParser(string_graph=raw_graph)
     else:
         if graph_format == TTL_FULL_FORMAT:
-            return TtlFullDigraphParser(source_file=graph_file)
+            if save_memory_mode:
+                return TtlFullMemoryKindDigraphParser(source_file=graph_file)
+            else:
+                return TtlFullDigraphParser(source_file=graph_file)
         elif graph_format == TTL_EXPLICIT_SPO_FORMAT:
             return TtlExplicitSpoDigraphParser(source_file=graph_file)
         elif graph_format == TTL_SIMPLE_FORMAT:
@@ -121,7 +129,7 @@ def _assert_valid_param_combination_classrank(damping_factor, max_iters, instant
 def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_threshold=15, class_threshold=15,
                        max_triples=-1, graph_format=TTL_FULL_FORMAT, output_format=JSON_FULL_OUTPUT, graph_file=None,
                        classpointers_file=None, raw_graph=None, raw_classpointers=None,
-                       output_file=None, string_return=False):
+                       output_file=None, string_return=False, save_memory_mode=False):
     """
 
     :param damping_factor: Damping factor for PageRank execution
@@ -151,8 +159,8 @@ def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_thresho
                                               raw_classpointers, output_file, string_return)
 
     ### Parsers, yielders and formaters
-    graph_parser = _build_digraph_parser(graph_format, graph_file, raw_graph)
-    graph_yielder = _build_graph_yielder(graph_format, graph_file, raw_graph)
+    graph_parser = _build_digraph_parser(graph_format, graph_file, raw_graph, save_memory_mode)
+    graph_yielder = _build_graph_yielder(graph_format, graph_file, raw_graph, save_memory_mode)
     cps_parser = _build_cps_parser(classpointers_file, raw_classpointers)
     cr_formatter = _build_cr_formatter(output_format, output_file, string_return)
 
