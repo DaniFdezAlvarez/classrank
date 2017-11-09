@@ -43,7 +43,6 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
                 self._process_line(a_line)
                 if self._triple_ready:
                     yield (self._tmp_s, self._tmp_p, self._tmp_o)
-                    # print "goood", (self._tmp_s, self._tmp_p, self._tmp_o)
                     self._triple_ready = False
                 if self._triples_count % 1000000 == 0:
                     print self._triples_count, self._tmp_s, self._tmp_p, self._tmp_o
@@ -66,12 +65,14 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
         elif str_line.startswith("#"):
             self._process_comment_line(str_line)
         elif str_line[-1] in [",",".", ";"]:
-            self._process_triple_line(str_line)
+            if "," in str_line[:-1]:  # If there is a comma in a literal, it was discarded in a previous if clause
+                self._process_multi_triple_line_commas(str_line)
+            else:
+                self._process_single_triple_line(str_line)
         else:
             self._process_unknown_line(str_line)
 
     def _process_line_with_literal(self, line):
-        # print "literal", line
         self._ignored_triples += 1
 
     def _process_prefix_line(self, line):
@@ -81,18 +82,39 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
         self._prefixes[prefix] = base_url
 
     def _process_comment_line(self, line):
-        # print "comment", line
         pass  # At this point, just ignore it.
 
     def _process_empty_line(self, line):
-        # print "empty", line
         pass  # At this point, just ignore it.
 
     def _process_unknown_line(self, line):
         self._error_triples += 1
         print "Error line: " + line
 
-    def _process_triple_line(self, line):
+    def _process_multi_triple_line_commas(self, line):
+        pieces = line.split(" ")
+        index_first_comma = 0
+        for i in range(0, len(pieces)):
+            if pieces[i] == ",":
+                index_first_comma = i
+                break
+        if index_first_comma == 3:
+            self._tmp_s = self._parse_elem(pieces[0])
+            self._tmp_p = self._parse_elem(pieces[1])
+            self._tmp_o = self._parse_elem(pieces[2])
+        elif index_first_comma == 2:
+            self._tmp_p = self._parse_elem(pieces[0])
+            self._tmp_o = self._parse_elem(pieces[1])
+        elif index_first_comma == 1:
+            self._tmp_o = self._parse_elem(pieces[0])
+        #else impossible?
+        self._decide_current_triple()
+
+        for i in range(index_first_comma + 2, len(pieces), 2):
+            self._tmp_o = self._parse_elem(pieces[i-1])
+            self._decide_current_triple()
+
+    def _process_single_triple_line(self, line):
         pieces = line.split(" ")
 
         if len(pieces) == 4:
@@ -108,14 +130,12 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
         self._decide_current_triple()
 
     def _decide_current_triple(self):
+        # print self._tmp_s, self._tmp_p, self._tmp_o
         if self._is_bnode(self._tmp_s):
-            # print "s_bnode", self._tmp_s, self._tmp_p, self._tmp_o
             self._ignored_triples += 1
         elif self._is_bnode(self._tmp_o):
-            # print "oo_bnode", self._tmp_s, self._tmp_p, self._tmp_o
             self._ignored_triples += 1
         elif self._is_num_literal(self._tmp_o):
-            # print "num_literal", self._tmp_s, self._tmp_p, self._tmp_o
             self._ignored_triples += 1
         else:
             self._triple_ready = True
