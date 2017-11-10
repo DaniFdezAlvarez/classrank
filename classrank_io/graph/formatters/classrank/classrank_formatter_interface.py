@@ -11,8 +11,8 @@ KEY_RANK_POSITION = "rank"
 
 class ClassRankFormatterInterface(object):
 
-    def __init__(self):
-        pass
+    def __init__(self, link_instances=True):
+        self._link_instances = link_instances
 
 
     def format_classrank_dict(self, a_dict):

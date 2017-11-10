@@ -20,8 +20,8 @@ PROP_INSTANCE_HUB = CR.instance_of_hub
 
 class TtlClassrankFormatter(ClassRankFormatterInterface):
 
-    def __init__(self, target_file=None, string_output=False):
-        super(TtlClassrankFormatter, self).__init__()
+    def __init__(self, target_file=None, string_output=False, link_instances=True):
+        super(TtlClassrankFormatter, self).__init__(link_instances)
         self._target_file = target_file
         self._string_output = string_output
 
@@ -71,8 +71,9 @@ class TtlClassrankFormatter(ClassRankFormatterInterface):
             # classpointer
             g.add( (tmp, PROP_CP_HUB, URIRef(a_cp)) )
             # instances
-            for an_instance in class_dict[KEY_CLASS_POINTERS][a_cp]:
-                g.add( (tmp, PROP_INSTANCE_HUB, URIRef(an_instance)) )
+            if self._link_instances:
+                for an_instance in class_dict[KEY_CLASS_POINTERS][a_cp]:
+                    g.add( (tmp, PROP_INSTANCE_HUB, URIRef(an_instance)) )
 
 
     def _turn_cp_dicts_into_lists(self, sorted_list):

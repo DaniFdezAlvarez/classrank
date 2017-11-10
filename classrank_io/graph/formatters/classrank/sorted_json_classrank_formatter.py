@@ -1,26 +1,31 @@
 from classrank_io.graph.formatters.classrank.classrank_formatter_interface import ClassRankFormatterInterface, KEY_ELEM
-from classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_INSTANCES
+from classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS
 import json
 
 
 class SortedJsonClassrankFormatter(ClassRankFormatterInterface):
-    def __init__(self, target_file=None, string_output=False):
-        super(SortedJsonClassrankFormatter, self).__init__()
+    def __init__(self, target_file=None, string_output=False, link_instances=True):
+        super(SortedJsonClassrankFormatter, self).__init__(link_instances)
         self._target_file = target_file
         self._string_output = string_output
 
 
     def format_classrank_dict(self, a_dict):
         sorted_list = self._sort_dict(a_dict)
-        for a_class_dict in sorted_list:
-            for a_cp in a_class_dict[KEY_CLASS_POINTERS]:
-                a_class_dict[KEY_CLASS_POINTERS][a_cp] = list(a_class_dict[KEY_CLASS_POINTERS][a_cp])
+        self._manage_instances_serialization(sorted_list)
         if not self._string_output:
             self._serialize_list(sorted_list)
             return "ClassRank serialized to " + self._target_file
         else:
             return self._stringify_result(sorted_list)
 
+    def _manage_instances_serialization(self, sorted_list):
+        for a_class_dict in sorted_list:
+            for a_cp in a_class_dict[KEY_CLASS_POINTERS]:
+                if self._link_instances:  # Link instances with each CP
+                    a_class_dict[KEY_CLASS_POINTERS][a_cp] = list(a_class_dict[KEY_CLASS_POINTERS][a_cp])
+                else:  # Just keep a number of instances
+                    a_class_dict[KEY_CLASS_POINTERS][a_cp] = len(a_class_dict[KEY_CLASS_POINTERS][a_cp])
 
     def _sort_dict(self, classes_dict):
         for a_key in classes_dict:
