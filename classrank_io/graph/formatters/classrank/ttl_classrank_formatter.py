@@ -21,10 +21,9 @@ PROP_INSTANCE_HUB = CR.instance_of_hub
 class TtlClassrankFormatter(ClassRankFormatterInterface):
 
     def __init__(self, target_file=None, string_output=False, link_instances=True):
-        super(TtlClassrankFormatter, self).__init__()
+        super(TtlClassrankFormatter, self).__init__(link_instances)
         self._target_file = target_file
         self._string_output = string_output
-        self._link_instances = True
 
 
     def format_classrank_dict(self, a_dict):
