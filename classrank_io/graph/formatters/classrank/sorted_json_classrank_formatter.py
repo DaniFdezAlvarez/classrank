@@ -1,5 +1,5 @@
 from classrank_io.graph.formatters.classrank.classrank_formatter_interface import ClassRankFormatterInterface, KEY_ELEM
-from classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_INSTANCES
+from classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS
 import json
 
 
