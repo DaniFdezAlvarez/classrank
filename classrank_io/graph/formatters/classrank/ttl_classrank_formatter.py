@@ -7,6 +7,7 @@ from rdflib import Namespace, RDF, Graph, URIRef, Literal, BNode, XSD
 CR = Namespace("http://weso.es/classrank/")
 # CR_ELEMS = Namespace("http://weso.es/classrank/entity/")
 PROP_CR_SCORE = CR.score
+PROP_PR_SCORE = CR.pagerank_score
 PROP_CR_RANK = CR.rank_position
 PROP_CR_N_INSTANCES = CR.num_instances
 TYPE_CR_CLASS = CR.Class
@@ -20,22 +21,29 @@ PROP_INSTANCE_HUB = CR.instance_of_hub
 
 class TtlClassrankFormatter(ClassRankFormatterInterface):
 
-    def __init__(self, target_file=None, string_output=False, link_instances=True):
-        super(TtlClassrankFormatter, self).__init__(link_instances)
+    def __init__(self, target_file=None, string_output=False, link_instances=True, serialize_pagerank=False):
+        super(TtlClassrankFormatter, self).__init__(link_instances=link_instances,
+                                                    serialize_pagerank=serialize_pagerank)
         self._target_file = target_file
         self._string_output = string_output
 
 
-    def format_classrank_dict(self, a_dict):
+    def format_classrank_dict(self, a_dict, pagerank_dict=None):
         sorted_list = self._sort_dict_and_add_rank(a_dict)
         self._turn_cp_dicts_into_lists(sorted_list)
         result_ttl_graph = self._build_result_ttl_graph(sorted_list)
+        if self._serialize_pagerank:
+            self._add_pagerank_triples(result_ttl_graph, pagerank_dict)
         if self._string_output:
             return result_ttl_graph.serialize(format='turtle')
         else:
             with open(self._target_file, "w") as out_stream:
                 out_stream.write(result_ttl_graph.serialize(format='turtle'))
             return "ClassRank serialized: " + self._target_file
+
+    def _add_pagerank_triples(self, g, pagerank_dict):
+        for a_key in pagerank_dict:
+            g.add( (URIRef(a_key), PROP_PR_SCORE, Literal(pagerank_dict[a_key], datatype=XSD.float)) )
 
 
     def _build_result_ttl_graph(self, sorted_list):

@@ -357,7 +357,8 @@ results = generate_classrank(raw_graph=graph_str,
                              instantiation_threshold=1,
                              class_threshold=1,
                              output_format="ttl",
-                             link_instances_in_output=True)
+                             link_instances_in_output=True,
+                             serialize_pagerank=True)
 
 print results
 
