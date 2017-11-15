@@ -54,7 +54,7 @@ class ClassRanker(object):
 
         ###  Outputs
         print "Outputs"
-        result = self._classrank_formatter.format_classrank_dict(classes_dict)
+        result = self._classrank_formatter.format_classrank_dict(classes_dict, raw_pagerank)
 
         return result
 

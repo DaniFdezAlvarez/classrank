@@ -68,23 +68,27 @@ def _build_cps_parser(classpointers_file, raw_classpointers):
         return OnePerLineClasspointerParser(source_file=classpointers_file)
 
 
-def _build_cr_formatter(output_format, output_file, string_return, link_instances_in_output):
+def _build_cr_formatter(output_format, output_file, string_return, link_instances_in_output, serialize_pagerank):
     if output_format not in _ACCEPTED_OUTPUT_FORMATS:
         raise ValueError("Unsupported output format when building classrank formatter")
     elif output_format == JSON_FULL_OUTPUT:
         if string_return:
             return SortedJsonClassrankFormatter(string_output=True,
-                                                link_instances=link_instances_in_output)
+                                                link_instances=link_instances_in_output,
+                                                serialize_pagerank=serialize_pagerank)
         else:
             return SortedJsonClassrankFormatter(target_file=output_file,
-                                                link_instances=link_instances_in_output)
+                                                link_instances=link_instances_in_output,
+                                                serialize_pagerank=serialize_pagerank)
     elif output_format == TTL_OUTPUT:
         if string_return:
             return TtlClassrankFormatter(string_output=True,
-                                         link_instances=link_instances_in_output)
+                                         link_instances=link_instances_in_output,
+                                         serialize_pagerank=serialize_pagerank)
         else:
             return TtlClassrankFormatter(target_file=output_file,
-                                         link_instances=link_instances_in_output)
+                                         link_instances=link_instances_in_output,
+                                         serialize_pagerank=serialize_pagerank)
     else:  # Shouldn't happen at this point
         raise ValueError("Unsupported format to produce the output")
 
@@ -133,7 +137,8 @@ def _assert_valid_param_combination_classrank(damping_factor, max_iters, instant
 def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_threshold=15, class_threshold=15,
                        max_triples=-1, graph_format=TTL_FULL_FORMAT, output_format=JSON_FULL_OUTPUT, graph_file=None,
                        classpointers_file=None, raw_graph=None, raw_classpointers=None,
-                       output_file=None, string_return=False, save_memory_mode=False, link_instances_in_output=True):
+                       output_file=None, string_return=False, save_memory_mode=False, link_instances_in_output=True,
+                       serialize_pagerank=False):
     """
 
     :param damping_factor: Damping factor for PageRank execution
@@ -159,6 +164,7 @@ def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_thresho
             by using generators when parsing files.
      :param link_instances_in_output: If it ser to True, the generated output will keep the relation between
         each class and its instances. Otherwise, the output will  contain mainly rankings, scores and classpointers
+    :param serialize_pagerank: If True, PageRank scores will also appear in the obtained results
     :return:
     """
     ### Checking params
@@ -170,7 +176,8 @@ def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_thresho
     graph_parser = _build_digraph_parser(graph_format, graph_file, raw_graph, save_memory_mode)
     graph_yielder = _build_graph_yielder(graph_format, graph_file, raw_graph, save_memory_mode)
     cps_parser = _build_cps_parser(classpointers_file, raw_classpointers)
-    cr_formatter = _build_cr_formatter(output_format, output_file, string_return, link_instances_in_output)
+    cr_formatter = _build_cr_formatter(output_format, output_file, string_return,
+                                       link_instances_in_output, serialize_pagerank)
 
     ### Execution
 

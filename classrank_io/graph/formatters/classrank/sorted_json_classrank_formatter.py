@@ -4,13 +4,15 @@ import json
 
 
 class SortedJsonClassrankFormatter(ClassRankFormatterInterface):
-    def __init__(self, target_file=None, string_output=False, link_instances=True):
-        super(SortedJsonClassrankFormatter, self).__init__(link_instances)
+    def __init__(self, target_file=None, string_output=False, link_instances=True, serialize_pagerank=False):
+        super(SortedJsonClassrankFormatter, self).__init__(link_instances=link_instances,
+                                                           serialize_pagerank=serialize_pagerank)
         self._target_file = target_file
         self._string_output = string_output
 
 
-    def format_classrank_dict(self, a_dict):
+    def format_classrank_dict(self, a_dict, pagerank_dict=None):
+        # TODO: implement pagerank serialization
         sorted_list = self._sort_dict(a_dict)
         self._manage_instances_serialization(sorted_list)
         if not self._string_output:
