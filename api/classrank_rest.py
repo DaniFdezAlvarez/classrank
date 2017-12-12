@@ -1,12 +1,11 @@
 from flask import Flask, request
 from flask_cors import CORS
-from classranker import ClassRanker
-from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
-from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
+
 from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import OnePerLineClasspointerParser
 from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter import SortedJsonClassrankFormatter
-
-
+from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
+from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
+from core.classranker import ClassRanker
 
 GRAPH_KEY = "G"
 CLASSPOINTERS_KEY = "CP"
