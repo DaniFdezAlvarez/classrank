@@ -18,7 +18,7 @@ class RangedCpCandidatesFinder(object):
     def generate_classpointer_candidates_by_range(self):
         classes_dict, set_above_max = self._build_classes_dict()
         results_by_range = self._build_list_of_tuple_results_by_threshold(classes_dict, set_above_max)
-        return results_by_range
+        return self._classpointers_formatter.format_dict_of_classpointers_result(results_by_range)
 
 
     def _build_classes_dict(self):
@@ -64,7 +64,7 @@ class RangedCpCandidatesFinder(object):
         result[self._min_threshold][_KEY_DECREMENT] = set()
         for i in range(self._min_threshold +1, self._max_threshold + 1):
 
-            result[i][_KEY_DECREMENT] = result[i][_KEY_CPS].difference(result[i-1][_KEY_CPS])
+            result[i][_KEY_DECREMENT] = result[i-1][_KEY_CPS].difference(result[i][_KEY_CPS])
 
         # Turning sets into lists
         for a_threshold_key in result:

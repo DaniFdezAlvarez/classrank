@@ -16,3 +16,4 @@ class JsonRangedClasspointersFormater(RangedClasspointersFormatterInterface):
         else:
             with open(self._output_file, "w") as out_stream:
                 json.dump(dict_of_classpointers_results, out_stream)
+            return "Results serialized in: " + self._output_file
