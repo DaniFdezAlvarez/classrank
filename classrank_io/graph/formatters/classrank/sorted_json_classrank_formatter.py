@@ -1,6 +1,7 @@
-from classrank_io.graph.formatters.classrank.classrank_formatter_interface import ClassRankFormatterInterface, KEY_ELEM
-from classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS
 import json
+
+from classrank_io.graph.formatters.classrank.classrank_formatter_interface import ClassRankFormatterInterface, KEY_ELEM
+from core.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS
 
 
 class SortedJsonClassrankFormatter(ClassRankFormatterInterface):

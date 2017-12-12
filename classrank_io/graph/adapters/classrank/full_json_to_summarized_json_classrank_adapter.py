@@ -1,8 +1,8 @@
 import json
-from classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_INSTANCES
-from classrank_io.graph.formatters.classrank.classrank_formatter_interface import KEY_ELEM, KEY_RANK_POSITION
 
 from classrank_io.graph.adapters.classrank.class_rank_adapter_interface import ClassRankAdapterInterface
+from classrank_io.graph.formatters.classrank.classrank_formatter_interface import KEY_ELEM, KEY_RANK_POSITION
+from core.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_INSTANCES
 
 
 class FullJsonToSummarizedJsonClassrankAdapter(ClassRankAdapterInterface):
