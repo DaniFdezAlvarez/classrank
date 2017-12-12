@@ -1,5 +1,3 @@
-
-
 _SUBJECT = 0
 _PERDICATE = 1
 _OBJECT = 2
@@ -10,8 +8,9 @@ _KEY_NUM_CPS = "nCps"
 
 class RangedCpCandidatesFinder(object):
 
-    def __init__(self, triple_yielder, min_threshold, max_threshold, max_triples=-1):
+    def __init__(self, triple_yielder, classpointers_formater, min_threshold, max_threshold, max_triples=-1):
         self._triple_yielder = triple_yielder
+        self._classpointers_formatter = classpointers_formater
         self._min_threshold = min_threshold
         self._max_threshold = max_threshold
         self._max_triples = max_triples
