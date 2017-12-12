@@ -12,6 +12,7 @@ class JsonWikidataDumpTriplesYielder(TriplesYielderInterface):
 
 
     def yield_triples(self, max_triples=-1):
+        self._reset_count()
         json_stream = open(self._source_file, "r")
         elem_id = None
         elem_type = None
@@ -21,8 +22,11 @@ class JsonWikidataDumpTriplesYielder(TriplesYielderInterface):
         datavalue_num_id = None
         possible_edges = []
 
+        max_triples_reached = False
 
         for prefix, event, value in ijson.parse(json_stream):
+            if max_triples_reached:
+                break
             if event == 'end_map':
                 if prefix == 'item':
                     for tuple_4 in possible_edges:
@@ -30,12 +34,13 @@ class JsonWikidataDumpTriplesYielder(TriplesYielderInterface):
                                                       tuple_4[1]):  # triple: datatype, datavalue_type, datavalue_num_id
                             yield elem_id, tuple_4[2], 'Q' + tuple_4[3]
                             self._triple_count += 1
+                            if self._triple_count == max_triples:
+                                max_triples_reached = True
+                                break
                             if self._triple_count % 100000 == 0:
                                 print 'parsed ' + str(self._triple_count)
                         else:
                             self._ignored_count += 1
-                            if self._ignored_count % 100000 == 0:
-                                print 'ignored ' + str(self._ignored_count)
 
                     elem_id = None
                     elem_type = None
