@@ -67,7 +67,8 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
         elif str_line.startswith("#"):
             self._process_comment_line(str_line)
         elif str_line[-1] in [",",".", ";"]:
-            if "," in str_line[:-1]:  # If there is a comma in a literal, it was discarded in a previous if clause
+            if ", " in str_line[:-1]:  # If there is a comma in a literal, it was discarded in a previous if clause
+                                       # If there is a comma in a URI, it can't be followed by a blank
                 self._process_multi_triple_line_commas(str_line)
             else:
                 self._process_single_triple_line(str_line)
@@ -122,7 +123,6 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
 
     def _process_single_triple_line(self, line):
         pieces = line.split(" ")
-
         if len(pieces) == 4:
             self._tmp_s = self._parse_elem(pieces[0])
             self._tmp_p = self._parse_elem(pieces[1])
@@ -141,7 +141,6 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
         # No need to decide triple now, incomplete element
 
     def _decide_current_triple(self):
-        # print self._tmp_s, self._tmp_p, self._tmp_o
         if self._is_bnode(self._tmp_s):
             self._ignored_triples += 1
         elif self._is_bnode(self._tmp_o):
