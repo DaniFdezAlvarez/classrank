@@ -13,6 +13,7 @@ from classrank_utils.uri import remove_corners, add_prefix_if_possible
 
 _SEVERAL_BLANKS = re.compile("[ \r\n\t][ \r\n\t]+")
 _RDF_TYPE = "rdf:type"
+_BOOLEANS = ["true", "false"]
 
 
 class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
@@ -42,6 +43,7 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
             for a_line in in_stream:
                 self._process_line(a_line)
                 if self._triple_ready:
+                    self._triples_count += 1
                     yield (self._tmp_s, self._tmp_p, self._tmp_o)
                     self._triple_ready = False
                 if self._triples_count % 1000000 == 0:
@@ -69,8 +71,12 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
                 self._process_multi_triple_line_commas(str_line)
             else:
                 self._process_single_triple_line(str_line)
+        elif " " not in str_line:
+            if len(str_line) > 1:  # We are ensuring that this is not a single char, such as "," or "."
+                self._process_isolated_subject(str_line)
         else:
             self._process_unknown_line(str_line)
+
 
     def _process_line_with_literal(self, line):
         self._ignored_triples += 1
@@ -121,13 +127,18 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
             self._tmp_s = self._parse_elem(pieces[0])
             self._tmp_p = self._parse_elem(pieces[1])
             self._tmp_o = self._parse_elem(pieces[2])
+
         elif len(pieces) == 3:
             self._tmp_p = self._parse_elem(pieces[0])
             self._tmp_o = self._parse_elem(pieces[1])
         elif len(pieces) == 2:
             self._tmp_o = self._parse_elem(pieces[0])
-
         self._decide_current_triple()
+
+    def _process_isolated_subject(self, line):
+        # No splitt. Line is expected to contain a line with no blanks (isolated subject)
+        self._tmp_s = self._parse_elem(line)
+        # No need to decide triple now, incomplete element
 
     def _decide_current_triple(self):
         # print self._tmp_s, self._tmp_p, self._tmp_o
@@ -137,9 +148,13 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
             self._ignored_triples += 1
         elif self._is_num_literal(self._tmp_o):
             self._ignored_triples += 1
+        elif self._is_boolean(self._tmp_o):
+            self._ignored_triples += 1
         else:
             self._triple_ready = True
-            self._triples_count += 1
+
+    def _is_boolean(self, raw_element):
+        return True if raw_element in _BOOLEANS else False
 
     def _is_bnode(self, a_elem):
         if a_elem[0] == "_":
@@ -157,10 +172,10 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
     def _parse_elem(self, raw_elem):
         if raw_elem[0] == "<":
             return add_prefix_if_possible(remove_corners(raw_elem), self._prefixes)
-        elif ":" in raw_elem:
-            return raw_elem
         elif raw_elem == "a":
             return _RDF_TYPE
+        elif ":" in raw_elem or raw_elem in _BOOLEANS or self._is_num_literal(raw_elem):
+            return raw_elem
         #else?? shouldnt happen, let it break with a nullpoitner
 
 
@@ -171,13 +186,13 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
 
     @property
     def error_triples(self):
-        return self._error_count
+        return self._error_triples
 
     @property
     def ignored_triples(self):
-        return self._ignored
+        return self._ignored_triples
 
     def _reset_count(self):
-        self._error_count = 0
+        self._error_triples = 0
         self._triples_count = 0
-        self._ignored = 0
+        self._ignored_triples = 0
