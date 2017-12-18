@@ -15,6 +15,7 @@ class SeveralTtlFullFilesMemoryKindTriplesYielder(TriplesYielderInterface):
         self._triples_count_of_finished_yielders = 0
         self._error_triples_of_finished_yielders = 0
         self._ignored_triples_of_finished_yielders = 0
+        self._yielders_count = 0
 
 
     def yield_triples(self, max_triples=-1):
@@ -33,14 +34,16 @@ class SeveralTtlFullFilesMemoryKindTriplesYielder(TriplesYielderInterface):
                 self._triples_count_of_finished_yielders += self._current_yielder.yielded_triples
                 self._error_triples_of_finished_yielders += self._current_yielder.error_triples
                 self._ignored_triples_of_finished_yielders += self._current_yielder.ignored_triples
-                print "Mira como si que hago esto marmeluco!"
             self._current_yielder = TtlFullMemoryKindTriplesYielder(a_path)
-            print "EYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY New yielder!"
+            self._yielders_count += 1
+            print "Executing new yielder! Count: ", self._yielders_count
             for a_triple in self._current_yielder.yield_triples():
                 yield a_triple
                 if self.yielded_triples == max_triples:
                     max_triples_reached = True
                     break
+                if self.yielded_triples % 1000000 == 0:
+                    print "Yielded: ", self.yielded_triples
 
 
     @property
@@ -55,6 +58,10 @@ class SeveralTtlFullFilesMemoryKindTriplesYielder(TriplesYielderInterface):
     def ignored_triples(self):
         return self._ignored_triples_of_finished_yielders + self._current_yielder.ignored_triples
 
+    @property
+    def yielders_executed(self):
+        return self._yielders_count
+
     def _reset_count(self):
         """
         Just to remember that the counts may be managed if the object is used to parse
@@ -64,4 +71,5 @@ class SeveralTtlFullFilesMemoryKindTriplesYielder(TriplesYielderInterface):
         self._triples_count_of_finished_yielders = 0
         self._error_triples_of_finished_yielders = 0
         self._ignored_triples_of_finished_yielders = 0
+        self._yielders_count = 0
 
