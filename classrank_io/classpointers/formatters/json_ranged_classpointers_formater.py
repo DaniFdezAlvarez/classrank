@@ -5,7 +5,7 @@ from classrank_io.classpointers.formatters.ranged_classpointers_formatter_interf
 
 class JsonRangedClasspointersFormater(RangedClasspointersFormatterInterface):
 
-    def __init__(self, output_file=None, string_result=True):
+    def __init__(self, output_file=None, string_result=False):
         super(JsonRangedClasspointersFormater, self).__init__()
         self._output_file = output_file
         self._string_result = string_result
