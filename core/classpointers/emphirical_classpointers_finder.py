@@ -28,7 +28,7 @@ class EmphiricalClasspointersFinder(object):
         for a_triple in self._triple_yielder.yield_triples(self._max_triples):
             # Including in usage dict if needed
             if a_triple[_PREDICATE] not in self._props_usage_dict:
-                self._props_usage_dict[_PREDICATE] = self._get_empty_dict_of_usage()
+                self._props_usage_dict[a_triple[_PREDICATE]] = self._get_empty_dict_of_usage()
 
             # Incrementing the corresponding usage
             if self._is_class(a_triple[_OBJECT]):
@@ -43,6 +43,7 @@ class EmphiricalClasspointersFinder(object):
         self._include_class_classification_by_threshold(result)
         self._add_decrements_to_result_dict(result)
         self._make_result_dict_serializable(result)
+        self._add_num_classes_to_result(result)
         return result
 
     def _include_class_classification_by_threshold(self, result):
@@ -56,8 +57,8 @@ class EmphiricalClasspointersFinder(object):
 
     def _add_decrements_to_result_dict(self, result):
         for i in range(1, len(self._thresholds)):
-            result[self._thresholds[i]][_KEY_DECREMENT] = result[self._thresholds[i - 1]][_KEY_CLASS].difference(
-                result[self._thresholds[i]][_KEY_CLASS])
+            result[self._thresholds[i]][_KEY_DECREMENT] = result[self._thresholds[i - 1]][_KEY_CLASSPOINTERS].difference(
+                result[self._thresholds[i]][_KEY_CLASSPOINTERS])
 
     @staticmethod
     def _make_result_dict_serializable(result):
@@ -66,10 +67,15 @@ class EmphiricalClasspointersFinder(object):
             result[a_threshold_key][_KEY_CLASSPOINTERS] = list(result[a_threshold_key][_KEY_CLASSPOINTERS])
             result[a_threshold_key][_KEY_DECREMENT] = list(result[a_threshold_key][_KEY_DECREMENT])
 
+    @staticmethod
+    def _add_num_classes_to_result(result):
+        for a_threshold_key in result:
+            result[a_threshold_key][_KEY_N_CLASSES] = len(result[a_threshold_key][_KEY_CLASSPOINTERS])
+
     def _is_a_prop_pointing_to_classes(self, a_property, threshold):
-        frequency = len(self._props_usage_dict[a_property][_KEY_CLASS]) / (
-            len(self._props_usage_dict[a_property][_KEY_CLASS]) + len(
-                self._props_usage_dict[a_property][_KEY_NOT_CLASS]))
+        frequency = float(self._props_usage_dict[a_property][_KEY_CLASS]) / (
+            self._props_usage_dict[a_property][_KEY_CLASS] +
+                self._props_usage_dict[a_property][_KEY_NOT_CLASS])
         return True if frequency >= threshold else False
 
     def _is_class(self, an_elem):
@@ -77,17 +83,23 @@ class EmphiricalClasspointersFinder(object):
             return True
 
         if an_elem.startswith("http://"):
+            print "http", an_elem
             index_key_char = an_elem.index("#") if "#" in an_elem else an_elem.rindex("/")
+            print "key", an_elem[:index_key_char + 1]
+
             if an_elem[:index_key_char + 1] in self._inverse_prefixes:
+                print "complete", self._inverse_prefixes[an_elem[:index_key_char + 1]] + ":" + \
+                       an_elem[index_key_char+1:]
                 return self._inverse_prefixes[an_elem[:index_key_char + 1]] + ":" + \
-                       an_elem[index_key_char:] in self._set_of_classes
+                       an_elem[index_key_char+1:] in self._set_of_classes
             else:
                 return False
-        else:
+        else:  # it starts with a prefix
+            print "prefix: ", an_elem
             index_key_char = an_elem.index(":")
-            if an_elem[:index_key_char + 1] in self._prefixes:
-                return self._prefixes[an_elem[:index_key_char + 1]] + ":" + \
-                       an_elem[index_key_char:] in self._set_of_classes
+            if an_elem[:index_key_char] in self._prefixes:
+                return self._prefixes[an_elem[:index_key_char]] + \
+                       an_elem[index_key_char + 1:] in self._set_of_classes
             else:
                 return False
 
