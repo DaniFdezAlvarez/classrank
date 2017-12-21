@@ -2,7 +2,7 @@ from rdflib import Namespace, RDF, Graph, URIRef, Literal, BNode, XSD
 
 from classrank_io.graph.formatters.classrank.classrank_formatter_interface import ClassRankFormatterInterface, \
     KEY_ELEM, KEY_RANK_POSITION
-from core.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_INSTANCES
+from core.classrank.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_INSTANCES
 
 CR = Namespace("http://weso.es/classrank/")
 # CR_ELEMS = Namespace("http://weso.es/classrank/entity/")

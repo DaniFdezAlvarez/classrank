@@ -11,7 +11,7 @@ from classrank_io.graph.yielders.ttl_explicit_spo_triples_yielder import TtlExpl
 from classrank_io.graph.yielders.ttl_full_memory_kind_triples_yielder import TtlFullMemoryKindTriplesYielder
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
 from classrank_io.graph.yielders.ttl_simple_triples_yielder import TtlSimpleTriplesYielder
-from core.classranker import ClassRanker
+from core.classrank.classranker import ClassRanker
 from helpers.const import *
 
 _ACCEPTED_GRAPH_FORMATS = [TTL_FULL_FORMAT, TSV_SPO_FORMAT, TTL_SIMPLE_FORMAT, TTL_EXPLICIT_SPO_FORMAT]

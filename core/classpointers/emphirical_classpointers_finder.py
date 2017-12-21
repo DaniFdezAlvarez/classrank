@@ -1,3 +1,5 @@
+from classrank_utils.prefix import build_dict_of_prefixes_from_tuples
+
 _SUBJECT = 0
 _PREDICATE = 1
 _OBJECT = 2
@@ -16,8 +18,8 @@ class EmphiricalClasspointersFinder(object):
         if thresholds is None:
             thresholds = [0.98]
         self._triple_yielder = triple_yielder
-        self._prefixes = self._build_dict_of_prefixes_from_tuples(prefix_tuples, inverse=False)
-        self._inverse_prefixes = self._build_dict_of_prefixes_from_tuples(prefix_tuples, inverse=True)
+        self._prefixes = build_dict_of_prefixes_from_tuples(prefix_tuples, inverse=False)
+        self._inverse_prefixes = build_dict_of_prefixes_from_tuples(prefix_tuples, inverse=True)
         self._set_of_classes = set(list_of_classes)
         self._thresholds = thresholds
         self._max_triples = max_triples
@@ -83,19 +85,19 @@ class EmphiricalClasspointersFinder(object):
             return True
 
         if an_elem.startswith("http://"):
-            print "http", an_elem
+            # print "http", an_elem
             index_key_char = an_elem.index("#") if "#" in an_elem else an_elem.rindex("/")
-            print "key", an_elem[:index_key_char + 1]
+            # print "key", an_elem[:index_key_char + 1]
 
             if an_elem[:index_key_char + 1] in self._inverse_prefixes:
-                print "complete", self._inverse_prefixes[an_elem[:index_key_char + 1]] + ":" + \
-                       an_elem[index_key_char+1:]
+                # print "complete", self._inverse_prefixes[an_elem[:index_key_char + 1]] + ":" + \
+                #        an_elem[index_key_char+1:]
                 return self._inverse_prefixes[an_elem[:index_key_char + 1]] + ":" + \
                        an_elem[index_key_char+1:] in self._set_of_classes
             else:
                 return False
         else:  # it starts with a prefix
-            print "prefix: ", an_elem
+            # print "prefix: ", an_elem
             index_key_char = an_elem.index(":")
             if an_elem[:index_key_char] in self._prefixes:
                 return self._prefixes[an_elem[:index_key_char]] + \
@@ -116,14 +118,3 @@ class EmphiricalClasspointersFinder(object):
         return {_KEY_CLASS: 0,
                 _KEY_NOT_CLASS: 0}
 
-    @staticmethod
-    def _build_dict_of_prefixes_from_tuples(prefix_tuples, inverse=True):
-        result = {}
-        if prefix_tuples is None:
-            return result
-        for a_tuple in prefix_tuples:
-            if not inverse:
-                result[a_tuple[0]] = a_tuple[1]
-            else:
-                result[a_tuple[1]] = a_tuple[0]
-        return result
