@@ -5,7 +5,7 @@ from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import 
 from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter import SortedJsonClassrankFormatter
 from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
-from core.classranker import ClassRanker
+from core.classrank.classranker import ClassRanker
 
 GRAPH_KEY = "G"
 CLASSPOINTERS_KEY = "CP"

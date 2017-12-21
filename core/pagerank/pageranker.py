@@ -1,5 +1,5 @@
 __author__ = "Dani"
-from core.pagerank_nx import calculate_pagerank
+from core.pagerank.pagerank_nx import calculate_pagerank
 
 
 class PageRanker(object):
