@@ -1,7 +1,7 @@
 import json
 
 from classrank_io.graph.formatters.classrank.classrank_formatter_interface import ClassRankFormatterInterface, KEY_ELEM
-from core.classrank.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS
+from core.classrank.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_UNDER_T_CLASS_POINTERS
 
 
 class SortedJsonClassrankFormatter(ClassRankFormatterInterface):
@@ -29,6 +29,11 @@ class SortedJsonClassrankFormatter(ClassRankFormatterInterface):
                     a_class_dict[KEY_CLASS_POINTERS][a_cp] = list(a_class_dict[KEY_CLASS_POINTERS][a_cp])
                 else:  # Just keep a number of instances
                     a_class_dict[KEY_CLASS_POINTERS][a_cp] = len(a_class_dict[KEY_CLASS_POINTERS][a_cp])
+            for a_cp in a_class_dict[KEY_UNDER_T_CLASS_POINTERS]:
+                if self._link_instances:  # Link instances with each CP
+                    a_class_dict[KEY_UNDER_T_CLASS_POINTERS][a_cp] = list(a_class_dict[KEY_UNDER_T_CLASS_POINTERS][a_cp])
+                else:  # Just keep a number of instances
+                    a_class_dict[KEY_UNDER_T_CLASS_POINTERS][a_cp] = len(a_class_dict[KEY_UNDER_T_CLASS_POINTERS][a_cp])
 
     def _sort_dict(self, classes_dict):
         for a_key in classes_dict:

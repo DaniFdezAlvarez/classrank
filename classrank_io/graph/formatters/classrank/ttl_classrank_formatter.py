@@ -68,10 +68,10 @@ class TtlClassrankFormatter(ClassRankFormatterInterface):
         # relative rank
         g.add( (main_elem, PROP_CR_RANK, Literal(class_dict[KEY_RANK_POSITION], datatype=XSD.integer)) )
         # classpointers and instances
-        self.add_triples_of_classpointers(g, main_elem, class_dict)
+        self._add_triples_of_classpointers(g, main_elem, class_dict)
 
 
-    def add_triples_of_classpointers(self, g, main_element, class_dict):
+    def _add_triples_of_classpointers(self, g, main_element, class_dict):
         for a_cp in class_dict[KEY_CLASS_POINTERS]:
             tmp = BNode()
             # class
@@ -82,6 +82,9 @@ class TtlClassrankFormatter(ClassRankFormatterInterface):
             if self._link_instances:
                 for an_instance in class_dict[KEY_CLASS_POINTERS][a_cp]:
                     g.add( (tmp, PROP_INSTANCE_HUB, URIRef(an_instance)) )
+                    
+    def _add_triple_of_under_threshold_classpointers(self, g, main_element, class_dict):
+        pass  # Now, we will exclude this triples from the results
 
 
     def _turn_cp_dicts_into_lists(self, sorted_list):
