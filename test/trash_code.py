@@ -298,6 +298,7 @@ txn:128 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
 	log:statusCode 200 .
 
 txn:129 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+
 	log:processedBy srv:A ;
 	log:processedAt "2015-10-16T10:22:28"^^xsd:dateTime ;
 	log:statusCode 500 .
@@ -328,66 +329,69 @@ txn:134 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
 	log:statusCode 200 .
 
 txn:135 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> log:Transaction ;
+    <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> srv:A ;
 	log:processedBy srv:A ;
 	log:processedAt "2015-10-16T10:22:35"^^xsd:dateTime ;
 	log:statusCode 401 .
+
+txn:aaa <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> srv:A .
 """
-
-results = generate_classrank(raw_graph=graph_str,
-                             raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-                             string_return=True,
-                             instantiation_threshold=1,
-                             class_threshold=1,
-                             output_format="ttl",
-                             link_instances_in_output=True,
-                             serialize_pagerank=True)
-
-print results
-
-results = generate_classrank(raw_graph=graph_str,
-                             raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-                             string_return=True,
-                             instantiation_threshold=1,
-                             class_threshold=1,
-                             output_format="ttl",
-                             link_instances_in_output=False)
-
-print results
-
-
-results = generate_classrank(raw_graph=graph_str,
-                             raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-                             string_return=True,
-                             instantiation_threshold=1,
-                             class_threshold=1,
-                             link_instances_in_output=True)
-
-print results
-
-results = generate_classrank(raw_graph=graph_str,
-                             raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-                             string_return=True,
-                             instantiation_threshold=1,
-                             class_threshold=1,
-                             link_instances_in_output=False)
-
-print results
+#
+# results = generate_classrank(raw_graph=graph_str,
+#                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+#                              string_return=True,
+#                              instantiation_threshold=1,
+#                              class_threshold=1,
+#                              output_format="ttl",
+#                              link_instances_in_output=True,
+#                              serialize_pagerank=True)
+#
+# print results
+#
+# results = generate_classrank(raw_graph=graph_str,
+#                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+#                              string_return=True,
+#                              instantiation_threshold=1,
+#                              class_threshold=1,
+#                              output_format="ttl",
+#                              link_instances_in_output=False)
+#
+# print results
+#
+#
+# results = generate_classrank(raw_graph=graph_str,
+#                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+#                              string_return=True,
+#                              instantiation_threshold=1,
+#                              class_threshold=1,
+#                              link_instances_in_output=True)
+#
+# print results
+#
+# results = generate_classrank(raw_graph=graph_str,
+#                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+#                              string_return=True,
+#                              instantiation_threshold=1,
+#                              class_threshold=1,
+#                              link_instances_in_output=False)
+#
+# print results
 
 print "----------------------------------------------"
 
-results = generate_classrank(graph_file="files\\sample_ttl_full_tiny.ttl",
-                             raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+results = generate_classrank(raw_graph=graph_str, # graph_file="files\\sample_ttl_full_tiny.ttl",
+                             raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type\nhttp://example.org/ont/transaction-log/processedBy",
                              string_return=True,
-                             instantiation_threshold=1,
-                             class_threshold=1)
+                             instantiation_threshold=4,
+                             class_threshold=4)
 print "----"
 print results
 
-results = generate_classrank(graph_file="files\\sample_ttl_full_tiny.ttl",
-                             raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-                             output_file="files\\out\\cr_helper.json",
-                             instantiation_threshold=1,
-                             class_threshold=1)
-
-print "-----"
-print results
+# results = generate_classrank(graph_file="files\\sample_ttl_full_tiny.ttl",
+#                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+#                              output_file="files\\out\\cr_helper.json",
+#                              instantiation_threshold=1,
+#                              class_threshold=1)
+#
+# print "-----"
+# print results

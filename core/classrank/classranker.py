@@ -8,6 +8,7 @@ _O = 2
 KEY_INSTANCES = "INSTANCES"
 KEY_CLASSRANK = "CR_score"
 KEY_CLASS_POINTERS = "cps"
+KEY_UNDER_T_CLASS_POINTERS = "under_t_cps"
 
 
 class ClassRanker(object):
@@ -95,6 +96,8 @@ class ClassRanker(object):
             # Add new keys
             classes_dict[a_class][KEY_INSTANCES] = set()
             classes_dict[a_class][KEY_CLASSRANK] = 0
+            classes_dict[a_class][KEY_UNDER_T_CLASS_POINTERS] = {}
+            under_threshold_props = []
             for a_p in classes_dict[a_class][KEY_CLASS_POINTERS]:
                 # If it has more instances than threshold, its pagerank is added to the c's classrank
                 if len(classes_dict[a_class][KEY_CLASS_POINTERS][a_p]) >= threshold:
@@ -103,6 +106,18 @@ class ClassRanker(object):
                         if an_s not in classes_dict[a_class][KEY_INSTANCES]:
                             classes_dict[a_class][KEY_INSTANCES].add(an_s)
                             classes_dict[a_class][KEY_CLASSRANK] += raw_pagerank[an_s]  # It must be there! KeyError?
+                else:
+                    # print a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
+                    under_threshold_props.append((a_p,classes_dict[a_class][KEY_CLASS_POINTERS][a_p]))
+                    # target_obj = classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
+                    # del classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
+                    # classes_dict[a_class][KEY_UNDER_T_CLASS_POINTERS][a_p] = target_obj
+
+            for a_low_p in under_threshold_props:
+                del classes_dict[a_class][KEY_CLASS_POINTERS][a_low_p[0]]
+                classes_dict[a_class][KEY_UNDER_T_CLASS_POINTERS][a_low_p[0]] = a_low_p[1]
+
+
 
             # The set of instances in no more useful. Change it by the total number of instances.
             classes_dict[a_class][KEY_INSTANCES] = len(classes_dict[a_class][KEY_INSTANCES])
