@@ -5,10 +5,10 @@ from core.classrank.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_UN
 from core.classrank.classranker_several_thresholds import KEY_THRESHOLDS
 
 
-class SortedJsonClassrankFormatter(ClassRankFormatterInterface):
+class SortedJsonClassrankFormatterSeveralThresholds(ClassRankFormatterInterface):
     def __init__(self, target_file=None, string_output=False, link_instances=True, serialize_pagerank=False):
-        super(SortedJsonClassrankFormatter, self).__init__(link_instances=link_instances,
-                                                           serialize_pagerank=serialize_pagerank)
+        super(SortedJsonClassrankFormatterSeveralThresholds, self).__init__(link_instances=link_instances,
+                                                                            serialize_pagerank=serialize_pagerank)
         self._target_file = target_file
         self._string_output = string_output
 
@@ -25,23 +25,35 @@ class SortedJsonClassrankFormatter(ClassRankFormatterInterface):
 
     def _manage_instances_serialization(self, sorted_list):
         for a_class_dict in sorted_list:
-            for a_cp in a_class_dict[KEY_CLASS_POINTERS]:
-                if self._link_instances:  # Link instances with each CP
+            if self._link_instances:
+                for a_cp in a_class_dict[KEY_CLASS_POINTERS]:
                     a_class_dict[KEY_CLASS_POINTERS][a_cp] = list(a_class_dict[KEY_CLASS_POINTERS][a_cp])
-                else:  # Just keep a number of instances
-                    a_class_dict[KEY_CLASS_POINTERS][a_cp] = len(a_class_dict[KEY_CLASS_POINTERS][a_cp])
-            for a_cp in a_class_dict[KEY_UNDER_T_CLASS_POINTERS]:
-                if self._link_instances:  # Link instances with each CP
+                for a_cp in a_class_dict[KEY_UNDER_T_CLASS_POINTERS]:
                     a_class_dict[KEY_UNDER_T_CLASS_POINTERS][a_cp] = list(a_class_dict[KEY_UNDER_T_CLASS_POINTERS][a_cp])
-                else:  # Just keep a number of instances
+            else:  # Just keep a number of instances
+                for a_cp in a_class_dict[KEY_UNDER_T_CLASS_POINTERS]:
+                    a_class_dict[KEY_CLASS_POINTERS][a_cp] = len(a_class_dict[KEY_CLASS_POINTERS][a_cp])
+                for a_cp in a_class_dict[KEY_UNDER_T_CLASS_POINTERS]:
                     a_class_dict[KEY_UNDER_T_CLASS_POINTERS][a_cp] = len(a_class_dict[KEY_UNDER_T_CLASS_POINTERS][a_cp])
 
     def _sort_dict(self, classes_dict):
         for a_key in classes_dict:
             classes_dict[a_key][KEY_ELEM] = a_key
         result = list(classes_dict.values())
-        result.sort(reverse=True, key=lambda x:x[KEY_CLASSRANK])
+        min_threshold = self._detect_min_threshold(classes_dict)
+        result.sort(reverse=True, key=lambda x:x[KEY_THRESHOLDS][min_threshold][KEY_CLASSRANK])
         return result
+        # return sorted(classes_dict.values(),
+        #               key=lambda dict_class: classes_dict[dict_class][_KEY_CLASSRANK],
+        #               reverse=True)
+
+
+    def _detect_min_threshold(self, classes_dict):
+        for a_key in classes_dict:
+            # We just need a key, no matter what, and we dont know any a priori.
+            # So a for with a return at the first iteration
+            return max([a_threshold for a_threshold in classes_dict[a_key][KEY_THRESHOLDS]])
+
 
     def _stringify_result(self, a_list):
         return json.dumps(a_list, indent=1)
