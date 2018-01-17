@@ -4,6 +4,8 @@ lines contain each one a triple of a graph in ttl format.
 """
 from classrank_io.graph.yielders.triples_yielder_interface import TriplesYielderInterface
 from classrank_utils.uri import remove_corners
+from classrank_utils.uri import is_valid_triple
+from classrank_utils.log import log_to_error
 
 _SEPARATOR = " "
 
@@ -44,6 +46,10 @@ class TtlExplicitSpoTriplesYielder(TriplesYielderInterface):
             return None, None, None
         elif not self._is_relevant_triple(pieces[0:3]):
             self._triples_ignored += 1
+            return None, None, None
+        elif not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=True):
+            log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(pieces[2]) + " )")
+            self._error_count += 1
             return None, None, None
         else:
             return remove_corners(pieces[0]), remove_corners(pieces[1]), remove_corners(pieces[2])

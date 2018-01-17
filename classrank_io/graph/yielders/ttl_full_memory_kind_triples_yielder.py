@@ -9,7 +9,8 @@ a different yielder.
 """
 import re
 from classrank_io.graph.yielders.triples_yielder_interface import TriplesYielderInterface
-from classrank_utils.uri import remove_corners, add_prefix_if_possible
+from classrank_utils.uri import remove_corners, add_prefix_if_possible, is_valid_triple
+from classrank_utils.log import log_to_error
 
 _SEVERAL_BLANKS = re.compile("[ \r\n\t][ \r\n\t]+")
 _RDF_TYPE = "rdf:type"
@@ -43,8 +44,12 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
             for a_line in in_stream:
                 self._process_line(a_line)
                 if self._triple_ready:
-                    self._triples_count += 1
-                    yield (self._tmp_s, self._tmp_p, self._tmp_o)
+                    if is_valid_triple(self._tmp_s, self._tmp_p, self._tmp_o, there_are_corners=False):
+                        self._triples_count += 1
+                        yield (self._tmp_s, self._tmp_p, self._tmp_o)
+                    else:
+                        log_to_error("WARNING: ignoring invalid triple: ( " + str(self._tmp_s) + " , " + str(self._tmp_p) + " , " + str(self._tmp_o) + " )")
+                        self._error_triples += 1
                     self._triple_ready = False
                 if self._triples_count % 1000000 == 0:
                     print self._triples_count, self._tmp_s, self._tmp_p, self._tmp_o
@@ -96,7 +101,7 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
 
     def _process_unknown_line(self, line):
         self._error_triples += 1
-        print "Error line: " + line
+        log_to_error("WARNING: ignoring error line: " + line)
 
     def _process_multi_triple_line_commas(self, line):
         pieces = line.split(" ")

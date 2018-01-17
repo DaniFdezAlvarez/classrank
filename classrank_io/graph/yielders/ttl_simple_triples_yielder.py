@@ -3,12 +3,13 @@ It expects an input file in which the first line is a non-parseable comment and 
 lines contain each one a triple of a graph in ttl format.
 """
 from classrank_io.graph.yielders.triples_yielder_interface import TriplesYielderInterface
-from classrank_utils.uri import remove_corners
+from classrank_utils.uri import remove_corners, is_valid_triple
+from classrank_utils.log import log_to_error
 
 _SEPARATOR = " "
 
-class TtlSimpleTriplesYielder(TriplesYielderInterface):
 
+class TtlSimpleTriplesYielder(TriplesYielderInterface):
     def __init__(self, source_file):
         super(TtlSimpleTriplesYielder, self).__init__()
         self._source_file = source_file
@@ -20,17 +21,16 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
         with open(self._source_file, "r") as in_stream:
             in_stream.readline()  # Skipping the first line
             for a_line in in_stream:
-                s,p,o = self._get_triple_from_line(a_line)
+                s, p, o = self._get_triple_from_line(a_line)
                 if s is not None:  # Nor p and o
-                    yield s,p,o
+                    yield s, p, o
                     self._triples_count += 1
                     if self._triples_count == max_triples:
                         break
-                    # if self._triples_count %100000 == 0:
-                    #     print self._triples_count
+                        # if self._triples_count %100000 == 0:
+                        #     print self._triples_count
                 else:
                     self._error_count += 1
-
 
     def _get_triple_from_line(self, a_line):
         a_line = a_line.strip()
@@ -42,6 +42,11 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
         elif pieces[3] != ".":
             print pieces
             return None, None, None
+        elif not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=True):
+            log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(
+                pieces[2]) + " )")
+            return None, None, None
+
         else:
             return remove_corners(pieces[0]), remove_corners(pieces[1]), remove_corners(pieces[2])
 
