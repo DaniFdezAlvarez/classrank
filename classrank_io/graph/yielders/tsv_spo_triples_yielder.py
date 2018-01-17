@@ -1,5 +1,7 @@
 __author__ = "Dani"
 from classrank_io.graph.yielders.triples_yielder_interface import TriplesYielderInterface
+from classrank_utils.uri import is_valid_triple
+from classrank_utils.log import log_to_error
 
 _SEPARATOR = "\t"
 
@@ -31,6 +33,9 @@ class TsvSpoTriplesYielder(TriplesYielderInterface):
         for a_piece in pieces:
             if a_piece in ["", None]:
                 return None, None, None
+        if not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=False):
+            log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(pieces[2]) + " )")
+            return None, None, None
         return pieces[0], pieces[1], pieces[2]
 
     @property

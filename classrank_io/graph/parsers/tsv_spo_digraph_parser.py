@@ -1,6 +1,8 @@
 import networkx as nx
 
 from classrank_io.graph.parsers.digraph_parser_inferface import DiGraphParserInterface
+from classrank_utils.uri import is_valid_uri
+from classrank_utils.log import log_to_error
 
 
 class TsvSpoGraphParser(DiGraphParserInterface):
@@ -19,8 +21,14 @@ class TsvSpoGraphParser(DiGraphParserInterface):
                     break
                 a_subject, an_object = self._get_subject_and_object_from_line(a_line)
                 if a_subject is not None and an_object is not None:
-                    self._line_count += 1
-                    result.add_edge(a_subject, an_object)
+                    if is_valid_uri(a_subject, there_are_corners=False) and is_valid_uri(an_object,
+                                                                                         there_are_corners=False):
+                        self._line_count += 1
+                        result.add_edge(a_subject, an_object)
+                    else:
+                        self._error_count += 1
+                        log_to_error("WARNING: ignoring invalid triple: ( " + a_line + " )")
+
         return result
 
     def _get_subject_and_object_from_line(self, a_line):

@@ -1,11 +1,12 @@
 from classrank_io.graph.parsers.digraph_parser_inferface import DiGraphParserInterface
-from classrank_utils.uri import remove_corners
+from classrank_utils.uri import remove_corners, is_valid_uri
+from classrank_utils.log import log_to_error
 import networkx as nx
+
 _SEPARATOR = " "
 
 
 class TtlExplicitSpoDigraphParser(DiGraphParserInterface):
-
     def __init__(self, source_file):
         super(TtlExplicitSpoDigraphParser, self).__init__()
         self._source_file = source_file
@@ -17,7 +18,7 @@ class TtlExplicitSpoDigraphParser(DiGraphParserInterface):
         self._reset_count()
         result = nx.DiGraph()
         with open(self._source_file, "r") as in_stream:
-            in_stream.readline() # Just to skip the first one
+            in_stream.readline()  # Just to skip the first one
             for a_line in in_stream:
                 s, o = self._get_subject_and_object_from_line(a_line)
                 if s is not None:  # (the 0 should not be None)
@@ -40,6 +41,11 @@ class TtlExplicitSpoDigraphParser(DiGraphParserInterface):
             return None, None
         elif not self._is_relevant_triple(pieces[0:3]):
             self._ignored += 1
+            return None, None
+        elif not is_valid_uri(pieces[0], there_are_corners=True) or not is_valid_uri(pieces[2], there_are_corners=True):
+            log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(
+                pieces[2]) + " )")
+            self._error_count += 1
             return None, None
         else:
             self._triple_count += 1
