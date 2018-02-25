@@ -7,14 +7,14 @@ from core.classrank.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_IN
 CR = Namespace("http://weso.es/classrank/")
 # CR_ELEMS = Namespace("http://weso.es/classrank/entity/")
 PROP_CR_SCORE = CR.score
-PROP_PR_SCORE = CR.pagerank_score
-PROP_CR_RANK = CR.rank_position
-PROP_CR_N_INSTANCES = CR.num_instances
+PROP_PR_SCORE = CR.pagerankScore
+PROP_CR_RANK = CR.rankPosition
+PROP_CR_N_INSTANCES = CR.numInstances
 TYPE_CR_CLASS = CR.Class
-TYPE_CP_HUB = CR.Classpointer_relation_hub
-PROP_CLASS_HUB = CR.class_of_hub
-PROP_CP_HUB = CR.classpointer_of_hub
-PROP_INSTANCE_HUB = CR.instance_of_hub
+TYPE_CP_HUB = CR.ClassAndClasspointerHub
+PROP_CLASS_HUB = CR.hubClass
+PROP_CP_HUB = CR.hubClasspointer
+PROP_INSTANCE_HUB = CR.hubInstance
 
 
 
@@ -74,6 +74,8 @@ class TtlClassrankFormatter(ClassRankFormatterInterface):
     def _add_triples_of_classpointers(self, g, main_element, class_dict):
         for a_cp in class_dict[KEY_CLASS_POINTERS]:
             tmp = BNode()
+            #type of BNode
+            g.add( (tmp, RDF.type,  TYPE_CP_HUB) )
             # class
             g.add( (tmp, PROP_CLASS_HUB, main_element) )
             # classpointer
