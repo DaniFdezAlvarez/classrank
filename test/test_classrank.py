@@ -116,8 +116,7 @@ classrank_results = generate_classrank(raw_graph=graph_str,  # graph_file="files
                                        raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type\nhttp://example.org/ont/transaction-log/processedBy",
                                        # raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
                                        string_return=True,
-                                       instantiation_threshold=1,
-                                       class_threshold=1)
+                                       threshold=1)
 
 parser_several = TtlFullDigraphParser(string_graph=graph_str)
 yielder_several = TtlFullTriplesYielder(string_graph=graph_str)

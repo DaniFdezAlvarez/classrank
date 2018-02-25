@@ -92,7 +92,7 @@ def _build_cr_formatter(output_format, output_file, string_return, link_instance
 
 
 
-def _assert_valid_param_combination_classrank(damping_factor, max_iters, instantiation_threshold, class_threshold,
+def _assert_valid_param_combination_classrank(damping_factor, max_iters, threshold,
                                               graph_format, output_format, graph_file, classpointers_file, raw_graph,
                                               raw_classpointers, output_file, string_return):
     if graph_file is None and raw_graph is None:
@@ -116,11 +116,8 @@ def _assert_valid_param_combination_classrank(damping_factor, max_iters, instant
     if max_iters < 1:
         raise ValueError("'max_iters' must be an integer positive value")
 
-    if instantiation_threshold < 1:
-        raise ValueError("'instantiation_threshold' must be an integer positive value")
-
-    if class_threshold < 1:
-        raise ValueError("'class_threshold' must be an integer >= 1")
+    if threshold < 1:
+        raise ValueError("'threshold' must be an integer >= 1")
 
     if graph_format not in _ACCEPTED_GRAPH_FORMATS:
         raise ValueError("Unsupported graph format")
@@ -129,7 +126,7 @@ def _assert_valid_param_combination_classrank(damping_factor, max_iters, instant
         raise ValueError("Unsupported output format")
 
 
-def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_threshold=15, class_threshold=15,
+def generate_classrank(damping_factor=0.85, max_iters=250, threshold=15,
                        max_triples=-1, graph_format=TTL_FULL_FORMAT, output_format=JSON_FULL_OUTPUT, graph_file=None,
                        classpointers_file=None, raw_graph=None, raw_classpointers=None,
                        output_file=None, string_return=False, save_memory_mode=False, link_instances_in_output=True,
@@ -163,7 +160,7 @@ def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_thresho
     :return:
     """
     ### Checking params
-    _assert_valid_param_combination_classrank(damping_factor, max_iters, instantiation_threshold, class_threshold,
+    _assert_valid_param_combination_classrank(damping_factor, max_iters, threshold,
                                               graph_format, output_format, graph_file, classpointers_file, raw_graph,
                                               raw_classpointers, output_file, string_return)
 
@@ -182,8 +179,7 @@ def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_thresho
                          classrank_formatter=cr_formatter,
                          damping_factor=damping_factor,
                          max_iter_pagerank=250,
-                         class_security_threshold=class_threshold,
-                         instantiation_security_threshold=instantiation_threshold,
+                         threshold=threshold,
                          max_edges=max_triples)
 
     results = ranker.generate_classrank()

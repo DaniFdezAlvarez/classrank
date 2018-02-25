@@ -382,8 +382,7 @@ print "----------------------------------------------"
 results = generate_classrank(raw_graph=graph_str, # graph_file="files\\sample_ttl_full_tiny.ttl",
                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type\nhttp://example.org/ont/transaction-log/processedBy",
                              string_return=True,
-                             instantiation_threshold=4,
-                             class_threshold=4,
+                             threshold=4,
                              link_instances_in_output=True,
                              serialize_pagerank=True,
                              output_format="ttl")

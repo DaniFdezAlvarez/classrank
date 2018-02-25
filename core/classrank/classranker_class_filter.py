@@ -7,16 +7,14 @@ from core.classrank.classranker import ClassRanker, KEY_CLASS_POINTERS, \
 
 class ClassrankerClassFilter(ClassRanker):
     def __init__(self, digraph_parser, triple_yielder, classpointers_parser, classrank_formatter,
-                 prefix_tuples, list_of_target_classes, damping_factor=0.85, max_iter_pagerank=100,
-                 instantiation_security_threshold=15, max_edges=-1):
+                 prefix_tuples, list_of_target_classes, damping_factor=0.85, max_iter_pagerank=100, max_edges=-1):
         super(ClassrankerClassFilter, self).__init__(digraph_parser=digraph_parser,
                                                      triple_yielder=triple_yielder,
                                                      classpointers_parser=classpointers_parser,
                                                      classrank_formatter=classrank_formatter,
                                                      damping_factor=damping_factor,
                                                      max_iter_pagerank=max_iter_pagerank,
-                                                     class_security_threshold=1,  # Classes are already known
-                                                     instantiation_security_threshold=instantiation_security_threshold,
+                                                     threshold=1,  # Classes are already known
                                                      max_edges=max_edges)
         self._set_target_classes = set(list_of_target_classes)
         self._prefixes = build_dict_of_prefixes_from_tuples(prefix_tuples, inverse=False)
@@ -39,19 +37,6 @@ class ClassrankerClassFilter(ClassRanker):
                     result[canonized_target_class][KEY_CLASS_POINTERS][a_triple[_P]].add(a_triple[_S])
 
         # No need to remove any keys. Classes have already been positively identified
-
-        # keys_to_remove = set()
-        # for an_o_key in result:
-        #     keep = False
-        #     for a_p_key in result[an_o_key][KEY_CLASS_POINTERS]:
-        #         if len(result[an_o_key][KEY_CLASS_POINTERS][a_p_key]) > threshold:
-        #             keep = True
-        #             break
-        #     if not keep:
-        #         keys_to_remove.add(an_o_key)
-        #
-        # for a_key in keys_to_remove:
-        #     result.pop(a_key)
 
         # The result contains all the classes with all the instances
         # (and not instances but using classpointers) which point to them
