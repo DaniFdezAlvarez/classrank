@@ -4,7 +4,7 @@ from classrank_io.graph.formatters.classrank.classrank_formatter_interface impor
     KEY_ELEM, KEY_RANK_POSITION
 from core.classrank.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_INSTANCES
 
-CR = Namespace("http://weso.es/classrank/")
+CR = Namespace("http://w3id.org/classrank/")
 # CR_ELEMS = Namespace("http://weso.es/classrank/entity/")
 PROP_CR_SCORE = CR.score
 PROP_PR_SCORE = CR.pagerankScore
