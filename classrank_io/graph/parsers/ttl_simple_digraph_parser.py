@@ -1,5 +1,6 @@
 from classrank_io.graph.parsers.digraph_parser_inferface import DiGraphParserInterface
-from classrank_utils.uri import remove_corners
+from classrank_utils.uri import remove_corners, is_valid_uri
+from classrank_utils.log import log_to_error
 import networkx as nx
 _SEPARATOR = " "
 
@@ -36,6 +37,10 @@ class TtlSimpleDigraphParser(DiGraphParserInterface):
         if len(pieces) != 4:
             return None, None
         elif pieces[3] != ".":
+            return None, None
+        elif not is_valid_uri(pieces[0], there_are_corners=True) or not is_valid_uri(pieces[2], there_are_corners=True):
+            log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(
+                pieces[2]) + " )")
             return None, None
         else:
             return remove_corners(pieces[0]), remove_corners(pieces[2])

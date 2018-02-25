@@ -1,5 +1,5 @@
 __author__ = "Dani"
-from core.pagerank_nx import calculate_pagerank
+from core.pagerank.pagerank_nx import calculate_pagerank
 
 _S = 0
 _P = 1
@@ -8,17 +8,17 @@ _O = 2
 KEY_INSTANCES = "INSTANCES"
 KEY_CLASSRANK = "CR_score"
 KEY_CLASS_POINTERS = "cps"
+KEY_UNDER_T_CLASS_POINTERS = "under_t_cps"
 
 
 class ClassRanker(object):
     def __init__(self, digraph_parser, triple_yielder, classpointers_parser, classrank_formatter, damping_factor=0.85,
-                 max_iter_pagerank=100, class_security_threshold=15, instantiation_security_threshold=15, max_edges=-1):
+                 max_iter_pagerank=100, threshold=15, max_edges=-1):
         self._graph_parser = digraph_parser
         self._triple_yielder = triple_yielder
         self._classpointer_parser = classpointers_parser
         self._damping_factor = damping_factor
-        self._class_security_threshold = class_security_threshold
-        self._instantiation_security_threshold = instantiation_security_threshold
+        self._threshold = threshold
         self._classrank_formatter = classrank_formatter
         self._max_edges = max_edges
         self._number_of_classes = 0
@@ -30,8 +30,7 @@ class ClassRanker(object):
         graph = self._graph_parser.parse_graph(max_edges=self._max_edges)
         classpointers_set = self._classpointer_parser.parse_classpointers()
         # damping factor (self)
-        # class_threshold(self
-        # inst_threshold (self)
+        # threshold (self)
 
 
         ### Stage 1 - PageRank
@@ -45,16 +44,16 @@ class ClassRanker(object):
         print "Stage 2"
         graph = None  # Here we do not need anymore the directed graph.
         # We must free that memory
-        classes_dict = self._detect_classes(self._triple_yielder, classpointers_set, self._class_security_threshold)
+        classes_dict = self._detect_classes(self._triple_yielder, classpointers_set, self._threshold)
         self._number_of_classes = len(classes_dict)
 
         ###  Stage 3 - ClassRank calculations
         print "stage 3"
-        self._calculate_classrank(classes_dict, raw_pagerank, self._instantiation_security_threshold)
+        self._calculate_classrank(classes_dict, raw_pagerank, self._threshold)
 
         ###  Outputs
         print "Outputs"
-        result = self._classrank_formatter.format_classrank_dict(classes_dict)
+        result = self._classrank_formatter.format_classrank_dict(classes_dict, raw_pagerank)
 
         return result
 
@@ -95,6 +94,8 @@ class ClassRanker(object):
             # Add new keys
             classes_dict[a_class][KEY_INSTANCES] = set()
             classes_dict[a_class][KEY_CLASSRANK] = 0
+            classes_dict[a_class][KEY_UNDER_T_CLASS_POINTERS] = {}
+            under_threshold_props = []
             for a_p in classes_dict[a_class][KEY_CLASS_POINTERS]:
                 # If it has more instances than threshold, its pagerank is added to the c's classrank
                 if len(classes_dict[a_class][KEY_CLASS_POINTERS][a_p]) >= threshold:
@@ -103,6 +104,18 @@ class ClassRanker(object):
                         if an_s not in classes_dict[a_class][KEY_INSTANCES]:
                             classes_dict[a_class][KEY_INSTANCES].add(an_s)
                             classes_dict[a_class][KEY_CLASSRANK] += raw_pagerank[an_s]  # It must be there! KeyError?
+                else:
+                    # print a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
+                    under_threshold_props.append((a_p,classes_dict[a_class][KEY_CLASS_POINTERS][a_p]))
+                    # target_obj = classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
+                    # del classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
+                    # classes_dict[a_class][KEY_UNDER_T_CLASS_POINTERS][a_p] = target_obj
+
+            for a_low_p in under_threshold_props:
+                del classes_dict[a_class][KEY_CLASS_POINTERS][a_low_p[0]]
+                classes_dict[a_class][KEY_UNDER_T_CLASS_POINTERS][a_low_p[0]] = a_low_p[1]
+
+
 
             # The set of instances in no more useful. Change it by the total number of instances.
             classes_dict[a_class][KEY_INSTANCES] = len(classes_dict[a_class][KEY_INSTANCES])

@@ -6,13 +6,17 @@ outputs of different type. Ex: result to a file.
 
 """
 
+KEY_ELEM = "class"
+KEY_RANK_POSITION = "rank"
+
 class ClassRankFormatterInterface(object):
 
-    def __init__(self):
-        pass
+    def __init__(self, link_instances=True, serialize_pagerank=False):
+        self._link_instances = link_instances
+        self._serialize_pagerank = serialize_pagerank
 
 
-    def format_classrank_dict(self, a_dict):
+    def format_classrank_dict(self, classrank_dict, pagerank_dict=None):
         """
         It receives a dict and returns it in a given format. The expected form of this dict is:
 

@@ -1,39 +1,32 @@
+from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import OnePerLineClasspointerParser
+from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter import SortedJsonClassrankFormatter
+from classrank_io.graph.formatters.classrank.ttl_classrank_formatter import TtlClassrankFormatter
 from classrank_io.graph.parsers.tsv_spo_digraph_parser import TsvSpoGraphParser
 from classrank_io.graph.parsers.ttl_explicit_spo_digraph_parser import TtlExplicitSpoDigraphParser
-from classrank_io.graph.parsers.ttl_simple_digraph_parser import TtlSimpleDigraphParser
 from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
-
+from classrank_io.graph.parsers.ttl_full_memory_kind_digraph_parser import TtlFullMemoryKindDigraphParser
+from classrank_io.graph.parsers.ttl_simple_digraph_parser import TtlSimpleDigraphParser
 from classrank_io.graph.yielders.tsv_spo_triples_yielder import TsvSpoTriplesYielder
 from classrank_io.graph.yielders.ttl_explicit_spo_triples_yielder import TtlExplicitSpoTriplesYielder
+from classrank_io.graph.yielders.ttl_full_memory_kind_triples_yielder import TtlFullMemoryKindTriplesYielder
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
 from classrank_io.graph.yielders.ttl_simple_triples_yielder import TtlSimpleTriplesYielder
-
-from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import OnePerLineClasspointerParser
-
-from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter import SortedJsonClassrankFormatter
-
-from classranker import ClassRanker
-
-
-
-
-TTL_FULL_FORMAT = "ttl"
-TSV_SPO_FORMAT = "tsv_spo"
-TTL_SIMPLE_FORMAT = "ttl_simple"  # All triples are complete and are relevant
-TTL_EXPLICIT_SPO_FORMAT = "ttl_explicit"  # All the triples are complete, but there may be literals or bnodes.
-JSON_FULL_OUTPUT = "json"
+from core.classrank.classranker import ClassRanker
+from helpers.const import *
 
 _ACCEPTED_GRAPH_FORMATS = [TTL_FULL_FORMAT, TSV_SPO_FORMAT, TTL_SIMPLE_FORMAT, TTL_EXPLICIT_SPO_FORMAT]
-_ACCEPTED_OUTPUT_FORMATS = [JSON_FULL_OUTPUT]
+_ACCEPTED_OUTPUT_FORMATS = [JSON_FULL_OUTPUT, TTL_OUTPUT]
 
 
-
-def _build_graph_yielder(graph_format, graph_file, raw_graph):
+def _build_graph_yielder(graph_format, graph_file, raw_graph, save_memory_mode):
     if raw_graph is not None and graph_format in [TTL_FULL_FORMAT, TTL_SIMPLE_FORMAT, TTL_EXPLICIT_SPO_FORMAT]:
         return TtlFullTriplesYielder(string_graph=raw_graph)
     else:
         if graph_format == TTL_FULL_FORMAT:
-            return TtlFullTriplesYielder(source_file=graph_file)
+            if save_memory_mode:
+                return TtlFullMemoryKindTriplesYielder(source_file=graph_file)
+            else:
+                return TtlFullTriplesYielder(source_file=graph_file)
         elif graph_format == TTL_EXPLICIT_SPO_FORMAT:
             return TtlExplicitSpoTriplesYielder(source_file=graph_file)
         elif graph_format == TTL_SIMPLE_FORMAT:
@@ -44,12 +37,15 @@ def _build_graph_yielder(graph_format, graph_file, raw_graph):
             raise ValueError("Unsupported graph format building yielder")
 
 
-def _build_digraph_parser(graph_format, graph_file, raw_graph):
+def _build_digraph_parser(graph_format, graph_file, raw_graph, save_memory_mode):
     if raw_graph is not None and graph_format in [TTL_FULL_FORMAT, TTL_SIMPLE_FORMAT, TTL_EXPLICIT_SPO_FORMAT]:
         return TtlFullDigraphParser(string_graph=raw_graph)
     else:
         if graph_format == TTL_FULL_FORMAT:
-            return TtlFullDigraphParser(source_file=graph_file)
+            if save_memory_mode:
+                return TtlFullMemoryKindDigraphParser(source_file=graph_file)
+            else:
+                return TtlFullDigraphParser(source_file=graph_file)
         elif graph_format == TTL_EXPLICIT_SPO_FORMAT:
             return TtlExplicitSpoDigraphParser(source_file=graph_file)
         elif graph_format == TTL_SIMPLE_FORMAT:
@@ -67,19 +63,36 @@ def _build_cps_parser(classpointers_file, raw_classpointers):
         return OnePerLineClasspointerParser(source_file=classpointers_file)
 
 
-def _build_cr_formatter(output_format, output_file, string_return):
+def _build_cr_formatter(output_format, output_file, string_return, link_instances_in_output, serialize_pagerank):
     if output_format not in _ACCEPTED_OUTPUT_FORMATS:
         raise ValueError("Unsupported output format when building classrank formatter")
-    elif string_return:
-        return SortedJsonClassrankFormatter(string_output=True)
-    else:
-        return SortedJsonClassrankFormatter(target_file=output_file)
+    elif output_format == JSON_FULL_OUTPUT:
+        if string_return:
+            return SortedJsonClassrankFormatter(string_output=True,
+                                                link_instances=link_instances_in_output,
+                                                serialize_pagerank=serialize_pagerank)
+        else:
+            return SortedJsonClassrankFormatter(target_file=output_file,
+                                                link_instances=link_instances_in_output,
+                                                serialize_pagerank=serialize_pagerank)
+    elif output_format == TTL_OUTPUT:
+        if string_return:
+            return TtlClassrankFormatter(string_output=True,
+                                         link_instances=link_instances_in_output,
+                                         serialize_pagerank=serialize_pagerank)
+        else:
+            return TtlClassrankFormatter(target_file=output_file,
+                                         link_instances=link_instances_in_output,
+                                         serialize_pagerank=serialize_pagerank)
+    else:  # Shouldn't happen at this point
+        raise ValueError("Unsupported format to produce the output")
 
 
 
 
 
-def _assert_valid_param_combination_classrank(damping_factor, max_iters, instantiation_threshold, class_threshold,
+
+def _assert_valid_param_combination_classrank(damping_factor, max_iters, threshold,
                                               graph_format, output_format, graph_file, classpointers_file, raw_graph,
                                               raw_classpointers, output_file, string_return):
     if graph_file is None and raw_graph is None:
@@ -103,11 +116,8 @@ def _assert_valid_param_combination_classrank(damping_factor, max_iters, instant
     if max_iters < 1:
         raise ValueError("'max_iters' must be an integer positive value")
 
-    if instantiation_threshold < 1:
-        raise ValueError("'instantiation_threshold' must be an integer positive value")
-
-    if class_threshold < 1:
-        raise ValueError("'class_threshold' must be an integer >= 1")
+    if threshold < 1:
+        raise ValueError("'threshold' must be an integer >= 1")
 
     if graph_format not in _ACCEPTED_GRAPH_FORMATS:
         raise ValueError("Unsupported graph format")
@@ -116,10 +126,11 @@ def _assert_valid_param_combination_classrank(damping_factor, max_iters, instant
         raise ValueError("Unsupported output format")
 
 
-def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_threshold=15, class_threshold=15,
+def generate_classrank(damping_factor=0.85, max_iters=250, threshold=15,
                        max_triples=-1, graph_format=TTL_FULL_FORMAT, output_format=JSON_FULL_OUTPUT, graph_file=None,
                        classpointers_file=None, raw_graph=None, raw_classpointers=None,
-                       output_file=None, string_return=False):
+                       output_file=None, string_return=False, save_memory_mode=False, link_instances_in_output=True,
+                       serialize_pagerank=False):
     """
 
     :param damping_factor: Damping factor for PageRank execution
@@ -129,7 +140,7 @@ def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_thresho
     :param max_triples: If it is set to a positive integer, it makes the parsers and yielders stop when they process
      the specified amount of triples (correct ones).
     :param graph_format: format of the provided graph
-    :param output_fotmat: format of the provided file.
+    :param output_format: format of the provided file.
     :param graph_file: path to the file in which the target graph is contained. If you want to
         provide the graph using a raw string, set to None and provide the graph though the param raw_graph
     :param classpointers_file: path to the file in which the classpointers are contained. If you want to
@@ -141,18 +152,24 @@ def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_thresho
     :param output_file: format of the computed classrank.
     :param string_return: It it is True, the resulting classrank will be returned in this method. If its False,
      the result will be provided in the file specified in output_file
+     :param save_memory_mode: for some parsers/yielders, it uses an implementation wich allow to save main memory
+            by using generators when parsing files.
+     :param link_instances_in_output: If it ser to True, the generated output will keep the relation between
+        each class and its instances. Otherwise, the output will  contain mainly rankings, scores and classpointers
+    :param serialize_pagerank: If True, PageRank scores will also appear in the obtained results
     :return:
     """
     ### Checking params
-    _assert_valid_param_combination_classrank(damping_factor, max_iters, instantiation_threshold, class_threshold,
+    _assert_valid_param_combination_classrank(damping_factor, max_iters, threshold,
                                               graph_format, output_format, graph_file, classpointers_file, raw_graph,
                                               raw_classpointers, output_file, string_return)
 
     ### Parsers, yielders and formaters
-    graph_parser = _build_digraph_parser(graph_format, graph_file, raw_graph)
-    graph_yielder = _build_graph_yielder(graph_format, graph_file, raw_graph)
+    graph_parser = _build_digraph_parser(graph_format, graph_file, raw_graph, save_memory_mode)
+    graph_yielder = _build_graph_yielder(graph_format, graph_file, raw_graph, save_memory_mode)
     cps_parser = _build_cps_parser(classpointers_file, raw_classpointers)
-    cr_formatter = _build_cr_formatter(output_format, output_file, string_return)
+    cr_formatter = _build_cr_formatter(output_format, output_file, string_return,
+                                       link_instances_in_output, serialize_pagerank)
 
     ### Execution
 
@@ -162,8 +179,7 @@ def generate_classrank(damping_factor=0.85, max_iters=250, instantiation_thresho
                          classrank_formatter=cr_formatter,
                          damping_factor=damping_factor,
                          max_iter_pagerank=250,
-                         class_security_threshold=class_threshold,
-                         instantiation_security_threshold=instantiation_threshold,
+                         threshold=threshold,
                          max_edges=max_triples)
 
     results = ranker.generate_classrank()
