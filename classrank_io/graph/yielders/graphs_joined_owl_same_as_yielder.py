@@ -41,7 +41,7 @@ class GraphsJoinedOwlSameAsYielder(TriplesYielderInterface):
 
 
     def _yield_triples_checking_alignments(self, max_triples):
-        for a_triple in self._yielder2.yielded_triples(max_triples):
+        for a_triple in self._yielder2.yield_triples(max_triples):
             subjects = self._get_alignments_of_elem_or_self_if_there_are_not(a_triple[_S])
             objects = self._get_alignments_of_elem_or_self_if_there_are_not(a_triple[_O])
 
@@ -81,5 +81,5 @@ class GraphsJoinedOwlSameAsYielder(TriplesYielderInterface):
         more than one time
         :return:
         """
-        self._yielder1.reset_count()
-        self._yielder2.reset_count()
+        self._yielder1._reset_count()
+        self._yielder2._reset_count()

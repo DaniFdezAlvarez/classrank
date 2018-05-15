@@ -11,7 +11,6 @@ class TtlFullSamAsFilterDigraphParser(DiGraphParserInterface):
                                                           yielder2=yielder2,
                                                           alignments_parser=alignments_parser)
 
-
     def parse_graph(self, max_edges=-1):
         result = nx.DiGraph()
         for a_triple in self._base_yielder.yield_triples(max_triples=max_edges):
