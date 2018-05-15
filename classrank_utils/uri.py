@@ -36,8 +36,10 @@ def is_valid_uri(uri, there_are_corners=True):
 def is_valid_triple(s,p,o, there_are_corners=True):
     if not is_valid_uri(s, there_are_corners):
         return False
-    if not is_valid_uri(s, there_are_corners):
+    if not is_valid_uri(p, there_are_corners):
         return False
-    if not is_valid_uri(s, there_are_corners):
+    if not is_valid_uri(o, there_are_corners):
         return False
     return True
+
+

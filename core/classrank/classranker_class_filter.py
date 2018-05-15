@@ -24,7 +24,6 @@ class ClassrankerClassFilter(ClassRanker):
 
 
     def _detect_classes(self, triple_yielder, classpointers, threshold):
-        print "Eyyyyy look how I am being executed buddy!"
         result = self._generate_initial_class_result_dict()
         # Build dict of triples (object as primary key)
         for a_triple in triple_yielder.yield_triples(max_triples=self._max_edges):
