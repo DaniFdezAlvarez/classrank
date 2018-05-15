@@ -1,14 +1,15 @@
-from classrank_io.graph.parsers.digraph_parser_inferface import DiGraphParserInterface
-from classrank_io.graph.yielders.ttl_full_memory_kind_triples_yielder import TtlFullMemoryKindTriplesYielder
 import networkx as nx
 
+from classrank_io.graph.parsers.digraph_parser_inferface import DiGraphParserInterface
+from classrank_io.graph.yielders.graphs_joined_owl_same_as_yielder import GraphsJoinedOwlSameAsYielder
 
-class TtlFullMemoryKindDigraphParser(DiGraphParserInterface):
+class TtlFullSamAsFilterDigraphParser(DiGraphParserInterface):
 
-    def __init__(self, source_file):
-        super(TtlFullMemoryKindDigraphParser, self).__init__()
-        self._base_yielder = TtlFullMemoryKindTriplesYielder(source_file=source_file)
-
+    def __init__(self, yielder1, yielder2, alignments_parser):
+        super(TtlFullSamAsFilterDigraphParser, self).__init__()
+        self._base_yielder = GraphsJoinedOwlSameAsYielder(yielder1=yielder1,
+                                                          yielder2=yielder2,
+                                                          alignments_parser=alignments_parser)
 
     def parse_graph(self, max_edges=-1):
         result = nx.DiGraph()
@@ -34,5 +35,3 @@ class TtlFullMemoryKindDigraphParser(DiGraphParserInterface):
 
     def _reset_count(self):
         pass  # The base_yielder will initiate this task when needed (whenever the generator is called).
-
-
