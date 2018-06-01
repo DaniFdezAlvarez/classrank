@@ -50,8 +50,8 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
                                      source=self._source_file)
                         self._error_triples += 1
                     self._triple_ready = False
-                if self._triples_count % 1000000 == 0:
-                    print self._triples_count, self._tmp_s, self._tmp_p, self._tmp_o
+                # if self._triples_count % 1000000 == 0:
+                #     print self._triples_count, self._tmp_s, self._tmp_p, self._tmp_o
                 if self._triples_count == max_triples:
                     break
 

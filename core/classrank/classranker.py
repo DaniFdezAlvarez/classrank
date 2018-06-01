@@ -1,5 +1,6 @@
 __author__ = "Dani"
 from core.pagerank.pagerank_nx import calculate_pagerank
+import sys
 
 _S = 0
 _P = 1
@@ -35,6 +36,7 @@ class ClassRanker(object):
 
         ### Stage 1 - PageRank
         print "stage 1"
+        sys.stdout.flush()
         raw_pagerank = calculate_pagerank(graph=graph,
                                           damping_factor=self._damping_factor,
                                           max_iter=self._max_iter_pagerank)
@@ -42,6 +44,7 @@ class ClassRanker(object):
 
         ### Stage 2 - ClassDetection
         print "Stage 2"
+        sys.stdout.flush()
         graph = None  # Here we do not need anymore the directed graph.
         # We must free that memory
         classes_dict = self._detect_classes(self._triple_yielder, classpointers_set, self._threshold)
@@ -49,10 +52,12 @@ class ClassRanker(object):
 
         ###  Stage 3 - ClassRank calculations
         print "stage 3"
+        sys.stdout.flush()
         self._calculate_classrank(classes_dict, raw_pagerank, self._threshold)
 
         ###  Outputs
         print "Outputs"
+        sys.stdout.flush()
         result = self._classrank_formatter.format_classrank_dict(classes_dict, raw_pagerank)
 
         return result
