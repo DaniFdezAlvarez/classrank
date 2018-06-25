@@ -8,13 +8,15 @@ a different yielder.
 
 """
 
-from classrank_io.graph.yielders.ttl_full_memory_kind_triples_yielder import TtlFullMemoryKindTriplesYielder,_SEVERAL_BLANKS, _RDF_TYPE, _BOOLEANS
+from classrank_io.graph.yielders.ttl_full_memory_kind_triples_yielder import TtlFullMemoryKindTriplesYielder
 from classrank_utils.uri import is_valid_triple
 from classrank_utils.log import log_to_error
 
 _OWL_SAME_AS = "http://www.w3.org/2002/07/owl#sameAs"
 
 class TtlFullSamAsFilterTriplesYielder(TtlFullMemoryKindTriplesYielder):
+
+
     def __init__(self, source_file):
         super(TtlFullSamAsFilterTriplesYielder, self).__init__(source_file=source_file)
         self._owl_same_as_triples = 0
@@ -37,8 +39,6 @@ class TtlFullSamAsFilterTriplesYielder(TtlFullMemoryKindTriplesYielder):
                                          source=self._source_file)
                         self._error_triples += 1
                     self._triple_ready = False
-                if self._triples_count % 1000000 == 0:
-                    print self._triples_count, self._tmp_s, self._tmp_p, self._tmp_o
                 if self._triples_count == max_triples:
                     break
 
@@ -52,4 +52,4 @@ class TtlFullSamAsFilterTriplesYielder(TtlFullMemoryKindTriplesYielder):
 
     @property
     def owl_same_as_triples(self):
-        return self._is_owl_same_as
+        return self._owl_same_as_triples

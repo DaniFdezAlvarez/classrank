@@ -3,10 +3,10 @@ import networkx as nx
 from classrank_io.graph.parsers.digraph_parser_inferface import DiGraphParserInterface
 from classrank_io.graph.yielders.graphs_joined_owl_same_as_yielder import GraphsJoinedOwlSameAsYielder
 
-class TtlFullSamAsFilterDigraphParser(DiGraphParserInterface):
+class GraphsJoinedOwlSameAsParser(DiGraphParserInterface):
 
     def __init__(self, yielder1, yielder2, alignments_parser):
-        super(TtlFullSamAsFilterDigraphParser, self).__init__()
+        super(GraphsJoinedOwlSameAsParser, self).__init__()
         self._base_yielder = GraphsJoinedOwlSameAsYielder(yielder1=yielder1,
                                                           yielder2=yielder2,
                                                           alignments_parser=alignments_parser)
