@@ -36,11 +36,13 @@ class ClassRankerMixedClassFilter(ClassRanker):
         for a_triple in triple_yielder.yield_triples(max_triples=self._max_edges):
             if a_triple[_P] in classpointers:
                 if self._is_class_from_a_known_workspace(a_triple[_O]):
+                    # print "CONOCIDA!!!", a_triple[_O]
                     self._manage_class_of_known_workspace(class_dict=result,
                                                           a_class=a_triple[_O],
                                                           a_prop=a_triple[_P],
                                                           a_subj=a_triple[_S])
                 else:
+                    # print "No conocida...", a_triple[_O]
                     self._manage_class_of_not_known_workspace(class_dict=result,
                                                               a_class=a_triple[_O],
                                                               a_prop=a_triple[_P],
@@ -51,20 +53,33 @@ class ClassRankerMixedClassFilter(ClassRanker):
 
 
     def _manage_class_of_not_known_workspace(self, class_dict, a_class, a_prop, a_subj):
+        canonized_target_class = self._canonize_target_class_if_is_target(a_class)
+        if canonized_target_class is not None:
+            print "UNA ME PASO EL CORTE!", a_class
+            if a_prop not in class_dict[canonized_target_class][KEY_CLASS_POINTERS]:
+                class_dict[canonized_target_class][KEY_CLASS_POINTERS][a_prop] = set()
+            class_dict[canonized_target_class][KEY_CLASS_POINTERS][a_prop].add(a_subj)
+
+        # if a_class not in class_dict:  # Adding the O to the dict in case
+        #     class_dict[a_class] = {}
+        #     class_dict[a_class][KEY_CLASS_POINTERS] = {}
+        # if a_prop not in class_dict[a_class][KEY_CLASS_POINTERS]:  # Same with _P in _O dict
+        #     class_dict[a_class][KEY_CLASS_POINTERS][a_prop] = set()
+        # class_dict[a_class][KEY_CLASS_POINTERS][a_prop].add(a_subj)
+
+
+    def _manage_class_of_known_workspace(self, class_dict, a_class, a_prop, a_subj):
         if a_class not in class_dict:  # Adding the O to the dict in case
             class_dict[a_class] = {}
             class_dict[a_class][KEY_CLASS_POINTERS] = {}
         if a_prop not in class_dict[a_class][KEY_CLASS_POINTERS]:  # Same with _P in _O dict
             class_dict[a_class][KEY_CLASS_POINTERS][a_prop] = set()
         class_dict[a_class][KEY_CLASS_POINTERS][a_prop].add(a_subj)
-
-
-    def _manage_class_of_known_workspace(self, class_dict, a_class, a_prop, a_subj):
-        canonized_target_class = self._canonize_target_class_if_is_target(a_class)
-        if canonized_target_class is not None:
-            if a_prop not in class_dict[canonized_target_class][KEY_CLASS_POINTERS]:
-                class_dict[canonized_target_class][KEY_CLASS_POINTERS][a_prop] = set()
-            class_dict[canonized_target_class][KEY_CLASS_POINTERS][a_prop].add(a_subj)
+        # canonized_target_class = self._canonize_target_class_if_is_target(a_class)
+        # if canonized_target_class is not None:
+        #     if a_prop not in class_dict[canonized_target_class][KEY_CLASS_POINTERS]:
+        #         class_dict[canonized_target_class][KEY_CLASS_POINTERS][a_prop] = set()
+        #     class_dict[canonized_target_class][KEY_CLASS_POINTERS][a_prop].add(a_subj)
 
 
     def _is_class_from_a_known_workspace(self, a_class):
@@ -109,6 +124,8 @@ class ClassRankerMixedClassFilter(ClassRanker):
 
 
     def _canonize_target_class_if_is_target(self, candidate_class):  # TODO refactor!
+        if "dbpedia" in candidate_class:
+            print candidate_class
         if candidate_class in self._set_target_classes:
             return candidate_class
 
