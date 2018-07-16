@@ -7,10 +7,11 @@ from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphPar
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
 from core.classrank.classranker import ClassRanker
 
+
+
 GRAPH_KEY = "G"
 CLASSPOINTERS_KEY = "CP"
-THRESHOLD_INSTANCES_KEY = "TI"
-THRESHOLD_CLASSES_KEY = "TC"
+THRESHOLD_KEY = "T"
 DAMPING_FACTOR_KEY = "D"
 
 PORT = 5002
@@ -72,8 +73,7 @@ def classrank():
     try:
         data = request.json
         damping_factor = _parse_damping(data[DAMPING_FACTOR_KEY])
-        instances_threshold = _parse_threshold(data[THRESHOLD_INSTANCES_KEY])
-        classes_threshold = _parse_threshold(data[THRESHOLD_CLASSES_KEY])
+        threshold = _parse_threshold(data[THRESHOLD_KEY])
         cp_list = _parse_cp_list(data[CLASSPOINTERS_KEY])
         ttl_graph = _parse_ttl_graph(data[GRAPH_KEY])
 
@@ -93,8 +93,7 @@ def classrank():
                               classrank_formatter=formatter,
                               damping_factor=damping_factor,
                               max_iter_pagerank=250,
-                              class_security_threshold=classes_threshold,
-                              instantiation_security_threshold=instances_threshold)
+                              threshold=threshold)
     result = classranker.generate_classrank()
     return result
 
