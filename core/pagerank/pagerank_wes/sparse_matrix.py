@@ -4,11 +4,12 @@ from classrank_io.graph.yielders.tsv_edges_yielder import TsvEdgesYielder
 class SMatrix(object):
 
     def __init__(self, d=0.85, source_file=None, raw_graph=None):
-        self._source_file = None
-        self._raw_graph = None
+        self._source_file = source_file
+        self._raw_graph = raw_graph
         self._rows = {}
         self._n_nodes = 0  # Will change later
         self._base_score = 0  # Will change_later
+        self._sink_score = 0  # Will change_later
         self._dict_degrees = {}
         self._staying_probability = d
         self._jumping_probability = 1 - d
@@ -34,6 +35,8 @@ class SMatrix(object):
     def _set_base_values(self):
         self._n_nodes = len(self._dict_degrees)
         self._base_score = self._jumping_probability / self._n_nodes
+        self._sink_score = 1.0 / self._n_nodes
+        print self._dict_degrees
 
     def _include_nodes_if_needed(self, an_edge):
         for elem in an_edge:
@@ -43,8 +46,12 @@ class SMatrix(object):
             self._rows[an_edge[1]] = set()
 
     def get(self, row, col):
-        if row not in self._rows or col not in self._rows[col] :
+        if self._dict_degrees[col] == 0:
+            print col, "Yeee"
+            return self._sink_score
+        elif row not in self._rows or col not in self._rows[row] :
             return self._base_score
+
         #else
         return self._base_score + (self._staying_probability / self._dict_degrees[col])
 

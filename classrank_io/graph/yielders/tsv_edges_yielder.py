@@ -1,4 +1,4 @@
-_SEPARATOR = ""
+_SEPARATOR = "\t"
 
 class TsvEdgesYielder(object):
 
@@ -8,7 +8,8 @@ class TsvEdgesYielder(object):
 
 
     def yield_edges(self):
-        yielding_func = self._yield_edges_from_file if self._source_file is not None else self._yield_edges_from_raw_grpah()
+        yielding_func = self._yield_edges_from_file if self._source_file is not None \
+            else self._yield_edges_from_raw_grpah
         for an_edge in yielding_func():
             yield an_edge
 

@@ -4,7 +4,11 @@ class PowerIterator(object):
         self._eps = epsilon
         self._max_iters = max_iters
         self._current_vector = self._initialize_vector()
+        self._curr_iters = 0
 
+    @property
+    def iterations_performed(self):
+        return self._curr_iters
 
     def _initialize_vector(self):
         new_vec = {}
@@ -14,9 +18,9 @@ class PowerIterator(object):
         return new_vec
 
     def calculate_pagerank_vector(self):
-        iters = 0
-        while iters < self._max_iters:
-            iters += 1
+        self._curr_iters = 0
+        while self._curr_iters < self._max_iters:
+            self._curr_iters += 1
             new_vec = {}
             for a_key in self._current_vector:
                 new_vec[a_key] = self._compute_cell_value(a_key)
@@ -24,7 +28,7 @@ class PowerIterator(object):
                 self._current_vector = new_vec
                 break
             self._current_vector = new_vec
-        if iters >= self._max_iters:
+        if self._curr_iters >= self._max_iters:
             raise ValueError("The graph does not converge after " + str(self._max_iters) + " iterations.")
         return self._current_vector
 
@@ -32,7 +36,7 @@ class PowerIterator(object):
         for a_key in new_vec:
             if abs(new_vec[a_key] - self._current_vector[a_key]) > self._eps:
                 return False
-            return True
+        return True
 
     def _compute_cell_value(self, target_row):
         result = 0
