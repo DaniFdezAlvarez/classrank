@@ -1,9 +1,10 @@
 from classrank_io.graph.yielders.tsv_edges_yielder import TsvEdgesYielder
+from classrank_io.graph.yielders.ttl_explicit_spo_triples_yielder import TtlExplicitSpoTriplesYielder
 
 
 class SMatrix(object):
 
-    def __init__(self, d=0.85, source_file=None, raw_graph=None):
+    def __init__(self, d=0.85, source_file=None, raw_graph=None, max_edges=-1):
         self._source_file = source_file
         self._raw_graph = raw_graph
         self._rows = {}
@@ -13,7 +14,9 @@ class SMatrix(object):
         self._dict_degrees = {}
         self._staying_probability = d
         self._jumping_probability = 1 - d
+        self._max_edges = max_edges
         self._load_matrix()
+
 
     @property
     def n_nodes(self):
@@ -24,9 +27,8 @@ class SMatrix(object):
             yield a_key
 
     def _load_matrix(self):
-        yielder = TsvEdgesYielder(source_file=self._source_file,
-                                  raw_graph=self._raw_graph)
-        for an_edge in yielder.yield_edges():
+        yielder = TsvEdgesYielder(TtlExplicitSpoTriplesYielder(source_file=self._source_file))
+        for an_edge in yielder.yield_edges(self._max_edges):
             self._include_nodes_if_needed(an_edge)
             self._dict_degrees[an_edge[0]] += 1
             self._rows[an_edge[1]].add(an_edge[0])
@@ -36,7 +38,6 @@ class SMatrix(object):
         self._n_nodes = len(self._dict_degrees)
         self._base_score = self._jumping_probability / self._n_nodes
         self._sink_score = 1.0 / self._n_nodes
-        print self._dict_degrees
 
     def _include_nodes_if_needed(self, an_edge):
         for elem in an_edge:
@@ -47,7 +48,6 @@ class SMatrix(object):
 
     def get(self, row, col):
         if self._dict_degrees[col] == 0:
-            print col, "Yeee"
             return self._sink_score
         elif row not in self._rows or col not in self._rows[row] :
             return self._base_score

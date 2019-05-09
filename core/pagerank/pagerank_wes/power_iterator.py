@@ -19,6 +19,7 @@ class PowerIterator(object):
 
     def calculate_pagerank_vector(self):
         self._curr_iters = 0
+        print "starting"
         while self._curr_iters < self._max_iters:
             self._curr_iters += 1
             new_vec = {}
@@ -28,6 +29,8 @@ class PowerIterator(object):
                 self._current_vector = new_vec
                 break
             self._current_vector = new_vec
+            if self._curr_iters % 10 == 0:
+                print self._curr_iters
         if self._curr_iters >= self._max_iters:
             raise ValueError("The graph does not converge after " + str(self._max_iters) + " iterations.")
         return self._current_vector

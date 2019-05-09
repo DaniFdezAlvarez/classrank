@@ -47,7 +47,7 @@ class TtlExplicitSpoTriplesYielder(TriplesYielderInterface):
         elif not self._is_relevant_triple(pieces[0:3]):
             self._triples_ignored += 1
             return None, None, None
-        elif not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=True):
+        elif not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=False):
             log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(pieces[2]) + " )")
             self._error_count += 1
             return None, None, None
