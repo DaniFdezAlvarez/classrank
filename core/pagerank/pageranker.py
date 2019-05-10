@@ -11,6 +11,7 @@ class PageRanker(object):
         self._number_of_entities = 0
         self._max_iter = max_iter
 
+    # @profile
     def generate_pagerank(self, raw=False):
         graph = self._graph_parser.parse_graph(max_edges=self._max_edges)
         raw_pagerank = calculate_pagerank(graph=graph,
