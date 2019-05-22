@@ -21,7 +21,7 @@ class PageRanker(object):
         if raw:
             return raw_pagerank
         return self._pagerank_formatter.format_pagerank_dict(raw_pagerank)
-
+        return {}
     @property
     def triples_analized(self):
         return self._graph_parser.yielded_triples
