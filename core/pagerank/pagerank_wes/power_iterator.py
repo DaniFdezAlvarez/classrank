@@ -21,19 +21,29 @@ class PowerIterator(object):
 
     def calculate_pagerank_vector(self):
         self._curr_iters = 0
+
+        #Fast references (ethic questionable) to avoid some time calling sparse_matrix methods. No memory penalization
+        alpha = self._target_matrix.alpha
+        d = self._target_matrix.d
+        sink_score = self._target_matrix.sink_score
+        ref_to_col_dict = self._target_matrix._cols
+        ref_to_degrees_dict = self._target_matrix._dict_degrees
+        # ref_to_dangling_nodes = self._target_matrix.dangling_nodes
+
+
         while self._curr_iters < self._max_iters:
             self._curr_iters += 1
             new_vec = dict.fromkeys(self._current_vector.keys(), 0)
             sum_dangling_nodes = sum(self._current_vector[a_dang_node] for a_dang_node in self._target_matrix.dangling_nodes)
 
             for n in self._target_matrix.non_dangling_nodes:
-                for a_node_reached_by_n in self._target_matrix._cols[n]:
-                    new_vec[a_node_reached_by_n] += self._target_matrix.alpha * \
+                for a_node_reached_by_n in ref_to_col_dict[n]:
+                    new_vec[a_node_reached_by_n] += alpha * \
                                                     self._current_vector[n] * \
-                                                    self._target_matrix._dict_degrees[n]
+                                                    ref_to_degrees_dict[n]
 
             for n in self._current_vector:
-                new_vec[n] += self._target_matrix.sink_score * (sum_dangling_nodes + self._target_matrix.d)
+                new_vec[n] += sink_score * (sum_dangling_nodes + d)
             if self._converges(new_vec):
                 self._current_vector = new_vec
                 break
@@ -71,11 +81,11 @@ class PowerIterator(object):
         return self._current_vector
 
     def _converges(self, new_vec):
-        return False
-        # for a_key in new_vec:
-        #     if abs(new_vec[a_key] - self._current_vector[a_key]) > self._eps:
-        #         return False
-        # return True
+        # return False
+        for a_key in new_vec:
+            if abs(new_vec[a_key] - self._current_vector[a_key]) > self._eps:
+                return False
+        return True
 
     def _compute_cell_value(self, target_row):
         result = 0

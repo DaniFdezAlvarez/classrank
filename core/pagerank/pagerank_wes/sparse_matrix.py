@@ -62,7 +62,7 @@ class SMatrix(object):
         for an_edge in yielder.yield_edges(self._max_edges):
             self._include_nodes_if_needed(an_edge)
             self._dict_degrees[an_edge[0]] += 1
-            self._rows[an_edge[1]].add(an_edge[0])
+            # self._rows[an_edge[1]].add(an_edge[0])
             self._cols[an_edge[0]].add(an_edge[1])
             nodes_reached.add(an_edge[0])
         self._set_base_values()
@@ -86,20 +86,26 @@ class SMatrix(object):
         for elem in an_edge:
             if elem not in self._dict_degrees:
                 self._dict_degrees[elem] = 0
-        if an_edge[1] not in self._rows:  # an_edge[1] = subject
-            self._rows[an_edge[1]] = set()
+        # if an_edge[1] not in self._rows:  # an_edge[1] = subject
+        #     self._rows[an_edge[1]] = set()
 
         if an_edge[0] not in self._cols:
             self._cols[an_edge[0]] = set()
 
-    def get(self, row, col):
-        return 0
-        # if self._dict_degrees[col] == 0:
-        #     return self._sink_score
-        # elif row not in self._rows or col not in self._rows[row]:
-        #     return self._base_score
-        # ##### else
-        # return self._base_score + (self._staying_probability / self._dict_degrees[col])
+    def get_col(self, col_key):
+        return self._cols[col_key]
+
+    def get_degree_of_node(self, node):
+        return self._dict_degrees[node]
+
+    # def get(self, row, col):
+    #     return 0
+    #     # if self._dict_degrees[col] == 0:
+    #     #     return self._sink_score
+    #     # elif row not in self._rows or col not in self._rows[row]:
+    #     #     return self._base_score
+    #     # ##### else
+    #     # return self._base_score + (self._staying_probability / self._dict_degrees[col])
 
     # def __init__(self, d=0.85, source_file=None, raw_graph=None, max_edges=-1):
     #     self._source_file = source_file
