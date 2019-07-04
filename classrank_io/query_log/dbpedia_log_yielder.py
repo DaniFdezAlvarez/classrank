@@ -1,6 +1,8 @@
 from classrank_io.query_log.query_log_yielder_interface import QueryLogYielderInterface
+from model.log.log_entry import LogEntry
 # import time
 import datetime
+import urllib.parse
 
 """
 Example of log entry:
@@ -12,7 +14,7 @@ fdbb563883f26e13b6ff5de74e91924d - - [08/Jul/2017 03:00:00 +0200] "GET /sparql?q
 """
 
 
-_DATE_FORMAT = "%Y/%b/%d %H:%M:S %z"
+_DATE_FORMAT = "%d/%b/%Y %H:%M:%S %z"
 
 class DBpediaLogYielder(QueryLogYielderInterface):
 
@@ -38,7 +40,29 @@ class DBpediaLogYielder(QueryLogYielderInterface):
 
     def _build_model_entry_log(self, a_line):
         hashed_ip = self._look_for_hashed_ip(a_line)
-        timestamp = self._look_for_timestamp_and_index_of_last_timestamp_char(a_line)
+        timestamp, index_last_timestamp = self._look_for_timestamp_and_index_of_last_timestamp_char(a_line)
+        user_agent = self._look_for_user_agent(a_line, index_last_timestamp)
+        str_query = self._look_for_query(a_line[index_last_timestamp+1:])
+
+        return LogEntry(query=str_query,
+                        timestamp=timestamp,
+                        user_agent=user_agent,
+                        ip=hashed_ip)
+
+
+
+    def _look_for_query(self, a_partial_line):
+        ini_query = a_partial_line.find("query=") + 6  # 6 == len("query")
+        fin1_query = a_partial_line[ini_query:].find(" ")
+        fin2_query = a_partial_line[ini_query:].find("&")
+        fin_query = fin1_query if fin2_query == -1 else fin2_query
+
+        return urllib.parse.unquote_plus(a_partial_line[ini_query:ini_query+fin_query])
+
+
+
+    def _look_for_user_agent(self, a_line, index_last_timestamp):
+        return None  # TODO WHEN WE HAVE PROPER LOGS
 
 
     def _look_for_timestamp_and_index_of_last_timestamp_char(self, a_line):
