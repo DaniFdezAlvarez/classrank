@@ -4,6 +4,8 @@ from model.log.log_entry import LogEntry
 import datetime
 import urllib.parse
 import rdflib
+from rdflib.plugins.sparql import prepareQuery
+from rdflib.plugins.sparql.sparql import Query
 
 
 """
@@ -23,7 +25,7 @@ class DBpediaLogYielder(QueryLogYielderInterface):
     def __init__(self, source_file, namespaces_file):
         super(DBpediaLogYielder, self).__init__()
         self._source_file = source_file
-        self._g = self._build_graph_with_precharged_namespaces(namespaces_file)  # Empty graph to be used for checking queries
+        self._namespaces = self._build_dict_precharged_namespaces(namespaces_file)  # Empty graph to be used for checking queries
 
     def yield_entries(self):
         with open(self._source_file, "r") as in_stream:
@@ -32,15 +34,14 @@ class DBpediaLogYielder(QueryLogYielderInterface):
                 if self._is_valid_line(a_line):
                     yield self._build_model_entry_log(a_line)
 
-    def _build_graph_with_precharged_namespaces(self, namespaces_file):
-        result = rdflib.Graph()
+    def _build_dict_precharged_namespaces(self, namespaces_file):
+        result = {}
         with open(namespaces_file, "r") as in_stream:
             for a_line in in_stream:
                 a_line = a_line.strip()
                 if a_line != "":
                     pieces = a_line.split("\t")
-                    result.namespace_manager.bind(prefix=pieces[0],
-                                                  namespace=rdflib.Namespace(pieces[1]))
+                    result[pieces[0]] = rdflib.Namespace([pieces[1]])
         return result
 
     def _is_valid_line(self, a_line):
@@ -73,7 +74,7 @@ class DBpediaLogYielder(QueryLogYielderInterface):
 
     def _check_valid_query(self, str_query):
         try:
-            self._g.query(str_query)
+            keep = prepareQuery(str_query, initNs=self._namespaces)
             # print("Yayy")
             return True
         except:
