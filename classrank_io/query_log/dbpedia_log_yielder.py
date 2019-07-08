@@ -74,8 +74,7 @@ class DBpediaLogYielder(QueryLogYielderInterface):
 
     def _check_valid_query(self, str_query):
         try:
-            keep = prepareQuery(str_query, initNs=self._namespaces)
-            # print("Yayy")
+            prepareQuery(str_query, initNs=self._namespaces)
             return True
         except:
             print(str_query)
