@@ -1,4 +1,5 @@
 import re
+from classrank_utils.uri import remove_corners
 
 # _REGEX_PREFIX = re.compile("(PREFIX)|(prefix) +[\w\-]* *: *<.+>")
 _REGEX_PREFIX = re.compile("PREFIX", flags=re.IGNORECASE)
@@ -24,9 +25,27 @@ class ClassUsageMiner(object):
         self._queries_with_mentions = 0
         self._queries_without_mentions = 0
 
+    @property
+    def class_total_mentions(self):
+        return self._classes_total_mentions
+
+    @property
+    def class_query_mentions(self):
+        return self._classes_query_mentions
+
+    def mine_entries(self):
+        for an_entry in self._entities_yielder_func():
+            index_type_of_query = self._detect_index_type_of_query(an_entry)
+            if index_type_of_query != -1:
+                new_prefixes_dict = self._parse_new_prefixes(an_entry.str_query[:index_type_of_query])
+                uri_mentions = self._detect_uri_mentions(str_query=an_entry.str_query[index_type_of_query:],
+                                                         priority_namespaces=new_prefixes_dict)
+                class_mention_dict = self._build_class_mention_dict_of_query(uri_mentions)
+                self._add_mentions_to_class_dicts(class_mention_dict)
+
 
     def _turn_set_of_classes_into_zeros_dict(self, target_set):
-        return { class_uri : 0 for class_uri in target_set }
+        return {class_uri: 0 for class_uri in target_set}
 
 
     def _set_internal_yielder_func(self):
@@ -38,16 +57,6 @@ class ClassUsageMiner(object):
         for elem in self._list_of_log_entries:
             yield elem
 
-
-    def _mine_entries(self):
-        for an_entry in self._entities_yielder_func():
-            index_type_of_query = self._detect_index_type_of_query(an_entry)
-            if index_type_of_query != -1:
-                new_prefixes_dict = self._parse_new_prefixes(an_entry.str_query[:index_type_of_query])
-                uri_mentions = self._detect_uri_mentions(str_query=an_entry.str_query[:index_type_of_query],
-                                                         priority_namespaces=new_prefixes_dict)
-                class_mention_dict = self._build_class_mention_dict_of_query(uri_mentions)
-                self._add_mentions_to_class_dicts(class_mention_dict)
 
     def _add_mentions_to_class_dicts(self, class_mention_dict):
         if len(class_mention_dict) == 0:
@@ -87,11 +96,13 @@ class ClassUsageMiner(object):
         if target_prefix in priority_namespaces:
             return priority_namespaces[target_prefix] + prefixed_uri[mid_index+1:]
         if target_prefix in self._default_namespaces:
+
             return self._default_namespaces[target_prefix] + prefixed_uri[mid_index+1:]
         raise ValueError("URIs with unknown prefixes are not supposed to be computed in this method")
 
     def _detect_complete_uri_mentions(self, str_query):
-        return re.findall(_REGEX_WHOLE_URI, str_query)
+        return [remove_corners(a_uri) for a_uri in re.findall(_REGEX_WHOLE_URI, str_query)]
+
 
     def _dectect_prefixed_uri_mentions(self, str_query):
         matches = re.findall(_REGEX_PREFIXED_URI, str_query)
