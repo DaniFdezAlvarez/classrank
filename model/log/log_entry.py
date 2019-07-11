@@ -9,3 +9,7 @@ class LogEntry(object):
 
     def __str__(self):
         return self._ip + " - " + str(self._timestamp) + " - " + str(self._user_agent) + " - " + self._query
+
+    @property
+    def str_query(self):
+        return self._query
