@@ -77,7 +77,7 @@ class DBpediaLogYielder(QueryLogYielderInterface):
             prepareQuery(str_query, initNs=self._namespaces)
             return True
         except:
-            print(str_query)
+            # print(str_query)
             return False
 
 
