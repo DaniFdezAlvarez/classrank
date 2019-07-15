@@ -6,7 +6,7 @@ _REGEX_PREFIX = re.compile("PREFIX", flags=re.IGNORECASE)
 
 _REGEX_TYPE_QUERY = re.compile("(^|[ \n]+)((SELECT)|(ASK)|(CONSTRUCT)|(DESCRIBE)|(select)|(ask)|(construct)|(describe))[ \n]+")
 _REGEX_WHOLE_URI = re.compile("<[^ ]+>")
-_REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t/]*:[^<>\? ,;\.\)\}\]\n\t]*[ ,;\.\)\}\]\n\t]")
+_REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t/\^]*:[^<>\? ,;\.\)\}\]\n\t]*[ ,;\.\)\}\]\n\t]")
 
 # ([^<>"{}|^`\]-[#x00-#x20])*
 
@@ -26,7 +26,17 @@ class ClassUsageMiner(object):
         self._queries_without_mentions = 0
         self._number_of_valid_queries = 0
         self._number_of_queries = 0
+        self._wrong_uris_in_queries = 0
         self._wrong_entries = 0
+
+
+    @property
+    def wrong_uris_in_queries(self):
+        return self._wrong_uris_in_queries
+
+    @property
+    def bad_prefixed_uris(self):
+        return self.bad_prefixed_uris
 
     @property
     def wrong_entries(self):
@@ -57,19 +67,53 @@ class ClassUsageMiner(object):
                 if index_type_of_query != -1 and index_type_of_query:
                     self._number_of_valid_queries += 1
                     new_prefixes_dict = self._parse_new_prefixes(an_entry.str_query[:index_type_of_query])
-                    uri_mentions = self._detect_uri_mentions(str_query=an_entry.str_query[index_type_of_query:],
+                    query_without_prefixes = an_entry.str_query[index_type_of_query:]
+                    literal_spaces = self._detect_literal_spaces(query_without_prefixes)
+                    # tunned_query = self._replace_literal_spaces_with_blank(query_without_prefixes, literal_spaces)
+                    if len(literal_spaces) != 0:
+                        query_without_prefixes = \
+                            self._replace_literal_spaces_with_blank(query_without_prefixes=query_without_prefixes,
+                                                                    literal_spaces=literal_spaces)
+                    uri_mentions = self._detect_uri_mentions(str_query=query_without_prefixes,
                                                              priority_namespaces=new_prefixes_dict)
                     class_mention_dict = self._build_class_mention_dict_of_query(uri_mentions)
                     self._add_mentions_to_class_dicts(class_mention_dict)
                     counter += 1
-                    if counter % 10000 == 0:
+                    if counter % 1000 == 0:
                         print(counter)
             except BaseException as e:
                 print(e)
                 self._wrong_entries += 1
 
 
+    def _replace_literal_spaces_with_blank(self, query_without_prefixes, literal_spaces):
+        result = query_without_prefixes
+        for a_space_tuple in reversed(literal_spaces):
+            result = result[:a_space_tuple[0]] + " " + result[a_space_tuple[1]+1:]
+        return result
 
+
+
+    def _detect_literal_spaces(self, str_query):
+        indexes = []
+        index=0
+        for char in str_query:
+            if char == '"':
+                if index == 0:
+                    indexes.append(index)
+                elif str_query[index-1] != '\\':
+                    indexes.append(index)
+            index += 1
+        if len(indexes) %2 != 0:
+            raise ValueError("The query has an odd number of non-scaped quotes: " + str_query)
+        if len(indexes) == 0:
+            return []
+        result = []
+        i = 0
+        while i < len(indexes):
+            result.append((indexes[i], indexes[i+1]))
+            i += 2
+        return result
 
 
     def _turn_set_of_classes_into_zeros_dict(self, target_set):
@@ -116,7 +160,15 @@ class ClassUsageMiner(object):
                                                                                    priority_namespaces=priority_namespaces)
 
     def _unprefix_uris(self, list_of_prefixed_uris, priority_namespaces):
-        return [self._unprefix_uri(an_uri, priority_namespaces) for an_uri in list_of_prefixed_uris]
+        result = []
+        for an_uri in list_of_prefixed_uris:
+            try:
+                result.append(self._unprefix_uri(an_uri, priority_namespaces))
+            except BaseException as e:
+                print(e)
+                self._wrong_uris_in_queries += 1
+        return result
+        # return [self._unprefix_uri(an_uri, priority_namespaces) for an_uri in list_of_prefixed_uris]
 
     def _unprefix_uri(self, prefixed_uri, priority_namespaces):
         mid_index = prefixed_uri.find(":")
