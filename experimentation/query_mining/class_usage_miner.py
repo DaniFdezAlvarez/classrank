@@ -5,8 +5,8 @@ from classrank_utils.uri import remove_corners
 _REGEX_PREFIX = re.compile("PREFIX", flags=re.IGNORECASE)
 
 _REGEX_TYPE_QUERY = re.compile("(^|[ \n]+)((SELECT)|(ASK)|(CONSTRUCT)|(DESCRIBE)|(select)|(ask)|(construct)|(describe))[ \n]+")
-_REGEX_WHOLE_URI = re.compile("<.+>")
-_REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t]*:[^<>\? ,;\.\)\}\]\n\t]*[ ,;\.\)\}\]\n\t]")
+_REGEX_WHOLE_URI = re.compile("<[^ ]+>")
+_REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t/]*:[^<>\? ,;\.\)\}\]\n\t]*[ ,;\.\)\}\]\n\t]")
 
 # ([^<>"{}|^`\]-[#x00-#x20])*
 
@@ -24,6 +24,13 @@ class ClassUsageMiner(object):
 
         self._queries_with_mentions = 0
         self._queries_without_mentions = 0
+        self._number_of_valid_queries = 0
+        self._number_of_queries = 0
+        self._wrong_entries = 0
+
+    @property
+    def wrong_entries(self):
+        return self._wrong_entries
 
     @property
     def class_total_mentions(self):
@@ -33,15 +40,36 @@ class ClassUsageMiner(object):
     def class_query_mentions(self):
         return self._classes_query_mentions
 
+    @property
+    def number_of_valid_queries(self):
+        return self._number_of_valid_queries
+
+    @property
+    def number_of_queries(self):
+        return self._number_of_queries
+
     def mine_entries(self):
+        counter = 0
         for an_entry in self._entities_yielder_func():
-            index_type_of_query = self._detect_index_type_of_query(an_entry)
-            if index_type_of_query != -1:
-                new_prefixes_dict = self._parse_new_prefixes(an_entry.str_query[:index_type_of_query])
-                uri_mentions = self._detect_uri_mentions(str_query=an_entry.str_query[index_type_of_query:],
-                                                         priority_namespaces=new_prefixes_dict)
-                class_mention_dict = self._build_class_mention_dict_of_query(uri_mentions)
-                self._add_mentions_to_class_dicts(class_mention_dict)
+            try:
+                self._number_of_queries += 1
+                index_type_of_query = self._detect_index_type_of_query(an_entry)
+                if index_type_of_query != -1 and index_type_of_query:
+                    self._number_of_valid_queries += 1
+                    new_prefixes_dict = self._parse_new_prefixes(an_entry.str_query[:index_type_of_query])
+                    uri_mentions = self._detect_uri_mentions(str_query=an_entry.str_query[index_type_of_query:],
+                                                             priority_namespaces=new_prefixes_dict)
+                    class_mention_dict = self._build_class_mention_dict_of_query(uri_mentions)
+                    self._add_mentions_to_class_dicts(class_mention_dict)
+                    counter += 1
+                    if counter % 10000 == 0:
+                        print(counter)
+            except BaseException as e:
+                print(e)
+                self._wrong_entries += 1
+
+
+
 
 
     def _turn_set_of_classes_into_zeros_dict(self, target_set):
@@ -98,7 +126,7 @@ class ClassUsageMiner(object):
         if target_prefix in self._default_namespaces:
 
             return self._default_namespaces[target_prefix] + prefixed_uri[mid_index+1:]
-        raise ValueError("URIs with unknown prefixes are not supposed to be computed in this method")
+        raise ValueError("URIs with unknown prefixes are not supposed to be computed in this method: " + prefixed_uri)
 
     def _detect_complete_uri_mentions(self, str_query):
         return [remove_corners(a_uri) for a_uri in re.findall(_REGEX_WHOLE_URI, str_query)]
