@@ -35,7 +35,7 @@ class ClassRanker(object):
 
 
         ### Stage 1 - PageRank
-        print "stage 1"
+        print("stage 1")
         sys.stdout.flush()
         raw_pagerank = calculate_pagerank(graph=graph,
                                           damping_factor=self._damping_factor,
@@ -43,7 +43,7 @@ class ClassRanker(object):
         self._number_of_entities = len(raw_pagerank)
 
         ### Stage 2 - ClassDetection
-        print "Stage 2"
+        print("Stage 2")
         sys.stdout.flush()
         graph = None  # Here we do not need anymore the directed graph.
         # We must free that memory
@@ -51,12 +51,12 @@ class ClassRanker(object):
         self._number_of_classes = len(classes_dict)
 
         ###  Stage 3 - ClassRank calculations
-        print "stage 3"
+        print("stage 3")
         sys.stdout.flush()
         self._calculate_classrank(classes_dict, raw_pagerank, self._threshold)
 
         ###  Outputs
-        print "Outputs"
+        print("Outputs")
         sys.stdout.flush()
         result = self._classrank_formatter.format_classrank_dict(classes_dict, raw_pagerank)
 
@@ -110,7 +110,7 @@ class ClassRanker(object):
                             classes_dict[a_class][KEY_INSTANCES].add(an_s)
                             classes_dict[a_class][KEY_CLASSRANK] += raw_pagerank[an_s]  # It must be there! KeyError?
                 else:
-                    # print a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
+                    # print(a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p])
                     under_threshold_props.append((a_p,classes_dict[a_class][KEY_CLASS_POINTERS][a_p]))
                     # target_obj = classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
                     # del classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
