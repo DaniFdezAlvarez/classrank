@@ -30,7 +30,7 @@ class TtlExplicitSpoTriplesYielder(TriplesYielderInterface):
                     if self._triples_count == max_triples:
                         break
                     if self._triples_count %100000 == 0:
-                        print self._triples_count
+                        print(self._triples_count)
 
 
     def _get_triple_from_line(self, a_line):
@@ -38,7 +38,7 @@ class TtlExplicitSpoTriplesYielder(TriplesYielderInterface):
         a_line = a_line.strip()
         pieces = a_line.split(_SEPARATOR)
         if pieces[-1] != ".":
-            print "Error line:", a_line
+            print("Error line:", a_line)
             self._error_count += 1
             return None, None, None
         elif len(pieces) != 4:

@@ -8,17 +8,27 @@ _REGEX_TYPE_QUERY = re.compile("(^|[ \n]+)((SELECT)|(ASK)|(CONSTRUCT)|(DESCRIBE)
 _REGEX_WHOLE_URI = re.compile("<[^ ]+>")
 _REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t/\^]*:[^<>\? ,;\.\)\}\]\n\t]*[ ,;\.\)\}\]\n\t]")
 
+_DIRECT_MENTIONS = "d"
+_INSTANCE_MENTIONS = "i"
+
+_CLASS_TOTAL_MENTIONS = "T"
+_CLASS_QUERY_MENTIONS = "Q"
+_CLASS_INSTANCE_MENTIONS = "I"
+
 # ([^<>"{}|^`\]-[#x00-#x20])*
 
 class ClassUsageMiner(object):
 
-    def __init__(self, set_target_classes, namespaces=None, list_of_log_entries=None, entries_yielder_func=None):
+    def __init__(self, set_target_classes, instance_tracker, namespaces=None, list_of_log_entries=None, entries_yielder_func=None):
+        self._instance_tracker = instance_tracker
         self._list_of_log_entries = list_of_log_entries
         self._external_yielder_func = entries_yielder_func
         self._entities_yielder_func = self._set_internal_yielder_func()
 
-        self._classes_total_mentions = self._turn_set_of_classes_into_zeros_dict(set_target_classes)
-        self._classes_query_mentions = self._turn_set_of_classes_into_zeros_dict(set_target_classes)
+        self._classes_total_mentions = self._init_class_mentions_dict(set_target_classes)
+
+            # self._turn_set_of_classes_into_zeros_dict(set_target_classes)
+        # self._classes_query_mentions = self._turn_set_of_classes_into_zeros_dict(set_target_classes)
 
         self._default_namespaces = namespaces
 
@@ -28,6 +38,8 @@ class ClassUsageMiner(object):
         self._number_of_queries = 0
         self._wrong_uris_in_queries = 0
         self._wrong_entries = 0
+
+        self._instances_dict = None  # Will be initialized later
 
 
     @property
@@ -47,10 +59,6 @@ class ClassUsageMiner(object):
         return self._classes_total_mentions
 
     @property
-    def class_query_mentions(self):
-        return self._classes_query_mentions
-
-    @property
     def number_of_valid_queries(self):
         return self._number_of_valid_queries
 
@@ -59,6 +67,7 @@ class ClassUsageMiner(object):
         return self._number_of_queries
 
     def mine_entries(self):
+        self._initialize_instances_dict()
         counter = 0
         for an_entry in self._entities_yielder_func():
             try:
@@ -84,6 +93,19 @@ class ClassUsageMiner(object):
             except BaseException as e:
                 print(e)
                 self._wrong_entries += 1
+
+    def _init_class_mentions_dict(self, set_target_classes):
+        result = {}
+        for a_class in set_target_classes:
+            result[a_class] = {_CLASS_QUERY_MENTIONS : 0,
+                               _CLASS_TOTAL_MENTIONS : 0,
+                               _CLASS_INSTANCE_MENTIONS : 0}
+        return result
+
+
+    def _initialize_instances_dict(self):
+        if self._instances_dict is None:
+            self._instances_dict = self._instance_tracker.track_instances()
 
 
     def _replace_literal_spaces_with_blank(self, query_without_prefixes, literal_spaces):
@@ -119,6 +141,11 @@ class ClassUsageMiner(object):
     def _turn_set_of_classes_into_zeros_dict(self, target_set):
         return {class_uri: 0 for class_uri in target_set}
 
+    # def _turn_set_of_classes_into_zeros_dict(self, target_set):
+    #     result = {}
+    #     for elem in target_set:
+    #         result[elem] = {}
+
 
     def _set_internal_yielder_func(self):
         if self._list_of_log_entries is not None:
@@ -136,8 +163,11 @@ class ClassUsageMiner(object):
         else:
             self._queries_with_mentions += 1
             for a_class_key in class_mention_dict:
-                self._classes_query_mentions[a_class_key] += 1
-                self._classes_total_mentions[a_class_key] += class_mention_dict[a_class_key]
+                if a_class_key in self._classes_total_mentions:
+                    self._classes_total_mentions[a_class_key][_CLASS_TOTAL_MENTIONS] += class_mention_dict[a_class_key][_DIRECT_MENTIONS]
+                    self._classes_total_mentions[a_class_key][_CLASS_QUERY_MENTIONS] += 1
+                    self._classes_total_mentions[a_class_key][_CLASS_INSTANCE_MENTIONS] += class_mention_dict[a_class_key][_INSTANCE_MENTIONS]
+
 
 
     def _build_class_mention_dict_of_query(self, uri_mentions):
@@ -145,8 +175,17 @@ class ClassUsageMiner(object):
         for a_mention in uri_mentions:
             if a_mention in self._classes_total_mentions:
                 if a_mention not in result:
-                    result[a_mention] = 0
-                result[a_mention] += 1
+                    result[a_mention] = {_DIRECT_MENTIONS : 0,
+                                         _INSTANCE_MENTIONS : 0}
+                result[a_mention][_DIRECT_MENTIONS] += 1
+
+            if a_mention in self._instances_dict:
+                target_class_keys = self._instances_dict[a_mention]
+                for a_target_class_key in target_class_keys:
+                    if a_target_class_key not in result:
+                        result[a_target_class_key] = {_DIRECT_MENTIONS : 0,
+                                             _INSTANCE_MENTIONS : 0}
+                    result[a_target_class_key][_INSTANCE_MENTIONS] += 1
         return result
 
 
@@ -165,6 +204,7 @@ class ClassUsageMiner(object):
             try:
                 result.append(self._unprefix_uri(an_uri, priority_namespaces))
             except BaseException as e:
+
                 print(e)
                 self._wrong_uris_in_queries += 1
         return result
