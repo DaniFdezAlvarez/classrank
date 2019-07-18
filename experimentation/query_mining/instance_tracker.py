@@ -9,18 +9,20 @@ _O = 2
 
 class InstanceTracker(object):
 
-    def __init__(self, target_classes_list, triples_yielder, instantiation_properties=None,
+    def __init__(self, triples_yielder, target_classes_list=None, instantiation_properties=None,
                  all_classes_mode=False):
         # self._instances_dict = self._build_instances_dict(target_classes, all_classes_mode)
         if instantiation_properties is None:
             instantiation_properties = [_RDF_TYPE]
-        self._target_classes = set(target_classes_list)
+        self._all_classes_mode = all_classes_mode
+
+        self._target_classes = set(target_classes_list) if not all_classes_mode else target_classes_list
         self._instances_dict = {}
         self._triples_yielder = triples_yielder
         self._instantiation_properties = instantiation_properties
         self._relevant_triples = 0
         self._not_relevant_triples = 0
-        self._all_classes_mode = all_classes_mode
+
         # self._subclass_property = subclass_property
         # self._annotator = get_proper_anotator(track_hierarchies=track_hierarchies,
         #                                       instance_tracker_ref=self)
@@ -39,13 +41,14 @@ class InstanceTracker(object):
         for a_revelant_triple in self._yield_relevant_triples():
             self._anotate_triple(a_revelant_triple)
 
+        # print(self._instances_dict)
         return self._instances_dict
 
     def _anotate_triple(self, a_triple):
         if a_triple[_S] not in self._instances_dict:
-            self._instances_dict[_S] = []
-        if self._instances_dict[_O] not in self._instances_dict[_S]:
-            self._instances_dict[_S].append(self._instances_dict[_O])
+            self._instances_dict[a_triple[_S]] = []
+        if a_triple[_O] not in self._instances_dict[a_triple[_S]]:
+            self._instances_dict[a_triple[_S]].append(a_triple[_O])
 
 
     def _yield_relevant_triples(self):
