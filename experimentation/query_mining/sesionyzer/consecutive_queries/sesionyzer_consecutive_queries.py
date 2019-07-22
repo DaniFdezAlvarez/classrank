@@ -1,6 +1,6 @@
 
 from queue import LifoQueue
-
+from model.log.search_session import SearchSession
 
 
 class SummarySession(object):
@@ -20,6 +20,12 @@ class SummarySession(object):
         """
         self._entries = []
         self._last_timestamp = an_entry.timestamp
+
+    @property
+    def last_entry(self):
+        result = self._entries.pop()
+        self._entries.append(result)  # Ugly, isnt it? but not sure if accesing by index the last one is O(n)
+        return result
 
     @property
     def first_timestamp(self):
@@ -42,11 +48,11 @@ class SummarySession(object):
         return self._entries
 
     def ratio_entries_minute(self):
-        pass  # TODO
+        return float(len(self._entries)) / self.duration() * 60
 
     def duration(self):
-        pass  # TODO
-
+        return SesionyzerConsecutiveQueries.time_gap(timestamp_old=self._first_timestamp,
+                                                     timestamp_new=self._last_timestamp)
 
 
 
@@ -56,6 +62,9 @@ class SesionyzerConsecutiveQueries(object):
         self._entries_yielder = entries_yielder
         self._max_gap_between_queries = max_gap_between_queries
         self._max_window_session= max_window_session
+
+        self._last_timestamp_checked_to_close_session = None
+        self._minimun_human_gap_between_queries = minimun_human_gap_between_queries
 
         self._reference_queue = LifoQueue()
         self._oldest_item_reference = None
@@ -68,10 +77,41 @@ class SesionyzerConsecutiveQueries(object):
         for an_entry in self._entries_yielder.yield_entries():
             self._reference_queue.put(an_entry)
             self._integrate_entry_in_current_sessions(an_entry)
+            self._recheck_reference_entry(an_entry)
+            self._attempt_to_close_extinguished_session(an_entry)
+            while len(self._sessions_ready_to_yield) != 0:
+                yield self._create_a_ready_session(self._sessions_ready_to_yield.pop())
 
-            #TODO timestamps management: renew reference entry and manage aged sessions to clean the dict and yield elements.
+
+    def _create_a_ready_session(self, summary_session):
+        return SearchSession(init_timestamp="",
+                             miliseconds="",
+                             n_queries="",
+                             representative_query="")
 
 
+    def _attempt_to_close_extinguished_session(self, an_entry):
+        if self._last_timestamp_checked_to_close_session is None:
+            self._last_timestamp_checked_to_close_session = an_entry.timestamp
+            return
+        if self.time_gap(an_entry, self._last_timestamp_checked_to_close_session) > self._max_gap_between_queries * 2:
+            self._last_timestamp_checked_to_close_session = an_entry.timestamp
+            self._close_extinguished_sessions(an_entry)
+
+    def _close_extinguished_sessions(self, an_entry):
+        keys_to_remove = []
+        for an_ip_key in self._current_sessions_dict:
+            if self.time_gap(timestamp_old=self._current_sessions_dict[an_ip_key].last_timestamp,
+                             entry_new=an_entry):
+                keys_to_remove.append(an_ip_key)
+                self._sessions_ready_to_yield.append(self._current_sessions_dict[an_ip_key])
+        for a_key in keys_to_remove:
+            del self._current_sessions_dict[a_key]
+
+
+    def _recheck_reference_entry(self, an_entry):
+        while self.time_gap(an_entry, self._oldest_item_reference) > self._max_window_session:
+            self._oldest_item_reference = self._reference_queue.get()
 
     def _integrate_entry_in_current_sessions(self, an_entry):
         if an_entry.ip not in self._current_sessions_dict:
@@ -87,10 +127,24 @@ class SesionyzerConsecutiveQueries(object):
 
     def _entry_belongs_to_session(self, an_entry):
         target_session = self._current_sessions_dict[an_entry.ip]
-        if (an_entry.timestamp - target_session.last_timestamp).seconds <= self._max_gap_between_queries:
+        if self.time_gap(entry_new=an_entry, timestamp_old=target_session.last_timestamp) <= self._max_gap_between_queries:
             return True
         return False
 
+    @staticmethod
+    def time_gap(entry_new=None, timestamp_new=None, entry_old=None, timestamp_old=None):
+        """
+        Provide one new item (entry or timestamp) and one old itme (entry or timestamp).
+        I trust you'll do it ok? dont mess around
+        :param entry_new:
+        :param timestamp_new:
+        :param entry_old:
+        :param timestamp_old:
+        :return:
+        """
+        target_new = timestamp_new if timestamp_new is not None else entry_new.timestamp
+        target_old = timestamp_old if timestamp_old is not None else entry_old.timestamp
+        return (target_new - target_old).seconds
 
     def _integrate_entry_in_session(self, an_entry):
         self._current_sessions_dict[an_entry.ip].add_entry(an_entry)
@@ -110,7 +164,6 @@ class SesionyzerConsecutiveQueries(object):
         self._current_sessions_dict[an_entry.ip] = SummarySession(first_entry=an_entry)
 
 
-
     def _split_target_session_in_propper_ones_to_yield(self, an_ip):
         """
         Here I could check gaps between queries and find the best way to divide it with this startegy:
@@ -123,7 +176,7 @@ class SesionyzerConsecutiveQueries(object):
         :return:
         """
         self._sessions_ready_to_yield.append(self._current_sessions_dict[an_ip])
-        pass # TODO: REEAD COMMENT
+        pass # TODO: READ COMMENT
 
 
 
