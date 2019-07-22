@@ -5,7 +5,7 @@ import datetime
 import urllib.parse
 import rdflib
 from rdflib.plugins.sparql import prepareQuery
-from rdflib.plugins.sparql.sparql import Query
+
 
 
 """

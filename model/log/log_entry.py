@@ -11,5 +11,21 @@ class LogEntry(object):
         return self._ip + " - " + str(self._timestamp) + " - " + str(self._user_agent) + " - " + self._query
 
     @property
+    def timestamp(self):
+        return self._timestamp
+
+    @property
+    def ip(self):
+        return self._ip
+
+    @property
+    def user_agent(self):
+        return self._user_agent
+
+    @property
+    def is_valid_query(self):
+        return self._valid_query
+
+    @property
     def str_query(self):
         return self._query
