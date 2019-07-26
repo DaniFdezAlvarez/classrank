@@ -18,7 +18,7 @@ class SummarySession(object):
         :param an_entry:
         :return:
         """
-        self._entries = []
+        self._entries.append(an_entry)
         self._last_timestamp = an_entry.timestamp
 
     @property
@@ -46,10 +46,11 @@ class SummarySession(object):
     @property
     def entries(self):
         return self._entries
-
+    @property
     def ratio_entries_minute(self):
         return float(len(self._entries)) / self.duration() * 60
 
+    @property
     def duration(self):
         return SesionyzerConsecutiveQueries.time_gap(timestamp_old=self._first_timestamp,
                                                      timestamp_new=self._last_timestamp)
@@ -70,6 +71,9 @@ class SesionyzerConsecutiveQueries(object):
         self._oldest_item_reference = None
         self._current_sessions_dict = {}
 
+        self._refresh_reference_entry = self._create_reference_entry  # These are functions.
+                                                                      # This value is gonna change in exec time
+
         self._sessions_ready_to_yield = []
 
 
@@ -77,24 +81,24 @@ class SesionyzerConsecutiveQueries(object):
         for an_entry in self._entries_yielder.yield_entries():
             self._reference_queue.put(an_entry)
             self._integrate_entry_in_current_sessions(an_entry)
-            self._recheck_reference_entry(an_entry)
+            self._refresh_reference_entry(an_entry)
             self._attempt_to_close_extinguished_session(an_entry)
             while len(self._sessions_ready_to_yield) != 0:
                 yield self._create_a_ready_session(self._sessions_ready_to_yield.pop())
 
 
     def _create_a_ready_session(self, summary_session):
-        return SearchSession(init_timestamp="",
-                             miliseconds="",
-                             n_queries="",
-                             representative_query="")
+        return SearchSession(init_timestamp=summary_session.first_timestamp,
+                             miliseconds=summary_session.duration*1000,
+                             n_queries=summary_session.n_entries,
+                             representative_query=summary_session.last_entry)
 
 
     def _attempt_to_close_extinguished_session(self, an_entry):
         if self._last_timestamp_checked_to_close_session is None:
             self._last_timestamp_checked_to_close_session = an_entry.timestamp
             return
-        if self.time_gap(an_entry, self._last_timestamp_checked_to_close_session) > self._max_gap_between_queries * 2:
+        if self.time_gap(entry_new=an_entry, timestamp_old=self._last_timestamp_checked_to_close_session) > self._max_gap_between_queries * 2:
             self._last_timestamp_checked_to_close_session = an_entry.timestamp
             self._close_extinguished_sessions(an_entry)
 
@@ -102,15 +106,23 @@ class SesionyzerConsecutiveQueries(object):
         keys_to_remove = []
         for an_ip_key in self._current_sessions_dict:
             if self.time_gap(timestamp_old=self._current_sessions_dict[an_ip_key].last_timestamp,
-                             entry_new=an_entry):
+                             entry_new=an_entry) > self._max_gap_between_queries:
                 keys_to_remove.append(an_ip_key)
                 self._sessions_ready_to_yield.append(self._current_sessions_dict[an_ip_key])
         for a_key in keys_to_remove:
             del self._current_sessions_dict[a_key]
 
 
+    def _refresh_reference_entry(self, an_entry):
+        pass  # During execution, it will be _recheck_reference_entry or _initiate_reference_entry, the first time.
+
+    def _create_reference_entry(self, an_entry):
+        self._oldest_item_reference = self._reference_queue.get()
+        self._refresh_reference_entry = self._recheck_reference_entry  # Change the strategy to renew reference_entry
+
+
     def _recheck_reference_entry(self, an_entry):
-        while self.time_gap(an_entry, self._oldest_item_reference) > self._max_window_session:
+        while self.time_gap(entry_new=an_entry, entry_old=self._oldest_item_reference) > self._max_window_session:
             self._oldest_item_reference = self._reference_queue.get()
 
     def _integrate_entry_in_current_sessions(self, an_entry):
