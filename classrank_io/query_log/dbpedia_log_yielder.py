@@ -22,10 +22,11 @@ _DATE_FORMAT = "%d/%b/%Y %H:%M:%S %z"
 
 class DBpediaLogYielder(QueryLogYielderInterface):
 
-    def __init__(self, source_file, namespaces_file):
+    def __init__(self, source_file, namespaces_file, ignore_query=False):
         super(DBpediaLogYielder, self).__init__()
         self._source_file = source_file
         self._namespaces = self._build_dict_precharged_namespaces(namespaces_file)  # Empty graph to be used for checking queries
+        self._ignore_query = ignore_query
 
     def yield_entries(self):
         with open(self._source_file, "r") as in_stream:
@@ -54,7 +55,11 @@ class DBpediaLogYielder(QueryLogYielderInterface):
         hashed_ip = self._look_for_hashed_ip(a_line)
         timestamp, index_last_timestamp = self._look_for_timestamp_and_index_of_last_timestamp_char(a_line)
         user_agent = self._look_for_user_agent(a_line, index_last_timestamp)
-        str_query, is_valid_query = self._look_for_query(a_line[index_last_timestamp+1:])
+
+        str_query = ""
+        is_valid_query = True
+        if not self._ignore_query:
+            str_query, is_valid_query = self._look_for_query(a_line[index_last_timestamp+1:])
 
         return LogEntry(query=str_query,
                         valid_query=is_valid_query,

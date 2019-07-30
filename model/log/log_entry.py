@@ -15,6 +15,10 @@ class LogEntry(object):
         return self._timestamp
 
     @property
+    def hour(self):
+        return self._timestamp.hour
+
+    @property
     def ip(self):
         return self._ip
 
