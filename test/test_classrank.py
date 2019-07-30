@@ -150,18 +150,18 @@ raw_pagerank = calculate_pagerank(graph=TtlFullDigraphParser(string_graph=graph_
 pg_res_transaction = 0
 for ins in instances_transaction:
     pg_res_transaction += raw_pagerank[ins]
-print pg_res_transaction, "transaction"
+print(pg_res_transaction, "transaction")
 
 pg_res_A = 0
 for ins in instances_A:
     pg_res_A += raw_pagerank[ins]
 
-print pg_res_A, "A4"
-print pg_res_A + raw_pagerank["http://example.org/data/transaction/aaa"], "A1"
+print(pg_res_A, "A4")
+print(pg_res_A + raw_pagerank["http://example.org/data/transaction/aaa"], "A1")
 
 # print raw_pagerank
 # print classrank_results
-print results_several
+print(results_several)
 
 
 # pageranker_result = pageranker.generate_pagerank()
