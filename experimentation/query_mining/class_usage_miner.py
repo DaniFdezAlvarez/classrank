@@ -5,7 +5,7 @@ from classrank_utils.uri import remove_corners
 _REGEX_PREFIX = re.compile("PREFIX", flags=re.IGNORECASE)
 
 _REGEX_TYPE_QUERY = re.compile(
-    "(^|[ \n]+)((SELECT)|(ASK)|(CONSTRUCT)|(DESCRIBE)|(select)|(ask)|(construct)|(describe))[ \n]+")
+    "(^|[\t \n>])((SELECT)|(ASK)|(CONSTRUCT)|(DESCRIBE))[\* \n]+", flags=re.IGNORECASE)
 _REGEX_WHOLE_URI = re.compile("<[^ ]+>")
 _REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t/\^]*:[^<>\? ,;\.\)\}\]\n\t]*[ ,;\.\)\}\]\n\t]")
 
@@ -40,6 +40,8 @@ class ClassUsageMiner(object):
 
         # self._turn_set_of_classes_into_zeros_dict(set_target_classes)
         # self._classes_query_mentions = self._turn_set_of_classes_into_zeros_dict(set_target_classes)
+
+
 
         self._default_namespaces = namespaces
 
@@ -211,7 +213,7 @@ class ClassUsageMiner(object):
     def _decide_agent_key(self, an_entry):
         if an_entry.ip not in self._dict_ips_machine_traffic:
             return _HUMAN_KEY
-        if an_entry.hour in self._dict_ips_machine_traffic[an_entry.ip]:
+        if str(an_entry.hour) in self._dict_ips_machine_traffic[an_entry.ip]:
             return _MACHINE_KEY
         return _HUMAN_KEY
 
@@ -235,7 +237,14 @@ class ClassUsageMiner(object):
 
     def _detect_index_type_of_query(self, an_entry):
         res = re.search(_REGEX_TYPE_QUERY, an_entry.str_query)
-        return -1 if res is None else res.start()
+        if res is None:
+            print("----", an_entry.is_valid_query, an_entry.str_query)
+            return -1
+
+        else:
+            # print("++++", an_entry.str_query)
+            return res.start()
+        # return -1 if res is None else res.start()
 
     def _detect_uri_mentions(self, str_query, priority_namespaces):
         return self._detect_complete_uri_mentions(str_query) + self._unprefix_uris(
