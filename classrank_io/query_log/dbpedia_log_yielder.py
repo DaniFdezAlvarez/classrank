@@ -36,6 +36,8 @@ class DBpediaLogYielder(QueryLogYielderInterface):
                     yield self._build_model_entry_log(a_line)
 
     def _build_dict_precharged_namespaces(self, namespaces_file):
+        if namespaces_file is None:
+            return {}
         result = {}
         with open(namespaces_file, "r") as in_stream:
             for a_line in in_stream:
@@ -69,6 +71,8 @@ class DBpediaLogYielder(QueryLogYielderInterface):
 
     def _look_for_query(self, a_partial_line):
         ini_query = a_partial_line.find("query=") + 6  # 6 == len("query")
+        if ini_query == 5:  # 5 == -1 + 6 (-1 cause query was not found)
+            return "", False
         fin1_query = a_partial_line[ini_query:].find(" ")
         fin2_query = a_partial_line[ini_query:].find("&")
         fin_query = fin1_query if fin2_query == -1 else fin2_query

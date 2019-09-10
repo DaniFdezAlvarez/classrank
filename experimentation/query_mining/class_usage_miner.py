@@ -5,7 +5,7 @@ from classrank_utils.uri import remove_corners
 _REGEX_PREFIX = re.compile("PREFIX", flags=re.IGNORECASE)
 
 _REGEX_TYPE_QUERY = re.compile(
-    "(^|[\t \n>])((SELECT)|(ASK)|(CONSTRUCT)|(DESCRIBE))[\* \n]+", flags=re.IGNORECASE)
+    "(^|[\s>])((SELECT)|(ASK)|(CONSTRUCT)|(DESCRIBE))[\*\s\{]", flags=re.IGNORECASE)
 _REGEX_WHOLE_URI = re.compile("<[^ ]+>")
 _REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t/\^]*:[^<>\? ,;\.\)\}\]\n\t]*[ ,;\.\)\}\]\n\t]")
 
@@ -87,7 +87,7 @@ class ClassUsageMiner(object):
             try:
                 self._number_of_queries += 1
                 index_type_of_query = self._detect_index_type_of_query(an_entry)
-                if index_type_of_query != -1 and index_type_of_query:
+                if index_type_of_query != -1:
                     self._number_of_valid_queries += 1
                     new_prefixes_dict = self._parse_new_prefixes(an_entry.str_query[:index_type_of_query])
                     query_without_prefixes = an_entry.str_query[index_type_of_query:]
