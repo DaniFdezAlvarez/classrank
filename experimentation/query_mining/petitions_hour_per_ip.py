@@ -57,11 +57,11 @@ class PetitionsAverager(object):
 
 
     def _anotate_ip_dict(self, an_entry):
-        hour = an_entry.timestamp.hour
+        a_time = str(an_entry.timestamp.hour) + str(an_entry.timestamp.day) + str(an_entry.timestamp.month)
         ip = an_entry.ip
-        if hour not in self._ips_dict[ip]:
-            self._ips_dict[ip][hour] = 0
-        self._ips_dict[ip][hour] += 1
+        if a_time not in self._ips_dict[ip]:
+            self._ips_dict[ip][a_time] = 0
+        self._ips_dict[ip][a_time] += 1
 
 
     def _write_results(self, out_path):

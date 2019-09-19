@@ -115,7 +115,7 @@ class TtlClassrankFormatter(ClassRankFormatterInterface):
     #     while "\\" in elem:
     #
     #
-    # def add_triple_to_graph(self, graph, s,p,o):
+    # def add_triple_to_graph(self, graphic, s,p,o):
     #     pass
 
 

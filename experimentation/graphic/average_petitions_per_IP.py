@@ -1,27 +1,29 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from experimentation.graphic.utils import load_data_list
 
 data_file = "C:\\Users\\Dani\\repos-git\\classrank\\local_code\\ips_avg_petitions.tsv"
 
-def load_data_list(target_path):
-    result = []
-    with open(target_path, "r") as in_stream:
-        in_stream.readline()
-        for a_line in in_stream:
-            result.append(a_line.strip().split("\t"))
-    return result
+
 
 list_results = load_data_list(data_file)
+list_results.reverse()
 
 
 
-x_axis = np.array([ data_line[1] for data_line in list_results])
-y_axis = np.array(range(len(list_results)))
+# x_axis = np.array([ data_line[1] for data_line in list_results])
+# y_axis = np.array(range(len(list_results)))
 
-# y_axis = np.array([1,2,3])
+x_axis = np.array(range(len(list_results)))
+y_axis = np.array([ data_line[1] for data_line in list_results])
+
 # x_axis = np.array([1,2,3])
+# y_axis = np.array([4,5,6])
 
-plt.plot(x_axis,y_axis)
+
+print(x_axis)
+
+plt.plot(x_axis, y_axis)
 
 plt.tick_params(
     axis='x',          # changes apply to the x-axis
