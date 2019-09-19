@@ -2,7 +2,7 @@
 It expects an input file in some RDF format recognized by rdflib and yields
 all triple in which the subject and the object are both URIs.
 
-CAUTION!! the graph is completely located in main memory. This parser may not
+CAUTION!! the graphic is completely located in main memory. This parser may not
 work with huge files.
 """
 from classrank_io.graph.yielders.triples_yielder_interface import TriplesYielderInterface

@@ -1,5 +1,5 @@
 """
-CAUTION! This yielder is able to parse a huge file without loading the whole graph in memory,
+CAUTION! This yielder is able to parse a huge file without loading the whole graphic in memory,
 but it is expecting a perfectly well-formed ttl. Syntax errors may cause unpredicted failures.
 
 Also, it is ignoring b-nodes, which does not neccesarily make sense for all the sources.

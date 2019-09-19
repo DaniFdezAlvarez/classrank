@@ -134,8 +134,8 @@ from helpers.classrank import generate_classrank
 # print "--------------------"
 #
 # parser = TtlExplicitSpoDigraphParser(person_data_en_path)
-# graph = parser.parse_graph(max_edges=1000)
-# for an_edge in graph.edges_iter():
+# graphic = parser.parse_graph(max_edges=1000)
+# for an_edge in graphic.edges_iter():
 #     print an_edge
 #
 # print "Parser", parser.parsed_triples

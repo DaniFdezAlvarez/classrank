@@ -25,7 +25,7 @@ class DBpediaLogYielder(QueryLogYielderInterface):
     def __init__(self, source_file, namespaces_file, ignore_query=False):
         super(DBpediaLogYielder, self).__init__()
         self._source_file = source_file
-        self._namespaces = self._build_dict_precharged_namespaces(namespaces_file)  # Empty graph to be used for checking queries
+        self._namespaces = self._build_dict_precharged_namespaces(namespaces_file)  # Empty graphic to be used for checking queries
         self._ignore_query = ignore_query
 
     def yield_entries(self):

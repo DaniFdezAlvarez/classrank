@@ -77,7 +77,7 @@ class PowerIterator(object):
         #     self._current_vector = new_vec
         # # print self._curr_iters, "I"
         # # if self._curr_iters >= self._max_iters:
-        # #     raise ValueError("The graph does not converge after " + str(self._max_iters) + " iterations.")
+        # #     raise ValueError("The graphic does not converge after " + str(self._max_iters) + " iterations.")
         return self._current_vector
 
     def _converges(self, new_vec):
@@ -154,7 +154,7 @@ class PowerIterator(object):
     #         print self._curr_iters,"I"
     #     if self._curr_iters >= self._max_iters:
     #         return self._current_vector
-    #         # raise ValueError("The graph does not converge after " + str(self._max_iters) + " iterations.")
+    #         # raise ValueError("The graphic does not converge after " + str(self._max_iters) + " iterations.")
     #     return self._to_dict(self._current_vector)
     #
     # def _to_dict(self, vector):

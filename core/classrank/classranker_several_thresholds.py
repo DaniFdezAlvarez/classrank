@@ -53,7 +53,7 @@ class ClassrankerSeveralThresholds(ClassRanker):
 
         ### Stage 2 - ClassDetection
         print "Stage 2"
-        graph = None  # Here we do not need anymore the directed graph.
+        graph = None  # Here we do not need anymore the directed graphic.
         # We must free that memory
         classes_dict = self._detect_classes(self._triple_yielder, classpointers_set, self._threshold_list[0])
         self._number_of_classes = len(classes_dict)
