@@ -11,6 +11,7 @@ _REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t/\^]*:[^
 
 _DIRECT_MENTIONS = "d"
 _INSTANCE_MENTIONS = "i"
+_DOMRAN_MENTIONS = "DR"
 
 _CLASS_DIRECT_MENTIONS = "T"
 _CLASS_QUERY_MENTIONS = "Q"
@@ -24,9 +25,10 @@ _MACHINE_KEY = "M"
 
 class ClassUsageMiner(object):
 
-    def __init__(self, set_target_classes, instance_tracker, namespaces=None, list_of_log_entries=None,
+    def __init__(self, set_target_classes, instance_tracker, domran_tracker=None, namespaces=None, list_of_log_entries=None,
                  entries_yielder_func=None, dict_ips_machine_traffic=None, filter_machine_traffic=False):
         self._instance_tracker = instance_tracker
+        self._domran_tracker = domran_tracker
         self._list_of_log_entries = list_of_log_entries
         self._external_yielder_func = entries_yielder_func
         self._filter_machine_traffic = filter_machine_traffic
@@ -54,6 +56,8 @@ class ClassUsageMiner(object):
         self._wrong_entries = 0
 
         self._instances_dict = None  # Will be initialized later
+        self._domran_dict = None # Will be initilized later. Same structure as instances_dict, but it contains
+        # entities which are considered instances due to ontology domain/range inferences
 
     @property
     def wrong_uris_in_queries(self):
@@ -81,6 +85,7 @@ class ClassUsageMiner(object):
 
     def mine_entries(self):
         self._initialize_instances_dict()
+        self._initialize_domran_dict()
         print("Dict Done!")
         counter = 0
         for an_entry in self._entities_yielder_func():
@@ -130,6 +135,13 @@ class ClassUsageMiner(object):
         if self._instances_dict is None:
             self._instances_dict = self._instance_tracker.track_instances()
             # self._instances_dict = {}
+
+    def _initialize_domran_dict(self):
+        if self._domran_tracker is None:
+            self._domran_dict = {}
+            return
+        if self._domran_dict is None:
+            self._domran_tracker.track_domrans()
 
     def _replace_literal_spaces_with_blank(self, query_without_prefixes, literal_spaces):
         result = query_without_prefixes
@@ -223,7 +235,8 @@ class ClassUsageMiner(object):
             if a_mention in self._classes_total_mentions:
                 if a_mention not in result:
                     result[a_mention] = {_DIRECT_MENTIONS: 0,
-                                         _INSTANCE_MENTIONS: 0}
+                                         _INSTANCE_MENTIONS: 0,
+                                         _DOMRAN_MENTIONS: 0}
                 result[a_mention][_DIRECT_MENTIONS] += 1
 
             if a_mention in self._instances_dict:
@@ -231,8 +244,18 @@ class ClassUsageMiner(object):
                 for a_target_class_key in target_class_keys:
                     if a_target_class_key not in result:
                         result[a_target_class_key] = {_DIRECT_MENTIONS: 0,
-                                                      _INSTANCE_MENTIONS: 0}
+                                                      _INSTANCE_MENTIONS: 0,
+                                                      _DOMRAN_MENTIONS: 0}
                     result[a_target_class_key][_INSTANCE_MENTIONS] += 1
+            if a_mention in self._domran_dict and a_mention not in self._instances_dict:
+                target_class_keys = self._domran_dict[a_mention]
+                for a_target_class_key in target_class_keys:
+                    if a_target_class_key not in result:
+                        result[a_target_class_key] = {_DIRECT_MENTIONS: 0,
+                                                      _INSTANCE_MENTIONS: 0,
+                                                      _DOMRAN_MENTIONS: 0}
+                    result[a_target_class_key][_DOMRAN_MENTIONS] += 1
+
         return result
 
     def _detect_index_type_of_query(self, an_entry):
