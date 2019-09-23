@@ -50,15 +50,26 @@ class DomranTracker(object):
         self._reset_count()
         for a_revelant_triple in self._yield_relevant_triples():
             self._anotate_triple(a_revelant_triple)
+        self._jsonize_domran_dict()
 
         return self._domran_dict
 
+    def _jsonize_domran_dict(self):
+        for a_domran_entity_key in self._domran_dict:
+            self._domran_dict[a_domran_entity_key] = list(self._domran_dict[a_domran_entity_key])
+
+
     def _anotate_triple(self, a_triple):
-        pass # todo
-        # if a_triple[_S] not in self._instances_dict:
-        #     self._instances_dict[a_triple[_S]] = []
-        # if a_triple[_O] not in self._instances_dict[a_triple[_S]]:
-        #     self._instances_dict[a_triple[_S]].append(a_triple[_O])
+        for a_key_dr, a_class_list in self._domran_dict[a_triple[_P]]:
+            self._add_domran_to_result(a_key_dr, a_class_list, a_triple)
+
+
+    def _add_domran_to_result(self, key_dr, class_list, triple):
+        target_pos = _S if key_dr == _DOMAIN_KEY else _O
+        if triple[target_pos] not in self._domran_dict:
+            self._domran_dict[triple[target_pos]] = set()
+        for a_class in class_list:
+            self._domran_dict[triple[target_pos]].add(a_class)
 
 
     def _yield_relevant_triples(self):
