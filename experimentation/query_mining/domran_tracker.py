@@ -1,3 +1,4 @@
+from classrank_utils.uri import is_valid_uri_soft_check
 
 _S = 0
 _P = 1
@@ -65,11 +66,14 @@ class DomranTracker(object):
 
 
     def _add_domran_to_result(self, key_dr, class_list, triple):
-        target_pos = _S if key_dr == _DOMAIN_KEY else _O
-        if triple[target_pos] not in self._domran_dict:
-            self._domran_dict[triple[target_pos]] = set()
+        target_elem = triple[_S] if key_dr == _DOMAIN_KEY else triple[_O]
+        if not is_valid_uri_soft_check(uri=target_elem,
+                                       there_are_corners=False):
+            return
+        if target_elem not in self._domran_dict:
+            self._domran_dict[target_elem] = set()
         for a_class in class_list:
-            self._domran_dict[triple[target_pos]].add(a_class)
+            self._domran_dict[target_elem].add(a_class)
 
 
     def _yield_relevant_triples(self):
@@ -89,6 +93,8 @@ class DomranTracker(object):
     def _reset_count(self):
         self._relevant_triples = 0
         self._not_relevant_triples = 0
+
+
 
 
 
