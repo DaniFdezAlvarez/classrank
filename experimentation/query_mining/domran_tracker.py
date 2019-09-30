@@ -61,7 +61,7 @@ class DomranTracker(object):
 
 
     def _anotate_triple(self, a_triple):
-        for a_key_dr, a_class_list in self._domran_dict[a_triple[_P]]:
+        for a_key_dr, a_class_list in self._relevnat_properties_dict[a_triple[_P]].items():
             self._add_domran_to_result(a_key_dr, a_class_list, a_triple)
 
 

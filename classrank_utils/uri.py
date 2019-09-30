@@ -34,8 +34,9 @@ def is_valid_uri(uri, there_are_corners=True):
     return True
 
 def is_valid_uri_soft_check(uri, there_are_corners=True):
-    first_index = 0 if there_are_corners else 1
-    return uri[first_index:].startswith("https://")
+    first_index = 1 if there_are_corners else 0
+    # print(uri[first_index:])
+    return uri[first_index:].startswith("http://")
 
 def is_valid_triple(s,p,o, there_are_corners=True):
     if not is_valid_uri(s, there_are_corners):
