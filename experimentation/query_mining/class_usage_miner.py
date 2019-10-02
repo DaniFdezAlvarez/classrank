@@ -169,7 +169,7 @@ class ClassUsageMiner(object):
             self._domran_dict = {}
             return
         if self._domran_dict is None:
-            self._domran_tracker.track_domrans()
+            self._domran_dict = self._domran_tracker.track_domrans()
 
     def _replace_literal_spaces_with_blank(self, query_without_prefixes, literal_spaces):
         result = query_without_prefixes

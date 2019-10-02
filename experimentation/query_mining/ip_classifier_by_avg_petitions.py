@@ -14,7 +14,7 @@ class IpClassifierByAvgPetitions(object):
         self._source_file = source_file
         self._human_threshold = human_threshold
         self._machine_threshold = machine_threshold
-        self._headings_in_source_file= headings_in_source_file
+        self._headings_in_source_file = headings_in_source_file
 
         self._result_dict = self._init_result_dict()
 
