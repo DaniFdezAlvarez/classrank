@@ -11,26 +11,40 @@ _REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t/\^]*:[^
 
 _DIRECT_MENTIONS = "d"
 _INSTANCE_MENTIONS = "i"
+_DOMRAN_MENTIONS = "DR"
 
 _CLASS_DIRECT_MENTIONS = "T"
 _CLASS_QUERY_MENTIONS = "Q"
 _CLASS_INSTANCE_MENTIONS = "I"
+_CLASS_DOMRAN_MENTIONS = "DR"
 
 _HUMAN_KEY = "H"
 _MACHINE_KEY = "M"
+_UNKNOWN_KEY = "U"
+"""
+Some expected models:
 
+dict_ips_machine_traffic --> {
+"H": ["ip1", "ip2",...],
+"U": ["ip1", "ip2",...],
+"M": ["ip1", "ip2",...]
+}
+
+
+"""
 
 # ([^<>"{}|^`\]-[#x00-#x20])*
 
 class ClassUsageMiner(object):
 
-    def __init__(self, set_target_classes, instance_tracker, namespaces=None, list_of_log_entries=None,
+    def __init__(self, set_target_classes, instance_tracker, domran_tracker=None, namespaces=None, list_of_log_entries=None,
                  entries_yielder_func=None, dict_ips_machine_traffic=None, filter_machine_traffic=False):
         self._instance_tracker = instance_tracker
+        self._domran_tracker = domran_tracker
         self._list_of_log_entries = list_of_log_entries
         self._external_yielder_func = entries_yielder_func
         self._filter_machine_traffic = filter_machine_traffic
-        self._dict_ips_machine_traffic = dict_ips_machine_traffic
+        self._dict_ips_machine_traffic = self._adpat_dict_machine_traffic(dict_ips_machine_traffic)
 
         self._entities_yielder_func = self._set_internal_yielder_func()
         self._add_mentions_to_class_dicts = self._set_internal_annotation_func()
@@ -54,6 +68,8 @@ class ClassUsageMiner(object):
         self._wrong_entries = 0
 
         self._instances_dict = None  # Will be initialized later
+        self._domran_dict = None # Will be initilized later. Same structure as instances_dict, but it contains
+        # entities which are considered instances due to ontology domain/range inferences
 
     @property
     def wrong_uris_in_queries(self):
@@ -81,6 +97,7 @@ class ClassUsageMiner(object):
 
     def mine_entries(self):
         self._initialize_instances_dict()
+        self._initialize_domran_dict()
         print("Dict Done!")
         counter = 0
         for an_entry in self._entities_yielder_func():
@@ -108,21 +125,37 @@ class ClassUsageMiner(object):
                 print(e)
                 self._wrong_entries += 1
 
+    def _adpat_dict_machine_traffic(self, dicts_ips_machine_traffic):
+        result = {}
+        for a_key, an_ip_list in dicts_ips_machine_traffic.items():
+            for an_ip in an_ip_list:
+                result[an_ip] = a_key
+        return result
+
     def _init_class_mentions_dict(self, set_target_classes, filter_machine_traffic=False):
         result = {}
         if not filter_machine_traffic:
             for a_class in set_target_classes:
                 result[a_class] = {_CLASS_QUERY_MENTIONS: 0,
                                    _CLASS_DIRECT_MENTIONS: 0,
-                                   _CLASS_INSTANCE_MENTIONS: 0}
+                                   _CLASS_INSTANCE_MENTIONS: 0,
+                                   _CLASS_DOMRAN_MENTIONS : 0}
         else:
             for a_class in set_target_classes:
                 result[a_class] = {_MACHINE_KEY: {_CLASS_QUERY_MENTIONS: 0,
                                                   _CLASS_DIRECT_MENTIONS: 0,
-                                                  _CLASS_INSTANCE_MENTIONS: 0},
+                                                  _CLASS_INSTANCE_MENTIONS: 0,
+                                                  _CLASS_DOMRAN_MENTIONS : 0},
                                    _HUMAN_KEY: {_CLASS_QUERY_MENTIONS: 0,
                                                 _CLASS_DIRECT_MENTIONS: 0,
-                                                _CLASS_INSTANCE_MENTIONS: 0}}
+                                                _CLASS_INSTANCE_MENTIONS: 0,
+                                                _CLASS_DOMRAN_MENTIONS : 0}
+                    ,
+                                   _UNKNOWN_KEY: {_CLASS_QUERY_MENTIONS: 0,
+                                                _CLASS_DIRECT_MENTIONS: 0,
+                                                _CLASS_INSTANCE_MENTIONS: 0,
+                                                _CLASS_DOMRAN_MENTIONS: 0}
+                                   }
 
         return result
 
@@ -130,6 +163,13 @@ class ClassUsageMiner(object):
         if self._instances_dict is None:
             self._instances_dict = self._instance_tracker.track_instances()
             # self._instances_dict = {}
+
+    def _initialize_domran_dict(self):
+        if self._domran_tracker is None:
+            self._domran_dict = {}
+            return
+        if self._domran_dict is None:
+            self._domran_dict = self._domran_tracker.track_domrans()
 
     def _replace_literal_spaces_with_blank(self, query_without_prefixes, literal_spaces):
         result = query_without_prefixes
@@ -195,6 +235,8 @@ class ClassUsageMiner(object):
                     self._classes_total_mentions[a_class_key][_CLASS_QUERY_MENTIONS] += 1
                     self._classes_total_mentions[a_class_key][_CLASS_INSTANCE_MENTIONS] += \
                     class_mention_dict[a_class_key][_INSTANCE_MENTIONS]
+                    self._classes_total_mentions[a_class_key][_CLASS_DOMRAN_MENTIONS] += \
+                    class_mention_dict[a_class_key][_CLASS_DOMRAN_MENTIONS]
 
     def _add_mentions_to_human_or_machine_dicts(self, class_mention_dict, an_entry):
         if len(class_mention_dict) == 0:
@@ -209,31 +251,48 @@ class ClassUsageMiner(object):
                     self._classes_total_mentions[a_class_key][agent_key][_CLASS_QUERY_MENTIONS] += 1
                     self._classes_total_mentions[a_class_key][agent_key][_CLASS_INSTANCE_MENTIONS] += \
                         class_mention_dict[a_class_key][_INSTANCE_MENTIONS]
+                    self._classes_total_mentions[a_class_key][agent_key][_CLASS_DOMRAN_MENTIONS] += \
+                        class_mention_dict[a_class_key][_CLASS_DOMRAN_MENTIONS]
 
     def _decide_agent_key(self, an_entry):
-        if an_entry.ip not in self._dict_ips_machine_traffic:
-            return _HUMAN_KEY
-        if str(an_entry.hour) in self._dict_ips_machine_traffic[an_entry.ip]:
-            return _MACHINE_KEY
-        return _HUMAN_KEY
+        target_ip = an_entry.ip
+        if target_ip in self._dict_ips_machine_traffic:
+            return self._dict_ips_machine_traffic[target_ip]
+        return _UNKNOWN_KEY
+        # if an_entry.ip not in self._dict_ips_machine_traffic:
+        #     return _HUMAN_KEY
+        # if str(an_entry.hour) in self._dict_ips_machine_traffic[an_entry.ip]:
+        #     return _MACHINE_KEY
+        # return _HUMAN_KEY
 
     def _build_class_mention_dict_of_query(self, uri_mentions):
         result = {}
         for a_mention in uri_mentions:
             if a_mention in self._classes_total_mentions:
                 if a_mention not in result:
-                    result[a_mention] = {_DIRECT_MENTIONS: 0,
-                                         _INSTANCE_MENTIONS: 0}
+                    result[a_mention] = self._empty_mention_query_dict()
                 result[a_mention][_DIRECT_MENTIONS] += 1
 
             if a_mention in self._instances_dict:
                 target_class_keys = self._instances_dict[a_mention]
                 for a_target_class_key in target_class_keys:
                     if a_target_class_key not in result:
-                        result[a_target_class_key] = {_DIRECT_MENTIONS: 0,
-                                                      _INSTANCE_MENTIONS: 0}
+                        result[a_target_class_key] = self._empty_mention_query_dict()
                     result[a_target_class_key][_INSTANCE_MENTIONS] += 1
+            if a_mention in self._domran_dict and a_mention not in self._instances_dict:
+                target_class_keys = self._domran_dict[a_mention]
+                for a_target_class_key in target_class_keys:
+                    if a_target_class_key not in result:
+                        result[a_target_class_key] = self._empty_mention_query_dict()
+                    result[a_target_class_key][_DOMRAN_MENTIONS] += 1
+
         return result
+
+    @staticmethod
+    def _empty_mention_query_dict():
+        return {_DIRECT_MENTIONS: 0,
+                _INSTANCE_MENTIONS: 0,
+                _DOMRAN_MENTIONS: 0}
 
     def _detect_index_type_of_query(self, an_entry):
         res = re.search(_REGEX_TYPE_QUERY, an_entry.str_query)
