@@ -95,35 +95,53 @@ class ClassUsageMiner(object):
     def number_of_queries(self):
         return self._number_of_queries
 
+
     def mine_entries(self):
+        self._initialize_dicts()
+        self._process_entries()
+
+    def _initialize_dicts(self):
         self._initialize_instances_dict()
         self._initialize_domran_dict()
-        print("Dict Done!")
+
+    def _process_entries(self):
         counter = 0
         for an_entry in self._entities_yielder_func():
-            try:
-                self._number_of_queries += 1
-                index_type_of_query = self._detect_index_type_of_query(an_entry)
-                if index_type_of_query != -1:
-                    self._number_of_valid_queries += 1
-                    new_prefixes_dict = self._parse_new_prefixes(an_entry.str_query[:index_type_of_query])
-                    query_without_prefixes = an_entry.str_query[index_type_of_query:]
-                    literal_spaces = self._detect_literal_spaces(query_without_prefixes)
-                    # tunned_query = self._replace_literal_spaces_with_blank(query_without_prefixes, literal_spaces)
-                    if len(literal_spaces) != 0:
-                        query_without_prefixes = \
-                            self._replace_literal_spaces_with_blank(query_without_prefixes=query_without_prefixes,
-                                                                    literal_spaces=literal_spaces)
-                    uri_mentions = self._detect_uri_mentions(str_query=query_without_prefixes,
-                                                             priority_namespaces=new_prefixes_dict)
-                    class_mention_dict = self._build_class_mention_dict_of_query(uri_mentions)
-                    self._add_mentions_to_class_dicts(class_mention_dict, an_entry)
-                    counter += 1
-                    if counter % 1000 == 0:
-                        print(counter)
-            except BaseException as e:
-                print(e)
-                self._wrong_entries += 1
+            self._process_an_entry(an_entry)
+            counter += 1
+            if counter % 5000 == 0:
+                print(counter)
+
+    def _process_an_entry(self, an_entry):
+        try:
+            self._increment_queries()
+            index_type_of_query = self._detect_index_type_of_query(an_entry)
+            if index_type_of_query != -1:
+                self._increment_valid_queries()
+                new_prefixes_dict = self._parse_new_prefixes(an_entry.str_query[:index_type_of_query])
+                query_without_prefixes = an_entry.str_query[index_type_of_query:]
+                literal_spaces = self._detect_literal_spaces(query_without_prefixes)
+                # tunned_query = self._replace_literal_spaces_with_blank(query_without_prefixes, literal_spaces)
+                if len(literal_spaces) != 0:
+                    query_without_prefixes = \
+                        self._replace_literal_spaces_with_blank(query_without_prefixes=query_without_prefixes,
+                                                                literal_spaces=literal_spaces)
+                uri_mentions = self._detect_uri_mentions(str_query=query_without_prefixes,
+                                                         priority_namespaces=new_prefixes_dict)
+                class_mention_dict = self._build_class_mention_dict_of_query(uri_mentions)
+                self._add_mentions_to_class_dicts(class_mention_dict, an_entry)
+        except BaseException as e:
+            print(e)
+            self._increment_wrong_entries()
+
+    def _increment_queries(self):
+        self._number_of_queries += 1
+
+    def _increment_valid_queries(self):
+        self._number_of_valid_queries += 1
+
+    def _increment_wrong_entries(self):
+        self._wrong_entries += 1
 
     def _adpat_dict_machine_traffic(self, dicts_ips_machine_traffic):
         result = {}
@@ -240,9 +258,9 @@ class ClassUsageMiner(object):
 
     def _add_mentions_to_human_or_machine_dicts(self, class_mention_dict, an_entry):
         if len(class_mention_dict) == 0:
-            self._queries_without_mentions += 1
+            self._increment_queries_without_mentions()
         else:
-            self._queries_with_mentions += 1
+            self._increment_queries_with_mentions()
             agent_key = self._decide_agent_key(an_entry)
             for a_class_key in class_mention_dict:
                 if a_class_key in self._classes_total_mentions:
@@ -253,6 +271,12 @@ class ClassUsageMiner(object):
                         class_mention_dict[a_class_key][_INSTANCE_MENTIONS]
                     self._classes_total_mentions[a_class_key][agent_key][_CLASS_DOMRAN_MENTIONS] += \
                         class_mention_dict[a_class_key][_CLASS_DOMRAN_MENTIONS]
+
+    def _increment_queries_with_mentions(self):
+        self._queries_with_mentions += 1
+
+    def _increment_queries_without_mentions(self):
+        self._queries_without_mentions += 1
 
     def _decide_agent_key(self, an_entry):
         target_ip = an_entry.ip
@@ -318,9 +342,12 @@ class ClassUsageMiner(object):
             except BaseException as e:
 
                 print(e)
-                self._wrong_uris_in_queries += 1
+                self._increment_wrong_uris_in_queries()
         return result
         # return [self._unprefix_uri(an_uri, priority_namespaces) for an_uri in list_of_prefixed_uris]
+
+    def _increment_wrong_uris_in_queries(self):
+        self._wrong_uris_in_queries += 1
 
     def _unprefix_uri(self, prefixed_uri, priority_namespaces):
         mid_index = prefixed_uri.find(":")
@@ -329,8 +356,12 @@ class ClassUsageMiner(object):
             return priority_namespaces[target_prefix] + prefixed_uri[mid_index + 1:]
         if target_prefix in self._default_namespaces:
             return self._default_namespaces[target_prefix] + prefixed_uri[mid_index + 1:]
-        self._bad_prefixed_uris += 1
+        self._increment_bad_prefixed_uris()
         raise ValueError("URIs with unknown prefixes are not supposed to be computed in this method: " + prefixed_uri)
+
+
+    def _increment_bad_prefixed_uris(self):
+        self._bad_prefixed_uris += 1
 
     def _detect_complete_uri_mentions(self, str_query):
         return [remove_corners(a_uri) for a_uri in re.findall(_REGEX_WHOLE_URI, str_query)]
