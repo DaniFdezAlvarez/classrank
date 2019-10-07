@@ -115,7 +115,7 @@ class ClassUsageMinerMultiLog(ClassUsageMiner):
         self._reset_yielder_stats()
 
     def _manage_current_partial_results(self):
-        self._dict_of_partial_results[str(self._yielder_count)] = {
+        self._dict_of_partial_results[self._yielder_count] = {
             "queries_with_mentions": self._queries_with_mentions,
             "queries_without_mentions": self._queries_without_mentions,
             "bad_prefixed_uris": self._bad_prefixed_uris,
