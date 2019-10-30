@@ -53,7 +53,7 @@ def _parse_cp_list(expected_str_list):
 
 def _parse_ttl_graph(expected_ttl_graph):
     if len(expected_ttl_graph) == 0:
-        raise RuntimeError("Empty graph")
+        raise RuntimeError("Empty graphic")
     elif len(expected_ttl_graph) == MAX_LEN:
         raise RuntimeError("Graph too big. Currently, this demo only process up to " + str(MAX_LEN) + " chars." )
     return expected_ttl_graph

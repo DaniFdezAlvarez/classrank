@@ -1,5 +1,5 @@
 """
-This ClassRanker is thought to analyze a graph in which there are classes in several workspaces.
+This ClassRanker is thought to analyze a graphic in which there are classes in several workspaces.
 The target classes are known a priori in some of those workspaces, but they are tracked through
 the classpointers in some others.
 

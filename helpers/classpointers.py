@@ -27,7 +27,7 @@ def _build_yielder(graph_format, graph_file, raw_graph, save_memory_mode):
         elif graph_format == TSV_SPO_FORMAT:
             return TsvSpoTriplesYielder(source_file=graph_file)
         else:
-            raise ValueError("Unsupported graph format building yielder")
+            raise ValueError("Unsupported graphic format building yielder")
 
 
 def _build_formatter(target_file, string_return):
@@ -40,9 +40,9 @@ def _build_formatter(target_file, string_return):
 def _assert_valid_param_combination(class_security_threshold, graph_format, raw_graph,
                                     graph_file, output_file, string_return):
     if graph_file is None and raw_graph is None:
-        raise ValueError("You must provide a path in 'graph_file' XOR a string graph in 'raw_graph'")
+        raise ValueError("You must provide a path in 'graph_file' XOR a string graphic in 'raw_graph'")
     if graph_file is not None and raw_graph is not None:
-        raise ValueError("You must provide a path in 'graph_file' XOR a string graph in 'raw_graph'")
+        raise ValueError("You must provide a path in 'graph_file' XOR a string graphic in 'raw_graph'")
 
     if output_file is None and not string_return:
         raise ValueError("You must provide a path in 'output_file' XOR set 'string_return' to True")
@@ -50,7 +50,7 @@ def _assert_valid_param_combination(class_security_threshold, graph_format, raw_
         raise ValueError("You must provide a path in 'output_file' XOR set 'string_return' to True")
 
     if graph_format not in _ACCEPTED_GRAPH_FORMATS:
-        raise ValueError("Unsupported graph format")
+        raise ValueError("Unsupported graphic format")
 
     if class_security_threshold < 1:
         raise ValueError("'class_security_threshold' must be an integer >= 1")

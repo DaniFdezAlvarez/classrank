@@ -1,6 +1,6 @@
 """
 It expects an input file in which the first line is a non-parseable comment and the rest of
-lines contain each one a triple of a graph in ttl format.
+lines contain each one a triple of a graphic in ttl format.
 """
 from classrank_io.graph.yielders.triples_yielder_interface import TriplesYielderInterface
 from classrank_utils.uri import remove_corners, is_valid_triple

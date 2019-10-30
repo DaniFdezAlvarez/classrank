@@ -45,7 +45,7 @@ class ClassRanker(object):
         ### Stage 2 - ClassDetection
         print("Stage 2")
         sys.stdout.flush()
-        graph = None  # Here we do not need anymore the directed graph.
+        graph = None  # Here we do not need anymore the directed graphic.
         # We must free that memory
         classes_dict = self._detect_classes(self._triple_yielder, classpointers_set, self._threshold)
         self._number_of_classes = len(classes_dict)
