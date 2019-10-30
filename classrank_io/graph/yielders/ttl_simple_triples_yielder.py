@@ -37,10 +37,8 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
         a_line = a_line.strip()
         pieces = a_line.split(_SEPARATOR)
         if len(pieces) != 4:
-            print pieces
             return None, None, None
         elif pieces[3] != ".":
-            print pieces
             return None, None, None
         elif not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=True):
             log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(
