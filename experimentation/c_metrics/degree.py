@@ -21,15 +21,18 @@ class DegreeComp(object):
 
     def run(self, string_return=True, out_path=None):
         self._init_dict_count()
+        different_nodes = set()
         for a_triple in self._triples_yielder.yield_triples():
             if self._is_relevant_triple(a_triple):
                 self._dict_count[a_triple[_O]] += 1
+            if self._normalize:
+                different_nodes.add(a_triple[_S])
+                different_nodes.add(a_triple[_O])
         if self._normalize:
-            self._normalize_dict_counts()
+            self._normalize_dict_counts(len(different_nodes))
         return self._return_result(string_return, out_path)
 
-    def _normalize_dict_counts(self):
-        max_score = max(self._dict_count.values())
+    def _normalize_dict_counts(self, max_score):
         for an_uri in self._dict_count:
             self._dict_count[an_uri] = normalize_score(score=self._dict_count[an_uri],
                                                        max_score=max_score)
