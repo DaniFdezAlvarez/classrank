@@ -377,7 +377,7 @@ txn:aaa <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> srv:A .
 #
 # print results
 
-print "----------------------------------------------"
+print("----------------------------------------------")
 
 results = generate_classrank(raw_graph=graph_str, # graph_file="files\\sample_ttl_full_tiny.ttl",
                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type\nhttp://example.org/ont/transaction-log/processedBy",
@@ -386,8 +386,8 @@ results = generate_classrank(raw_graph=graph_str, # graph_file="files\\sample_tt
                              link_instances_in_output=True,
                              serialize_pagerank=True,
                              output_format="ttl")
-print "----"
-print results
+print("----")
+print(results)
 
 # results = generate_classrank(graph_file="files\\sample_ttl_full_tiny.ttl",
 #                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",

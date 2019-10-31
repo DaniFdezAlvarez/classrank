@@ -26,14 +26,14 @@ class TtlExplicitSpoDigraphParser(DiGraphParserInterface):
                     if self._triple_count == max_edges:
                         break
                     if self._triple_count % 100000 == 0:
-                        print self._triple_count
+                        print(self._triple_count)
         return result
 
     def _get_subject_and_object_from_line(self, a_line):
         a_line = a_line.strip()
         pieces = a_line.split(_SEPARATOR)
         if pieces[-1] != ".":
-            print "Error line:", a_line
+            print("Error line:", a_line)
             self._error_count += 1
             return None, None
         elif len(pieces) != 4:

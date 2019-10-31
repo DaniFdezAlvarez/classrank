@@ -57,11 +57,11 @@ class ClassrankerSeveralThresholds(ClassRanker):
         self._number_of_classes = len(classes_dict)
 
         ###  Stage 3 - ClassRank calculations
-        print "stage 3"
+        print("stage 3")
         self._calculate_classrank(classes_dict, raw_pagerank, self._threshold_list)
 
         ###  Outputs
-        print "Outputs"
+        print("Outputs")
         result = self._classrank_formatter.format_classrank_dict(classes_dict, raw_pagerank)
 
         return result

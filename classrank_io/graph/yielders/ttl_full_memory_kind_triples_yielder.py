@@ -39,18 +39,18 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
     def yield_triples(self, max_triples=-1):
         with open(self._source_file, "r") as in_stream:
             for a_line in in_stream:
-                print a_line
+                print(a_line)
                 self._process_line(a_line)
                 if self._triple_ready:
                     if is_valid_triple(self._tmp_s, self._tmp_p, self._tmp_o, there_are_corners=False):
                         self._triples_count += 1
                         yield (self._tmp_s, self._tmp_p, self._tmp_o)
-                        print "gooood"
+                        # print("gooood")
                     else:
                         log_to_error(msg="WARNING: ignoring invalid triple: ( " + str(self._tmp_s) + " , " + str(
                             self._tmp_p) + " , " + str(self._tmp_o) + " )",
                                      source=self._source_file)
-                        print "BAAAAAAAAAD",(self._tmp_s, self._tmp_p, self._tmp_o)
+                        # print("BAAAAAAAAAD",(self._tmp_s, self._tmp_p, self._tmp_o))
                         self._error_triples += 1
                     self._triple_ready = False
                 # if self._triples_count % 1000000 == 0:

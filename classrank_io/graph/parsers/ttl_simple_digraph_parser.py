@@ -26,7 +26,7 @@ class TtlSimpleDigraphParser(DiGraphParserInterface):
                     if self._triple_count == max_edges:
                         break
                     if self._triple_count % 100000 == 0:
-                        print self._triple_count
+                        print(self._triple_count)
                 else:
                     self._error_count += 1
         return result

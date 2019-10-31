@@ -38,7 +38,7 @@ class JsonWikidataDumpTriplesYielder(TriplesYielderInterface):
                                 max_triples_reached = True
                                 break
                             if self._triple_count % 100000 == 0:
-                                print 'parsed ' + str(self._triple_count)
+                                print('parsed ' + str(self._triple_count))
                         else:
                             self._ignored_count += 1
 

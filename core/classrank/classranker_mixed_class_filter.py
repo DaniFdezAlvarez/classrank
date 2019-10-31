@@ -55,7 +55,7 @@ class ClassRankerMixedClassFilter(ClassRanker):
     def _manage_class_of_not_known_workspace(self, class_dict, a_class, a_prop, a_subj):
         canonized_target_class = self._canonize_target_class_if_is_target(a_class)
         if canonized_target_class is not None:
-            print "UNA ME PASO EL CORTE!", a_class
+            # print("UNA ME PASO EL CORTE!", a_class)
             if a_prop not in class_dict[canonized_target_class][KEY_CLASS_POINTERS]:
                 class_dict[canonized_target_class][KEY_CLASS_POINTERS][a_prop] = set()
             class_dict[canonized_target_class][KEY_CLASS_POINTERS][a_prop].add(a_subj)
@@ -114,8 +114,8 @@ class ClassRankerMixedClassFilter(ClassRanker):
 
 
     def _canonize_target_class_if_is_target(self, candidate_class):  # TODO refactor!
-        if "dbpedia" in candidate_class:
-            print candidate_class
+        # if "dbpedia" in candidate_class:
+        #     print(candidate_class)
         if candidate_class in self._set_target_classes:
             return candidate_class
 
