@@ -14,19 +14,25 @@ class DegreeComp(BaseCMetric):
         self._target_nodes = [remove_corners(an_uri, raise_error=False) for an_uri in target_nodes]
         self._normalize = normalize
         self._dict_count = None
+        self._max_score = 0  # TODO Really wrong until someone executes run()
 
     def _init_dict_count(self):
         self._dict_count = {}
         for a_node in self._target_nodes:
             self._dict_count[a_node] = 0
 
+    @property
+    def max_score(self):
+        return self._max_score
+
     def run(self, string_return=True, out_path=None):
         self._init_dict_count()
         nxgraph = build_graph_for_paths(self._triples_yielder)
+        self._max_score = len(nxgraph) - 1  # Setting up max_score
         for a_node in nxgraph.nodes:
             self._dict_count[a_node] = nxgraph.degree[a_node]
         if self._normalize:
-            self._normalize_dict_counts(len(nxgraph)-1)
+            self._normalize_dict_counts()
         return self._return_result(obj_result=self._dict_count,
                                    string_return=string_return,
                                    out_path=out_path)
@@ -46,10 +52,10 @@ class DegreeComp(BaseCMetric):
         #                            string_return=string_return,
         #                            out_path=out_path)
 
-    def _normalize_dict_counts(self, max_score):
+    def _normalize_dict_counts(self):
         for an_uri in self._dict_count:
             self._dict_count[an_uri] = normalize_score(score=self._dict_count[an_uri],
-                                                       max_score=max_score)
+                                                       max_score=self.max_score)
 
 
     # def _is_relevant_triple(self, a_triple):
