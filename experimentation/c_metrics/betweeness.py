@@ -15,13 +15,14 @@ class BetweenessComp(BaseCMetric):
     def run(self, string_return=True, out_path=None):
         self._init_dict_count()
         nxgraph = build_graph_for_paths(self._triples_yielder)
-        every_path = shortest_path(graph=nxgraph)
+        every_path_dict = shortest_path(graph=nxgraph)
+        every_path = self._list_of_relevant_paths(every_path_dict)
         for a_node in self._dict_count:
             for a_path in every_path:
                 if a_node in a_path:
                     self._dict_count[a_node] += 1
         if self._normalize:
-            max_score = len(every_path)
+            max_score = len(nxgraph) * (len(nxgraph) - 2)
             self._normalize_dict_count(max_score)
         return self._return_result(obj_result=self._dict_count,
                                    string_return=string_return,
@@ -38,4 +39,14 @@ class BetweenessComp(BaseCMetric):
         self._dict_count = {}
         for a_node in self._target_nodes:
             self._dict_count[a_node] = 0
+
+
+    def _list_of_relevant_paths(self, every_path_dict):
+        result = []
+        for origin_key in every_path_dict:
+            for destination_key in every_path_dict[origin_key]:
+                a_path = every_path_dict[origin_key][destination_key]
+                if len(a_path) > 2:
+                    result.append(a_path[1:-1])
+        return result
 

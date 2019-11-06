@@ -17,7 +17,6 @@ class ClosenessComp(BaseCMetric):
         for a_node in nxgraph.nodes:
             paths = shortest_path(graph=nxgraph,
                                   origin=a_node)
-            print(a_node, paths)
             self._fill_absent_paths_with_an_all_nodes_walk(paths_dict=paths,
                                                            target_nodes=nxgraph.nodes,
                                                            origin=a_node)
