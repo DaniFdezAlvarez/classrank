@@ -17,8 +17,14 @@ class ClosenessComp(BaseCMetric):
         for a_node in nxgraph.nodes:
             paths = shortest_path(graph=nxgraph,
                                   origin=a_node)
-            denominator = sum([len(a_path) for a_path in paths])
-            self._dict_closeness[a_node] = float(len(nxgraph)) / denominator
+            print(a_node, paths)
+            self._fill_absent_paths_with_an_all_nodes_walk(paths_dict=paths,
+                                                           target_nodes=nxgraph.nodes,
+                                                           origin=a_node)
+            self._delete_auto_path(paths_dict=paths,
+                                   origin=a_node)
+            denominator = sum([len(paths[a_path_key]) for a_path_key in paths])
+            self._dict_closeness[a_node] = float(len(nxgraph) - 1) / denominator
 
         return self._return_result(obj_result=self._dict_closeness,
                                    string_return=string_return,
