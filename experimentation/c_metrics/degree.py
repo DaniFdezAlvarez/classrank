@@ -1,6 +1,7 @@
 from classrank_utils.uri import remove_corners
 from classrank_utils.scores import normalize_score
 from experimentation.c_metrics.base_c_metric import BaseCMetric
+from classrank_utils.g_paths import build_graph_for_paths
 
 _S = 0
 _P = 1
@@ -21,18 +22,29 @@ class DegreeComp(BaseCMetric):
 
     def run(self, string_return=True, out_path=None):
         self._init_dict_count()
-        different_nodes = set()
-        for a_triple in self._triples_yielder.yield_triples():
-            if self._is_relevant_triple(a_triple):
-                self._dict_count[a_triple[_O]] += 1
-            if self._normalize:
-                different_nodes.add(a_triple[_S])
-                different_nodes.add(a_triple[_O])
+        nxgraph = build_graph_for_paths(self._triples_yielder)
+        for a_node in nxgraph.nodes:
+            self._dict_count[a_node] = nxgraph.degree[a_node]
         if self._normalize:
-            self._normalize_dict_counts(len(different_nodes))
+            self._normalize_dict_counts(len(nxgraph)-1)
         return self._return_result(obj_result=self._dict_count,
                                    string_return=string_return,
                                    out_path=out_path)
+
+        # different_nodes = set()
+        # for a_triple in self._triples_yielder.yield_triples():
+        #     if a_triple[_O] in self._dict_count:
+        #         self._dict_count[a_triple[_O]] += 1
+        #     if a_triple[_S] in self._dict_count:
+        #         self._dict_count[a_triple[_S]] += 1
+        #     if self._normalize:
+        #         different_nodes.add(a_triple[_S])
+        #         different_nodes.add(a_triple[_O])
+        # if self._normalize:
+        #     self._normalize_dict_counts(len(different_nodes))
+        # return self._return_result(obj_result=self._dict_count,
+        #                            string_return=string_return,
+        #                            out_path=out_path)
 
     def _normalize_dict_counts(self, max_score):
         for an_uri in self._dict_count:
@@ -40,7 +52,8 @@ class DegreeComp(BaseCMetric):
                                                        max_score=max_score)
 
 
-    def _is_relevant_triple(self, a_triple):
-        if a_triple[_O] in self._dict_count:
-            return True
-        return False
+    # def _is_relevant_triple(self, a_triple):
+    #     print(a_triple[_O], self._dict_count)
+    #     if a_triple[_O] in self._dict_count or a_triple[_S] in self._dict_count:
+    #         return True
+    #     return False

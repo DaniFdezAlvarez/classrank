@@ -5,7 +5,7 @@ _O = 2
 
 def build_graph_for_paths(triples_yielder):
     result = nx.DiGraph()
-    for a_triple in triples_yielder:
+    for a_triple in triples_yielder.yield_triples():
         result.add_edge(a_triple[_S], a_triple[_O])
     return result
 

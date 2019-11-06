@@ -8,6 +8,8 @@ def remove_corners(a_uri, raise_error=True):
         return a_uri[1:-1]
     if raise_error:
         raise RuntimeError("Wrong parameter of function: '" + a_uri + "'")
+    else:
+        return a_uri
 
 def add_prefix_if_possible(a_uri, prefixes):
     """
