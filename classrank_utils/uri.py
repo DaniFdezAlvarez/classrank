@@ -3,11 +3,13 @@
 _INVALID_CHARS_CORNERS = '<>" {}|\\^`'
 _INVALID_CHARS_NO_CORNERS = '" {}|\\^`'
 
-def remove_corners(a_uri):
+def remove_corners(a_uri, raise_error=True):
     if a_uri.startswith("<") and a_uri.endswith(">"):
         return a_uri[1:-1]
-    else:
+    if raise_error:
         raise RuntimeError("Wrong parameter of function: '" + a_uri + "'")
+    else:
+        return a_uri
 
 def add_prefix_if_possible(a_uri, prefixes):
     """

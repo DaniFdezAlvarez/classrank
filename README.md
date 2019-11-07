@@ -22,11 +22,11 @@ The easiest way to execute ClassRank is using the function 'generate_pagerank()'
     
     from helpers.classrank import generate_classrank
     
-    print generate_classrank(graph_file="path/to/some/file.ttl",
+    print(generate_classrank(graph_file="path/to/some/file.ttl",
                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
                              string_return=True,
                              instantiation_threshold=1,
-                             class_threshold=1)
+                             class_threshold=1))
 
     
 By executing the previous code providing the path to some graph with the param ``graph_file`` you will print a JSON representation of the ClassRank scores of the classes detected in the graph, as well as the list of instances pointing them with ``rdf:type``.  The function generate_classrank admits a large list of optional params to configure its behaviour:

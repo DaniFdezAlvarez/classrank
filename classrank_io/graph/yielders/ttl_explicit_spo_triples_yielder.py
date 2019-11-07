@@ -11,17 +11,19 @@ _SEPARATOR = " "
 
 class TtlExplicitSpoTriplesYielder(TriplesYielderInterface):
 
-    def __init__(self, source_file):
+    def __init__(self, source_file, skip_first_line=True):
         super(TtlExplicitSpoTriplesYielder, self).__init__()
         self._source_file = source_file
         self._triples_count = 0
         self._triples_ignored = 0
         self._error_count = 0
+        self._skip_first_line = skip_first_line
 
     def yield_triples(self, max_triples=-1):
         self._reset_count()
         with open(self._source_file, "r", encoding="utf8") as in_stream:
-            in_stream.readline()  # Skipping the first line
+            if self._skip_first_line:
+                in_stream.readline()  # Skipping the first line
             for a_line in in_stream:
                 s,p,o = self._get_triple_from_line(a_line)
                 if s is not None:  # Nor p and o

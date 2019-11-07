@@ -32,7 +32,7 @@ class FullJsonToSummarizedJsonClassrankAdapter(ClassRankAdapterInterface):
 
                 rank_counter += 1
                 if rank_counter % 5000 == 0:
-                    print rank_counter
+                    print(rank_counter)
                 for a_cp in a_original_dict[KEY_CLASS_POINTERS]:
                     a_sum_dict[KEY_CLASS_POINTERS][a_cp] = len( a_original_dict[KEY_CLASS_POINTERS][a_cp])
                 result.append(a_sum_dict)

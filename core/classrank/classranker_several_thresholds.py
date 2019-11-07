@@ -45,25 +45,23 @@ class ClassrankerSeveralThresholds(ClassRanker):
 
 
         ### Stage 1 - PageRank
-        print "stage 1"
         raw_pagerank = calculate_pagerank(graph=graph,
                                           damping_factor=self._damping_factor,
                                           max_iter=self._max_iter_pagerank)
         self._number_of_entities = len(raw_pagerank)
 
         ### Stage 2 - ClassDetection
-        print "Stage 2"
         graph = None  # Here we do not need anymore the directed graphic.
         # We must free that memory
         classes_dict = self._detect_classes(self._triple_yielder, classpointers_set, self._threshold_list[0])
         self._number_of_classes = len(classes_dict)
 
         ###  Stage 3 - ClassRank calculations
-        print "stage 3"
+        print("stage 3")
         self._calculate_classrank(classes_dict, raw_pagerank, self._threshold_list)
 
         ###  Outputs
-        print "Outputs"
+        print("Outputs")
         result = self._classrank_formatter.format_classrank_dict(classes_dict, raw_pagerank)
 
         return result
