@@ -15,15 +15,23 @@ class RadialityComp(BaseCMetric):
         nxgraph = build_graph_for_paths(self._triples_yielder)
         graph_diameter = self._compute_graph_diameter(nxgraph)
         for a_node in nxgraph.nodes:
-            denominator = 0
-            for a_node_2 in nxgraph.nodes:
-                if a_node != a_node_2:
-                    s_path = shortest_path(origin=a_node,
-                                           destination=a_node_2,
-                                           graph=nxgraph)
-
-                    denominator += graph_diameter - (float(1)/len(s_path))
-
+            # denominator = 0
+            paths = shortest_path(graph=nxgraph,
+                                  origin=a_node)
+            self._fill_absent_paths_with_an_all_nodes_walk(paths_dict=paths,
+                                                           target_nodes=nxgraph.nodes,
+                                                           origin=a_node)
+            self._delete_auto_path(paths_dict=paths,
+                                   origin=a_node)
+            denominator = sum([graph_diameter - (float(1) / len(paths[a_path_key])) for a_path_key in paths])
+            # for a_node_2 in nxgraph.nodes:
+            #     if a_node != a_node_2:
+            #         s_path = shortest_path(origin=a_node,
+            #                                destination=a_node_2,
+            #                                graph=nxgraph)
+            #
+            #         denominator += graph_diameter - (float(1)/len(s_path))
+            #
             self._radiality_dict[a_node] = float(1) / denominator
         if self._normalize:
             self._normalize_dict(n_nodes=len(nxgraph),
@@ -36,7 +44,13 @@ class RadialityComp(BaseCMetric):
         paths = shortest_path(graph=net_graph,
                               origin=None,
                               destination=None)
-        return max([len(a_path) for a_path in paths])
+        max_p = 0
+        for a_key_origin in paths:
+            for a_key_destination in paths[a_key_origin]:
+                new_p = len(paths[a_key_origin][a_key_destination])
+                if new_p > max_p:
+                    max_p = new_p
+        return max_p
 
 
     def _normalize_dict(self, g_diameter, n_nodes):
