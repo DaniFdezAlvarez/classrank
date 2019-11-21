@@ -7,7 +7,7 @@ def p_for_equation_21(target_weight, error_margin, prefix_size, last_p_min=0.0, 
                math.pow(p, prefix_size - 1) + \
                (1 - p) / p * prefix_size * \
                ( math.log(1 / (1-p)) -
-                 sum([ math.pow(p, i)/i for i in range(1,prefix_size)]) )
+                 sum([ math.pow(p, i)/i for i in range(1, prefix_size)]) )
 
     deviation = a_weight - target_weight
     if abs(a_weight - target_weight) <= error_margin:

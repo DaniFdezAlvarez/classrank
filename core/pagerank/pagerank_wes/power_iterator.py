@@ -32,6 +32,7 @@ class PowerIterator(object):
 
 
         while self._curr_iters < self._max_iters:
+            print("An iter!", self._curr_iters)
             self._curr_iters += 1
             new_vec = dict.fromkeys(self._current_vector.keys(), 0)
             sum_dangling_nodes = sum(self._current_vector[a_dang_node] for a_dang_node in self._target_matrix.dangling_nodes)

@@ -26,13 +26,14 @@ def add_prefix_if_possible(a_uri, prefixes):
 
 def is_valid_uri(uri, there_are_corners=True):
     if there_are_corners:
-        for a_c in _INVALID_CHARS_CORNERS:
-            if a_c in uri:
-                return False
-    else:
-        for a_c in _INVALID_CHARS_NO_CORNERS:
-            if a_c in uri:
-                return False
+        uri = uri[1:-1]
+    for a_c in _INVALID_CHARS_CORNERS:
+        if a_c in uri:
+            return False
+    # else:
+    #     for a_c in _INVALID_CHARS_NO_CORNERS:
+    #         if a_c in uri:
+    #             return False
     return True
 
 def is_valid_uri_soft_check(uri, there_are_corners=True):

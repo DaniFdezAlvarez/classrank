@@ -18,7 +18,7 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
 
     def yield_triples(self, max_triples=-1):
         self._reset_count()
-        with open(self._source_file, "r") as in_stream:
+        with open(self._source_file, "r", errors='ignore') as in_stream:
             in_stream.readline()  # Skipping the first line
             for a_line in in_stream:
                 s, p, o = self._get_triple_from_line(a_line)
@@ -41,8 +41,8 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
         elif pieces[3] != ".":
             return None, None, None
         elif not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=True):
-            log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(
-                pieces[2]) + " )")
+            # log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(
+            #     pieces[2]) + " )")
             return None, None, None
 
         else:

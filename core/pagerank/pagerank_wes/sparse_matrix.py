@@ -3,8 +3,9 @@ from classrank_io.graph.yielders.ttl_explicit_spo_triples_yielder import TtlExpl
 
 
 class SMatrix(object):
-    def __init__(self, d=0.85, source_file=None, raw_graph=None, max_edges=-1):
+    def __init__(self, d=0.85, source_file=None, raw_graph=None, max_edges=-1, base_yielder=None):
         self._source_file = source_file
+        self._base_yielder = base_yielder
         self._raw_graph = raw_graph
         self._rows = {}
         self._cols = {}
@@ -57,7 +58,8 @@ class SMatrix(object):
             yield a_key
 
     def _load_matrix(self):
-        yielder = TsvEdgesYielder(TtlExplicitSpoTriplesYielder(source_file=self._source_file))
+        yielder = TsvEdgesYielder(TtlExplicitSpoTriplesYielder(source_file=self._source_file)) \
+            if self._source_file is not None else TsvEdgesYielder(self._base_yielder)
         nodes_reached = set()
         for an_edge in yielder.yield_edges(self._max_edges):
             self._include_nodes_if_needed(an_edge)
