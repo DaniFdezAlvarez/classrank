@@ -16,7 +16,7 @@ class Wespageranker(object):
         self._base_yielder = base_yielder
 
     def compute_pagerank_vector(self):
-        matrix = SMatrix(d=self._damping_factor,
+        matrix = SMatrix(d=1 - self._damping_factor,
                          source_file=self._source_file,
                          raw_graph=self._raw_graph,
                          max_edges=self._max_edges,

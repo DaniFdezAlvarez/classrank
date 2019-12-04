@@ -18,7 +18,7 @@ class TtlSimpleTriplesYielder(TriplesYielderInterface):
 
     def yield_triples(self, max_triples=-1):
         self._reset_count()
-        with open(self._source_file, "r", errors='ignore') as in_stream:
+        with open(self._source_file, "r", errors='ignore', encoding="utf-8") as in_stream:
             in_stream.readline()  # Skipping the first line
             for a_line in in_stream:
                 s, p, o = self._get_triple_from_line(a_line)

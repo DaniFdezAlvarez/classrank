@@ -7,7 +7,7 @@ from core.classrank.classranker import ClassRanker, KEY_CLASS_POINTERS, \
 
 class ClassrankerClassFilter(ClassRanker):
     def __init__(self, digraph_parser, triple_yielder, classpointers_parser, classrank_formatter,
-                 prefix_tuples, list_of_target_classes, damping_factor=0.85, max_iter_pagerank=100, max_edges=-1):
+                 prefix_tuples, list_of_target_classes, damping_factor=0.85, max_iter_pagerank=100, max_edges=-1, pagerank_scores=None):
         super(ClassrankerClassFilter, self).__init__(digraph_parser=digraph_parser,
                                                      triple_yielder=triple_yielder,
                                                      classpointers_parser=classpointers_parser,
@@ -15,7 +15,8 @@ class ClassrankerClassFilter(ClassRanker):
                                                      damping_factor=damping_factor,
                                                      max_iter_pagerank=max_iter_pagerank,
                                                      threshold=1,  # Classes are already known
-                                                     max_edges=max_edges)
+                                                     max_edges=max_edges,
+                                                     pagerank_scores=pagerank_scores)
         self._set_target_classes = set(list_of_target_classes)
         self._prefixes = build_dict_of_prefixes_from_tuples(prefix_tuples, inverse=False)
         self._inverse_prefixes = build_dict_of_prefixes_from_tuples(prefix_tuples, inverse=True)

@@ -15,14 +15,15 @@ KEY_THRESHOLDS = "thrs"
 
 class ClassrankerSeveralThresholds(ClassRanker):
     def __init__(self, digraph_parser, triple_yielder, classpointers_parser, classrank_formatter, damping_factor=0.85,
-                 max_iter_pagerank=100, thresholds_list=None, max_edges=-1):  #Changed
+                 max_iter_pagerank=100, thresholds_list=None, max_edges=-1, pagerank_scores=None):  #Changed
         super(ClassrankerSeveralThresholds, self).__init__(digraph_parser=digraph_parser,
                                                            triple_yielder=triple_yielder,
                                                            classpointers_parser=classpointers_parser,
                                                            classrank_formatter=classrank_formatter,
                                                            damping_factor=damping_factor,
                                                            max_iter_pagerank=max_iter_pagerank,
-                                                           max_edges=max_edges)
+                                                           max_edges=max_edges,
+                                                           pagerank_scores=pagerank_scores)
         self._graph_parser = digraph_parser
         self._triple_yielder = triple_yielder
         self._classpointer_parser = classpointers_parser
@@ -37,7 +38,8 @@ class ClassrankerSeveralThresholds(ClassRanker):
 
     def generate_classrank(self):  # Changed
         ### Collecting inputs
-        graph = self._graph_parser.parse_graph(max_edges=self._max_edges)
+        graph = self._graph_parser.parse_graph(max_edges=self._max_edges) if self._pagerank_scores is None \
+            else None
         classpointers_set = self._classpointer_parser.parse_classpointers()
         # damping factor (self)
         # class_threshold(self
@@ -47,7 +49,8 @@ class ClassrankerSeveralThresholds(ClassRanker):
         ### Stage 1 - PageRank
         raw_pagerank = calculate_pagerank(graph=graph,
                                           damping_factor=self._damping_factor,
-                                          max_iter=self._max_iter_pagerank)
+                                          max_iter=self._max_iter_pagerank) if self._pagerank_scores is None \
+            else self._pagerank_scores
         self._number_of_entities = len(raw_pagerank)
 
         ### Stage 2 - ClassDetection

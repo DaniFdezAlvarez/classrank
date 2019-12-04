@@ -13,7 +13,7 @@ class TsvEdgesYielder(object):
         # for an_edge in yielding_func():
         #     yield an_edge
         for a_triple in self._triples_yielder.yield_triples(max_edges):
-            yield a_triple[0], a_triple[1]
+            yield a_triple[0], a_triple[2]
 
 
     # def _yield_edges_from_file(self):
