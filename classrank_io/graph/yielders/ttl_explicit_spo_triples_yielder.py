@@ -11,13 +11,14 @@ _SEPARATOR = " "
 
 class TtlExplicitSpoTriplesYielder(TriplesYielderInterface):
 
-    def __init__(self, source_file, skip_first_line=True):
+    def __init__(self, source_file, skip_first_line=True, there_are_corners=True):
         super(TtlExplicitSpoTriplesYielder, self).__init__()
         self._source_file = source_file
         self._triples_count = 0
         self._triples_ignored = 0
         self._error_count = 0
         self._skip_first_line = skip_first_line
+        self._there_are_corners = there_are_corners
 
     def yield_triples(self, max_triples=-1):
         self._reset_count()
@@ -48,7 +49,7 @@ class TtlExplicitSpoTriplesYielder(TriplesYielderInterface):
         elif not self._is_relevant_triple(pieces[0:3]):
             self._triples_ignored += 1
             return None, None, None
-        elif not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=False):
+        elif not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=self._there_are_corners):
             log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(pieces[2]) + " )")
             self._error_count += 1
             return None, None, None

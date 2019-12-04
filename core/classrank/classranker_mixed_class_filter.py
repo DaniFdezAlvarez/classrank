@@ -15,7 +15,8 @@ class ClassRankerMixedClassFilter(ClassRanker):
 
     def __init__(self, digraph_parser, triple_yielder, classpointers_parser, classrank_formatter,
                  prefix_tuples, list_of_target_classes, known_namespaces_list,
-                 damping_factor=0.85, max_iter_pagerank=100, threshold=15, max_edges=-1):
+                 damping_factor=0.85, max_iter_pagerank=100, threshold=15, max_edges=-1,
+                 pagerank_scores=None):
         super(ClassRankerMixedClassFilter, self).__init__(digraph_parser=digraph_parser,
                                                           triple_yielder=triple_yielder,
                                                           classpointers_parser=classpointers_parser,
@@ -23,7 +24,8 @@ class ClassRankerMixedClassFilter(ClassRanker):
                                                           damping_factor=damping_factor,
                                                           max_iter_pagerank=max_iter_pagerank,
                                                           threshold=threshold,
-                                                          max_edges=max_edges)
+                                                          max_edges=max_edges,
+                                                          pagerank_scores=pagerank_scores)
         self._known_namespaces = known_namespaces_list
         self._set_target_classes = set(list_of_target_classes)
         self._prefixes = build_dict_of_prefixes_from_tuples(prefix_tuples, inverse=False)
@@ -36,13 +38,11 @@ class ClassRankerMixedClassFilter(ClassRanker):
         for a_triple in triple_yielder.yield_triples(max_triples=self._max_edges):
             if a_triple[_P] in classpointers:
                 if self._is_class_from_a_known_workspace(a_triple[_O]):
-                    # print "CONOCIDA!!!", a_triple[_O]
                     self._manage_class_of_known_workspace(class_dict=result,
                                                           a_class=a_triple[_O],
                                                           a_prop=a_triple[_P],
                                                           a_subj=a_triple[_S])
                 else:
-                    # print "No conocida...", a_triple[_O]
                     self._manage_class_of_not_known_workspace(class_dict=result,
                                                               a_class=a_triple[_O],
                                                               a_prop=a_triple[_P],

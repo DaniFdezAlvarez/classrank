@@ -1,4 +1,4 @@
-
+import json
 class PowerIterator(object):
 
     def __init__(self, target_matrix, epsilon, max_iters):
@@ -28,23 +28,20 @@ class PowerIterator(object):
         sink_score = self._target_matrix.sink_score
         ref_to_col_dict = self._target_matrix._cols
         ref_to_degrees_dict = self._target_matrix._dict_degrees
-        # ref_to_dangling_nodes = self._target_matrix.dangling_nodes
-
-
         while self._curr_iters < self._max_iters:
-            print("An iter!", self._curr_iters)
             self._curr_iters += 1
-            new_vec = dict.fromkeys(self._current_vector.keys(), 0)
-            sum_dangling_nodes = sum(self._current_vector[a_dang_node] for a_dang_node in self._target_matrix.dangling_nodes)
+            new_vec = dict.fromkeys(self._current_vector.keys(), 0.0)
+            sum_dangling_nodes = alpha * sum(self._current_vector[a_dang_node] for a_dang_node in self._target_matrix.dangling_nodes)
 
             for n in self._target_matrix.non_dangling_nodes:
                 for a_node_reached_by_n in ref_to_col_dict[n]:
                     new_vec[a_node_reached_by_n] += alpha * \
                                                     self._current_vector[n] * \
-                                                    ref_to_degrees_dict[n]
+                                                    ref_to_degrees_dict[n]  # / n_nodes  # Is this somehow different?
 
             for n in self._current_vector:
-                new_vec[n] += sink_score * (sum_dangling_nodes + d)
+                new_vec[n] += sum_dangling_nodes * sink_score + d * sink_score
+
             if self._converges(new_vec):
                 self._current_vector = new_vec
                 break

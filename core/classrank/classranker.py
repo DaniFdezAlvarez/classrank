@@ -14,7 +14,7 @@ KEY_UNDER_T_CLASS_POINTERS = "under_t_cps"
 
 class ClassRanker(object):
     def __init__(self, digraph_parser, triple_yielder, classpointers_parser, classrank_formatter, damping_factor=0.85,
-                 max_iter_pagerank=100, threshold=15, max_edges=-1):
+                 max_iter_pagerank=100, threshold=15, max_edges=-1, pagerank_scores=None):
         self._graph_parser = digraph_parser
         self._triple_yielder = triple_yielder
         self._classpointer_parser = classpointers_parser
@@ -25,10 +25,12 @@ class ClassRanker(object):
         self._number_of_classes = 0
         self._number_of_entities = 0
         self._max_iter_pagerank = max_iter_pagerank
+        self._pagerank_scores = pagerank_scores
 
     def generate_classrank(self):
         ### Collecting inputs
-        graph = self._graph_parser.parse_graph(max_edges=self._max_edges)
+        graph = self._graph_parser.parse_graph(max_edges=self._max_edges) if self._pagerank_scores is None \
+            else None
         classpointers_set = self._classpointer_parser.parse_classpointers()
         # damping factor (self)
         # threshold (self)
@@ -39,7 +41,8 @@ class ClassRanker(object):
         sys.stdout.flush()
         raw_pagerank = calculate_pagerank(graph=graph,
                                           damping_factor=self._damping_factor,
-                                          max_iter=self._max_iter_pagerank)
+                                          max_iter=self._max_iter_pagerank) if self._pagerank_scores is None \
+            else self._pagerank_scores
         self._number_of_entities = len(raw_pagerank)
 
         ### Stage 2 - ClassDetection
@@ -108,7 +111,6 @@ class ClassRanker(object):
                         # Each instance add its score just once
                         if an_s not in classes_dict[a_class][KEY_INSTANCES]:
                             classes_dict[a_class][KEY_INSTANCES].add(an_s)
-                            classes_dict[a_class][KEY_CLASSRANK] += raw_pagerank[an_s]  # It must be there! KeyError?
                 else:
                     # print(a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p])
                     under_threshold_props.append((a_p,classes_dict[a_class][KEY_CLASS_POINTERS][a_p]))
