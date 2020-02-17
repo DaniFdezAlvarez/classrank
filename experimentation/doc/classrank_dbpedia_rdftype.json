@@ -1,0 +1,6627 @@
+[
+ {
+  "CR_score": 0.1303265903493986,
+  "class": "http://dbpedia.org/ontology/Person",
+  "under_t_cps": {},
+  "INSTANCES": 1416064,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1416064
+  }
+ },
+ {
+  "CR_score": 0.10798777619000388,
+  "class": "http://www.w3.org/2004/02/skos/core#Concept",
+  "under_t_cps": {},
+  "INSTANCES": 80181,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 80181
+  }
+ },
+ {
+  "CR_score": 0.06774805918574918,
+  "class": "http://dbpedia.org/ontology/CareerStation",
+  "under_t_cps": {},
+  "INSTANCES": 977023,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 977023
+  }
+ },
+ {
+  "CR_score": 0.03579518267622356,
+  "class": "http://dbpedia.org/ontology/Settlement",
+  "under_t_cps": {},
+  "INSTANCES": 246163,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 246163
+  }
+ },
+ {
+  "CR_score": 0.03536612912366002,
+  "class": "http://dbpedia.org/ontology/SoccerClub",
+  "under_t_cps": {},
+  "INSTANCES": 21955,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 21955
+  }
+ },
+ {
+  "CR_score": 0.023173134741727167,
+  "class": "http://dbpedia.org/ontology/SoccerPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 117619,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 117619
+  }
+ },
+ {
+  "CR_score": 0.01938089285315459,
+  "class": "http://dbpedia.org/ontology/SportsTeamMember",
+  "under_t_cps": {},
+  "INSTANCES": 318392,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 318392
+  }
+ },
+ {
+  "CR_score": 0.019374393403241985,
+  "class": "http://dbpedia.org/ontology/Country",
+  "under_t_cps": {},
+  "INSTANCES": 3424,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3424
+  }
+ },
+ {
+  "CR_score": 0.01287722381148398,
+  "class": "http://dbpedia.org/ontology/City",
+  "under_t_cps": {},
+  "INSTANCES": 20839,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 20839
+  }
+ },
+ {
+  "CR_score": 0.012817854078192878,
+  "class": "http://dbpedia.org/ontology/PersonFunction",
+  "under_t_cps": {},
+  "INSTANCES": 171413,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 171413
+  }
+ },
+ {
+  "CR_score": 0.01068407380035014,
+  "class": "http://dbpedia.org/ontology/Village",
+  "under_t_cps": {},
+  "INSTANCES": 169128,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 169128
+  }
+ },
+ {
+  "CR_score": 0.010409603680891964,
+  "class": "http://dbpedia.org/ontology/AdministrativeRegion",
+  "under_t_cps": {},
+  "INSTANCES": 21731,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 21731
+  }
+ },
+ {
+  "CR_score": 0.010131246460327275,
+  "class": "http://dbpedia.org/ontology/TimePeriod",
+  "under_t_cps": {},
+  "INSTANCES": 148574,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 148574
+  }
+ },
+ {
+  "CR_score": 0.010116565249155994,
+  "class": "http://dbpedia.org/ontology/Insect",
+  "under_t_cps": {},
+  "INSTANCES": 133586,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 133586
+  }
+ },
+ {
+  "CR_score": 0.009995524506368545,
+  "class": "http://dbpedia.org/ontology/Album",
+  "under_t_cps": {},
+  "INSTANCES": 139078,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 139078
+  }
+ },
+ {
+  "CR_score": 0.009264336976670355,
+  "class": "http://dbpedia.org/ontology/OfficeHolder",
+  "under_t_cps": {},
+  "INSTANCES": 69360,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 69360
+  }
+ },
+ {
+  "CR_score": 0.006919043870231061,
+  "class": "http://dbpedia.org/ontology/Film",
+  "under_t_cps": {},
+  "INSTANCES": 111938,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 111938
+  }
+ },
+ {
+  "CR_score": 0.006536536202529786,
+  "class": "http://dbpedia.org/ontology/Company",
+  "under_t_cps": {},
+  "INSTANCES": 55524,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 55524
+  }
+ },
+ {
+  "CR_score": 0.0060266892768486985,
+  "class": "http://dbpedia.org/ontology/MusicGenre",
+  "under_t_cps": {},
+  "INSTANCES": 1250,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1250
+  }
+ },
+ {
+  "CR_score": 0.005851424477511598,
+  "class": "http://dbpedia.org/ontology/MusicalArtist",
+  "under_t_cps": {},
+  "INSTANCES": 52413,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 52413
+  }
+ },
+ {
+  "CR_score": 0.004914776005798572,
+  "class": "http://dbpedia.org/ontology/Town",
+  "under_t_cps": {},
+  "INSTANCES": 42776,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 42776
+  }
+ },
+ {
+  "CR_score": 0.004283479460792859,
+  "class": "http://dbpedia.org/ontology/Plant",
+  "under_t_cps": {},
+  "INSTANCES": 52839,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 52839
+  }
+ },
+ {
+  "CR_score": 0.003801592719845126,
+  "class": "http://dbpedia.org/ontology/Single",
+  "under_t_cps": {},
+  "INSTANCES": 51413,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 51413
+  }
+ },
+ {
+  "CR_score": 0.003774280694321108,
+  "class": "http://dbpedia.org/ontology/Language",
+  "under_t_cps": {},
+  "INSTANCES": 8140,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 8140
+  }
+ },
+ {
+  "CR_score": 0.003519365036896566,
+  "class": "http://dbpedia.org/ontology/Band",
+  "under_t_cps": {},
+  "INSTANCES": 34594,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 34594
+  }
+ },
+ {
+  "CR_score": 0.003417702923785141,
+  "class": "http://dbpedia.org/ontology/Building",
+  "under_t_cps": {},
+  "INSTANCES": 49989,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 49989
+  }
+ },
+ {
+  "CR_score": 0.003162088382386757,
+  "class": "http://dbpedia.org/ontology/University",
+  "under_t_cps": {},
+  "INSTANCES": 20349,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 20349
+  }
+ },
+ {
+  "CR_score": 0.0027310498760313618,
+  "class": "http://dbpedia.org/ontology/Book",
+  "under_t_cps": {},
+  "INSTANCES": 36851,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 36851
+  }
+ },
+ {
+  "CR_score": 0.0026874325530790426,
+  "class": "http://dbpedia.org/ontology/TelevisionShow",
+  "under_t_cps": {},
+  "INSTANCES": 39209,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 39209
+  }
+ },
+ {
+  "CR_score": 0.0026679530581031736,
+  "class": "http://dbpedia.org/ontology/Athlete",
+  "under_t_cps": {},
+  "INSTANCES": 40730,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 40730
+  }
+ },
+ {
+  "CR_score": 0.0025928991975963144,
+  "class": "http://dbpedia.org/ontology/Writer",
+  "under_t_cps": {},
+  "INSTANCES": 30310,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 30310
+  }
+ },
+ {
+  "CR_score": 0.0024958589219474404,
+  "class": "http://dbpedia.org/ontology/SoccerManager",
+  "under_t_cps": {},
+  "INSTANCES": 18622,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 18622
+  }
+ },
+ {
+  "CR_score": 0.002371729779060971,
+  "class": "http://dbpedia.org/ontology/PoliticalParty",
+  "under_t_cps": {},
+  "INSTANCES": 7706,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 7706
+  }
+ },
+ {
+  "CR_score": 0.002354309646412328,
+  "class": "http://dbpedia.org/ontology/School",
+  "under_t_cps": {},
+  "INSTANCES": 33291,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 33291
+  }
+ },
+ {
+  "CR_score": 0.002352874122484665,
+  "class": "http://dbpedia.org/ontology/Station",
+  "under_t_cps": {},
+  "INSTANCES": 35652,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 35652
+  }
+ },
+ {
+  "CR_score": 0.0023400119383378006,
+  "class": "http://dbpedia.org/ontology/Scientist",
+  "under_t_cps": {},
+  "INSTANCES": 24120,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 24120
+  }
+ },
+ {
+  "CR_score": 0.0022397598152474546,
+  "class": "http://dbpedia.org/ontology/Mollusca",
+  "under_t_cps": {},
+  "INSTANCES": 27691,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 27691
+  }
+ },
+ {
+  "CR_score": 0.002227505038777188,
+  "class": "http://dbpedia.org/ontology/River",
+  "under_t_cps": {},
+  "INSTANCES": 28445,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 28445
+  }
+ },
+ {
+  "CR_score": 0.002217839780868466,
+  "class": "http://dbpedia.org/ontology/MilitaryPerson",
+  "under_t_cps": {},
+  "INSTANCES": 30032,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 30032
+  }
+ },
+ {
+  "CR_score": 0.002059161377344813,
+  "class": "http://dbpedia.org/ontology/Organisation",
+  "under_t_cps": {},
+  "INSTANCES": 18230,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 18230
+  }
+ },
+ {
+  "CR_score": 0.0019689781855945906,
+  "class": "http://dbpedia.org/ontology/Ship",
+  "under_t_cps": {},
+  "INSTANCES": 30283,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 30283
+  }
+ },
+ {
+  "CR_score": 0.0019287914950483565,
+  "class": "http://dbpedia.org/ontology/Legislature",
+  "under_t_cps": {},
+  "INSTANCES": 1817,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1817
+  }
+ },
+ {
+  "CR_score": 0.0018944406697631061,
+  "class": "http://dbpedia.org/ontology/Politician",
+  "under_t_cps": {},
+  "INSTANCES": 20825,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 20825
+  }
+ },
+ {
+  "CR_score": 0.0018899530758748329,
+  "class": "http://dbpedia.org/ontology/SoccerLeague",
+  "under_t_cps": {},
+  "INSTANCES": 2039,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2039
+  }
+ },
+ {
+  "CR_score": 0.0018104091792800086,
+  "class": "http://dbpedia.org/ontology/MilitaryConflict",
+  "under_t_cps": {},
+  "INSTANCES": 14102,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 14102
+  }
+ },
+ {
+  "CR_score": 0.0017973209447162723,
+  "class": "http://dbpedia.org/ontology/Animal",
+  "under_t_cps": {},
+  "INSTANCES": 7089,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 7089
+  }
+ },
+ {
+  "CR_score": 0.001754447270941972,
+  "class": "http://dbpedia.org/ontology/MilitaryUnit",
+  "under_t_cps": {},
+  "INSTANCES": 18626,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 18626
+  }
+ },
+ {
+  "CR_score": 0.001750834935746653,
+  "class": "http://dbpedia.org/ontology/RecordLabel",
+  "under_t_cps": {},
+  "INSTANCES": 3582,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3582
+  }
+ },
+ {
+  "CR_score": 0.0017293014407492387,
+  "class": "http://dbpedia.org/ontology/EthnicGroup",
+  "under_t_cps": {},
+  "INSTANCES": 5391,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5391
+  }
+ },
+ {
+  "CR_score": 0.0016238828681189863,
+  "class": "http://dbpedia.org/ontology/Fish",
+  "under_t_cps": {},
+  "INSTANCES": 18752,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 18752
+  }
+ },
+ {
+  "CR_score": 0.001611268112180351,
+  "class": "http://dbpedia.org/ontology/HistoricPlace",
+  "under_t_cps": {},
+  "INSTANCES": 25303,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 25303
+  }
+ },
+ {
+  "CR_score": 0.001569717662937375,
+  "class": "http://dbpedia.org/ontology/Stadium",
+  "under_t_cps": {},
+  "INSTANCES": 6335,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6335
+  }
+ },
+ {
+  "CR_score": 0.0015180171664114055,
+  "class": "http://dbpedia.org/ontology/BaseballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 22016,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 22016
+  }
+ },
+ {
+  "CR_score": 0.0014971254107809411,
+  "class": "http://dbpedia.org/ontology/Road",
+  "under_t_cps": {},
+  "INSTANCES": 21544,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 21544
+  }
+ },
+ {
+  "CR_score": 0.0014737530011710621,
+  "class": "http://dbpedia.org/ontology/Royalty",
+  "under_t_cps": {},
+  "INSTANCES": 10699,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 10699
+  }
+ },
+ {
+  "CR_score": 0.0014671508881746009,
+  "class": "http://dbpedia.org/ontology/Venue",
+  "under_t_cps": {},
+  "INSTANCES": 6174,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6174
+  }
+ },
+ {
+  "CR_score": 0.001444537048915556,
+  "class": "http://dbpedia.org/ontology/RadioStation",
+  "under_t_cps": {},
+  "INSTANCES": 20373,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 20373
+  }
+ },
+ {
+  "CR_score": 0.001421926968475665,
+  "class": "http://dbpedia.org/ontology/FootballLeagueSeason",
+  "under_t_cps": {},
+  "INSTANCES": 9562,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 9562
+  }
+ },
+ {
+  "CR_score": 0.0013585081673753345,
+  "class": "http://dbpedia.org/ontology/Sound",
+  "under_t_cps": {},
+  "INSTANCES": 10943,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 10943
+  }
+ },
+ {
+  "CR_score": 0.0013521943431854286,
+  "class": "http://dbpedia.org/ontology/NCAATeamSeason",
+  "under_t_cps": {},
+  "INSTANCES": 16795,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 16795
+  }
+ },
+ {
+  "CR_score": 0.001339768709698052,
+  "class": "http://dbpedia.org/ontology/AmericanFootballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 19924,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 19924
+  }
+ },
+ {
+  "CR_score": 0.0012981929592088813,
+  "class": "http://dbpedia.org/ontology/BasketballTeam",
+  "under_t_cps": {},
+  "INSTANCES": 1822,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1822
+  }
+ },
+ {
+  "CR_score": 0.0012974264705871749,
+  "class": "http://dbpedia.org/ontology/VideoGame",
+  "under_t_cps": {},
+  "INSTANCES": 20750,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 20750
+  }
+ },
+ {
+  "CR_score": 0.001278315052004695,
+  "class": "http://dbpedia.org/ontology/Cricketer",
+  "under_t_cps": {},
+  "INSTANCES": 19489,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 19489
+  }
+ },
+ {
+  "CR_score": 0.0012536932613426833,
+  "class": "http://dbpedia.org/ontology/FictionalCharacter",
+  "under_t_cps": {},
+  "INSTANCES": 16826,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 16826
+  }
+ },
+ {
+  "CR_score": 0.0012509950352538415,
+  "class": "http://dbpedia.org/ontology/Software",
+  "under_t_cps": {},
+  "INSTANCES": 12081,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 12081
+  }
+ },
+ {
+  "CR_score": 0.001218559891637176,
+  "class": "http://dbpedia.org/ontology/Event",
+  "under_t_cps": {},
+  "INSTANCES": 19418,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 19418
+  }
+ },
+ {
+  "CR_score": 0.0012020679436230486,
+  "class": "http://dbpedia.org/ontology/Mountain",
+  "under_t_cps": {},
+  "INSTANCES": 17560,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 17560
+  }
+ },
+ {
+  "CR_score": 0.001163745334637047,
+  "class": "http://dbpedia.org/ontology/Fungus",
+  "under_t_cps": {},
+  "INSTANCES": 11096,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 11096
+  }
+ },
+ {
+  "CR_score": 0.0011528785109119804,
+  "class": "http://dbpedia.org/ontology/RugbyPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 16327,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 16327
+  }
+ },
+ {
+  "CR_score": 0.0011168650566200304,
+  "class": "http://dbpedia.org/ontology/IceHockeyPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 15691,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 15691
+  }
+ },
+ {
+  "CR_score": 0.0010721442916598071,
+  "class": "http://dbpedia.org/ontology/TelevisionStation",
+  "under_t_cps": {},
+  "INSTANCES": 8547,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 8547
+  }
+ },
+ {
+  "CR_score": 0.0010694471636045135,
+  "class": "http://dbpedia.org/ontology/Airport",
+  "under_t_cps": {},
+  "INSTANCES": 14813,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 14813
+  }
+ },
+ {
+  "CR_score": 0.0010600790822043078,
+  "class": "http://dbpedia.org/ontology/Artist",
+  "under_t_cps": {},
+  "INSTANCES": 14995,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 14995
+  }
+ },
+ {
+  "CR_score": 0.0010438071109483838,
+  "class": "http://dbpedia.org/ontology/Bird",
+  "under_t_cps": {},
+  "INSTANCES": 12941,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 12941
+  }
+ },
+ {
+  "CR_score": 0.0010302281352678082,
+  "class": "http://dbpedia.org/ontology/AutomobileEngine",
+  "under_t_cps": {},
+  "INSTANCES": 15799,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 15799
+  }
+ },
+ {
+  "CR_score": 0.000991044315016543,
+  "class": "http://dbpedia.org/ontology/BasketballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 12069,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 12069
+  }
+ },
+ {
+  "CR_score": 0.0009725257158945746,
+  "class": "http://dbpedia.org/ontology/MotorsportSeason",
+  "under_t_cps": {},
+  "INSTANCES": 15938,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 15938
+  }
+ },
+ {
+  "CR_score": 0.000962305695120564,
+  "class": "http://dbpedia.org/ontology/MemberOfParliament",
+  "under_t_cps": {},
+  "INSTANCES": 7710,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 7710
+  }
+ },
+ {
+  "CR_score": 0.0009337924397132462,
+  "class": "http://dbpedia.org/ontology/GovernmentAgency",
+  "under_t_cps": {},
+  "INSTANCES": 5803,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5803
+  }
+ },
+ {
+  "CR_score": 0.0009288070173588481,
+  "class": "http://dbpedia.org/ontology/Lake",
+  "under_t_cps": {},
+  "INSTANCES": 13172,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 13172
+  }
+ },
+ {
+  "CR_score": 0.0008511225647027224,
+  "class": "http://dbpedia.org/ontology/AustralianRulesFootballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 12841,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 12841
+  }
+ },
+ {
+  "CR_score": 0.0007908366282570596,
+  "class": "http://dbpedia.org/ontology/Cyclist",
+  "under_t_cps": {},
+  "INSTANCES": 11418,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 11418
+  }
+ },
+ {
+  "CR_score": 0.0007896846267433698,
+  "class": "http://dbpedia.org/ontology/Island",
+  "under_t_cps": {},
+  "INSTANCES": 6277,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6277
+  }
+ },
+ {
+  "CR_score": 0.0007870399072087425,
+  "class": "http://dbpedia.org/ontology/Aircraft",
+  "under_t_cps": {},
+  "INSTANCES": 10757,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 10757
+  }
+ },
+ {
+  "CR_score": 0.000782634231001329,
+  "class": "http://dbpedia.org/ontology/SportsSeason",
+  "under_t_cps": {},
+  "INSTANCES": 12882,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 12882
+  }
+ },
+ {
+  "CR_score": 0.0007116597153152814,
+  "class": "http://dbpedia.org/ontology/Automobile",
+  "under_t_cps": {},
+  "INSTANCES": 9273,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 9273
+  }
+ },
+ {
+  "CR_score": 0.0007021618925984478,
+  "class": "http://dbpedia.org/ontology/ChristianBishop",
+  "under_t_cps": {},
+  "INSTANCES": 9261,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 9261
+  }
+ },
+ {
+  "CR_score": 0.0006880023731138378,
+  "class": "http://dbpedia.org/ontology/CollegeCoach",
+  "under_t_cps": {},
+  "INSTANCES": 7145,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 7145
+  }
+ },
+ {
+  "CR_score": 0.0006874752990800439,
+  "class": "http://dbpedia.org/ontology/Election",
+  "under_t_cps": {},
+  "INSTANCES": 10479,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 10479
+  }
+ },
+ {
+  "CR_score": 0.0006560416521431864,
+  "class": "http://dbpedia.org/ontology/HistoricBuilding",
+  "under_t_cps": {},
+  "INSTANCES": 9583,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 9583
+  }
+ },
+ {
+  "CR_score": 0.0006553994187541351,
+  "class": "http://dbpedia.org/ontology/ChemicalCompound",
+  "under_t_cps": {},
+  "INSTANCES": 10155,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 10155
+  }
+ },
+ {
+  "CR_score": 0.0006435659516978619,
+  "class": "http://dbpedia.org/ontology/TelevisionEpisode",
+  "under_t_cps": {},
+  "INSTANCES": 8934,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 8934
+  }
+ },
+ {
+  "CR_score": 0.0006398218440854196,
+  "class": "http://dbpedia.org/ontology/SoccerClubSeason",
+  "under_t_cps": {},
+  "INSTANCES": 9786,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 9786
+  }
+ },
+ {
+  "CR_score": 0.0006387024227870813,
+  "class": "http://dbpedia.org/ontology/Device",
+  "under_t_cps": {},
+  "INSTANCES": 10142,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 10142
+  }
+ },
+ {
+  "CR_score": 0.0006343324854416816,
+  "class": "http://dbpedia.org/ontology/ProtectedArea",
+  "under_t_cps": {},
+  "INSTANCES": 9289,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 9289
+  }
+ },
+ {
+  "CR_score": 0.000623715431426936,
+  "class": "http://dbpedia.org/ontology/Mammal",
+  "under_t_cps": {},
+  "INSTANCES": 8128,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 8128
+  }
+ },
+ {
+  "CR_score": 0.0005865464034042837,
+  "class": "http://dbpedia.org/ontology/Place",
+  "under_t_cps": {},
+  "INSTANCES": 7354,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 7354
+  }
+ },
+ {
+  "CR_score": 0.0005864128682050148,
+  "class": "http://dbpedia.org/ontology/Species",
+  "under_t_cps": {},
+  "INSTANCES": 6217,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6217
+  }
+ },
+ {
+  "CR_score": 0.0005425464744867079,
+  "class": "http://dbpedia.org/ontology/SoccerTournament",
+  "under_t_cps": {},
+  "INSTANCES": 7287,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 7287
+  }
+ },
+ {
+  "CR_score": 0.0005416703315783744,
+  "class": "http://dbpedia.org/ontology/Sales",
+  "under_t_cps": {},
+  "INSTANCES": 8824,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 8824
+  }
+ },
+ {
+  "CR_score": 0.0005416703315783744,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Situation",
+  "under_t_cps": {},
+  "INSTANCES": 8824,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 8824
+  }
+ },
+ {
+  "CR_score": 0.0005416703315783744,
+  "class": "http://dbpedia.org/ontology/Activity",
+  "under_t_cps": {},
+  "INSTANCES": 8824,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 8824
+  }
+ },
+ {
+  "CR_score": 0.0005416703315783744,
+  "class": "http://www.ontologydesignpatterns.org/ont/d0.owl#Activity",
+  "under_t_cps": {},
+  "INSTANCES": 8824,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 8824
+  }
+ },
+ {
+  "CR_score": 0.0005353532241157221,
+  "class": "http://dbpedia.org/ontology/HockeyTeam",
+  "under_t_cps": {},
+  "INSTANCES": 2475,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2475
+  }
+ },
+ {
+  "CR_score": 0.000533062199801885,
+  "class": "http://dbpedia.org/ontology/TennisPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 5247,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5247
+  }
+ },
+ {
+  "CR_score": 0.0005033327921522937,
+  "class": "http://dbpedia.org/ontology/RailwayLine",
+  "under_t_cps": {},
+  "INSTANCES": 4223,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4223
+  }
+ },
+ {
+  "CR_score": 0.0004890648447257172,
+  "class": "http://dbpedia.org/ontology/Currency",
+  "under_t_cps": {},
+  "INSTANCES": 391,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 391
+  }
+ },
+ {
+  "CR_score": 0.0004857614347678349,
+  "class": "http://dbpedia.org/ontology/Song",
+  "under_t_cps": {},
+  "INSTANCES": 7134,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 7134
+  }
+ },
+ {
+  "CR_score": 0.00048321733858519203,
+  "class": "http://dbpedia.org/ontology/President",
+  "under_t_cps": {},
+  "INSTANCES": 2201,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2201
+  }
+ },
+ {
+  "CR_score": 0.00047778314825600623,
+  "class": "http://dbpedia.org/ontology/SportsTeam",
+  "under_t_cps": {},
+  "INSTANCES": 2443,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2443
+  }
+ },
+ {
+  "CR_score": 0.00047382706271280675,
+  "class": "http://dbpedia.org/ontology/Newspaper",
+  "under_t_cps": {},
+  "INSTANCES": 6889,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6889
+  }
+ },
+ {
+  "CR_score": 0.00047207534297131153,
+  "class": "http://dbpedia.org/ontology/Award",
+  "under_t_cps": {},
+  "INSTANCES": 5549,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5549
+  }
+ },
+ {
+  "CR_score": 0.0004686094676980317,
+  "class": "http://dbpedia.org/ontology/Disease",
+  "under_t_cps": {},
+  "INSTANCES": 6108,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6108
+  }
+ },
+ {
+  "CR_score": 0.0004501868584389942,
+  "class": "http://dbpedia.org/ontology/Swimmer",
+  "under_t_cps": {},
+  "INSTANCES": 6000,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6000
+  }
+ },
+ {
+  "CR_score": 0.00044546722483011157,
+  "class": "http://dbpedia.org/ontology/Publisher",
+  "under_t_cps": {},
+  "INSTANCES": 1489,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1489
+  }
+ },
+ {
+  "CR_score": 0.00043907735809920807,
+  "class": "http://dbpedia.org/ontology/GridironFootballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 6647,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6647
+  }
+ },
+ {
+  "CR_score": 0.0004381519797344644,
+  "class": "http://dbpedia.org/ontology/AcademicJournal",
+  "under_t_cps": {},
+  "INSTANCES": 6970,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6970
+  }
+ },
+ {
+  "CR_score": 0.00043390231309835644,
+  "class": "http://dbpedia.org/ontology/ComicsCreator",
+  "under_t_cps": {},
+  "INSTANCES": 2855,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2855
+  }
+ },
+ {
+  "CR_score": 0.00042983536201943173,
+  "class": "http://dbpedia.org/ontology/Actor",
+  "under_t_cps": {},
+  "INSTANCES": 4814,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4814
+  }
+ },
+ {
+  "CR_score": 0.0004253106679887669,
+  "class": "http://dbpedia.org/ontology/Reptile",
+  "under_t_cps": {},
+  "INSTANCES": 5545,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5545
+  }
+ },
+ {
+  "CR_score": 0.00042260568672212534,
+  "class": "http://dbpedia.org/ontology/Website",
+  "under_t_cps": {},
+  "INSTANCES": 3936,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3936
+  }
+ },
+ {
+  "CR_score": 0.00041648151553026015,
+  "class": "http://dbpedia.org/ontology/Museum",
+  "under_t_cps": {},
+  "INSTANCES": 5686,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5686
+  }
+ },
+ {
+  "CR_score": 0.00041454276067406253,
+  "class": "http://dbpedia.org/ontology/Noble",
+  "under_t_cps": {},
+  "INSTANCES": 5308,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5308
+  }
+ },
+ {
+  "CR_score": 0.000406068150379893,
+  "class": "http://dbpedia.org/ontology/Drug",
+  "under_t_cps": {},
+  "INSTANCES": 6446,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6446
+  }
+ },
+ {
+  "CR_score": 0.0003947209852370676,
+  "class": "http://dbpedia.org/ontology/VolleyballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 6282,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6282
+  }
+ },
+ {
+  "CR_score": 0.0003923737692487031,
+  "class": "http://dbpedia.org/ontology/Magazine",
+  "under_t_cps": {},
+  "INSTANCES": 5248,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5248
+  }
+ },
+ {
+  "CR_score": 0.00038044855034024216,
+  "class": "http://dbpedia.org/ontology/Sport",
+  "under_t_cps": {},
+  "INSTANCES": 259,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 259
+  }
+ },
+ {
+  "CR_score": 0.0003733049338447264,
+  "class": "http://dbpedia.org/ontology/Weapon",
+  "under_t_cps": {},
+  "INSTANCES": 5781,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5781
+  }
+ },
+ {
+  "CR_score": 0.0003720636509143521,
+  "class": "http://dbpedia.org/ontology/PublicTransitSystem",
+  "under_t_cps": {},
+  "INSTANCES": 1900,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1900
+  }
+ },
+ {
+  "CR_score": 0.00036882008713885127,
+  "class": "http://dbpedia.org/ontology/Saint",
+  "under_t_cps": {},
+  "INSTANCES": 3988,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3988
+  }
+ },
+ {
+  "CR_score": 0.00036775104716634205,
+  "class": "http://dbpedia.org/ontology/RugbyClub",
+  "under_t_cps": {},
+  "INSTANCES": 2331,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2331
+  }
+ },
+ {
+  "CR_score": 0.0003616465380576306,
+  "class": "http://dbpedia.org/ontology/Food",
+  "under_t_cps": {},
+  "INSTANCES": 4808,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4808
+  }
+ },
+ {
+  "CR_score": 0.0003575245643165881,
+  "class": "http://dbpedia.org/ontology/MountainRange",
+  "under_t_cps": {},
+  "INSTANCES": 2560,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2560
+  }
+ },
+ {
+  "CR_score": 0.0003514461276261893,
+  "class": "http://dbpedia.org/ontology/OlympicEvent",
+  "under_t_cps": {},
+  "INSTANCES": 4498,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4498
+  }
+ },
+ {
+  "CR_score": 0.0003488193253917482,
+  "class": "http://dbpedia.org/ontology/PowerStation",
+  "under_t_cps": {},
+  "INSTANCES": 5227,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5227
+  }
+ },
+ {
+  "CR_score": 0.00034835129551416907,
+  "class": "http://dbpedia.org/ontology/RaceHorse",
+  "under_t_cps": {},
+  "INSTANCES": 4050,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4050
+  }
+ },
+ {
+  "CR_score": 0.00034491402484124965,
+  "class": "http://dbpedia.org/ontology/Eukaryote",
+  "under_t_cps": {},
+  "INSTANCES": 1191,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1191
+  }
+ },
+ {
+  "CR_score": 0.00034452345818373136,
+  "class": "http://dbpedia.org/ontology/Artwork",
+  "under_t_cps": {},
+  "INSTANCES": 5294,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5294
+  }
+ },
+ {
+  "CR_score": 0.00034334879316842845,
+  "class": "http://dbpedia.org/ontology/BroadcastNetwork",
+  "under_t_cps": {},
+  "INSTANCES": 1318,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1318
+  }
+ },
+ {
+  "CR_score": 0.0003319677449879404,
+  "class": "http://dbpedia.org/ontology/MilitaryStructure",
+  "under_t_cps": {},
+  "INSTANCES": 4507,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4507
+  }
+ },
+ {
+  "CR_score": 0.0003270503229129579,
+  "class": "http://dbpedia.org/ontology/Diocese",
+  "under_t_cps": {},
+  "INSTANCES": 3286,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3286
+  }
+ },
+ {
+  "CR_score": 0.00032591236125776955,
+  "class": "http://dbpedia.org/ontology/Governor",
+  "under_t_cps": {},
+  "INSTANCES": 2751,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2751
+  }
+ },
+ {
+  "CR_score": 0.000322418090072166,
+  "class": "http://dbpedia.org/ontology/ComicsCharacter",
+  "under_t_cps": {},
+  "INSTANCES": 4374,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4374
+  }
+ },
+ {
+  "CR_score": 0.00031591601290544604,
+  "class": "http://dbpedia.org/ontology/Gymnast",
+  "under_t_cps": {},
+  "INSTANCES": 4916,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4916
+  }
+ },
+ {
+  "CR_score": 0.00030616116577944464,
+  "class": "http://dbpedia.org/ontology/Enzyme",
+  "under_t_cps": {},
+  "INSTANCES": 5010,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5010
+  }
+ },
+ {
+  "CR_score": 0.0003060011588195585,
+  "class": "http://dbpedia.org/ontology/Bridge",
+  "under_t_cps": {},
+  "INSTANCES": 4311,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4311
+  }
+ },
+ {
+  "CR_score": 0.00030556935041610087,
+  "class": "http://dbpedia.org/ontology/ReligiousBuilding",
+  "under_t_cps": {},
+  "INSTANCES": 4629,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4629
+  }
+ },
+ {
+  "CR_score": 0.00030500919523487885,
+  "class": "http://dbpedia.org/ontology/InformationAppliance",
+  "under_t_cps": {},
+  "INSTANCES": 1334,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1334
+  }
+ },
+ {
+  "CR_score": 0.0003026789938582736,
+  "class": "http://dbpedia.org/ontology/TelevisionSeason",
+  "under_t_cps": {},
+  "INSTANCES": 3875,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3875
+  }
+ },
+ {
+  "CR_score": 0.00029951891424557906,
+  "class": "http://dbpedia.org/ontology/Arachnid",
+  "under_t_cps": {},
+  "INSTANCES": 4152,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4152
+  }
+ },
+ {
+  "CR_score": 0.0002966092618633108,
+  "class": "http://dbpedia.org/ontology/Wrestler",
+  "under_t_cps": {},
+  "INSTANCES": 3659,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3659
+  }
+ },
+ {
+  "CR_score": 0.000295905686906842,
+  "class": "http://dbpedia.org/ontology/Crustacean",
+  "under_t_cps": {},
+  "INSTANCES": 2798,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2798
+  }
+ },
+ {
+  "CR_score": 0.0002952271076929467,
+  "class": "http://dbpedia.org/ontology/Congressman",
+  "under_t_cps": {},
+  "INSTANCES": 3298,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3298
+  }
+ },
+ {
+  "CR_score": 0.0002865197539854503,
+  "class": "http://dbpedia.org/ontology/Airline",
+  "under_t_cps": {},
+  "INSTANCES": 3927,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3927
+  }
+ },
+ {
+  "CR_score": 0.0002694901184879212,
+  "class": "http://dbpedia.org/ontology/Amphibian",
+  "under_t_cps": {},
+  "INSTANCES": 3587,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3587
+  }
+ },
+ {
+  "CR_score": 0.00026669619979306666,
+  "class": "http://dbpedia.org/ontology/Park",
+  "under_t_cps": {},
+  "INSTANCES": 3977,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3977
+  }
+ },
+ {
+  "CR_score": 0.0002663002385092051,
+  "class": "http://dbpedia.org/ontology/AmericanFootballTeam",
+  "under_t_cps": {},
+  "INSTANCES": 36,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 36
+  }
+ },
+ {
+  "CR_score": 0.0002644565787203485,
+  "class": "http://dbpedia.org/ontology/Architect",
+  "under_t_cps": {},
+  "INSTANCES": 2882,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2882
+  }
+ },
+ {
+  "CR_score": 0.0002638430893254078,
+  "class": "http://dbpedia.org/ontology/ArtistDiscography",
+  "under_t_cps": {},
+  "INSTANCES": 4146,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4146
+  }
+ },
+ {
+  "CR_score": 0.0002626650476441123,
+  "class": "http://dbpedia.org/ontology/Boxer",
+  "under_t_cps": {},
+  "INSTANCES": 4033,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4033
+  }
+ },
+ {
+  "CR_score": 0.0002622832527026281,
+  "class": "http://dbpedia.org/ontology/FootballMatch",
+  "under_t_cps": {},
+  "INSTANCES": 3421,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3421
+  }
+ },
+ {
+  "CR_score": 0.00025969741030427133,
+  "class": "http://dbpedia.org/ontology/GaelicGamesPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 3638,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3638
+  }
+ },
+ {
+  "CR_score": 0.0002586415488983682,
+  "class": "http://dbpedia.org/ontology/FigureSkater",
+  "under_t_cps": {},
+  "INSTANCES": 3224,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3224
+  }
+ },
+ {
+  "CR_score": 0.0002550787922147178,
+  "class": "http://dbpedia.org/ontology/GivenName",
+  "under_t_cps": {},
+  "INSTANCES": 3789,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3789
+  }
+ },
+ {
+  "CR_score": 0.0002545673124963641,
+  "class": "http://dbpedia.org/ontology/Judge",
+  "under_t_cps": {},
+  "INSTANCES": 3081,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3081
+  }
+ },
+ {
+  "CR_score": 0.00025336415527611495,
+  "class": "http://dbpedia.org/ontology/Anime",
+  "under_t_cps": {},
+  "INSTANCES": 4099,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4099
+  }
+ },
+ {
+  "CR_score": 0.0002533411586672118,
+  "class": "http://dbpedia.org/ontology/Constellation",
+  "under_t_cps": {},
+  "INSTANCES": 88,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 88
+  }
+ },
+ {
+  "CR_score": 0.00025273530233345875,
+  "class": "http://dbpedia.org/ontology/BasketballLeague",
+  "under_t_cps": {},
+  "INSTANCES": 555,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 555
+  }
+ },
+ {
+  "CR_score": 0.0002491854777396469,
+  "class": "http://dbpedia.org/ontology/Planet",
+  "under_t_cps": {},
+  "INSTANCES": 3753,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3753
+  }
+ },
+ {
+  "CR_score": 0.0002486030727866127,
+  "class": "http://dbpedia.org/ontology/RacingDriver",
+  "under_t_cps": {},
+  "INSTANCES": 2590,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2590
+  }
+ },
+ {
+  "CR_score": 0.00024472177573300755,
+  "class": "http://dbpedia.org/ontology/Monarch",
+  "under_t_cps": {},
+  "INSTANCES": 2566,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2566
+  }
+ },
+ {
+  "CR_score": 0.00023948373823330307,
+  "class": "http://dbpedia.org/ontology/MartialArtist",
+  "under_t_cps": {},
+  "INSTANCES": 3470,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3470
+  }
+ },
+ {
+  "CR_score": 0.0002353543878040057,
+  "class": "http://dbpedia.org/ontology/Manga",
+  "under_t_cps": {},
+  "INSTANCES": 3671,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3671
+  }
+ },
+ {
+  "CR_score": 0.00023327844161686725,
+  "class": "http://dbpedia.org/ontology/HorseRace",
+  "under_t_cps": {},
+  "INSTANCES": 2444,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2444
+  }
+ },
+ {
+  "CR_score": 0.00023032190171947057,
+  "class": "http://dbpedia.org/ontology/Bacteria",
+  "under_t_cps": {},
+  "INSTANCES": 990,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 990
+  }
+ },
+ {
+  "CR_score": 0.00022692765259508648,
+  "class": "http://dbpedia.org/ontology/NationalFootballLeagueSeason",
+  "under_t_cps": {},
+  "INSTANCES": 3388,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3388
+  }
+ },
+ {
+  "CR_score": 0.0002235144930544981,
+  "class": "http://dbpedia.org/ontology/GolfPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 3288,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3288
+  }
+ },
+ {
+  "CR_score": 0.0002232786693017716,
+  "class": "http://dbpedia.org/ontology/Continent",
+  "under_t_cps": {},
+  "INSTANCES": 18,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 18
+  }
+ },
+ {
+  "CR_score": 0.00021816587308107584,
+  "class": "http://dbpedia.org/ontology/Locomotive",
+  "under_t_cps": {},
+  "INSTANCES": 3477,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3477
+  }
+ },
+ {
+  "CR_score": 0.00021492022835473525,
+  "class": "http://dbpedia.org/ontology/PrimeMinister",
+  "under_t_cps": {},
+  "INSTANCES": 1432,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1432
+  }
+ },
+ {
+  "CR_score": 0.0002142366507017534,
+  "class": "http://dbpedia.org/ontology/Star",
+  "under_t_cps": {},
+  "INSTANCES": 2932,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2932
+  }
+ },
+ {
+  "CR_score": 0.00021393600299031434,
+  "class": "http://dbpedia.org/ontology/Hospital",
+  "under_t_cps": {},
+  "INSTANCES": 3200,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3200
+  }
+ },
+ {
+  "CR_score": 0.00021235736842989153,
+  "class": "http://dbpedia.org/ontology/Dam",
+  "under_t_cps": {},
+  "INSTANCES": 3397,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3397
+  }
+ },
+ {
+  "CR_score": 0.00021093468760992998,
+  "class": "http://dbpedia.org/ontology/SoapCharacter",
+  "under_t_cps": {},
+  "INSTANCES": 2671,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2671
+  }
+ },
+ {
+  "CR_score": 0.00020062088774188569,
+  "class": "http://dbpedia.org/ontology/Year",
+  "under_t_cps": {},
+  "INSTANCES": 2049,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2049
+  }
+ },
+ {
+  "CR_score": 0.00019949620779542343,
+  "class": "http://dbpedia.org/ontology/Mayor",
+  "under_t_cps": {},
+  "INSTANCES": 1926,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1926
+  }
+ },
+ {
+  "CR_score": 0.00019652597650448187,
+  "class": "http://dbpedia.org/ontology/BodyOfWater",
+  "under_t_cps": {},
+  "INSTANCES": 1301,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1301
+  }
+ },
+ {
+  "CR_score": 0.00019357270466641296,
+  "class": "http://dbpedia.org/ontology/CricketTeam",
+  "under_t_cps": {},
+  "INSTANCES": 727,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 727
+  }
+ },
+ {
+  "CR_score": 0.00018192817353979236,
+  "class": "http://dbpedia.org/ontology/ProgrammingLanguage",
+  "under_t_cps": {},
+  "INSTANCES": 1075,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1075
+  }
+ },
+ {
+  "CR_score": 0.0001801972798697098,
+  "class": "http://dbpedia.org/ontology/Philosopher",
+  "under_t_cps": {},
+  "INSTANCES": 1909,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1909
+  }
+ },
+ {
+  "CR_score": 0.0001792132810111333,
+  "class": "http://dbpedia.org/ontology/Skier",
+  "under_t_cps": {},
+  "INSTANCES": 2673,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2673
+  }
+ },
+ {
+  "CR_score": 0.00017792385749406178,
+  "class": "http://dbpedia.org/ontology/ArtificialSatellite",
+  "under_t_cps": {},
+  "INSTANCES": 2477,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2477
+  }
+ },
+ {
+  "CR_score": 0.00017605394790124197,
+  "class": "http://dbpedia.org/ontology/SupremeCourtOfTheUnitedStatesCase",
+  "under_t_cps": {},
+  "INSTANCES": 2813,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2813
+  }
+ },
+ {
+  "CR_score": 0.00017229801383245822,
+  "class": "http://dbpedia.org/ontology/Cleric",
+  "under_t_cps": {},
+  "INSTANCES": 2665,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2665
+  }
+ },
+ {
+  "CR_score": 0.0001718450926600428,
+  "class": "http://dbpedia.org/ontology/Protein",
+  "under_t_cps": {},
+  "INSTANCES": 2747,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2747
+  }
+ },
+ {
+  "CR_score": 0.00017069458858357252,
+  "class": "http://dbpedia.org/ontology/BeautyQueen",
+  "under_t_cps": {},
+  "INSTANCES": 2448,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2448
+  }
+ },
+ {
+  "CR_score": 0.00016614290641855546,
+  "class": "http://dbpedia.org/ontology/ShoppingMall",
+  "under_t_cps": {},
+  "INSTANCES": 2668,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2668
+  }
+ },
+ {
+  "CR_score": 0.00016601965203207435,
+  "class": "http://dbpedia.org/ontology/Colour",
+  "under_t_cps": {},
+  "INSTANCES": 902,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 902
+  }
+ },
+ {
+  "CR_score": 0.0001599847147128231,
+  "class": "http://dbpedia.org/ontology/BaseballTeam",
+  "under_t_cps": {},
+  "INSTANCES": 35,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 35
+  }
+ },
+ {
+  "CR_score": 0.0001593786429847499,
+  "class": "http://dbpedia.org/ontology/Criminal",
+  "under_t_cps": {},
+  "INSTANCES": 2487,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2487
+  }
+ },
+ {
+  "CR_score": 0.00015492813012186058,
+  "class": "http://dbpedia.org/ontology/Non-ProfitOrganisation",
+  "under_t_cps": {},
+  "INSTANCES": 1915,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1915
+  }
+ },
+ {
+  "CR_score": 0.0001540710443262902,
+  "class": "http://dbpedia.org/ontology/Comic",
+  "under_t_cps": {},
+  "INSTANCES": 2296,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2296
+  }
+ },
+ {
+  "CR_score": 0.00015284569879594207,
+  "class": "http://dbpedia.org/ontology/Painter",
+  "under_t_cps": {},
+  "INSTANCES": 2495,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2495
+  }
+ },
+ {
+  "CR_score": 0.00015066066017949944,
+  "class": "http://dbpedia.org/ontology/RailwayStation",
+  "under_t_cps": {},
+  "INSTANCES": 2311,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2311
+  }
+ },
+ {
+  "CR_score": 0.00015020183943377508,
+  "class": "http://dbpedia.org/ontology/Convention",
+  "under_t_cps": {},
+  "INSTANCES": 2268,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2268
+  }
+ },
+ {
+  "CR_score": 0.00014932488228908635,
+  "class": "http://dbpedia.org/ontology/HandballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 2267,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2267
+  }
+ },
+ {
+  "CR_score": 0.00014858432525891572,
+  "class": "http://dbpedia.org/ontology/AustralianFootballTeam",
+  "under_t_cps": {},
+  "INSTANCES": 462,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 462
+  }
+ },
+ {
+  "CR_score": 0.00014563123591012985,
+  "class": "http://dbpedia.org/ontology/Comedian",
+  "under_t_cps": {},
+  "INSTANCES": 1358,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1358
+  }
+ },
+ {
+  "CR_score": 0.0001431417736474761,
+  "class": "http://dbpedia.org/ontology/AnatomicalStructure",
+  "under_t_cps": {},
+  "INSTANCES": 1807,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1807
+  }
+ },
+ {
+  "CR_score": 0.00014246485469495215,
+  "class": "http://dbpedia.org/ontology/IceHockeyLeague",
+  "under_t_cps": {},
+  "INSTANCES": 304,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 304
+  }
+ },
+ {
+  "CR_score": 0.00014032207993023007,
+  "class": "http://dbpedia.org/ontology/TradeUnion",
+  "under_t_cps": {},
+  "INSTANCES": 1704,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1704
+  }
+ },
+ {
+  "CR_score": 0.00013860652912531916,
+  "class": "http://dbpedia.org/ontology/Mineral",
+  "under_t_cps": {},
+  "INSTANCES": 1431,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1431
+  }
+ },
+ {
+  "CR_score": 0.0001359835256671117,
+  "class": "http://dbpedia.org/ontology/Play",
+  "under_t_cps": {},
+  "INSTANCES": 2131,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2131
+  }
+ },
+ {
+  "CR_score": 0.00013188949119548958,
+  "class": "http://dbpedia.org/ontology/BusCompany",
+  "under_t_cps": {},
+  "INSTANCES": 1493,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1493
+  }
+ },
+ {
+  "CR_score": 0.0001314592255609834,
+  "class": "http://dbpedia.org/ontology/Lighthouse",
+  "under_t_cps": {},
+  "INSTANCES": 2132,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2132
+  }
+ },
+ {
+  "CR_score": 0.00011880852925978284,
+  "class": "http://dbpedia.org/ontology/GolfTournament",
+  "under_t_cps": {},
+  "INSTANCES": 1870,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1870
+  }
+ },
+ {
+  "CR_score": 0.00011848457579294159,
+  "class": "http://dbpedia.org/ontology/Holiday",
+  "under_t_cps": {},
+  "INSTANCES": 1138,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1138
+  }
+ },
+ {
+  "CR_score": 0.00011809777450541364,
+  "class": "http://dbpedia.org/ontology/Model",
+  "under_t_cps": {},
+  "INSTANCES": 1728,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1728
+  }
+ },
+ {
+  "CR_score": 0.00011702762757754449,
+  "class": "http://dbpedia.org/ontology/Train",
+  "under_t_cps": {},
+  "INSTANCES": 1592,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1592
+  }
+ },
+ {
+  "CR_score": 0.00011689052415891949,
+  "class": "http://dbpedia.org/ontology/FormulaOneRacer",
+  "under_t_cps": {},
+  "INSTANCES": 791,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 791
+  }
+ },
+ {
+  "CR_score": 0.00011411745324468322,
+  "class": "http://dbpedia.org/ontology/CultivatedVariety",
+  "under_t_cps": {},
+  "INSTANCES": 1764,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1764
+  }
+ },
+ {
+  "CR_score": 0.00011269953567000415,
+  "class": "http://dbpedia.org/ontology/Journalist",
+  "under_t_cps": {},
+  "INSTANCES": 1728,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1728
+  }
+ },
+ {
+  "CR_score": 0.00011050649130959814,
+  "class": "http://dbpedia.org/ontology/MotorcycleRider",
+  "under_t_cps": {},
+  "INSTANCES": 1264,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1264
+  }
+ },
+ {
+  "CR_score": 0.00010858173163386831,
+  "class": "http://dbpedia.org/ontology/HollywoodCartoon",
+  "under_t_cps": {},
+  "INSTANCES": 1677,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1677
+  }
+ },
+ {
+  "CR_score": 0.00010810206814315235,
+  "class": "http://dbpedia.org/ontology/SportsEvent",
+  "under_t_cps": {},
+  "INSTANCES": 1268,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1268
+  }
+ },
+ {
+  "CR_score": 0.00010484069650343418,
+  "class": "http://dbpedia.org/ontology/NascarDriver",
+  "under_t_cps": {},
+  "INSTANCES": 1009,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1009
+  }
+ },
+ {
+  "CR_score": 0.00010475743058937622,
+  "class": "http://dbpedia.org/ontology/Game",
+  "under_t_cps": {},
+  "INSTANCES": 1556,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1556
+  }
+ },
+ {
+  "CR_score": 0.00010369121951351593,
+  "class": "http://dbpedia.org/ontology/Conifer",
+  "under_t_cps": {},
+  "INSTANCES": 732,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 732
+  }
+ },
+ {
+  "CR_score": 0.00010303669127646017,
+  "class": "http://dbpedia.org/ontology/GrandPrix",
+  "under_t_cps": {},
+  "INSTANCES": 1373,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1373
+  }
+ },
+ {
+  "CR_score": 0.00010122737247513109,
+  "class": "http://dbpedia.org/ontology/Senator",
+  "under_t_cps": {},
+  "INSTANCES": 816,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 816
+  }
+ },
+ {
+  "CR_score": 0.00010118900858932338,
+  "class": "http://dbpedia.org/ontology/EurovisionSongContestEntry",
+  "under_t_cps": {},
+  "INSTANCES": 1140,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1140
+  }
+ },
+ {
+  "CR_score": 0.00010101413858604838,
+  "class": "http://dbpedia.org/ontology/WrestlingEvent",
+  "under_t_cps": {},
+  "INSTANCES": 1238,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1238
+  }
+ },
+ {
+  "CR_score": 9.898620476560126e-05,
+  "class": "http://dbpedia.org/ontology/BadmintonPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 1435,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1435
+  }
+ },
+ {
+  "CR_score": 9.842253189499832e-05,
+  "class": "http://dbpedia.org/ontology/Asteroid",
+  "under_t_cps": {},
+  "INSTANCES": 1619,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1619
+  }
+ },
+ {
+  "CR_score": 9.782761498635051e-05,
+  "class": "http://dbpedia.org/ontology/WrittenWork",
+  "under_t_cps": {},
+  "INSTANCES": 1538,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1538
+  }
+ },
+ {
+  "CR_score": 9.64560087634093e-05,
+  "class": "http://dbpedia.org/ontology/BaseballLeague",
+  "under_t_cps": {},
+  "INSTANCES": 335,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 335
+  }
+ },
+ {
+  "CR_score": 9.310426437589048e-05,
+  "class": "http://dbpedia.org/ontology/Castle",
+  "under_t_cps": {},
+  "INSTANCES": 1465,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1465
+  }
+ },
+ {
+  "CR_score": 9.265316531735156e-05,
+  "class": "http://dbpedia.org/ontology/ChessPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 1450,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1450
+  }
+ },
+ {
+  "CR_score": 9.224496041796986e-05,
+  "class": "http://dbpedia.org/ontology/WorldHeritageSite",
+  "under_t_cps": {},
+  "INSTANCES": 941,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 941
+  }
+ },
+ {
+  "CR_score": 9.060059624802026e-05,
+  "class": "http://dbpedia.org/ontology/RugbyLeague",
+  "under_t_cps": {},
+  "INSTANCES": 574,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 574
+  }
+ },
+ {
+  "CR_score": 9.04590313448182e-05,
+  "class": "http://dbpedia.org/ontology/AdultActor",
+  "under_t_cps": {},
+  "INSTANCES": 1319,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1319
+  }
+ },
+ {
+  "CR_score": 9.01297054960678e-05,
+  "class": "http://dbpedia.org/ontology/Musical",
+  "under_t_cps": {},
+  "INSTANCES": 1424,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1424
+  }
+ },
+ {
+  "CR_score": 9.01276197624911e-05,
+  "class": "http://dbpedia.org/ontology/ScreenWriter",
+  "under_t_cps": {},
+  "INSTANCES": 727,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 727
+  }
+ },
+ {
+  "CR_score": 8.857049514877745e-05,
+  "class": "http://dbpedia.org/ontology/Prison",
+  "under_t_cps": {},
+  "INSTANCES": 1385,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1385
+  }
+ },
+ {
+  "CR_score": 8.82428425714787e-05,
+  "class": "http://dbpedia.org/ontology/Economist",
+  "under_t_cps": {},
+  "INSTANCES": 1180,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1180
+  }
+ },
+ {
+  "CR_score": 8.616025825337146e-05,
+  "class": "http://dbpedia.org/ontology/Library",
+  "under_t_cps": {},
+  "INSTANCES": 1060,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1060
+  }
+ },
+ {
+  "CR_score": 8.416858489136623e-05,
+  "class": "http://dbpedia.org/ontology/Hotel",
+  "under_t_cps": {},
+  "INSTANCES": 1321,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1321
+  }
+ },
+ {
+  "CR_score": 8.275465118352416e-05,
+  "class": "http://dbpedia.org/ontology/RadioProgram",
+  "under_t_cps": {},
+  "INSTANCES": 1285,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1285
+  }
+ },
+ {
+  "CR_score": 8.252256032598886e-05,
+  "class": "http://dbpedia.org/ontology/SiteOfSpecialScientificInterest",
+  "under_t_cps": {},
+  "INSTANCES": 1325,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1325
+  }
+ },
+ {
+  "CR_score": 8.1407320319851e-05,
+  "class": "http://dbpedia.org/ontology/Entomologist",
+  "under_t_cps": {},
+  "INSTANCES": 423,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 423
+  }
+ },
+ {
+  "CR_score": 8.138487694598537e-05,
+  "class": "http://dbpedia.org/ontology/Fern",
+  "under_t_cps": {},
+  "INSTANCES": 965,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 965
+  }
+ },
+ {
+  "CR_score": 8.120656381498547e-05,
+  "class": "http://dbpedia.org/ontology/CanadianFootballTeam",
+  "under_t_cps": {},
+  "INSTANCES": 217,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 217
+  }
+ },
+ {
+  "CR_score": 8.087204057047514e-05,
+  "class": "http://dbpedia.org/ontology/Sea",
+  "under_t_cps": {},
+  "INSTANCES": 57,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 57
+  }
+ },
+ {
+  "CR_score": 7.860541231805807e-05,
+  "class": "http://dbpedia.org/ontology/MixedMartialArtsEvent",
+  "under_t_cps": {},
+  "INSTANCES": 1020,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1020
+  }
+ },
+ {
+  "CR_score": 7.689197982335356e-05,
+  "class": "http://dbpedia.org/ontology/Motorcycle",
+  "under_t_cps": {},
+  "INSTANCES": 1077,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1077
+  }
+ },
+ {
+  "CR_score": 7.492283146718682e-05,
+  "class": "http://dbpedia.org/ontology/Restaurant",
+  "under_t_cps": {},
+  "INSTANCES": 1212,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1212
+  }
+ },
+ {
+  "CR_score": 7.490039434431933e-05,
+  "class": "http://dbpedia.org/ontology/Beverage",
+  "under_t_cps": {},
+  "INSTANCES": 939,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 939
+  }
+ },
+ {
+  "CR_score": 7.321264553792356e-05,
+  "class": "http://dbpedia.org/ontology/Curler",
+  "under_t_cps": {},
+  "INSTANCES": 771,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 771
+  }
+ },
+ {
+  "CR_score": 7.320730857879733e-05,
+  "class": "http://dbpedia.org/ontology/TennisTournament",
+  "under_t_cps": {},
+  "INSTANCES": 1131,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1131
+  }
+ },
+ {
+  "CR_score": 7.032899328936663e-05,
+  "class": "http://dbpedia.org/ontology/Religious",
+  "under_t_cps": {},
+  "INSTANCES": 1031,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1031
+  }
+ },
+ {
+  "CR_score": 6.921327614945158e-05,
+  "class": "http://dbpedia.org/ontology/MountainPass",
+  "under_t_cps": {},
+  "INSTANCES": 1093,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1093
+  }
+ },
+ {
+  "CR_score": 6.90804964526782e-05,
+  "class": "http://dbpedia.org/ontology/Cardinal",
+  "under_t_cps": {},
+  "INSTANCES": 776,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 776
+  }
+ },
+ {
+  "CR_score": 6.717095923059901e-05,
+  "class": "http://dbpedia.org/ontology/Volcano",
+  "under_t_cps": {},
+  "INSTANCES": 785,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 785
+  }
+ },
+ {
+  "CR_score": 6.552248760096438e-05,
+  "class": "http://dbpedia.org/ontology/Engineer",
+  "under_t_cps": {},
+  "INSTANCES": 787,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 787
+  }
+ },
+ {
+  "CR_score": 6.453884489689444e-05,
+  "class": "http://dbpedia.org/ontology/College",
+  "under_t_cps": {},
+  "INSTANCES": 89,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 89
+  }
+ },
+ {
+  "CR_score": 6.442423057227478e-05,
+  "class": "http://dbpedia.org/ontology/CyclingRace",
+  "under_t_cps": {},
+  "INSTANCES": 912,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 912
+  }
+ },
+ {
+  "CR_score": 6.436879179935112e-05,
+  "class": "http://dbpedia.org/ontology/FormulaOneTeam",
+  "under_t_cps": {},
+  "INSTANCES": 124,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 124
+  }
+ },
+ {
+  "CR_score": 6.409359143002199e-05,
+  "class": "http://dbpedia.org/ontology/Theatre",
+  "under_t_cps": {},
+  "INSTANCES": 808,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 808
+  }
+ },
+ {
+  "CR_score": 6.316500404561353e-05,
+  "class": "http://dbpedia.org/ontology/FilmFestival",
+  "under_t_cps": {},
+  "INSTANCES": 963,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 963
+  }
+ },
+ {
+  "CR_score": 6.111087455636589e-05,
+  "class": "http://dbpedia.org/ontology/Baronet",
+  "under_t_cps": {},
+  "INSTANCES": 806,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 806
+  }
+ },
+ {
+  "CR_score": 5.7679190889973006e-05,
+  "class": "http://dbpedia.org/ontology/BusinessPerson",
+  "under_t_cps": {},
+  "INSTANCES": 829,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 829
+  }
+ },
+ {
+  "CR_score": 5.666315152891497e-05,
+  "class": "http://dbpedia.org/ontology/Galaxy",
+  "under_t_cps": {},
+  "INSTANCES": 906,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 906
+  }
+ },
+ {
+  "CR_score": 5.266443011269526e-05,
+  "class": "http://dbpedia.org/ontology/Ambassador",
+  "under_t_cps": {},
+  "INSTANCES": 639,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 639
+  }
+ },
+ {
+  "CR_score": 5.206660302048051e-05,
+  "class": "http://dbpedia.org/ontology/FashionDesigner",
+  "under_t_cps": {},
+  "INSTANCES": 769,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 769
+  }
+ },
+ {
+  "CR_score": 5.177520486993805e-05,
+  "class": "http://dbpedia.org/ontology/SpeedwayRider",
+  "under_t_cps": {},
+  "INSTANCES": 704,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 704
+  }
+ },
+ {
+  "CR_score": 5.1619309705279056e-05,
+  "class": "http://dbpedia.org/ontology/OlympicResult",
+  "under_t_cps": {},
+  "INSTANCES": 788,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 788
+  }
+ },
+ {
+  "CR_score": 5.024420342412207e-05,
+  "class": "http://dbpedia.org/ontology/CyclingTeam",
+  "under_t_cps": {},
+  "INSTANCES": 482,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 482
+  }
+ },
+ {
+  "CR_score": 5.018885080625605e-05,
+  "class": "http://dbpedia.org/ontology/Artery",
+  "under_t_cps": {},
+  "INSTANCES": 341,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 341
+  }
+ },
+ {
+  "CR_score": 5.015500188047342e-05,
+  "class": "http://dbpedia.org/ontology/Astronaut",
+  "under_t_cps": {},
+  "INSTANCES": 635,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 635
+  }
+ },
+ {
+  "CR_score": 5.010392142744783e-05,
+  "class": "http://dbpedia.org/ontology/Pope",
+  "under_t_cps": {},
+  "INSTANCES": 389,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 389
+  }
+ },
+ {
+  "CR_score": 4.879739014340503e-05,
+  "class": "http://dbpedia.org/ontology/MythologicalFigure",
+  "under_t_cps": {},
+  "INSTANCES": 775,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 775
+  }
+ },
+ {
+  "CR_score": 4.7834176612243286e-05,
+  "class": "http://dbpedia.org/ontology/RollerCoaster",
+  "under_t_cps": {},
+  "INSTANCES": 753,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 753
+  }
+ },
+ {
+  "CR_score": 4.697970003763506e-05,
+  "class": "http://dbpedia.org/ontology/Racecourse",
+  "under_t_cps": {},
+  "INSTANCES": 269,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 269
+  }
+ },
+ {
+  "CR_score": 4.649875258908101e-05,
+  "class": "http://dbpedia.org/ontology/Historian",
+  "under_t_cps": {},
+  "INSTANCES": 749,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 749
+  }
+ },
+ {
+  "CR_score": 4.5100192069220214e-05,
+  "class": "http://dbpedia.org/ontology/SkiArea",
+  "under_t_cps": {},
+  "INSTANCES": 668,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 668
+  }
+ },
+ {
+  "CR_score": 4.502681681620751e-05,
+  "class": "http://dbpedia.org/ontology/Glacier",
+  "under_t_cps": {},
+  "INSTANCES": 703,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 703
+  }
+ },
+ {
+  "CR_score": 4.4986632630995454e-05,
+  "class": "http://dbpedia.org/ontology/SportsLeague",
+  "under_t_cps": {},
+  "INSTANCES": 394,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 394
+  }
+ },
+ {
+  "CR_score": 4.407576018401327e-05,
+  "class": "http://dbpedia.org/ontology/GreenAlga",
+  "under_t_cps": {},
+  "INSTANCES": 390,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 390
+  }
+ },
+ {
+  "CR_score": 4.377746372107387e-05,
+  "class": "http://dbpedia.org/ontology/PokerPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 684,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 684
+  }
+ },
+ {
+  "CR_score": 4.300174514895898e-05,
+  "class": "http://dbpedia.org/ontology/Skater",
+  "under_t_cps": {},
+  "INSTANCES": 544,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 544
+  }
+ },
+ {
+  "CR_score": 4.230420794034354e-05,
+  "class": "http://dbpedia.org/ontology/Moss",
+  "under_t_cps": {},
+  "INSTANCES": 466,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 466
+  }
+ },
+ {
+  "CR_score": 4.202754638450816e-05,
+  "class": "http://dbpedia.org/ontology/ClassicalMusicComposition",
+  "under_t_cps": {},
+  "INSTANCES": 685,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 685
+  }
+ },
+ {
+  "CR_score": 4.201483252448831e-05,
+  "class": "http://dbpedia.org/ontology/Crater",
+  "under_t_cps": {},
+  "INSTANCES": 682,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 682
+  }
+ },
+ {
+  "CR_score": 4.141248298642592e-05,
+  "class": "http://dbpedia.org/ontology/Chef",
+  "under_t_cps": {},
+  "INSTANCES": 584,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 584
+  }
+ },
+ {
+  "CR_score": 4.103947753212573e-05,
+  "class": "http://dbpedia.org/ontology/HorseRider",
+  "under_t_cps": {},
+  "INSTANCES": 650,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 650
+  }
+ },
+ {
+  "CR_score": 4.070671610459081e-05,
+  "class": "http://dbpedia.org/ontology/DartsPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 584,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 584
+  }
+ },
+ {
+  "CR_score": 4.070617038356986e-05,
+  "class": "http://dbpedia.org/ontology/WomensTennisAssociationTournament",
+  "under_t_cps": {},
+  "INSTANCES": 544,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 544
+  }
+ },
+ {
+  "CR_score": 4.0239498158290015e-05,
+  "class": "http://dbpedia.org/ontology/Monument",
+  "under_t_cps": {},
+  "INSTANCES": 625,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 625
+  }
+ },
+ {
+  "CR_score": 3.987881364333854e-05,
+  "class": "http://dbpedia.org/ontology/Nerve",
+  "under_t_cps": {},
+  "INSTANCES": 327,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 327
+  }
+ },
+ {
+  "CR_score": 3.949306927807754e-05,
+  "class": "http://dbpedia.org/ontology/HandballTeam",
+  "under_t_cps": {},
+  "INSTANCES": 393,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 393
+  }
+ },
+ {
+  "CR_score": 3.8205182631656845e-05,
+  "class": "http://dbpedia.org/ontology/Jockey",
+  "under_t_cps": {},
+  "INSTANCES": 555,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 555
+  }
+ },
+ {
+  "CR_score": 3.777454497450169e-05,
+  "class": "http://dbpedia.org/ontology/Brain",
+  "under_t_cps": {},
+  "INSTANCES": 554,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 554
+  }
+ },
+ {
+  "CR_score": 3.727469378666401e-05,
+  "class": "http://dbpedia.org/ontology/SnookerPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 435,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 435
+  }
+ },
+ {
+  "CR_score": 3.687102563187104e-05,
+  "class": "http://dbpedia.org/ontology/AmusementParkAttraction",
+  "under_t_cps": {},
+  "INSTANCES": 562,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 562
+  }
+ },
+ {
+  "CR_score": 3.682021485217743e-05,
+  "class": "http://dbpedia.org/ontology/VoiceActor",
+  "under_t_cps": {},
+  "INSTANCES": 543,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 543
+  }
+ },
+ {
+  "CR_score": 3.510572014338864e-05,
+  "class": "http://dbpedia.org/ontology/TableTennisPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 524,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 524
+  }
+ },
+ {
+  "CR_score": 3.4660672117899195e-05,
+  "class": "http://dbpedia.org/ontology/Surname",
+  "under_t_cps": {},
+  "INSTANCES": 556,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 556
+  }
+ },
+ {
+  "CR_score": 3.428318496420649e-05,
+  "class": "http://dbpedia.org/ontology/Grape",
+  "under_t_cps": {},
+  "INSTANCES": 385,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 385
+  }
+ },
+ {
+  "CR_score": 3.393884777252555e-05,
+  "class": "http://dbpedia.org/ontology/LacrossePlayer",
+  "under_t_cps": {},
+  "INSTANCES": 432,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 432
+  }
+ },
+ {
+  "CR_score": 3.319137580307253e-05,
+  "class": "http://dbpedia.org/ontology/GolfLeague",
+  "under_t_cps": {},
+  "INSTANCES": 20,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 20
+  }
+ },
+ {
+  "CR_score": 3.317728972649132e-05,
+  "class": "http://dbpedia.org/ontology/EducationalInstitution",
+  "under_t_cps": {},
+  "INSTANCES": 513,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 513
+  }
+ },
+ {
+  "CR_score": 3.2821760078549745e-05,
+  "class": "http://dbpedia.org/ontology/WineRegion",
+  "under_t_cps": {},
+  "INSTANCES": 401,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 401
+  }
+ },
+ {
+  "CR_score": 3.267693934515044e-05,
+  "class": "http://dbpedia.org/ontology/Rocket",
+  "under_t_cps": {},
+  "INSTANCES": 282,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 282
+  }
+ },
+ {
+  "CR_score": 3.25023956553284e-05,
+  "class": "http://dbpedia.org/ontology/Canal",
+  "under_t_cps": {},
+  "INSTANCES": 422,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 422
+  }
+ },
+ {
+  "CR_score": 3.246111016460025e-05,
+  "class": "http://dbpedia.org/ontology/Cave",
+  "under_t_cps": {},
+  "INSTANCES": 525,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 525
+  }
+ },
+ {
+  "CR_score": 3.183088589808579e-05,
+  "class": "http://dbpedia.org/ontology/SumoWrestler",
+  "under_t_cps": {},
+  "INSTANCES": 473,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 473
+  }
+ },
+ {
+  "CR_score": 3.176417210313652e-05,
+  "class": "http://dbpedia.org/ontology/LawFirm",
+  "under_t_cps": {},
+  "INSTANCES": 512,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 512
+  }
+ },
+ {
+  "CR_score": 3.142333525662239e-05,
+  "class": "http://dbpedia.org/ontology/Medician",
+  "under_t_cps": {},
+  "INSTANCES": 496,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 496
+  }
+ },
+ {
+  "CR_score": 3.079009329548063e-05,
+  "class": "http://dbpedia.org/ontology/Fashion",
+  "under_t_cps": {},
+  "INSTANCES": 459,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 459
+  }
+ },
+ {
+  "CR_score": 3.043367458515595e-05,
+  "class": "http://dbpedia.org/ontology/SpeedwayTeam",
+  "under_t_cps": {},
+  "INSTANCES": 112,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 112
+  }
+ },
+ {
+  "CR_score": 3.037278779403589e-05,
+  "class": "http://dbpedia.org/ontology/Photographer",
+  "under_t_cps": {},
+  "INSTANCES": 458,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 458
+  }
+ },
+ {
+  "CR_score": 3.0202132719112735e-05,
+  "class": "http://dbpedia.org/ontology/AmateurBoxer",
+  "under_t_cps": {},
+  "INSTANCES": 448,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 448
+  }
+ },
+ {
+  "CR_score": 2.892597189805411e-05,
+  "class": "http://dbpedia.org/ontology/Archaea",
+  "under_t_cps": {},
+  "INSTANCES": 251,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 251
+  }
+ },
+ {
+  "CR_score": 2.8825635165839527e-05,
+  "class": "http://dbpedia.org/ontology/Vein",
+  "under_t_cps": {},
+  "INSTANCES": 230,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 230
+  }
+ },
+ {
+  "CR_score": 2.7899740325777856e-05,
+  "class": "http://dbpedia.org/ontology/Canoeist",
+  "under_t_cps": {},
+  "INSTANCES": 458,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 458
+  }
+ },
+ {
+  "CR_score": 2.7314100409713624e-05,
+  "class": "http://dbpedia.org/ontology/VolleyballLeague",
+  "under_t_cps": {},
+  "INSTANCES": 133,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 133
+  }
+ },
+ {
+  "CR_score": 2.7247429616144297e-05,
+  "class": "http://dbpedia.org/ontology/SquashPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 422,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 422
+  }
+ },
+ {
+  "CR_score": 2.6983825385161686e-05,
+  "class": "http://dbpedia.org/ontology/MusicFestival",
+  "under_t_cps": {},
+  "INSTANCES": 440,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 440
+  }
+ },
+ {
+  "CR_score": 2.6777468789935247e-05,
+  "class": "http://dbpedia.org/ontology/AmericanFootballLeague",
+  "under_t_cps": {},
+  "INSTANCES": 100,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 100
+  }
+ },
+ {
+  "CR_score": 2.5702956854974505e-05,
+  "class": "http://dbpedia.org/ontology/Bone",
+  "under_t_cps": {},
+  "INSTANCES": 358,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 358
+  }
+ },
+ {
+  "CR_score": 2.5227894739901775e-05,
+  "class": "http://dbpedia.org/ontology/RadioHost",
+  "under_t_cps": {},
+  "INSTANCES": 357,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 357
+  }
+ },
+ {
+  "CR_score": 2.4932684237244715e-05,
+  "class": "http://dbpedia.org/ontology/GolfCourse",
+  "under_t_cps": {},
+  "INSTANCES": 370,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 370
+  }
+ },
+ {
+  "CR_score": 2.3921993328369937e-05,
+  "class": "http://dbpedia.org/ontology/ComicStrip",
+  "under_t_cps": {},
+  "INSTANCES": 390,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 390
+  }
+ },
+ {
+  "CR_score": 2.3404527017991423e-05,
+  "class": "http://dbpedia.org/ontology/Poem",
+  "under_t_cps": {},
+  "INSTANCES": 383,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 383
+  }
+ },
+ {
+  "CR_score": 2.3192756158284443e-05,
+  "class": "http://dbpedia.org/ontology/Olympics",
+  "under_t_cps": {},
+  "INSTANCES": 58,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 58
+  }
+ },
+ {
+  "CR_score": 2.308211317029554e-05,
+  "class": "http://dbpedia.org/ontology/SolarEclipse",
+  "under_t_cps": {},
+  "INSTANCES": 380,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 380
+  }
+ },
+ {
+  "CR_score": 2.2330728517447978e-05,
+  "class": "http://dbpedia.org/ontology/Garden",
+  "under_t_cps": {},
+  "INSTANCES": 358,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 358
+  }
+ },
+ {
+  "CR_score": 2.2320441748879287e-05,
+  "class": "http://dbpedia.org/ontology/BiologicalDatabase",
+  "under_t_cps": {},
+  "INSTANCES": 363,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 363
+  }
+ },
+ {
+  "CR_score": 2.206169679295091e-05,
+  "class": "http://dbpedia.org/ontology/ArchitecturalStructure",
+  "under_t_cps": {},
+  "INSTANCES": 348,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 348
+  }
+ },
+ {
+  "CR_score": 2.1596506653217262e-05,
+  "class": "http://dbpedia.org/ontology/Muscle",
+  "under_t_cps": {},
+  "INSTANCES": 284,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 284
+  }
+ },
+ {
+  "CR_score": 2.1168255161634695e-05,
+  "class": "http://dbpedia.org/ontology/PlayboyPlaymate",
+  "under_t_cps": {},
+  "INSTANCES": 272,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 272
+  }
+ },
+ {
+  "CR_score": 2.0838343594997878e-05,
+  "class": "http://dbpedia.org/ontology/Winery",
+  "under_t_cps": {},
+  "INSTANCES": 338,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 338
+  }
+ },
+ {
+  "CR_score": 2.0765215346799134e-05,
+  "class": "http://dbpedia.org/ontology/HorseTrainer",
+  "under_t_cps": {},
+  "INSTANCES": 243,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 243
+  }
+ },
+ {
+  "CR_score": 1.9821328906129595e-05,
+  "class": "http://dbpedia.org/ontology/ClassicalMusicArtist",
+  "under_t_cps": {},
+  "INSTANCES": 322,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 322
+  }
+ },
+ {
+  "CR_score": 1.9737558924316735e-05,
+  "class": "http://dbpedia.org/ontology/RoadTunnel",
+  "under_t_cps": {},
+  "INSTANCES": 309,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 309
+  }
+ },
+ {
+  "CR_score": 1.954820252603952e-05,
+  "class": "http://dbpedia.org/ontology/Cycad",
+  "under_t_cps": {},
+  "INSTANCES": 227,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 227
+  }
+ },
+ {
+  "CR_score": 1.8993446236833257e-05,
+  "class": "http://dbpedia.org/ontology/Poet",
+  "under_t_cps": {},
+  "INSTANCES": 307,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 307
+  }
+ },
+ {
+  "CR_score": 1.896609802517859e-05,
+  "class": "http://dbpedia.org/ontology/LaunchPad",
+  "under_t_cps": {},
+  "INSTANCES": 91,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 91
+  }
+ },
+ {
+  "CR_score": 1.8958276136620494e-05,
+  "class": "http://dbpedia.org/ontology/Cheese",
+  "under_t_cps": {},
+  "INSTANCES": 309,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 309
+  }
+ },
+ {
+  "CR_score": 1.8816582452389028e-05,
+  "class": "http://dbpedia.org/ontology/NetballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 261,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 261
+  }
+ },
+ {
+  "CR_score": 1.84958028280031e-05,
+  "class": "http://dbpedia.org/ontology/Bodybuilder",
+  "under_t_cps": {},
+  "INSTANCES": 276,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 276
+  }
+ },
+ {
+  "CR_score": 1.8269539121035193e-05,
+  "class": "http://dbpedia.org/ontology/CricketGround",
+  "under_t_cps": {},
+  "INSTANCES": 260,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 260
+  }
+ },
+ {
+  "CR_score": 1.7976526497715348e-05,
+  "class": "http://dbpedia.org/ontology/MusicalWork",
+  "under_t_cps": {},
+  "INSTANCES": 282,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 282
+  }
+ },
+ {
+  "CR_score": 1.781006072363474e-05,
+  "class": "http://dbpedia.org/ontology/Brewery",
+  "under_t_cps": {},
+  "INSTANCES": 280,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 280
+  }
+ },
+ {
+  "CR_score": 1.7538306865572226e-05,
+  "class": "http://dbpedia.org/ontology/Rower",
+  "under_t_cps": {},
+  "INSTANCES": 279,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 279
+  }
+ },
+ {
+  "CR_score": 1.730962972852068e-05,
+  "class": "http://dbpedia.org/ontology/Embryology",
+  "under_t_cps": {},
+  "INSTANCES": 185,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 185
+  }
+ },
+ {
+  "CR_score": 1.6853171464713748e-05,
+  "class": "http://dbpedia.org/ontology/BaseballSeason",
+  "under_t_cps": {},
+  "INSTANCES": 263,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 263
+  }
+ },
+ {
+  "CR_score": 1.549310532807544e-05,
+  "class": "http://dbpedia.org/ontology/BeachVolleyballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 216,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 216
+  }
+ },
+ {
+  "CR_score": 1.4856240727160365e-05,
+  "class": "http://dbpedia.org/ontology/AnimangaCharacter",
+  "under_t_cps": {},
+  "INSTANCES": 226,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 226
+  }
+ },
+ {
+  "CR_score": 1.3140166609157671e-05,
+  "class": "http://dbpedia.org/ontology/RoadJunction",
+  "under_t_cps": {},
+  "INSTANCES": 194,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 194
+  }
+ },
+ {
+  "CR_score": 1.2936530987462947e-05,
+  "class": "http://dbpedia.org/ontology/Guitarist",
+  "under_t_cps": {},
+  "INSTANCES": 147,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 147
+  }
+ },
+ {
+  "CR_score": 1.2385032955780299e-05,
+  "class": "http://dbpedia.org/ontology/Chancellor",
+  "under_t_cps": {},
+  "INSTANCES": 81,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 81
+  }
+ },
+ {
+  "CR_score": 1.2135516683634755e-05,
+  "class": "http://dbpedia.org/ontology/NationalCollegiateAthleticAssociationAthlete",
+  "under_t_cps": {},
+  "INSTANCES": 193,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 193
+  }
+ },
+ {
+  "CR_score": 1.1892744194404064e-05,
+  "class": "http://dbpedia.org/ontology/ClubMoss",
+  "under_t_cps": {},
+  "INSTANCES": 115,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 115
+  }
+ },
+ {
+  "CR_score": 1.1778269620860699e-05,
+  "class": "http://dbpedia.org/ontology/FloweringPlant",
+  "under_t_cps": {},
+  "INSTANCES": 114,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 114
+  }
+ },
+ {
+  "CR_score": 1.1332136208431667e-05,
+  "class": "http://dbpedia.org/ontology/RailwayTunnel",
+  "under_t_cps": {},
+  "INSTANCES": 177,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 177
+  }
+ },
+ {
+  "CR_score": 1.1261820598672388e-05,
+  "class": "http://dbpedia.org/ontology/Ligament",
+  "under_t_cps": {},
+  "INSTANCES": 183,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 183
+  }
+ },
+ {
+  "CR_score": 9.069457320581768e-06,
+  "class": "http://dbpedia.org/ontology/Valley",
+  "under_t_cps": {},
+  "INSTANCES": 134,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 134
+  }
+ },
+ {
+  "CR_score": 8.946699909977659e-06,
+  "class": "http://dbpedia.org/ontology/LacrosseLeague",
+  "under_t_cps": {},
+  "INSTANCES": 55,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 55
+  }
+ },
+ {
+  "CR_score": 8.641061983670376e-06,
+  "class": "http://dbpedia.org/ontology/VolleyballCoach",
+  "under_t_cps": {},
+  "INSTANCES": 76,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 76
+  }
+ },
+ {
+  "CR_score": 8.329448081360847e-06,
+  "class": "http://dbpedia.org/ontology/Presenter",
+  "under_t_cps": {},
+  "INSTANCES": 116,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 116
+  }
+ },
+ {
+  "CR_score": 8.304041528024748e-06,
+  "class": "http://dbpedia.org/ontology/HandballLeague",
+  "under_t_cps": {},
+  "INSTANCES": 39,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 39
+  }
+ },
+ {
+  "CR_score": 7.4767986014305185e-06,
+  "class": "http://dbpedia.org/ontology/Lymph",
+  "under_t_cps": {},
+  "INSTANCES": 77,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 77
+  }
+ },
+ {
+  "CR_score": 7.190990496466947e-06,
+  "class": "http://dbpedia.org/ontology/CanadianFootballLeague",
+  "under_t_cps": {},
+  "INSTANCES": 7,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 7
+  }
+ },
+ {
+  "CR_score": 6.8975016606268765e-06,
+  "class": "http://dbpedia.org/ontology/ComedyGroup",
+  "under_t_cps": {},
+  "INSTANCES": 75,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 75
+  }
+ },
+ {
+  "CR_score": 6.748143644766646e-06,
+  "class": "http://dbpedia.org/ontology/YearInSpaceflight",
+  "under_t_cps": {},
+  "INSTANCES": 60,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 60
+  }
+ },
+ {
+  "CR_score": 6.214729227993478e-06,
+  "class": "http://dbpedia.org/ontology/Murderer",
+  "under_t_cps": {},
+  "INSTANCES": 99,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 99
+  }
+ },
+ {
+  "CR_score": 5.6625168373615285e-06,
+  "class": "http://dbpedia.org/ontology/Tunnel",
+  "under_t_cps": {},
+  "INSTANCES": 91,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 91
+  }
+ },
+ {
+  "CR_score": 4.990309485676308e-06,
+  "class": "http://dbpedia.org/ontology/SpeedwayLeague",
+  "under_t_cps": {},
+  "INSTANCES": 18,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 18
+  }
+ },
+ {
+  "CR_score": 4.954336100348294e-06,
+  "class": "http://dbpedia.org/ontology/WaterRide",
+  "under_t_cps": {},
+  "INSTANCES": 79,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 79
+  }
+ },
+ {
+  "CR_score": 4.522387995673394e-06,
+  "class": "http://dbpedia.org/ontology/PoloLeague",
+  "under_t_cps": {},
+  "INSTANCES": 32,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 32
+  }
+ },
+ {
+  "CR_score": 3.871955373873148e-06,
+  "class": "http://dbpedia.org/ontology/TelevisionHost",
+  "under_t_cps": {},
+  "INSTANCES": 55,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 55
+  }
+ },
+ {
+  "CR_score": 3.7798209957238035e-06,
+  "class": "http://dbpedia.org/ontology/MotorcycleRacingLeague",
+  "under_t_cps": {},
+  "INSTANCES": 19,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 19
+  }
+ },
+ {
+  "CR_score": 3.666015303475472e-06,
+  "class": "http://dbpedia.org/ontology/TennisLeague",
+  "under_t_cps": {},
+  "INSTANCES": 19,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 19
+  }
+ },
+ {
+  "CR_score": 3.644336832100298e-06,
+  "class": "http://dbpedia.org/ontology/SnookerChamp",
+  "under_t_cps": {},
+  "INSTANCES": 28,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 28
+  }
+ },
+ {
+  "CR_score": 3.3871455561711127e-06,
+  "class": "http://dbpedia.org/ontology/Stream",
+  "under_t_cps": {},
+  "INSTANCES": 47,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 47
+  }
+ },
+ {
+  "CR_score": 3.2000779445951894e-06,
+  "class": "http://dbpedia.org/ontology/SpaceStation",
+  "under_t_cps": {},
+  "INSTANCES": 32,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 32
+  }
+ },
+ {
+  "CR_score": 2.5908428176968117e-06,
+  "class": "http://dbpedia.org/ontology/Novel",
+  "under_t_cps": {},
+  "INSTANCES": 27,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 27
+  }
+ },
+ {
+  "CR_score": 2.4398613545457513e-06,
+  "class": "http://dbpedia.org/ontology/SoftballLeague",
+  "under_t_cps": {},
+  "INSTANCES": 28,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 28
+  }
+ },
+ {
+  "CR_score": 2.2638578517819555e-06,
+  "class": "http://dbpedia.org/ontology/Gnetophytes",
+  "under_t_cps": {},
+  "INSTANCES": 36,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 36
+  }
+ },
+ {
+  "CR_score": 2.065241704710646e-06,
+  "class": "http://dbpedia.org/ontology/SnookerWorldRanking",
+  "under_t_cps": {},
+  "INSTANCES": 34,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 34
+  }
+ },
+ {
+  "CR_score": 2.0395340952556445e-06,
+  "class": "http://dbpedia.org/ontology/FieldHockeyLeague",
+  "under_t_cps": {},
+  "INSTANCES": 28,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 28
+  }
+ },
+ {
+  "CR_score": 1.8277073553399694e-06,
+  "class": "http://dbpedia.org/ontology/InlineHockeyLeague",
+  "under_t_cps": {},
+  "INSTANCES": 21,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 21
+  }
+ },
+ {
+  "CR_score": 1.5435609346678233e-06,
+  "class": "http://dbpedia.org/ontology/NationalFootballLeagueEvent",
+  "under_t_cps": {},
+  "INSTANCES": 9,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 9
+  }
+ },
+ {
+  "CR_score": 1.4710651129937317e-06,
+  "class": "http://dbpedia.org/ontology/WaterwayTunnel",
+  "under_t_cps": {},
+  "INSTANCES": 24,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 24
+  }
+ },
+ {
+  "CR_score": 1.365619078423916e-06,
+  "class": "http://dbpedia.org/ontology/SpaceShuttle",
+  "under_t_cps": {},
+  "INSTANCES": 18,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 18
+  }
+ },
+ {
+  "CR_score": 1.0590207792273047e-06,
+  "class": "http://dbpedia.org/ontology/CricketLeague",
+  "under_t_cps": {},
+  "INSTANCES": 10,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 10
+  }
+ },
+ {
+  "CR_score": 7.333724393681703e-07,
+  "class": "http://dbpedia.org/ontology/AutoRacingLeague",
+  "under_t_cps": {},
+  "INSTANCES": 6,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 6
+  }
+ },
+ {
+  "CR_score": 6.716085035183595e-07,
+  "class": "http://dbpedia.org/ontology/ResearchProject",
+  "under_t_cps": {},
+  "INSTANCES": 11,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 11
+  }
+ },
+ {
+  "CR_score": 5.022106714938735e-07,
+  "class": "http://dbpedia.org/ontology/Ginkgo",
+  "under_t_cps": {},
+  "INSTANCES": 7,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 7
+  }
+ },
+ {
+  "CR_score": 4.946970762664516e-07,
+  "class": "http://dbpedia.org/ontology/AustralianFootballLeague",
+  "under_t_cps": {},
+  "INSTANCES": 5,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5
+  }
+ },
+ {
+  "CR_score": 3.5495395714373105e-07,
+  "class": "http://dbpedia.org/ontology/Priest",
+  "under_t_cps": {},
+  "INSTANCES": 2,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2
+  }
+ },
+ {
+  "CR_score": 3.117266931035115e-07,
+  "class": "http://dbpedia.org/ontology/Spacecraft",
+  "under_t_cps": {},
+  "INSTANCES": 5,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5
+  }
+ },
+ {
+  "CR_score": 3.084057467277872e-07,
+  "class": "http://dbpedia.org/ontology/Skyscraper",
+  "under_t_cps": {},
+  "INSTANCES": 5,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5
+  }
+ },
+ {
+  "CR_score": 2.9931796570451223e-07,
+  "class": "http://dbpedia.org/ontology/VideogamesLeague",
+  "under_t_cps": {},
+  "INSTANCES": 3,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3
+  }
+ },
+ {
+  "CR_score": 2.494669829584923e-07,
+  "class": "http://dbpedia.org/ontology/CurlingLeague",
+  "under_t_cps": {},
+  "INSTANCES": 3,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3
+  }
+ },
+ {
+  "CR_score": 1.87744647429592e-07,
+  "class": "http://dbpedia.org/ontology/MouseGeneLocation",
+  "under_t_cps": {},
+  "INSTANCES": 2,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2
+  }
+ },
+ {
+  "CR_score": 1.822272092391746e-07,
+  "class": "http://dbpedia.org/ontology/Farmer",
+  "under_t_cps": {},
+  "INSTANCES": 3,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3
+  }
+ },
+ {
+  "CR_score": 1.6825568138867213e-07,
+  "class": "http://dbpedia.org/ontology/Lawyer",
+  "under_t_cps": {},
+  "INSTANCES": 2,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2
+  }
+ },
+ {
+  "CR_score": 1.559055025733111e-07,
+  "class": "http://dbpedia.org/ontology/MouseGene",
+  "under_t_cps": {},
+  "INSTANCES": 2,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2
+  }
+ },
+ {
+  "CR_score": 1.559055025733111e-07,
+  "class": "http://dbpedia.org/ontology/HumanGeneLocation",
+  "under_t_cps": {},
+  "INSTANCES": 2,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2
+  }
+ },
+ {
+  "CR_score": 1.2269965662467531e-07,
+  "class": "http://dbpedia.org/ontology/MixedMartialArtsLeague",
+  "under_t_cps": {},
+  "INSTANCES": 1,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1
+  }
+ },
+ {
+  "CR_score": 1.2148480615944973e-07,
+  "class": "http://dbpedia.org/ontology/HumanGene",
+  "under_t_cps": {},
+  "INSTANCES": 2,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2
+  }
+ },
+ {
+  "CR_score": 1.0379417151592607e-07,
+  "class": "http://dbpedia.org/ontology/Singer",
+  "under_t_cps": {},
+  "INSTANCES": 1,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1
+  }
+ },
+ {
+  "CR_score": 6.403227753336405e-08,
+  "class": "http://dbpedia.org/ontology/BowlingLeague",
+  "under_t_cps": {},
+  "INSTANCES": 1,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1
+  }
+ },
+ {
+  "CR_score": 6.074240307972487e-08,
+  "class": "http://dbpedia.org/ontology/ChemicalElement",
+  "under_t_cps": {},
+  "INSTANCES": 1,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1
+  }
+ },
+ {
+  "CR_score": 6.074240307972487e-08,
+  "class": "http://dbpedia.org/ontology/BoxingLeague",
+  "under_t_cps": {},
+  "INSTANCES": 1,
+  "cps": {
+   "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1
+  }
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/squareKilometre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Gene",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/squareMetre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Organism",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ControlledDesignationOfOriginWine",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/cubicCentimetre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Treadmill",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Region",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Sculpture",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GeopoliticalOrganisation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Depth",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HistoricalSettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/AustrianSettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Quality",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ProtohistoricalPeriod",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PolishKing",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Ideology",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GeneLocation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Area",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MovieGenre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Painting",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/gramPerKilometre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/StillImage",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/RadioControlledRacingLeague",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Synagogue",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SoccerLeagueSeason",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Port",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Guitar",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/MusicGroup",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NaturalPlace",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/RaceTrack",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/day",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://xmlns.com/foaf/0.1/Document",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PoliticalFunction",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Humorist",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/inhabitantsPerSquareKilometre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Blazon",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MovingImage",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Sculpture",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Description",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Configuration",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PoliticianSpouse",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/TelevisionStation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/LebanonSettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/ShoppingCenter",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/AustrianAdministrativeRegion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#BiologicalObject",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Street",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Dog",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationEntity",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/VicePresident",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Instrument",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Deputy",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/AmericanFootballCoach",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Openswarm",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Surfer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/%3Chttp://purl.org/vocab/bio/0.1/Birth%3E",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MicroRegion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/kilogram",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Person",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.w3.org/2004/02/skos/core#OrderedCollection",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Group",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NorwaySettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SpaceRegion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/kilogramPerCubicMetre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Province",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SportCompetitionResult",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Parliament",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SwitzerlandSettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/CanadianFootballPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/TermOfOffice",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GraveMonument",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/WindMotor",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Wikidata:Q11424",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Linguist",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://wikidata.dbpedia.org/resource/Q482994",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Birth",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/LiechtensteinSettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Continent",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Producer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Beer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SerialKiller",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/DocumentType",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Database",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/WebPage",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Listen",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NobleFamily",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/RecordOffice",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://purl.org/ontology/bibo/Note",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Employer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/SportsTeam",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Square",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Municipality",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SportsManager",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/MusicAlbum",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/litre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/StatedResolution",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Temple",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Broadcaster",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Profession",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Decoration",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Zoo",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/BackScene",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Cartoon",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MotocycleRacer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Regency",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/City",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/cubicMetre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Painting",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Comment",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/OrganisationMember",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SongWriter",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/d0.owl#Location",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Drama",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/LineOfFashion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/CityDistrict",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/TelevisionShow,_FictionalCharacter",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Community",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Referee",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Diploma",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Tower",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SambaSchool",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SportsTeamSeason",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Church",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PlayWright",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Mountain,Volcano",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GovernmentalAdministrativeRegion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/RouteOfTransportation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MotorsportRacer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Watermill",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/kelvin",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Entity",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PublicService",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Tournament",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HistoricalDistrict",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/fuelType",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Media",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/State",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Park",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Atoll",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PlanExecution",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HumanDevelopmentIndex",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Fencer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/TopicalConcept",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Canal",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/WaterTower",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#UnitOfMeasure",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/AthleticsPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Contest",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SportFacility",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Demographics",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/BullFighter",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/BrownDwarf",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Monastery",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PersonalEvent",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Book",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Archive",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Host",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NaturalRegion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Aristocrat",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PopulatedPlace",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://wikidata.dbpedia.org/resource/Q5",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/CyclingCompetition",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Meeting",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/CollegeOrUniversity",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MovieDirector",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Opera",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MetroStation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/RomanEmperor",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SkiResort",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/LunarCrater",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/TheatreDirector",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Intercommunality",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Lieutenant",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/TrackList",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/LegalCase",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SubMunicipality",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HorseRiding",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GatedCommunity",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/CyclingLeague",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Mountain",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Dancer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/CapitalOfRegion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Death",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/DigitalCamera",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Movie",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#ChemicalObject",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/VicePrimeMinister",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HungarySettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Desert",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Memorial",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Resume",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Family",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MilitaryConflict,_AdministrativeRegion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Collective",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PublicServiceOutput",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Altitude",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NobelPrize",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Project",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/BritishRoyalty",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Wikidata:Q532",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Manhua",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/metre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GovernmentType",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/FormerMunicipality",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/CreativeWork",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/cubicMetrePerSecond",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Polyhedron",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Swarm",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/SkiResort",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Imdb",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Letter",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Diocese,_Parish",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ArchitecturalStructure,_Monument",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/millimetre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Professor",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Airport",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/BoardGame",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Territory",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MultiVolumePublication",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SystemOfLaw",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Celebrity",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Museum",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/RallyDriver",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/RiverBodyOfWater",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ClericalAdministrativeRegion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MusicDirector",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/District",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Thing",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Egyptologist",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ElectionDiagram",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/d0.owl#CognitiveEntity",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Product",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Work",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GrossDomesticProductPerCapita",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MeanOfTransportation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Locality",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Archipelago",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NuclearPowerStation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HistoricalProvince",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HotSpring",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Person,_PersonalEvent",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/TVEpisode",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Organisation,_Parish",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Psychologist",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/LandmarksOrHistoricalBuildings",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/RomaniaSettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/RadioStation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/megabyte",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/TelevisionDirector",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://purl.org/vocommons/voaf#Vocabulary",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SocietalEvent",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Parish",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Biomolecule",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/SportsEvent",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Organization",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/AlgerianSettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Annotation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Deanery",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://xmlns.com/foaf/0.1/Person",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/newtonMetre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ChemicalSubstance",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Concept",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Organ",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/MusicComposer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Cemetery",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Windmill",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Reference",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#DesignedArtifact",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/FormulaOneRacing",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Casino",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/DistrictWaterBoard",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Flag",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Wine",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/BelgiumSettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Hospital",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Population",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Agent",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Gate",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Mill",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#SocialPerson",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Abbey",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NaturalEvent",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Country",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Capital",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Arena",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Mosque",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Globularswarm",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Name",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://purl.org/ontology/bibo/Book",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HistoricalCountry",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/OldTerritory",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/GovernmentOrganization",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/WaterPoloPlayer",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Monastry",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/kilometrePerHour",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PrehistoricalPeriod",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Type",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Divorce",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Place",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ChartsPlacements",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Factory",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ChristianPatriarch",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/kilometrePerSecond",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Restaurant",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/cubicKilometre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Athletics",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/BoxingStyle",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ClericalOrder",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PaintballLeague",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Hotel",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Festival",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Marriage",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Pyramid",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/AdministrativeArea",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Installment",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#FunctionalSubstance",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/hour",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Camera",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Role",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Statistic",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Language",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Taxon",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Athlete,_CareerStation",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Case",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Image",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PublicServiceInput",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/BoxingCategory",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://purl.org/NET/cidoc-crm/core#E4_Period",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/StadiumOrArena",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Sculptor",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Library",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Department",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Collection",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/DisneyCharacter",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/CelestialBody",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/Event",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/openswarm",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Manhwa",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Coach",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/List",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Lock",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Agglomeration",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://wikidata.dbpedia.org/resource/Q215627",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HistoricalRegion",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Prefecture",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Satellite",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/centimetre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/kilowatt",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Document",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/TeamMember",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/engineConfiguration",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NoteworthyPartOfBuilding",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Infrastructure",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GermanSettlement",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PeriodicalLiterature",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GeologicalPeriod",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/valvetrain",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/HistoricalPeriod",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/File",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Boxing",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NationalAnthem",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Competition",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Archeologist",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Unknown",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Shrine",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/kilometre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/School",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#InformationObject",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/ChristianDoctrine",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Race",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Comics",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/minute",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Tax",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/UnitOfWork",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NationalSoccerClub",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/LightNovel",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PenaltyShootOut",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/SpaceMission",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/CollectionOfValuables",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/GrossDomesticProduct",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#PhysicalBody",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/BodyOfWater",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Bullfighter",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/LifeCycleEvent",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Vicar",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/PeriodOfArtisticStyle",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Ocean",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/NarutoCharacter",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/SeaBodyOfWater",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Deity",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/TelevisionPersonality",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/LakeBodyOfWater",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Genre",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/MusicRecording",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/wgs84_pos:SpatialThing",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Parish,_Deanery",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/OverseasDepartment",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/Instrumentalist",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/datatype/second",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://dbpedia.org/ontology/CountrySeat",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ },
+ {
+  "CR_score": 0,
+  "class": "http://schema.org/EducationalOrganization",
+  "under_t_cps": {},
+  "INSTANCES": 0,
+  "cps": {}
+ }
+]
