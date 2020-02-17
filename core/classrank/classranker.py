@@ -111,7 +111,9 @@ class ClassRanker(object):
                         # Each instance add its score just once
                         if an_s not in classes_dict[a_class][KEY_INSTANCES]:
                             classes_dict[a_class][KEY_INSTANCES].add(an_s)
+                            classes_dict[a_class][KEY_CLASSRANK] += raw_pagerank[an_s]
                 else:
+                    
                     # print(a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p])
                     under_threshold_props.append((a_p,classes_dict[a_class][KEY_CLASS_POINTERS][a_p]))
                     # target_obj = classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
