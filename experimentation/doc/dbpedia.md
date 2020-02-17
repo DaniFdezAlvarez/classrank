@@ -13,21 +13,21 @@ We have applied ClassRank over the English chapter of DBpedia and compare the re
 
 We applied different techniques to rank the importance of the classes in the [DBpedia ontology](). 
 
-* [ClassRank](). Json file with a root list which contains elements sorted by its ClassRank score in decreasing order (most important ones at the top). Each class is an object in the list. The classrank score of each class appers associated to the key "CR_score". ClassRank settings: 
+* [ClassRank](classrank_dbpedia_rdftype.json). Json file with a root list which contains elements sorted by its ClassRank score in decreasing order (most important ones at the top). Each class is an object in the list. The classrank score of each class appers associated to the key "CR_score". ClassRank settings: 
   * Damping factor: 0.85.
   * Secutiry thresghold: 0.
   * Class-pointer: rdf:type.
-* [PageRank](): Json file. Keys are key URIs pointing to theis PageRank score. The elements are not sorted. PageRank settings:
-  * Damping factor: 0.85.
 
 The following JSON files share a common structure. They all contain a list of lists. Each second-level list contains the information associated to a given class with three elements that appear in thie order: class uri, score (the natura of thsi score depends on the technique used) and position in the ranking. The lists are sorted in decreasing order with regard to its rank position (most impostant ones at the top).
 
-* [Instance counting]()
-* [Degree]()
-* [Betweeness]()
-* [Closseness]()
-* [Harmonic centrality]()
-* [Radiality]()
-* [Bridging centraltity]()
+* [PageRank](pagerank_ranking_dbpedia.json):PageRank settings:
+  * Damping factor: 0.85.
+* [Instance counting](instance_counting_dbpedia.json)
+* [Degree](deg_dbo_onto.json)
+* [Betweeness](betw_dbo_onto.json).
+* [Closseness](clos_dbo_onto.json)
+* [Harmonic centrality](harm_dbo_onto.json)
+* [Radiality](rad_dbo_onto.json)
+* [Bridging centraltity](bridging_dbo_onto.json)
 
 
