@@ -9,9 +9,21 @@ We have applied ClassRank over the English chapter of DBpedia and compare the re
 * [Specific mapping base properties](http://downloads.dbpedia.org/2016-10/core-i18n/en/specific_mappingbased_properties_en.ttl.bz2)
 * [Topical concepts](http://downloads.dbpedia.org/2016-10/core-i18n/en/topical_concepts_en.ttl.bz2)
 
+## Mining logs
+
+We have mined the log files in order to disvocer class mentions in SPARQL queries. We consider that a class is mentioned when:
+
+* The URI of the class is mentioned.
+* The URI of an instance of the class is mentioned.
+* The URI of an element _e_ used in a triple with a property whose domain/range forces _e_ to be an instance of a class is mentioned. 
+
+We generated two different files with mining results. These files are tsv where the different type of class mentions are annotated:
+* [Total results](total_result.tsv): Class mentions in all entries in the logs.
+* [Human results](total_result.tsv): Class mentions of those entries in the logs associated to IPS whose petition rate has been associated to human agents. 
+   
 ## Result files:
 
-We applied different techniques to rank the importance of the classes in the [DBpedia ontology](). 
+We applied different techniques to rank the importance of the classes in the [DBpedia ontology](dbo.ttl). 
 
 * [ClassRank](classrank_dbpedia_rdftype.json). Json file with a root list which contains elements sorted by its ClassRank score in decreasing order (most important ones at the top). Each class is an object in the list. The classrank score of each class appers associated to the key "CR_score". ClassRank settings: 
   * Damping factor: 0.85.
@@ -29,5 +41,8 @@ The following JSON files share a common structure. They all contain a list of li
 * [Harmonic centrality](harm_dbo_onto.json)
 * [Radiality](rad_dbo_onto.json)
 * [Bridging centraltity](bridging_dbo_onto.json)
+
+## Comparison
+We have compared each technique with the mining files (totals and just human log entries) using Ranking Biased Overlap giving different importance to different prefix length of each ranking. The results of this comparison are avaiable to dowload in [a csv file](comparison_all.csv).
 
 
