@@ -32,8 +32,7 @@ We applied different techniques to rank the importance of the classes in the [DB
 
 The following JSON files share a common structure. They all contain a list of lists. Each second-level list contains the information associated to a given class with three elements that appear in thie order: class uri, score (the natura of thsi score depends on the technique used) and position in the ranking. The lists are sorted in decreasing order with regard to its rank position (most impostant ones at the top).
 
-* [PageRank](pagerank_ranking_dbpedia.json):PageRank settings:
-  * Damping factor: 0.85.
+* [PageRank](pagerank_ranking_dbpedia.json). Damping factor: 0.85.
 * [Instance counting](instance_counting_dbpedia.json)
 * [Degree](deg_dbo_onto.json)
 * [Betweeness](betw_dbo_onto.json).
