@@ -22,7 +22,7 @@ We generated two different files with mining results. These files are tsv where 
 * [Human results](total_result.tsv): Class mentions of those entries in the logs associated to IPS whose petition rate has been associated to human agents. 
 
 ### Logs
-The logs minned can be dowloaded via FTP in [ftp://156.35.94.8/dbpedia-2017-10-logs.zip](ftp://156.35.94.8/dbpedia-2017-10-logs.zip). Please, contact the authors in you experiment any issue dowloading the logs. 
+The logs minned can be dowloaded via FTP in [ftp://156.35.94.8/dbpedia-2017-10-logs.zip](ftp://156.35.94.8/dbpedia-2017-10-logs.zip). Please, contact the authors if you experiment any issue when dowloading the logs. 
 
 The logs contain 14 files of queries thrown against the SPARQL endponit of DBpedia run by Openlink. Each file contain the acceses to the endpoint during a whole day in a random date of 2017. Each file is named after its date with the following pattern: access.log-YYYYmmdd.zip, where YYYY means year, mm month, and dd day.
    
