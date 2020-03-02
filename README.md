@@ -1,6 +1,6 @@
 # ClassRank
 
-This repository contains a Python implementation of the algorithm ClassRank. ClassRank is a nowel technique handy for measuring the relevance of each class in an RDF grpah.
+This repository contains a Python implementation of the algorithm ClassRank. ClassRank is a novel technique handy for measuring the relevance of each class in a RDF graph.
 
 We provide [an online demo of Classrank][demo_online] which also includes an overview of the algorithm. 
 
@@ -12,7 +12,7 @@ Prerequisites
 
 Execution
 ---------
-At the moment we are no providing installing methods, just the original python scripts. If you are planning to integrte this code with some other project you may have to deal with issues related to paths. We will be providing soon nicier ways to interact with this library. 
+At the moment we are not providing installing methods, just the original python scripts. If you are planning to integrate this code with some other project you may have to deal with issues related to paths. We will be providing nicer ways to interact with this library soon.
 
 Example code
 ------------
@@ -95,7 +95,7 @@ The ClassRankers objects need 4 extra objects to read the graph/classpointers an
 
 Contributing
 ------------
-Theoretically, ClassRank can be applied to any kind of sirected graph. This prototype is ready to compute a limited set of formats. However, it has been developed following a modular architecture that allow to easily add new formats by implementing some ad-hoc parsers or formatters. If you want to analize some graph in any other format than turtle, you could implement the correspondent parsers yielders or formaters following the interfaces listed in the previous section.
+Theoretically, ClassRank can be applied to any kind of directed graph. This prototype is ready to compute a limited set of formats. However, it has been developed following a modular architecture that allows to easily add new formats by implementing some ad-hoc parsers or formatters. If you want to analize some graph in any other format than turtle, you could implement the correspondent parsers, yielders or formaters following the interfaces listed in the previous section.
 
 Contact
 -------
