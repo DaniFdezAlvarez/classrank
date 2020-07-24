@@ -45,6 +45,11 @@ The following JSON files share a common structure. They all contain a list of li
 * [Harmonic centrality](harm_dbo_onto.json)
 * [Radiality](rad_dbo_onto.json)
 * [Bridging centraltity](bridging_dbo_onto.json)
+* [Adapted degree](adapted_deg_dbo_onto.json)
+* [Adapted betweeness](adapted_betw_dbo_onto.json).
+* [Adapted harmonic centrality](adapted_harm_dbo_onto.json)
+* [Adapted radiality](adapted_rad_dbo_onto.json)
+* [Adapted bridging centraltity](adapted_bridging_dbo_onto.json)
 
 ## Comparison
 We have compared each technique with the mining files (totals and just human log entries) using Ranking Biased Overlap giving different importance to different prefix length of each ranking. The results of this comparison are avaiable to dowload in [a csv file](comparison_all.csv).
