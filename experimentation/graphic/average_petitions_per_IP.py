@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 from experimentation.graphic.utils import load_data_list
 
-data_file = "C:\\Users\\Dani\\repos-git\\classrank\\local_code\\ips_avg_petitions.tsv"
+# data_file = "C:\\Users\\Dani\\repos-git\\classrank\\local_code\\ips_avg_petitions.tsv"
 
-
+data_file = "C:\\Users\\Dani\\repos-git\\classrank\\local_code\\dbpedia_log\\ips_avg_petitions.tsv"
 
 list_results = load_data_list(data_file)
 list_results.reverse()
@@ -32,4 +32,4 @@ plt.tick_params(
     top=False,         # ticks along the top edge are off
     labelbottom=False) # labels along the bottom edge are off
 plt.show()
-plt.savefig("avg_petitions_per_ip")
+plt.savefig("avg_petitions_per_ipp")

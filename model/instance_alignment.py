@@ -6,6 +6,8 @@ from classrank_io.util.set_encoder import SetEncoder
 
 class InstanceAlignment(object):
 
+
+
     def __init__(self):
         self._alignments = {}  # Dict key=entity, value=set of aligned elements
 

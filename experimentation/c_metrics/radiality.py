@@ -34,8 +34,9 @@ class RadialityComp(BaseCMetric):
             #
             self._radiality_dict[a_node] = float(1) / denominator
         if self._normalize:
-            self._normalize_dict(n_nodes=len(nxgraph),
-                                 g_diameter=graph_diameter)
+            self._normalize_dict()
+            # self._normalize_dict(n_nodes=len(nxgraph),
+            #                      g_diameter=graph_diameter)
         return self._return_result(obj_result=self._radiality_dict,
                                    string_return=string_return,
                                    out_path=out_path)
@@ -52,12 +53,13 @@ class RadialityComp(BaseCMetric):
                     max_p = new_p
         return max_p
 
+    def _find_max_score(self):
+        return max([self._radiality_dict[an_uri] for an_uri in self._radiality_dict])
 
-    def _normalize_dict(self, g_diameter, n_nodes):
-        denominator = (n_nodes - 1) * (g_diameter - 1)
-
-
-        max_score = float(1) / denominator  # TODO MAX SCORE
+    def _normalize_dict(self):
+        # denominator = (n_nodes - 1) * (g_diameter - 1)
+        # max_score = float(1) / denominator
+        max_score = self._find_max_score()
         for an_uri in self._radiality_dict:
             self._radiality_dict[an_uri] = normalize_score(score=self._radiality_dict[an_uri],
                                                            max_score=max_score)
