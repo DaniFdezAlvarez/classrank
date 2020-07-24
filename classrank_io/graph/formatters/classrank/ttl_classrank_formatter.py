@@ -31,14 +31,19 @@ class TtlClassrankFormatter(ClassRankFormatterInterface):
     def format_classrank_dict(self, a_dict, pagerank_dict=None):
         sorted_list = self._sort_dict_and_add_rank(a_dict)
         self._turn_cp_dicts_into_lists(sorted_list)
-        result_ttl_graph = self._build_result_ttl_graph(sorted_list)
+        result_graph = self._build_result_ttl_graph(sorted_list)
         if self._serialize_pagerank:
-            self._add_pagerank_triples(result_ttl_graph, pagerank_dict)
+            self._add_pagerank_triples(result_graph, pagerank_dict)
+
+        return self._serialize(result_graph)
+
+
+    def _serialize(self, result_graph):
         if self._string_output:
-            return result_ttl_graph.serialize(format='turtle')
+            return result_graph.serialize(format='turtle')
         else:
             with open(self._target_file, "w") as out_stream:
-                out_stream.write(result_ttl_graph.serialize(format='turtle'))
+                out_stream.write(result_graph.serialize(format='turtle'))
             return "ClassRank serialized: " + self._target_file
 
     def _add_pagerank_triples(self, g, pagerank_dict):
@@ -105,5 +110,12 @@ class TtlClassrankFormatter(ClassRankFormatterInterface):
             a_dict[KEY_RANK_POSITION] = rank_counter
             rank_counter += 1
         return result
+
+    # def _unencode_unicodes(self, elem):
+    #     while "\\" in elem:
+    #
+    #
+    # def add_triple_to_graph(self, graphic, s,p,o):
+    #     pass
 
 

@@ -1,5 +1,5 @@
 """
-CAUTION! This yielder is able to parse a huge file without loading the whole graph in memory,
+CAUTION! This yielder is able to parse a huge file without loading the whole graphic in memory,
 but it is expecting a perfectly well-formed ttl. Syntax errors may cause unpredicted failures.
 
 Also, it is ignoring b-nodes, which does not neccesarily make sense for all the sources.
@@ -39,19 +39,22 @@ class TtlFullMemoryKindTriplesYielder(TriplesYielderInterface):
     def yield_triples(self, max_triples=-1):
         with open(self._source_file, "r") as in_stream:
             for a_line in in_stream:
+                print(a_line)
                 self._process_line(a_line)
                 if self._triple_ready:
                     if is_valid_triple(self._tmp_s, self._tmp_p, self._tmp_o, there_are_corners=False):
                         self._triples_count += 1
                         yield (self._tmp_s, self._tmp_p, self._tmp_o)
+                        # print("gooood")
                     else:
                         log_to_error(msg="WARNING: ignoring invalid triple: ( " + str(self._tmp_s) + " , " + str(
                             self._tmp_p) + " , " + str(self._tmp_o) + " )",
                                      source=self._source_file)
+                        # print("BAAAAAAAAAD",(self._tmp_s, self._tmp_p, self._tmp_o))
                         self._error_triples += 1
                     self._triple_ready = False
-                if self._triples_count % 1000000 == 0:
-                    print self._triples_count, self._tmp_s, self._tmp_p, self._tmp_o
+                # if self._triples_count % 1000000 == 0:
+                #     print self._triples_count, self._tmp_s, self._tmp_p, self._tmp_o
                 if self._triples_count == max_triples:
                     break
 

@@ -34,7 +34,7 @@ def _build_graph_yielder(graph_format, graph_file, raw_graph, save_memory_mode):
         elif graph_format == TSV_SPO_FORMAT:
             return TsvSpoTriplesYielder(source_file=graph_file)
         else:
-            raise ValueError("Unsupported graph format building yielder")
+            raise ValueError("Unsupported graphic format building yielder")
 
 
 def _build_digraph_parser(graph_format, graph_file, raw_graph, save_memory_mode):
@@ -53,7 +53,7 @@ def _build_digraph_parser(graph_format, graph_file, raw_graph, save_memory_mode)
         elif graph_format == TSV_SPO_FORMAT:
             return TsvSpoGraphParser(source_file=graph_file)
         else:
-            raise ValueError("Unsupported graph format building parser")
+            raise ValueError("Unsupported graphic format building parser")
 
 
 def _build_cps_parser(classpointers_file, raw_classpointers):
@@ -96,9 +96,9 @@ def _assert_valid_param_combination_classrank(damping_factor, max_iters, thresho
                                               graph_format, output_format, graph_file, classpointers_file, raw_graph,
                                               raw_classpointers, output_file, string_return):
     if graph_file is None and raw_graph is None:
-        raise ValueError("You must provide a path in 'graph_file' XOR a string graph in 'raw_graph'")
+        raise ValueError("You must provide a path in 'graph_file' XOR a string graphic in 'raw_graph'")
     if graph_file is not None and raw_graph is not None:
-        raise ValueError("You must provide a path in 'graph_file' XOR a string graph in 'raw_graph'")
+        raise ValueError("You must provide a path in 'graph_file' XOR a string graphic in 'raw_graph'")
 
     if classpointers_file is None and raw_classpointers is None:
         raise ValueError("You must provide a path in 'classpointers_file' XOR a string in 'raw_classpointers'")
@@ -120,7 +120,7 @@ def _assert_valid_param_combination_classrank(damping_factor, max_iters, thresho
         raise ValueError("'threshold' must be an integer >= 1")
 
     if graph_format not in _ACCEPTED_GRAPH_FORMATS:
-        raise ValueError("Unsupported graph format")
+        raise ValueError("Unsupported graphic format")
 
     if output_format not in _ACCEPTED_OUTPUT_FORMATS:
         raise ValueError("Unsupported output format")
@@ -139,13 +139,13 @@ def generate_classrank(damping_factor=0.85, max_iters=250, threshold=15,
     :param class_threshold:  Class threshold por ClassRank
     :param max_triples: If it is set to a positive integer, it makes the parsers and yielders stop when they process
      the specified amount of triples (correct ones).
-    :param graph_format: format of the provided graph
+    :param graph_format: format of the provided graphic
     :param output_format: format of the provided file.
-    :param graph_file: path to the file in which the target graph is contained. If you want to
-        provide the graph using a raw string, set to None and provide the graph though the param raw_graph
+    :param graph_file: path to the file in which the target graphic is contained. If you want to
+        provide the graphic using a raw string, set to None and provide the graphic though the param raw_graph
     :param classpointers_file: path to the file in which the classpointers are contained. If you want to
         provide the classpointers using a raw string, set to None and provide them though the param raw_classpointers
-    :param raw_graph: string containing the target graph. If you want to provide the graph via file, set to
+    :param raw_graph: string containing the target graphic. If you want to provide the graphic via file, set to
         None and provide the path through the param graph_file
     :param raw_classpointers: string containing the classpointers. If you want to provide them via file, set to
         None and provide them through the param classpointers_file

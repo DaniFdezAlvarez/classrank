@@ -134,8 +134,8 @@ from helpers.classrank import generate_classrank
 # print "--------------------"
 #
 # parser = TtlExplicitSpoDigraphParser(person_data_en_path)
-# graph = parser.parse_graph(max_edges=1000)
-# for an_edge in graph.edges_iter():
+# graphic = parser.parse_graph(max_edges=1000)
+# for an_edge in graphic.edges_iter():
 #     print an_edge
 #
 # print "Parser", parser.parsed_triples
@@ -377,7 +377,7 @@ txn:aaa <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> srv:A .
 #
 # print results
 
-print "----------------------------------------------"
+print("----------------------------------------------")
 
 results = generate_classrank(raw_graph=graph_str, # graph_file="files\\sample_ttl_full_tiny.ttl",
                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type\nhttp://example.org/ont/transaction-log/processedBy",
@@ -386,8 +386,8 @@ results = generate_classrank(raw_graph=graph_str, # graph_file="files\\sample_tt
                              link_instances_in_output=True,
                              serialize_pagerank=True,
                              output_format="ttl")
-print "----"
-print results
+print("----")
+print(results)
 
 # results = generate_classrank(graph_file="files\\sample_ttl_full_tiny.ttl",
 #                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",

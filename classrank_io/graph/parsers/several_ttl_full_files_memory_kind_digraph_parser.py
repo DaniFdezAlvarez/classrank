@@ -17,7 +17,7 @@ class SeveralTtlFullFilesMemoryKindDigraphParser(DiGraphParserInterface):
         It returns an object networkx.DiGraph() containing edges between the s and o of every
         triple (s, p, o)
 
-        If max_edges has a posotive value, the returned graph should contain just the first
+        If max_edges has a posotive value, the returned graphic should contain just the first
         $max_edges in the source as most
         :param max_edges:
         :return:
