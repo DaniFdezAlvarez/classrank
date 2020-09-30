@@ -25,7 +25,6 @@ class JsonWikidataDumpTriplesYielder(TriplesYielderInterface):
         max_triples_reached = False
 
         for prefix, event, value in ijson.parse(json_stream):
-            # print(prefix, "|", event, "|", value)
             if max_triples_reached:
                 break
             if event == 'end_map':
@@ -136,7 +135,6 @@ class JsonWikidataDumpEntityTriplesYielder(TriplesYielderInterface):
         max_triples_reached = False
 
         for prefix, event, value in ijson.parse(json_stream):
-            # print(prefix, "|", event, "|", value)
             if max_triples_reached:
                 break
             elif event == _START_MAP and prefix.endswith(_MAINSNAK):
@@ -161,7 +159,6 @@ class JsonWikidataDumpEntityTriplesYielder(TriplesYielderInterface):
                 self._reset_current_entity(value)
 
     def _reset_current_entity(self, new_entity):
-        print("Weeee")
         self._current_entity = new_entity
 
     def _activate_statements_mode(self):
