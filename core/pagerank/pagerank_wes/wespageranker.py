@@ -20,7 +20,7 @@ class Wespageranker(object):
                          source_file=self._source_file,
                          raw_graph=self._raw_graph,
                          max_edges=self._max_edges,
-                         base_yielder=self._base_yielder)
+                         base_triple_yielder=self._base_yielder)
 
         p_iterator = PowerIterator(target_matrix=matrix,
                                    epsilon=self._eps,
