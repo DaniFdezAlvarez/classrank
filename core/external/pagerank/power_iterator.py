@@ -46,36 +46,6 @@ class PowerIterator(object):
                 self._current_vector = new_vec
                 break
             self._current_vector = new_vec
-
-        #     self._curr_iters += 1
-        #     unreached_nodes_cell = self._compute_unreached_nodes_cell()
-        #     dangling_section_score = self._compute_dangling_section()
-        #     # new_vec = {}
-        #     new_vec = dict.fromkeys(self._current_vector.keys(), 0)
-        #     for target_row in self._current_vector:
-        #         # tmp_res = 0
-        #         # for a_target_col in self._current_vector:
-        #         #     tmp_res += self._current_vector[a_target_col] * self._target_matrix.get(row=target_row,
-        #         #                                                                             col=a_target_col)
-        #         # new_vec[target_row] = tmp_res
-        #
-        #         # new_vec[target_row] = sum([self._current_vector[target_col] *
-        #         #                            self._target_matrix.get(row=target_row,
-        #         #                                                    col=target_col)
-        #         #                            for target_col in self._current_vector])
-        #         if target_row in self._target_matrix.unreached_nodes:
-        #             new_vec[target_row] = unreached_nodes_cell
-        #             # print "weee", self._curr_iters
-        #         else:
-        #             # new_vec[target_row] = self._compute_cell_value(target_row)
-        #             new_vec[target_row] = dangling_section_score + self._compute_non_dangling_section(target_row)
-        #     if self._converges(new_vec):
-        #         self._current_vector = new_vec
-        #         break
-        #     self._current_vector = new_vec
-        # # print self._curr_iters, "I"
-        # # if self._curr_iters >= self._max_iters:
-        # #     raise ValueError("The graphic does not converge after " + str(self._max_iters) + " iterations.")
         return self._current_vector
 
     def _converges(self, new_vec):
