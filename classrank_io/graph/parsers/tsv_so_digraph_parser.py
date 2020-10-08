@@ -1,7 +1,6 @@
 import networkx as nx
 
 from classrank_io.graph.parsers.digraph_parser_inferface import DiGraphParserInterface
-from classrank_utils.uri import is_valid_uri
 from classrank_utils.log import log_to_error
 
 
@@ -19,6 +18,7 @@ class TsvSoGraphParser(DiGraphParserInterface):
             for a_line in input_io:
                 if self._line_count == max_edges:
                     break
+
                 a_subject, an_object = self._get_subject_and_object_from_line(a_line)
                 if a_subject is not None and an_object is not None:
                     self._line_count += 1
@@ -34,7 +34,7 @@ class TsvSoGraphParser(DiGraphParserInterface):
         pieces = a_line.split("\t")
         if len(pieces) != 2:
             self._error_count += 1
-            return
+            return None, None
 
         return pieces[0], pieces[1]
 

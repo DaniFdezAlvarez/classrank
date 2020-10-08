@@ -3,8 +3,9 @@ _O = 1
 
 
 class HITSSparseMatrix(object):
-    def __init__(self, edges_yielder):
+    def __init__(self, edges_yielder, max_edges):
         self._edges_yielder = edges_yielder
+        self._max_edges = max_edges
         self._in_dict = {}  # Will be filled later
         self._out_dict = {}  # Will be filled later
         self._build_matrix()
@@ -24,13 +25,13 @@ class HITSSparseMatrix(object):
             yield a_node_key
 
     def _build_matrix(self):
-        for an_edge in self._edges_yielder.yield_edges():
+        for an_edge in self._edges_yielder.yield_edges(max_edges=self._max_edges):
             self._add_needed_entries_to_dict(an_edge)
             self._annotate_edge(an_edge)
 
     def _annotate_edge(self, edge):
-        self._in_dict[edge[_O]].apped(edge[_S])
-        self._out_dict[edge[_S]].apped(edge[_O])
+        self._in_dict[edge[_O]].append(edge[_S])
+        self._out_dict[edge[_S]].append(edge[_O])
 
     def _add_needed_entries_to_dict(self, edge):
         if edge[_O] not in self._in_dict:

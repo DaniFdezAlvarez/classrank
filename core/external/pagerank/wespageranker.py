@@ -27,7 +27,8 @@ class Wespageranker(object):
         p_iterator = PowerIterator(target_matrix=matrix,
                                    epsilon=self._eps,
                                    max_iters=self._max_iters)
-        result = p_iterator.calculate_pagerank_vector()
+        result = p_iterator.calculate_page
+        rank_vector()
         self._iterations_performd = p_iterator.iterations_performed
         return result
 

@@ -1,4 +1,5 @@
-import json
+from core.external.exceptions import IterationException
+
 class PowerIterator(object):
 
     def __init__(self, target_matrix, epsilon, max_iters):
@@ -22,7 +23,7 @@ class PowerIterator(object):
     def calculate_pagerank_vector(self):
         self._curr_iters = 0
 
-        #Fast references (ethic questionable) to avoid some time calling sparse_matrix methods. No memory penalization
+        # Fast references (ethically grey) to avoid some time calling sparse_matrix methods. No memory penalization
         alpha = self._target_matrix.alpha
         d = self._target_matrix.d
         sink_score = self._target_matrix.sink_score
@@ -46,7 +47,10 @@ class PowerIterator(object):
                 self._current_vector = new_vec
                 break
             self._current_vector = new_vec
+        if self._curr_iters >= self._max_iters:
+            raise IterationException(num_iterations=self._max_iters)
         return self._current_vector
+
 
     def _converges(self, new_vec):
         # return False
