@@ -1,5 +1,5 @@
-from core.pagerank.pagerank_wes.sparse_matrix import SMatrix
-from core.pagerank.pagerank_wes.power_iterator import PowerIterator
+from core.external.pagerank.sparse_matrix import PageRankSMatrix
+from core.external.pagerank.power_iterator import PowerIterator
 
 
 class Wespageranker(object):
@@ -17,17 +17,18 @@ class Wespageranker(object):
         self._base_edges_yielder = base_edges_yielder
 
     def compute_pagerank_vector(self):
-        matrix = SMatrix(d=1 - self._damping_factor,
-                         source_file=self._source_file,
-                         raw_graph=self._raw_graph,
-                         max_edges=self._max_edges,
-                         base_triple_yielder=self._base_yielder,
-                         base_edges_yielder=self._base_edges_yielder)
+        matrix = PageRankSMatrix(d=1 - self._damping_factor,
+                                 source_file=self._source_file,
+                                 raw_graph=self._raw_graph,
+                                 max_edges=self._max_edges,
+                                 base_triple_yielder=self._base_yielder,
+                                 base_edges_yielder=self._base_edges_yielder)
 
         p_iterator = PowerIterator(target_matrix=matrix,
                                    epsilon=self._eps,
                                    max_iters=self._max_iters)
-        result = p_iterator.calculate_pagerank_vector()
+        result = p_iterator.calculate_page
+        rank_vector()
         self._iterations_performd = p_iterator.iterations_performed
         return result
 

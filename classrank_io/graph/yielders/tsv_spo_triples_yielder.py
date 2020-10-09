@@ -34,7 +34,7 @@ class TsvSpoTriplesYielder(TriplesYielderInterface):
             if a_piece in ["", None]:
                 return None, None, None
         if not is_valid_triple(pieces[0], pieces[1], pieces[2], there_are_corners=False):
-            log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(pieces[2]) + " )")
+            # log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(pieces[2]) + " )")
             return None, None, None
         return pieces[0], pieces[1], pieces[2]
 
