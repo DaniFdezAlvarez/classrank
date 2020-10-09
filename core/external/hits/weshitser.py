@@ -22,9 +22,20 @@ class WesHITSer(object):
         return self._iterations_performed
 
     def compute_hits(self):
-        self._init_structures()
-        self._compute_hubs_and_auth()
-        return self._hub_scores, self._auth_scores
+        try:
+            self._init_structures()
+            self._compute_hubs_and_auth()
+            return self._produce_final_output()
+        except ZeroDivisionError as e:
+            raise ValueError("Cant compute HITS, one of the arrays completely turned into zero")
+
+    def _produce_final_output(self):
+        """
+        Tuples with: (node, auth_score, hub_score)
+        :return:
+        """
+        return [(a_node, self._auth_scores[a_position], self._hub_scores[a_position])
+                for a_node, a_position in self._node_positions.items()]
 
 
     def _init_structures(self):
@@ -59,7 +70,6 @@ class WesHITSer(object):
 
 
     def _perform_iteration(self, ref_to_in_edges, ref_to_out_edges):
-        print("we")
         new_hubs = []
         new_auths = []
         for a_node in self._node_positions:
