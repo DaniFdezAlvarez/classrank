@@ -1,5 +1,8 @@
 from core.external.hits.sparse_matrix import HITSSparseMatrix
 from core.external.exceptions import IterationException
+import array
+
+_ARRAY_TYPE = 'f'
 
 class WesHITSer(object):
 
@@ -11,8 +14,8 @@ class WesHITSer(object):
 
         self._matrix = None
         self._node_positions = {}
-        self._auth_scores = []
-        self._hub_scores = []
+        self._auth_scores = None  # Will be array
+        self._hub_scores = None  # Will be array
 
         self._iterations_performed = 0
 
@@ -43,10 +46,13 @@ class WesHITSer(object):
                                         max_edges=self._max_edges)
         i = 0
         for a_node in self._matrix.yield_nodes():
+            print(a_node)
             self._node_positions[a_node] = i
-            self._auth_scores.append(1.0)  # Initial auth score
-            self._hub_scores.append(1.0)  # Initial hub score
+            # self._auth_scores.append(1.0)  # Initial auth score
+            # self._hub_scores.append(1.0)  # Initial hub score
             i += 1
+        self._hub_scores = array.array(_ARRAY_TYPE, (1.0 for _ in range(0, i)))
+        self._auth_scores = array.array(_ARRAY_TYPE, (1.0 for _ in range(0, i)))
 
     def _compute_hubs_and_auth(self):
         ref_to_out_edges = self._matrix._out_dict
@@ -58,29 +64,42 @@ class WesHITSer(object):
         while self._iterations_performed <= self._maxiters:
             new_hubs, new_auths = self._perform_iteration(ref_to_in_edges=ref_to_in_edges,
                                                           ref_to_out_edges=ref_to_out_edges)
-            if self._convergence_reached(new_auths=new_auths,
-                                         new_hubs=new_hubs):
+            if self._convergence_reached(new_auths=new_auths):
                 self._hub_scores = new_hubs
                 self._auth_scores = new_auths
                 break
             self._hub_scores = new_hubs
             self._auth_scores = new_auths
         if self._iterations_performed >= self._maxiters:
+            print(self._hub_scores)
+            print(self._auth_scores)
             raise IterationException(num_iterations=self._maxiters)
 
 
     def _perform_iteration(self, ref_to_in_edges, ref_to_out_edges):
-        new_hubs = []
-        new_auths = []
-        for a_node in self._node_positions:
+        new_hubs = array.array(_ARRAY_TYPE)
+        new_auths = array.array(_ARRAY_TYPE)
+        # print("************************")
+        for a_node in self._matrix.yield_nodes():
+            # print("*****")
+            # print(a_node)
             new_auth_score = 0.0
+            # print("--in")
             for an_incoming_node in ref_to_in_edges[a_node]:  # _compute_new_auth()
+                # print(an_incoming_node, self._node_positions[an_incoming_node])
                 new_auth_score += self._hub_scores[self._node_positions[an_incoming_node]]
             new_auths.append(new_auth_score)
             new_hubs_score = 0.0
+            # print("--out")
             for an_outgoing_edge in ref_to_out_edges[a_node]:  # _compute_new_hub()
+                # print(an_outgoing_edge, self._node_positions[an_outgoing_edge])
                 new_hubs_score += self._auth_scores[self._node_positions[an_outgoing_edge]]
             new_hubs.append(new_hubs_score)
+            # if a_node == "e":
+                # print("-----")
+                # print("in", ref_to_in_edges[a_node])
+                # print("out", ref_to_out_edges[a_node])
+                # print(new_auth_score)
         # normalize_lists  # _normalize_list()
         total_hubs = sum(new_hubs)
         total_auths = sum(new_auths)
@@ -99,9 +118,10 @@ class WesHITSer(object):
             a_list[i] = a_list[i]/total
 
 
-    def _convergence_reached(self, new_hubs, new_auths):
-        if sum([abs(new_hubs[i] - self._hub_scores[i]) for  i in range(0, len(new_hubs))]) > self._epsilon or \
-                sum([abs(new_auths[i] - self._auth_scores[i]) for  i in range(0, len(new_hubs))]) > self._epsilon:
+    def _convergence_reached(self, new_auths):
+        # if sum([abs(new_hubs[i] - self._hub_scores[i]) for  i in range(0, len(new_hubs))]) > self._epsilon or \
+        #         sum([abs(new_auths[i] - self._auth_scores[i]) for  i in range(0, len(new_hubs))]) > self._epsilon:
+        if sum([abs(new_auths[i] - self._auth_scores[i]) for i in range(0, len(new_auths))]) > self._epsilon:
             return False
         return True
         # for i in range(0, len(new_hubs)):
