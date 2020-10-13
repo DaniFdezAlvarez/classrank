@@ -204,6 +204,33 @@ class ClassCountDumpFilter(_BaseDumpFilter):
                           out_path=self._target_path,
                           indent=2)
 
+class TBOXGraphDumpFilter(_BaseDumpFilter):
+
+    def __init__(self, triples_yielder, target_file, set_target_classes, max_triples=-1):
+        super().__init__(triples_yielder)
+        self._target_file = target_file
+        self._set_target_classes = set_target_classes
+        self._max_triples = max_triples
+        self._out_stream = open(target_file, "w")
+
+    def generate_filter(self):
+        for a_triple in self._triples_yielder.yield_triples(max_triples=self._max_triples):
+            self.process_triple(a_triple)
+        self.close_filter()
+
+    def process_triple(self, triple):
+        if triple[S] in self._set_target_classes and triple[O] in self._set_target_classes:
+            self._write_triple(triple)
+
+    def _write_triple(self, triple):
+        self._out_stream.write("<{}> <{}> <{}> .".format(triple[S], triple[P], triple[O]))
+
+    def close_filter(self):
+        self._out_stream.close()
+
+
+
+
 
 class MultiDumpFilter(_BaseDumpFilter):
     def __init__(self, triples_yielder, dump_filters):
