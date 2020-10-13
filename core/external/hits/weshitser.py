@@ -1,23 +1,26 @@
 from core.external.hits.sparse_matrix import HITSSparseMatrix
-from core.external.exceptions import IterationException
+from core.external.exceptions import IterationException, UnlikelyConvergenceException
 import array
 
 _ARRAY_TYPE = 'f'
 
 class WesHITSer(object):
 
-    def __init__(self, edges_yielder, max_iters=400, epsilon=1.0e-8, max_edges=-1):
+    def __init__(self, edges_yielder, max_iters=400, epsilon=1.0e-8, max_edges=-1, longest_posible_streak=40):
         self._edges_yielder = edges_yielder
         self._maxiters = max_iters
         self._epsilon = epsilon
         self._max_edges=max_edges
+        self._longst_possible_streak = longest_posible_streak
 
         self._matrix = None
         self._node_positions = {}
         self._auth_scores = None  # Will be array
         self._hub_scores = None  # Will be array
-
-        self._iterations_performed = 0
+        self._old_non_convergent_nodes = 0  # Will be managed_later
+        self._same_non_convergence_strike = 0  # Will be managed_later
+        self._iterations_performed = 0  # Will be managed_later
+        self._n_nodes = 0  # Will be managed_later
 
 
     @property
@@ -31,6 +34,10 @@ class WesHITSer(object):
             return self._produce_final_output()
         except ZeroDivisionError as e:
             raise ValueError("Cant compute HITS, one of the arrays completely turned into zero")
+        finally:
+            #Free memory
+            self._hub_scores = None
+            self._auth_scores = None
 
     def _produce_final_output(self):
         """
@@ -46,13 +53,14 @@ class WesHITSer(object):
                                         max_edges=self._max_edges)
         i = 0
         for a_node in self._matrix.yield_nodes():
-            print(a_node)
             self._node_positions[a_node] = i
             # self._auth_scores.append(1.0)  # Initial auth score
             # self._hub_scores.append(1.0)  # Initial hub score
             i += 1
         self._hub_scores = array.array(_ARRAY_TYPE, (1.0 for _ in range(0, i)))
         self._auth_scores = array.array(_ARRAY_TYPE, (1.0 for _ in range(0, i)))
+        self._old_non_convergent_nodes = i
+        self._n_nodes = i
 
     def _compute_hubs_and_auth(self):
         ref_to_out_edges = self._matrix._out_dict
@@ -64,42 +72,33 @@ class WesHITSer(object):
         while self._iterations_performed <= self._maxiters:
             new_hubs, new_auths = self._perform_iteration(ref_to_in_edges=ref_to_in_edges,
                                                           ref_to_out_edges=ref_to_out_edges)
-            if self._convergence_reached(new_auths=new_auths):
+            try:
+                if self._convergence_reached(new_auths=new_auths):
+                    self._hub_scores = new_hubs
+                    self._auth_scores = new_auths
+                    break
+                self._hub_scores = new_hubs
+                self._auth_scores = new_auths
+            except UnlikelyConvergenceException as e:
+                print("WARNING: returning results but consider the following: " + str(e))
                 self._hub_scores = new_hubs
                 self._auth_scores = new_auths
                 break
-            self._hub_scores = new_hubs
-            self._auth_scores = new_auths
         if self._iterations_performed >= self._maxiters:
-            print(self._hub_scores)
-            print(self._auth_scores)
             raise IterationException(num_iterations=self._maxiters)
-
 
     def _perform_iteration(self, ref_to_in_edges, ref_to_out_edges):
         new_hubs = array.array(_ARRAY_TYPE)
         new_auths = array.array(_ARRAY_TYPE)
-        # print("************************")
         for a_node in self._matrix.yield_nodes():
-            # print("*****")
-            # print(a_node)
             new_auth_score = 0.0
-            # print("--in")
             for an_incoming_node in ref_to_in_edges[a_node]:  # _compute_new_auth()
-                # print(an_incoming_node, self._node_positions[an_incoming_node])
                 new_auth_score += self._hub_scores[self._node_positions[an_incoming_node]]
             new_auths.append(new_auth_score)
             new_hubs_score = 0.0
-            # print("--out")
             for an_outgoing_edge in ref_to_out_edges[a_node]:  # _compute_new_hub()
-                # print(an_outgoing_edge, self._node_positions[an_outgoing_edge])
                 new_hubs_score += self._auth_scores[self._node_positions[an_outgoing_edge]]
             new_hubs.append(new_hubs_score)
-            # if a_node == "e":
-                # print("-----")
-                # print("in", ref_to_in_edges[a_node])
-                # print("out", ref_to_out_edges[a_node])
-                # print(new_auth_score)
         # normalize_lists  # _normalize_list()
         total_hubs = sum(new_hubs)
         total_auths = sum(new_auths)
@@ -111,24 +110,27 @@ class WesHITSer(object):
 
         return new_hubs, new_auths
 
-
     def _normalize_list(self, a_list):
         total = sum(a_list)
         for i in range(0, len(a_list)):
             a_list[i] = a_list[i]/total
 
-
     def _convergence_reached(self, new_auths):
-        # if sum([abs(new_hubs[i] - self._hub_scores[i]) for  i in range(0, len(new_hubs))]) > self._epsilon or \
-        #         sum([abs(new_auths[i] - self._auth_scores[i]) for  i in range(0, len(new_hubs))]) > self._epsilon:
-        if sum([abs(new_auths[i] - self._auth_scores[i]) for i in range(0, len(new_auths))]) > self._epsilon:
-            return False
-        return True
-        # for i in range(0, len(new_hubs)):
-        #     if abs(new_hubs[i] - self._hub_scores[i]) > self._epsilon or \
-        #             abs(new_auths[i] - self._auth_scores[i]) > self._epsilon:
-        #         return False
-        # return True
+        res = 0.0
+        non_convergent_nodes = 0
+        for i in range(self._n_nodes):
+            min_res = abs(new_auths[i] - self._auth_scores[i])
+            if min_res > self._epsilon:
+                non_convergent_nodes += 1
+            res += min_res
+        if self._old_non_convergent_nodes == non_convergent_nodes:
+            self._same_non_convergence_strike += 1
+        else:
+            self._same_non_convergence_strike = 0
+            self._old_non_convergent_nodes = non_convergent_nodes
+        if self._same_non_convergence_strike >= self._longst_possible_streak:
+            raise UnlikelyConvergenceException(non_convergent_nodes)   # TODO continue here
+        return res < self._epsilon
 
     def _compute_new_auth(self, ref_to_in_edges, a_node):
         result = 0.0
