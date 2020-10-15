@@ -141,6 +141,18 @@ class DirectedGraphSlicerDumpFilter(_BaseDirectedGraphDumpFilter):
         return self._base_file_path + str(self._current_file_id) + "." + self._extension
 
 
+class TSVGraphSlicerDumpFilter(DirectedGraphSlicerDumpFilter):
+
+    def __init__(self, triples_yielder, base_file_path, max_triples_per_file=1000000):
+        super().__init__(triples_yielder=triples_yielder,
+                         base_file_path=base_file_path,
+                         separator="\t",
+                         max_triples_per_file=max_triples_per_file)
+
+    def _triple_to_adequate_line(self, a_triple):
+        return self._separator.join(a_triple)
+
+
 _TOTALS_KEY = "_TOTALS_"
 _CLASS_KEY = "_CLASS_"
 _POSITION_KEY = "_POS_"
