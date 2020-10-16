@@ -1,11 +1,11 @@
 _SEPARATOR = "\t"
 
-class _BaseTsvEdgesYielder(object):
+class _BaseEdgesYielder(object):
 
     def yield_edges(self, max_edges=-1):
         raise NotImplementedError("")
 
-class TsvEdgesYielder(_BaseTsvEdgesYielder):
+class EdgesYielder(_BaseEdgesYielder):
 
     def __init__(self, triples_yielder):
         self._triples_yielder = triples_yielder
@@ -29,7 +29,7 @@ class TsvEdgesYielder(_BaseTsvEdgesYielder):
             return None
 
 
-class TsvEdgesFileYielder(_BaseTsvEdgesYielder):
+class TsvFileEdgesYielder(_BaseEdgesYielder):
 
     def __init__(self, source_path, separator='\t'):
         self._separator = separator
@@ -47,7 +47,7 @@ class TsvEdgesFileYielder(_BaseTsvEdgesYielder):
                     yield ((pieces[0], pieces[1]))
 
 
-class TsvEdgesMultiFileReader(_BaseTsvEdgesYielder):
+class MultiFileEdgesReader(_BaseEdgesYielder):
 
     def __init__(self, list_of_files, separator='\t'):
         self._list_of_files = list_of_files
@@ -56,7 +56,7 @@ class TsvEdgesMultiFileReader(_BaseTsvEdgesYielder):
 
     def yield_edges(self, max_edges=-1):
         for a_file in self._list_of_files:
-            yielder = TsvEdgesFileYielder(source_path=a_file,
+            yielder = TsvFileEdgesYielder(source_path=a_file,
                                           separator=self._separator)
             for an_edge in yielder.yield_edges():
                 self._edges_count += 1

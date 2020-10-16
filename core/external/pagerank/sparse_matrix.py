@@ -1,4 +1,4 @@
-from classrank_io.graph.yielders.tsv_edges_yielder import TsvEdgesYielder
+from classrank_io.graph.yielders.edges_yielder import EdgesYielder
 from classrank_io.graph.yielders.ttl_explicit_spo_triples_yielder import TtlExplicitSpoTriplesYielder
 
 
@@ -63,9 +63,9 @@ class PageRankSMatrix(object):
     def _load_matrix(self):
         yielder = self._base_edges_yielder
         if yielder is None:
-            yielder = TsvEdgesYielder(TtlExplicitSpoTriplesYielder(source_file=self._source_file,
-                                                                   there_are_corners=self._there_are_corners)) \
-                if self._source_file is not None else TsvEdgesYielder(self._base_yielder)
+            yielder = EdgesYielder(TtlExplicitSpoTriplesYielder(source_file=self._source_file,
+                                                                there_are_corners=self._there_are_corners)) \
+                if self._source_file is not None else EdgesYielder(self._base_yielder)
         nodes_reached = set()
         for an_edge in yielder.yield_edges(self._max_edges):
             self._include_nodes_if_needed(an_edge)
