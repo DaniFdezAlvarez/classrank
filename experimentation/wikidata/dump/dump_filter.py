@@ -1,5 +1,6 @@
 from classrank_io.json_io import write_obj_to_json
 
+
 S = 0
 P = 1
 O = 2
@@ -241,7 +242,89 @@ class TBOXGraphDumpFilter(_BaseDumpFilter):
         self._out_stream.close()
 
 
+_KEY_PROPS_CLASS = "classes"
+_KEY_PROPS_INSTANCE = "instance"
 
+SORT_BY_CPS = "cps"
+SORT_BY_NON_CPS = "not-cps"
+SORT_BY_TOTAL = "all"
+SORT_BY_RATIO = "ratio"
+
+class CountSortAndClasiffyPropsDumpFilter(_BaseDumpFilter):
+
+    def __init__(self, triples_yielder, classes_set, target_file, max_triples=-1, sort_by=SORT_BY_RATIO):
+        super().__init__(triples_yielder)
+        self._c_set = classes_set
+        self._max_triples = max_triples
+        self._target_file = target_file
+        self._sort_by = sort_by
+
+        self._props_dict = {}
+
+    def generate_filter(self):
+        for a_triple in self._triples_yielder.yield_triples():
+            self.process_triple(a_triple)
+        self.close_filter()
+
+    def process_triple(self, triple):
+        self._annotate_property_if_needed(triple[P])
+        self._annotate_object(triple)
+
+    def close_filter(self):
+        self._adapt_internal_results()
+        self._write_result()
+
+    def _write_result(self):
+        write_obj_to_json(target_obj=self._props_dict,
+                          out_path=self._target_file)
+
+    def _adapt_internal_results(self):
+        self._props_dict = [
+            [0, # 0
+             a_key,  # 1
+             a_dict[_KEY_PROPS_CLASS],  # 2
+             a_dict[_KEY_PROPS_INSTANCE],  # 3
+             a_dict[_KEY_PROPS_CLASS] + a_dict[_KEY_PROPS_INSTANCE],  # 4
+             self._class_ratio(classes=a_dict[_KEY_PROPS_CLASS], instances=a_dict[_KEY_PROPS_INSTANCE])
+             ]
+            for a_key, a_dict in self._props_dict.items()
+        ]
+        self._props_dict.sort(reverse=True, key=self._lambda_to_sort())
+        i = 1
+        for a_list in self._props_dict:
+            a_list[0] = i
+            i += 1
+
+    def _class_ratio(self, classes, instances):
+        den = classes + instances
+        return 0.0 if den == 0 else (classes / den)
+
+    def _lambda_to_sort(self):
+        if self._sort_by == SORT_BY_CPS:
+            return lambda x:x[2]
+        elif self._sort_by == SORT_BY_NON_CPS:
+            return lambda x:x[3]
+        elif self._sort_by == SORT_BY_TOTAL:
+            return lambda x:x[4]
+        elif self._sort_by == SORT_BY_RATIO:
+            return lambda x:x[5]
+        else:
+            raise ValueError("Unknown key for sorting: '{}'. Acepted values are '{}', '{}', '{}', '{}'".format(
+                self._sort_by,
+                SORT_BY_RATIO,
+                SORT_BY_TOTAL,
+                SORT_BY_CPS,
+                SORT_BY_NON_CPS
+            ))
+
+    def _annotate_object(self, triple):
+        target_key = _KEY_PROPS_CLASS if triple[O] in self._c_set else _KEY_PROPS_INSTANCE
+        self._props_dict[triple[P]][target_key] += 1
+
+    def _annotate_property_if_needed(self, prop):
+        if prop not in self._props_dict:
+            self._props_dict[prop] = {_KEY_PROPS_CLASS: 0,
+                                      _KEY_PROPS_INSTANCE: 0}
 
 
 class MultiDumpFilter(_BaseDumpFilter):

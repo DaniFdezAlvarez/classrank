@@ -70,8 +70,12 @@ class MultiFileTsvSpoTriplesYielder(TriplesYielderInterface):
             self._current_yielder = TsvSpoTriplesYielder(source_file=a_file)
             for a_triple in self._current_yielder.yield_triples(max_triples=max_triples):
                 yield a_triple
-            max_triples -= self._current_yielder.yielded_triples
+            if max_triples != -1:
+                max_triples -= self._current_yielder.yielded_triples
             self._update_triples_count()
+            if max_triples < -1:
+                break
+
 
     def _update_triples_count(self):
         self._error_count += self._current_yielder.error_triples
