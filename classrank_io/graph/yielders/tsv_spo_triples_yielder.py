@@ -1,7 +1,7 @@
 __author__ = "Dani"
 from classrank_io.graph.yielders.triples_yielder_interface import TriplesYielderInterface
 from classrank_utils.uri import is_valid_triple
-from classrank_utils.log import log_to_error
+
 
 _SEPARATOR = "\t"
 
@@ -37,6 +37,45 @@ class TsvSpoTriplesYielder(TriplesYielderInterface):
             # log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(pieces[2]) + " )")
             return None, None, None
         return pieces[0], pieces[1], pieces[2]
+
+    @property
+    def yielded_triples(self):
+        return self._triples_count
+
+    @property
+    def error_triples(self):
+        return self._error_count
+
+    @property
+    def ignored_triples(self):
+        return 0
+
+    def _reset_count(self):
+        self._error_count = 0
+        self._triples_count = 0
+
+
+class MultiFileTsvSpoTriplesYielder(TriplesYielderInterface):
+    def __init__(self, list_of_files):
+        super(MultiFileTsvSpoTriplesYielder, self).__init__()
+        self._list_of_files = list_of_files
+        self._triples_count = 0
+        self._error_count = 0
+
+        self._current_yielder = None
+
+    def yield_triples(self, max_triples=-1):
+        self._reset_count()
+        for a_file in self._list_of_files:
+            self._current_yielder = TsvSpoTriplesYielder(source_file=a_file)
+            for a_triple in self._current_yielder.yield_triples(max_triples=max_triples):
+                yield a_triple
+            max_triples -= self._current_yielder.yielded_triples
+            self._update_triples_count()
+
+    def _update_triples_count(self):
+        self._error_count += self._current_yielder.error_triples
+        self._triples_count += self._current_yielder.yielded_triples
 
     @property
     def yielded_triples(self):
