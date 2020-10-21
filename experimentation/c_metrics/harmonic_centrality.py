@@ -30,11 +30,15 @@ class HarmonicCentralityComp(BaseCMetric):
             #         denominator += len(s_path)
             self._harmonic_dict[a_node] = float(1) / denominator
         if self._normalize:
-            max_score = float(1) / (len(nxgraph) - 1)
+            # max_score = float(1) / (len(nxgraph) - 1)
+            max_score = self._find_max_score()
             self._normalize_dict(max_score)
         return self._return_result(obj_result=self._harmonic_dict,
                                    string_return=string_return,
                                    out_path=out_path)
+
+    def _find_max_score(self):
+        return max([self._harmonic_dict[an_uri] for an_uri in self._harmonic_dict])
 
     def _normalize_dict(self, max_score):
         for an_uri in self._harmonic_dict:

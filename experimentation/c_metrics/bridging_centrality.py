@@ -47,7 +47,8 @@ class BridgingCentralityComp(BaseCMetric):
         return numerator / denominator
 
     def _normalize_scores(self):
-        max_score = self._max_bridging_centrality() * self._max_score_betweeness
+        # max_score = self._max_bridging_centrality() * self._max_score_betweeness
+        max_score = max([self._bridging_dict[a_node] for a_node in self._bridging_dict])
         for a_node in self._bridging_dict:
             self._bridging_dict[a_node] = normalize_score(score=self._bridging_dict[a_node], max_score=max_score)
 

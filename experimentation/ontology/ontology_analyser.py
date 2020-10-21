@@ -1,5 +1,5 @@
 from rdflib import Graph, RDF, OWL, RDFS
-from experimentation.query_mining.domran_tracker import _DOMAIN_KEY, _RANGE_KEY
+from experimentation.dbpedia.query_mining.domran_tracker import _DOMAIN_KEY, _RANGE_KEY
 
 
 class OntologyAnalyser(object):

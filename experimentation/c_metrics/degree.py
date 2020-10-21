@@ -28,10 +28,11 @@ class DegreeComp(BaseCMetric):
     def run(self, string_return=True, out_path=None):
         self._init_dict_count()
         nxgraph = build_graph_for_paths(self._triples_yielder)
-        self._max_score = len(nxgraph) - 1  # Setting up max_score
+        # self._max_score = len(nxgraph) - 1  # Setting up max_score
         for a_node in nxgraph.nodes:
             self._dict_count[a_node] = nxgraph.degree[a_node]
         if self._normalize:
+            self._max_score = self._find_max_score()
             self._normalize_dict_counts()
         return self._return_result(obj_result=self._dict_count,
                                    string_return=string_return,
@@ -51,6 +52,9 @@ class DegreeComp(BaseCMetric):
         # return self._return_result(obj_result=self._dict_count,
         #                            string_return=string_return,
         #                            out_path=out_path)
+
+    def _find_max_score(self):
+        return max([self._dict_count[a_node] for a_node in self._dict_count])
 
     def _normalize_dict_counts(self):
         for an_uri in self._dict_count:
