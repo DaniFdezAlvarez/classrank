@@ -1,13 +1,5 @@
-import re
 from classrank_utils.uri import remove_corners
-
-# _REGEX_PREFIX = re.compile("(PREFIX)|(prefix) +[\w\-]* *: *<.+>")
-_REGEX_PREFIX = re.compile("PREFIX", flags=re.IGNORECASE)
-
-_REGEX_TYPE_QUERY = re.compile(
-    "(^|[\s>])((SELECT)|(ASK)|(CONSTRUCT)|(DESCRIBE))[\*\s\{]", flags=re.IGNORECASE)
-_REGEX_WHOLE_URI = re.compile("<[^ ]+>")
-_REGEX_PREFIXED_URI = re.compile("[ ,;\.\(\{\[\n\t][^<>\? ,;\.\(\{\[\n\t/\^]*:[^<>\? ,;\.\)\}\]\n\t]*[ ,;\.\)\}\]\n\t]")
+from experimentation.consts import REGEX_PREFIX, REGEX_PREFIXED_URI, REGEX_TYPE_QUERY, REGEX_WHOLE_URI, re
 
 _DIRECT_MENTIONS = "d"
 _INSTANCE_MENTIONS = "i"
@@ -319,7 +311,7 @@ class ClassUsageMiner(object):
                 _DOMRAN_MENTIONS: 0}
 
     def _detect_index_type_of_query(self, an_entry):
-        res = re.search(_REGEX_TYPE_QUERY, an_entry.str_query)
+        res = re.search(REGEX_TYPE_QUERY, an_entry.str_query)
         if res is None:
             print("----", an_entry.is_valid_query, an_entry.str_query)
             return -1
@@ -364,16 +356,16 @@ class ClassUsageMiner(object):
         self._bad_prefixed_uris += 1
 
     def _detect_complete_uri_mentions(self, str_query):
-        return [remove_corners(a_uri) for a_uri in re.findall(_REGEX_WHOLE_URI, str_query)]
+        return [remove_corners(a_uri) for a_uri in re.findall(REGEX_WHOLE_URI, str_query)]
 
     def _dectect_prefixed_uri_mentions(self, str_query):
-        matches = re.findall(_REGEX_PREFIXED_URI, str_query)
+        matches = re.findall(REGEX_PREFIXED_URI, str_query)
         return [match[1:-1] for match in matches]
 
     def _parse_new_prefixes(self, str_prefixes_list):
         if len(str_prefixes_list) < 11:  # len("prefix : <>")
             return {}
-        pieces = re.split(_REGEX_PREFIX, str_prefixes_list)
+        pieces = re.split(REGEX_PREFIX, str_prefixes_list)
         if len(
                 pieces) < 2:  # The first piece does not contain a nampespace, it is an (probably empty string) prior to the first PREFIX keyword
             return {}
