@@ -1,8 +1,10 @@
 from classrank_io.tsv_io import yield_tsv_lines
 import urllib.parse
-from experimentation.consts import REGEX_WHOLE_URI, REGEX_PREFIXED_URI, REGEX_PREFIX, REGEX_TYPE_QUERY, re, MIN_LENGHT_PREFIX
+from experimentation.consts import REGEX_WHOLE_URI, REGEX_PREFIXED_URI, REGEX_TYPE_QUERY, re, MIN_LENGHT_PREFIX
 from classrank_utils.uri import remove_corners
 from classrank_io.json_io import write_obj_to_json
+from experimentation.utils.query_mining_utils import parse_new_prefixes, replace_literal_spaces_with_blank, \
+    detect_complete_uri_mentions, detect_prefixed_uri_mentions, detect_literal_spaces
 
 KEY_ORGANIC_CLASS = "OC"
 KEY_ORGANIC_INSTANCE = "OI"
@@ -73,6 +75,7 @@ class WikidataClassUsageMiner(object):
         self._include_aggregated_fields()
         self._turn_dict_into_list()
         self._sort_results()
+        self._update_ranking_field()
 
     def _turn_dict_into_list(self):
         self._classes_dict = [a_dict for a_dict in self._classes_dict.values()] # at this point, it is still a dict
@@ -80,6 +83,12 @@ class WikidataClassUsageMiner(object):
     def _sort_results(self):
         self._classes_dict.sort(reverse=True,  # At this point, it is a list
                                 key=self._get_lambda_to_sort())
+
+    def _update_ranking_field(self):
+        i = 1
+        for a_class_dict in self._classes_dict:  # At this point, it is a list of dicts
+            a_class_dict[KEY_RANK] = i
+            i += 1
 
     def _get_lambda_to_sort(self):
         if self._sort_by == SORT_BY_ALL:
@@ -99,23 +108,18 @@ class WikidataClassUsageMiner(object):
 
 
     def _mine_lines(self):
-        line_count = 0  #########
         for a_line in yield_tsv_lines(self._source_file, skip_first=True):
             pieces = a_line.split("\t")
             uris_mentioned = self._get_uris_from_raw_query(pieces[_QUERY_POSITION])
             uris_mentioned = self._remove_wikidata_namespaces(uris_mentioned)
             self._annotate_mentions(uris_mentioned=uris_mentioned,
                                     organic=self._is_organic(pieces[_CATEGORY_POSITION]))
-            line_count += 1 #########
-            if line_count >= 10: #########
-                break  #########
-
 
     def _remove_wikidata_namespaces(self, uris):
         result = []
         for an_uri in uris:
             if an_uri.startswith(_WIKIDATA_NAMESPACE_ENTITY):
-                result.append(an_uri.replace(_WIKIDATA_NAMESPACE_ENTITY,""))
+                result.append(an_uri.replace(_WIKIDATA_NAMESPACE_ENTITY, ""))
             else:
                 result.append(an_uri)
         return result
@@ -145,7 +149,7 @@ class WikidataClassUsageMiner(object):
         prefixes, query = self._split_into_prefixes_and_query(norm_query)
         complete_uris, prefixed_uris = self._parse_uris(query)
         if len(prefixed_uris) > 0:
-            new_prefixes_dict = {} if prefixes is None else self._parse_new_prefixes(prefixes)
+            new_prefixes_dict = {} if prefixes is None else parse_new_prefixes(prefixes)
             prefixed_uris = self._unprefixize_uris(uris=prefixed_uris,
                                                    new_prefixes=new_prefixes_dict)
 
@@ -170,61 +174,12 @@ class WikidataClassUsageMiner(object):
     def _increment_bad_prefixed_uris(self):
         self._wrong_prefixed_uris += 1
 
-
-    def _parse_new_prefixes(self, str_prefixes_list):  # TODO REFACTOR
-        pieces = re.split(REGEX_PREFIX, str_prefixes_list)
-        if len(pieces) < 2:  # The first piece does not contain a nampespace, thats before the first PREFIX keyword
-            return {}
-        result = {}
-        for a_piece in pieces:
-            index_end_prefix = a_piece.find(":")  # First ':' will be the ':' used after the prefix
-            prefix = a_piece[:index_end_prefix].strip()
-
-            index_beg_uri = a_piece.find("<") + 1
-            index_end_uri = a_piece.find(">")
-
-            result[prefix] = a_piece[index_beg_uri:index_end_uri]
-        return result
-
     def _parse_uris(self, query):
-        literal_spaces = self._detect_literal_spaces(query)
+        literal_spaces = detect_literal_spaces(query)
         if len(literal_spaces) != 0:
-            query = self._replace_literal_spaces_with_blank(query=query,
-                                                            literal_spaces=literal_spaces)
-        return self._detect_complete_uri_mentions(query), self._detect_prefixed_uri_mentions(query)
-
-    def _replace_literal_spaces_with_blank(self, query, literal_spaces):  # TODO REFACTOR
-        result = query
-        for a_space_tuple in reversed(literal_spaces):
-            result = result[:a_space_tuple[0]] + " " + result[a_space_tuple[1] + 1:]
-        return result
-
-    def _detect_complete_uri_mentions(self, query):  # TODO REFACTOR
-        return [remove_corners(a_uri) for a_uri in re.findall(REGEX_WHOLE_URI, query)]
-
-    def _detect_prefixed_uri_mentions(self, query):  # TODO REFACTOR
-        return [match[1:-1] for match in re.findall(REGEX_PREFIXED_URI, query)]
-
-    def _detect_literal_spaces(self, str_query):  # TODO REFACTOR
-        indexes = []
-        index = 0
-        for char in str_query:
-            if char == '"':
-                if index == 0:
-                    indexes.append(index)
-                elif str_query[index - 1] != '\\':
-                    indexes.append(index)
-            index += 1
-        if len(indexes) % 2 != 0:
-            raise ValueError("The query has an odd number of non-scaped quotes: " + str_query)
-        if len(indexes) == 0:
-            return []
-        result = []
-        i = 0
-        while i < len(indexes):
-            result.append((indexes[i], indexes[i + 1]))
-            i += 2
-        return result
+            query = replace_literal_spaces_with_blank(query=query,
+                                                      literal_spaces=literal_spaces)
+        return detect_complete_uri_mentions(query), detect_prefixed_uri_mentions(query)
 
     def _split_into_prefixes_and_query(self, raw_query):
         index_type_of_query = self._detect_index_type_of_query(raw_query)

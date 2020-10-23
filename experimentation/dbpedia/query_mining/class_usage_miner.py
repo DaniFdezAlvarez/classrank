@@ -1,5 +1,7 @@
 from classrank_utils.uri import remove_corners
-from experimentation.consts import REGEX_PREFIX, REGEX_PREFIXED_URI, REGEX_TYPE_QUERY, REGEX_WHOLE_URI, re
+from experimentation.consts import REGEX_PREFIXED_URI, REGEX_TYPE_QUERY, REGEX_WHOLE_URI, re
+from experimentation.utils.query_mining_utils import parse_new_prefixes, replace_literal_spaces_with_blank,\
+    detect_literal_spaces, detect_complete_uri_mentions, detect_prefixed_uri_mentions
 
 _DIRECT_MENTIONS = "d"
 _INSTANCE_MENTIONS = "i"
@@ -25,12 +27,11 @@ dict_ips_machine_traffic --> {
 
 """
 
-# ([^<>"{}|^`\]-[#x00-#x20])*
-
 class ClassUsageMiner(object):
 
-    def __init__(self, set_target_classes, instance_tracker, domran_tracker=None, namespaces=None, list_of_log_entries=None,
-                 entries_yielder_func=None, dict_ips_machine_traffic=None, filter_machine_traffic=False):
+    def __init__(self, set_target_classes, instance_tracker, domran_tracker=None, namespaces=None,
+                 list_of_log_entries=None,entries_yielder_func=None, dict_ips_machine_traffic=None,
+                 filter_machine_traffic=False):
         self._instance_tracker = instance_tracker
         self._domran_tracker = domran_tracker
         self._list_of_log_entries = list_of_log_entries
@@ -110,14 +111,13 @@ class ClassUsageMiner(object):
             index_type_of_query = self._detect_index_type_of_query(an_entry)
             if index_type_of_query != -1:
                 self._increment_valid_queries()
-                new_prefixes_dict = self._parse_new_prefixes(an_entry.str_query[:index_type_of_query])
+                new_prefixes_dict = parse_new_prefixes(an_entry.str_query[:index_type_of_query])
                 query_without_prefixes = an_entry.str_query[index_type_of_query:]
-                literal_spaces = self._detect_literal_spaces(query_without_prefixes)
-                # tunned_query = self._replace_literal_spaces_with_blank(query_without_prefixes, literal_spaces)
+                literal_spaces = detect_literal_spaces(query_without_prefixes)
                 if len(literal_spaces) != 0:
                     query_without_prefixes = \
-                        self._replace_literal_spaces_with_blank(query_without_prefixes=query_without_prefixes,
-                                                                literal_spaces=literal_spaces)
+                        replace_literal_spaces_with_blank(query=query_without_prefixes,
+                                                          literal_spaces=literal_spaces)
                 uri_mentions = self._detect_uri_mentions(str_query=query_without_prefixes,
                                                          priority_namespaces=new_prefixes_dict)
                 class_mention_dict = self._build_class_mention_dict_of_query(uri_mentions)
@@ -180,33 +180,6 @@ class ClassUsageMiner(object):
             return
         if self._domran_dict is None:
             self._domran_dict = self._domran_tracker.track_domrans()
-
-    def _replace_literal_spaces_with_blank(self, query_without_prefixes, literal_spaces):
-        result = query_without_prefixes
-        for a_space_tuple in reversed(literal_spaces):
-            result = result[:a_space_tuple[0]] + " " + result[a_space_tuple[1] + 1:]
-        return result
-
-    def _detect_literal_spaces(self, str_query):
-        indexes = []
-        index = 0
-        for char in str_query:
-            if char == '"':
-                if index == 0:
-                    indexes.append(index)
-                elif str_query[index - 1] != '\\':
-                    indexes.append(index)
-            index += 1
-        if len(indexes) % 2 != 0:
-            raise ValueError("The query has an odd number of non-scaped quotes: " + str_query)
-        if len(indexes) == 0:
-            return []
-        result = []
-        i = 0
-        while i < len(indexes):
-            result.append((indexes[i], indexes[i + 1]))
-            i += 2
-        return result
 
     def _turn_set_of_classes_into_zeros_dict(self, target_set):
         return {class_uri: 0 for class_uri in target_set}
@@ -322,8 +295,8 @@ class ClassUsageMiner(object):
         # return -1 if res is None else res.start()
 
     def _detect_uri_mentions(self, str_query, priority_namespaces):
-        return self._detect_complete_uri_mentions(str_query) + self._unprefix_uris(
-            list_of_prefixed_uris=self._dectect_prefixed_uri_mentions(str_query),
+        return detect_complete_uri_mentions(str_query) + self._unprefix_uris(
+            list_of_prefixed_uris=detect_prefixed_uri_mentions(str_query),
             priority_namespaces=priority_namespaces)
 
     def _unprefix_uris(self, list_of_prefixed_uris, priority_namespaces):
@@ -355,27 +328,5 @@ class ClassUsageMiner(object):
     def _increment_bad_prefixed_uris(self):
         self._bad_prefixed_uris += 1
 
-    def _detect_complete_uri_mentions(self, str_query):
-        return [remove_corners(a_uri) for a_uri in re.findall(REGEX_WHOLE_URI, str_query)]
 
-    def _dectect_prefixed_uri_mentions(self, str_query):
-        matches = re.findall(REGEX_PREFIXED_URI, str_query)
-        return [match[1:-1] for match in matches]
 
-    def _parse_new_prefixes(self, str_prefixes_list):
-        if len(str_prefixes_list) < 11:  # len("prefix : <>")
-            return {}
-        pieces = re.split(REGEX_PREFIX, str_prefixes_list)
-        if len(
-                pieces) < 2:  # The first piece does not contain a nampespace, it is an (probably empty string) prior to the first PREFIX keyword
-            return {}
-        result = {}
-        for a_piece in pieces:
-            index_end_prefix = a_piece.find(":")  # First ':' will be the ':' used after the prefix
-            prefix = a_piece[:index_end_prefix].strip()
-
-            index_beg_uri = a_piece.find("<") + 1
-            index_end_uri = a_piece.find(">")
-
-            result[prefix] = a_piece[index_beg_uri:index_end_uri]
-        return result

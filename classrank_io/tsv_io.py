@@ -5,3 +5,10 @@ def yield_tsv_lines(file_path, skip_first=False):
         for a_line in in_stream:
             yield a_line.strip()
 
+
+def write_tsv_lines(file_path, iterable):
+    with open(file_path, "w") as out_stream:
+        for elem in iterable:
+            out_stream.write(elem + "\n")
+
+
