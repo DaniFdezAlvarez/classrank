@@ -1,4 +1,4 @@
-from experimentation.dbpedia.query_mining import ClassUsageMiner
+from experimentation.dbpedia.query_mining.class_usage_miner import ClassUsageMiner
 from classrank_io.json_io import write_obj_to_json
 
 _RESULTS_KEY = "results"
