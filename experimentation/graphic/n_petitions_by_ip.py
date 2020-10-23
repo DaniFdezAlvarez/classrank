@@ -22,4 +22,4 @@ plt.tick_params(
     top=False,         # ticks along the top edge are off
     labelbottom=False) # labels along the bottom edge are off
 plt.show()
-plt.savefig("avg_petitions_per_ip")
+plt.savefig("avg_petitions_per_ipP")

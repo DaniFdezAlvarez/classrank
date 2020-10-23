@@ -1,5 +1,5 @@
 from classrank_io.json_io import write_obj_to_json
-
+from classrank_io.tsv_io import write_tsv_lines
 
 S = 0
 P = 1
@@ -216,6 +216,34 @@ class ClassCountDumpFilter(_BaseDumpFilter):
         write_obj_to_json(target_obj=self._link_dict,
                           out_path=self._target_path,
                           indent=2)
+
+class ClassListDumpFilter(_BaseDumpFilter):
+
+
+    def __init__(self, triples_yielder, target_file, just_o_props, s_and_o_props):
+        super().__init__(triples_yielder)
+        self._target_file = target_file
+        self._just_o_props = just_o_props
+        self._s_and_o_props = s_and_o_props
+
+        self._classes_set = set()
+
+    def generate_filter(self):
+        for a_triple in self._triples_yielder.yield_triples():
+            self.process_triple(a_triple)
+        self.close_filter()
+
+    def process_triple(self, triple):
+        if triple[P] in self._just_o_props:
+            self._classes_set.add(triple[O])
+        elif triple[P] in self._s_and_o_props:
+            self._classes_set.add(triple[O])
+            self._classes_set.add(triple[S])
+
+    def close_filter(self):
+        write_tsv_lines(file_path=self._target_file,
+                        iterable=self._classes_set)
+
 
 class TBOXGraphDumpFilter(_BaseDumpFilter):
 

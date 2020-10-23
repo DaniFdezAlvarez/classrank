@@ -33,3 +33,4 @@ plt.tick_params(
     labelbottom=False) # labels along the bottom edge are off
 plt.show()
 plt.savefig("avg_petitions_per_ipp")
+
