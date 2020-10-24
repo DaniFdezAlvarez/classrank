@@ -157,7 +157,9 @@ class WikidataClassUsageMiner(object):
 
 
     def _unprefixize_uris(self, uris, new_prefixes):
-        return [self._unprefixize_uri(prefixed_uri=an_uri, new_prefixes=new_prefixes) for an_uri in uris]
+        return [self._unprefixize_uri(prefixed_uri=an_uri, new_prefixes=new_prefixes)
+                for an_uri in uris
+                if not an_uri.startswith("_:")]  # We are discarding here BNodes
 
 
     def _unprefixize_uri(self, prefixed_uri, new_prefixes):
