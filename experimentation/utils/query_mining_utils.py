@@ -2,6 +2,7 @@ import re
 from experimentation.consts import REGEX_PREFIX, REGEX_WHOLE_URI, REGEX_PREFIXED_URI
 from classrank_utils.uri import remove_corners
 
+
 def parse_new_prefixes(str_prefixes_list):
     if len(str_prefixes_list) < 11:  # len("prefix : <>")
         return {}
