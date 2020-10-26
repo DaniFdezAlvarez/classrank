@@ -1,6 +1,5 @@
 import sys
-from core.classrank.classranker import ClassRanker, KEY_CLASS_POINTERS, \
-    _S, _P, _O, KEY_INSTANCES, KEY_CLASSRANK, KEY_UNDER_T_CLASS_POINTERS
+from core.classrank.classranker import ClassRanker, KEY_CLASS_POINTERS, _S, _P, _O, KEY_CLASSRANK
 
 
 class ClassRankerSeveralCpSets(ClassRanker):
@@ -12,7 +11,7 @@ class ClassRankerSeveralCpSets(ClassRanker):
                          classpointers_parser=None,  # there are different sets of classpointers known a priori
                          classrank_formatter=classrank_formatter,
                          damping_factor=0.85,  # wont be used
-                         max_iter_pagerank=100,  #  wont be used
+                         max_iter_pagerank=100,  # wont be used
                          threshold=1,  # Classes are known a priori as well
                          max_edges=max_edges,
                          pagerank_scores=pagerank_scores)
@@ -20,14 +19,11 @@ class ClassRankerSeveralCpSets(ClassRanker):
         self._classpointers_sets = classpointers_sets
         self.set_target_classes = set_target_classes
 
-
     def generate_classrank(self):
         ### Collecting inputs
-        self._pagerank_scores
         classpointers_set = self._build_cp_superset()
         # damping factor (self)
         # threshold (self)
-
 
         ### Stage 1 - PageRank
 
@@ -51,39 +47,37 @@ class ClassRankerSeveralCpSets(ClassRanker):
         ###  Outputs
         print("Outputs")
         sys.stdout.flush()
-        result = self._classrank_formatter.format_classrank_dict(classes_dict, raw_pagerank)
+        result = self._classrank_formatter.format_classrank_dict(classes_dict, self._pagerank_scores)
 
+        return result
+
+    def _init_multiclassrank_structure(self):
+        return [0 for _ in self._classpointers_sets]
+
+    def _calculate_classrank_for_a_cp_set_and_class(self, cp_set, a_class, classes_dict):
+        instnaces_added = set()  # This set will be gone when this method ends
+        result = 0.0
+        for a_p in classes_dict[a_class][KEY_CLASS_POINTERS]:
+            if a_p in cp_set:  # First, check if the cp is in the target set
+                if len(classes_dict[a_class][KEY_CLASS_POINTERS][a_p]) >= self._threshold:  # Adequate threshold
+                    for an_s in classes_dict[a_class][KEY_CLASS_POINTERS][a_p]:
+                        if an_s not in instnaces_added:  # Each instance add its score just once
+                            instnaces_added.add(an_s)
+                            result += self._pagerank_scores[an_s]
         return result
 
     def _calculate_classrank(self, classes_dict, raw_pagerank, threshold):
         for a_class in classes_dict:
             # Add new keys
-            # classes_dict[a_class][KEY_INSTANCES] = set()
-            classes_dict[a_class][KEY_CLASSRANK] = 0
-            classes_dict[a_class][KEY_UNDER_T_CLASS_POINTERS] = {}
-            under_threshold_props = []
-            for a_p in classes_dict[a_class][KEY_CLASS_POINTERS]:
-                # If it has more instances than threshold, its pagerank is added to the c's classrank
-                if len(classes_dict[a_class][KEY_CLASS_POINTERS][a_p]) >= threshold:
-                    for an_s in classes_dict[a_class][KEY_CLASS_POINTERS][a_p]:
-                        # Each instance add its score just once
-                        if an_s not in classes_dict[a_class][KEY_INSTANCES]:
-                            classes_dict[a_class][KEY_INSTANCES].add(an_s)
-                            classes_dict[a_class][KEY_CLASSRANK] += raw_pagerank[an_s]
-                # else:
-                #
-                #     # print(a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p])
-                #     under_threshold_props.append((a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p]))
-                #     # target_obj = classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
-                #     # del classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
-                #     # classes_dict[a_class][KEY_UNDER_T_CLASS_POINTERS][a_p] = target_obj
-
-            for a_low_p in under_threshold_props:
-                del classes_dict[a_class][KEY_CLASS_POINTERS][a_low_p[0]]
-                classes_dict[a_class][KEY_UNDER_T_CLASS_POINTERS][a_low_p[0]] = a_low_p[1]
-
-            # The set of instances in no more useful. Change it by the total number of instances.
-            classes_dict[a_class][KEY_INSTANCES] = len(classes_dict[a_class][KEY_INSTANCES])
+            classes_dict[a_class][KEY_CLASSRANK] = self._init_multiclassrank_structure()
+            # Do the computation for each cp_set
+            i = 0
+            for a_cp_set in self._classpointers_sets:
+                classes_dict[a_class][KEY_CLASSRANK][i] = \
+                    self._calculate_classrank_for_a_cp_set_and_class(classes_dict=classes_dict,
+                                                                     cp_set=a_cp_set,
+                                                                     a_class=a_class)
+                i += 1
         # No return needed, modyfying received param
 
     def _build_cp_superset(self):
@@ -119,4 +113,3 @@ class ClassRankerSeveralCpSets(ClassRanker):
     #
     # DONE - Redefine as well the part in which the algorithm looks for classes. Classes are known a priori
     # DONE - Enjoy the life man!
-
