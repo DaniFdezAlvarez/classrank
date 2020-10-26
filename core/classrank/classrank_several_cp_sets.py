@@ -23,4 +23,3 @@ class ClassRankerSeveralCpSets(ClassRanker):
 
     # - Redefine as well the part in which the algorithm looks for classes. Classes are known a priori
     # - Enjoy the life man!
-    

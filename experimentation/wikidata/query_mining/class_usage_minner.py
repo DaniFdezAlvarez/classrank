@@ -32,12 +32,13 @@ _WIKIDATA_NAMESPACE_ENTITY = "http://www.wikidata.org/entity/"
 
 class WikidataClassUsageMiner(object):
 
-    def __init__(self, source_file, instances_dict, target_classes, wikidata_prefixes, sort_by=SORT_BY_ALL):
+    def __init__(self, source_file, instances_dict, target_classes, wikidata_prefixes, error_entries_file, sort_by=SORT_BY_ALL):
         self._source_file = source_file
         self._instances_dict = instances_dict
         self._default_prefixes = wikidata_prefixes
         self._classes_dict = self._build_classes_dict(target_classes)
         self._sort_by = sort_by
+        self._error_entries_file = error_entries_file
 
         self._valid_queries = 0
         self._total_queries = 0
@@ -109,11 +110,20 @@ class WikidataClassUsageMiner(object):
 
     def _mine_lines(self):
         for a_line in yield_tsv_lines(self._source_file, skip_first=True):
-            pieces = a_line.split("\t")
-            uris_mentioned = self._get_uris_from_raw_query(pieces[_QUERY_POSITION])
-            uris_mentioned = self._remove_wikidata_namespaces(uris_mentioned)
-            self._annotate_mentions(uris_mentioned=uris_mentioned,
-                                    organic=self._is_organic(pieces[_CATEGORY_POSITION]))
+            try:
+                pieces = a_line.split("\t")
+                uris_mentioned = self._get_uris_from_raw_query(pieces[_QUERY_POSITION])
+                uris_mentioned = self._remove_wikidata_namespaces(uris_mentioned)
+                self._annotate_mentions(uris_mentioned=uris_mentioned,
+                                        organic=self._is_organic(pieces[_CATEGORY_POSITION]))
+            except BaseException as e:
+                self._log_error_entry(a_line, e)
+
+    def _log_error_entry(self, entry, error):
+        with open(self._error_entries_file, "a") as out_stream:
+            out_stream.write(entry + "\n")
+            out_stream.write(str(error) + "\t")
+
 
     def _remove_wikidata_namespaces(self, uris):
         result = []
