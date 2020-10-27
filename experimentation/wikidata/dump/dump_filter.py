@@ -264,7 +264,7 @@ class TBOXGraphDumpFilter(_BaseDumpFilter):
             self._write_triple(triple)
 
     def _write_triple(self, triple):
-        self._out_stream.write("<{}> <{}> <{}> .".format(triple[S], triple[P], triple[O]))
+        self._out_stream.write("<{}> <{}> <{}> .\n".format(triple[S], triple[P], triple[O]))
 
     def close_filter(self):
         self._out_stream.close()
