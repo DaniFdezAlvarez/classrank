@@ -1,6 +1,6 @@
 """
-It expects an input file in which the first line is a non-parseable comment and the rest of
-lines contain each one a triple of a graphic in ttl format.
+It expects an input file in which the first line CAN be a non-parseable comment and the rest of
+lines contain each one a triple of a graphic in nt format.
 """
 from classrank_io.graph.yielders.triples_yielder_interface import TriplesYielderInterface
 from classrank_utils.uri import remove_corners, is_valid_triple
@@ -10,16 +10,19 @@ _SEPARATOR = " "
 
 
 class TtlSimpleTriplesYielder(TriplesYielderInterface):
-    def __init__(self, source_file):
+    def __init__(self, source_file, skip_first=True):
         super(TtlSimpleTriplesYielder, self).__init__()
         self._source_file = source_file
+        self._skip_first = skip_first
         self._triples_count = 0
         self._error_count = 0
+
 
     def yield_triples(self, max_triples=-1):
         self._reset_count()
         with open(self._source_file, "r", errors='ignore', encoding="utf-8") as in_stream:
-            in_stream.readline()  # Skipping the first line
+            if self._skip_first:
+                in_stream.readline()  # Skipping the first line
             for a_line in in_stream:
                 s, p, o = self._get_triple_from_line(a_line)
                 if s is not None:  # Nor p and o
