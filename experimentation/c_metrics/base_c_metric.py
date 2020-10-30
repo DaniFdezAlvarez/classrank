@@ -1,6 +1,50 @@
 from classrank_io.json_io import json_obj_to_string, write_obj_to_json
+from classrank_utils.g_paths import shortest_path, EfficientShortPathCalculator, MAX_AVAILABLE, \
+    fill_absent_paths_with_an_all_nodes_walk, delete_auto_path
+
+NX_COMPUTATION = "nx"
+PARALLEL_COMPUTATION = "custom"
+
 
 class BaseCMetric(object):
+
+    def __init__(self, shortest_paths_dict=None, shortest_paths_computation=NX_COMPUTATION, nxgraph=None,
+                 tunned_shortest_paths_dict=None):
+        self._shortest_paths = shortest_paths_dict
+        self._tunned_shortest_path_dict = tunned_shortest_paths_dict
+        self._computation_choice = shortest_paths_computation
+        self._nxgraph = nxgraph
+
+    def _get_shortest_paths(self, graph=None):
+        g = graph if graph is not None else self._nxgraph
+        if self._shortest_paths is not None and (graph is None or graph == self._nxgraph):
+            return self._shortest_paths
+        else:
+            # result = self._compute_shortest_paths(g)
+            # if graph is None or graph == self._nxgraph:
+            #     self._shortest_paths = result
+            return self._compute_shortest_paths(g)
+
+    def _get_tunned_shortest_paths(self, graph=None):
+        if self._tunned_shortest_path_dict is not None and (graph is None or graph == self._nxgraph):
+            return self._tunned_shortest_path_dict
+        g = graph if graph is not None else self._nxgraph
+        result = self._get_shortest_paths(graph=g)
+        for a_node in g.nodes:
+            fill_absent_paths_with_an_all_nodes_walk(paths_dict=result,
+                                                     target_nodes=g.nodes,
+                                                     origin=a_node)
+            delete_auto_path(paths_dict=result,
+                             origin=a_node)
+        return result
+
+    def _compute_shortest_paths(self, graph=None):
+        g = graph if graph is not None else self._nxgraph
+        if self._computation_choice == NX_COMPUTATION:
+            return shortest_path(graph=g)
+        elif self._computation_choice == PARALLEL_COMPUTATION:
+            EfficientShortPathCalculator(nx_graph=g,
+                                         n_threads=MAX_AVAILABLE).get_shortests_paths()
 
     def _return_result(self, obj_result, string_return, out_path):
         if out_path is not None:
@@ -8,43 +52,3 @@ class BaseCMetric(object):
         if string_return:
             return json_obj_to_string(target_obj=obj_result, indent=2)
         return obj_result
-
-
-    def _fill_absent_paths_with_an_all_nodes_walk(self, paths_dict, target_nodes, origin):
-        """
-        It expect a dict with this format:
-
-        {'d': ['e', 'd'], 'b': ['e', 'b'], 'f': ['e', 'd', 'f'], 'e': ['e'], 'c': ['e', 'b', 'c']}
-
-        key: destination_node from a given_source
-        value: path from origin to reach the destination
-
-        :param paths_dict:
-        :param target_nodes: list of every node in the graph
-        :param origin: node from which the path start
-        :return:
-        """
-        infinity_path = [an_elem for an_elem in target_nodes]  # just a copy
-        for a_node in target_nodes:
-            if a_node != origin:
-                if a_node not in paths_dict:
-                    paths_dict[a_node] = infinity_path
-
-
-    def _delete_auto_path(self, paths_dict, origin):
-        """
-
-        It expect a dict with this format:
-
-        {'d': ['e', 'd'], 'b': ['e', 'b'], 'f': ['e', 'd', 'f'], 'e': ['e'], 'c': ['e', 'b', 'c']}
-
-        key: destination_node from a given_source
-        value: path from origin to reach the destination
-
-        :param paths_dict:
-        :param origin: node from which the path start
-        :return:
-        """
-        if origin in paths_dict:
-            del paths_dict[origin]
-

@@ -1,11 +1,16 @@
-from classrank_utils.g_paths import build_graph_for_paths, shortest_path
+from classrank_utils.g_paths import build_graph_for_paths
 from classrank_utils.scores import normalize_score
-from experimentation.c_metrics.base_c_metric import BaseCMetric
+from experimentation.c_metrics.base_c_metric import BaseCMetric, NX_COMPUTATION
 
 
 class BetweenessComp(BaseCMetric):
 
-    def __init__(self, triples_yielder, target_nodes, normalize=False):
+    def __init__(self, triples_yielder, target_nodes, normalize=False, shortest_paths_dict=None,
+                 shortest_paths_computation=NX_COMPUTATION, nxgraph=None, tunned_shortest_paths_dict=None):
+        super().__init__(shortest_paths_dict=shortest_paths_dict,
+                         shortest_paths_computation=shortest_paths_computation,
+                         nxgraph=nxgraph,
+                         tunned_shortest_paths_dict=tunned_shortest_paths_dict)
         self._triples_yielder = triples_yielder
         self._normalize = normalize
         self._target_nodes = target_nodes
@@ -19,9 +24,8 @@ class BetweenessComp(BaseCMetric):
 
     def run(self, string_return=True, out_path=None):
         self._init_dict_count()
-        nxgraph = build_graph_for_paths(self._triples_yielder)
-        # self._max_score = len(nxgraph) * (len(nxgraph) - 2)  # Setting up max_score
-        every_path_dict = shortest_path(graph=nxgraph)
+        nxgraph = build_graph_for_paths(self._triples_yielder) if self._nxgraph is None else self._nxgraph
+        every_path_dict = self._get_shortest_paths(nxgraph)
         every_path = self._list_of_relevant_paths(every_path_dict)
         for a_node in self._dict_count:
             for a_path in every_path:
@@ -42,12 +46,10 @@ class BetweenessComp(BaseCMetric):
             self._dict_count[an_uri] = normalize_score(score=self._dict_count[an_uri],
                                                        max_score=self._max_score)
 
-
     def _init_dict_count(self):
         self._dict_count = {}
         for a_node in self._target_nodes:
             self._dict_count[a_node] = 0
-
 
     def _list_of_relevant_paths(self, every_path_dict):
         result = []

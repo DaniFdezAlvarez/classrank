@@ -1,7 +1,5 @@
 import math
 
-
-
 def d_for_equation_21(target_weight, error_margin, p, last_prefix_min=2, last_prefix_max=1000000):
     prefix_size = int((last_prefix_min + last_prefix_max) / 2)
     print(prefix_size)
