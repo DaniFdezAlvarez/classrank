@@ -1,6 +1,6 @@
 from classrank_utils.uri import remove_corners
 from classrank_utils.scores import normalize_score
-from experimentation.c_metrics.base_c_metric import BaseCMetric
+from experimentation.c_metrics.base_c_metric import BaseCMetric, NX_COMPUTATION
 from classrank_utils.g_paths import build_graph_for_paths
 
 _S = 0
@@ -9,7 +9,12 @@ _O = 2
 
 class DegreeComp(BaseCMetric):
 
-    def __init__(self, triples_yielder, target_nodes, normalize=False):
+    def __init__(self, triples_yielder, target_nodes, normalize=False, shortest_paths_dict=None, shortest_paths_computation=NX_COMPUTATION,
+                 nxgraph=None, tunned_shortest_paths_dict=None):
+        super().__init__(shortest_paths_dict=shortest_paths_dict,
+                         shortest_paths_computation=shortest_paths_computation,
+                         nxgraph=nxgraph,
+                         tunned_shortest_paths_dict=tunned_shortest_paths_dict)
         self._triples_yielder = triples_yielder
         self._target_nodes = [remove_corners(an_uri, raise_error=False) for an_uri in target_nodes]
         self._normalize = normalize
@@ -27,7 +32,7 @@ class DegreeComp(BaseCMetric):
 
     def run(self, string_return=True, out_path=None):
         self._init_dict_count()
-        nxgraph = build_graph_for_paths(self._triples_yielder)
+        nxgraph = build_graph_for_paths(self._triples_yielder) if self._nxgraph is None else self._nxgraph
         # self._max_score = len(nxgraph) - 1  # Setting up max_score
         for a_node in nxgraph.nodes:
             self._dict_count[a_node] = nxgraph.degree[a_node]

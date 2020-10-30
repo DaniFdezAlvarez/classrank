@@ -1,10 +1,16 @@
 from classrank_utils.scores import normalize_score
-from experimentation.c_metrics.base_c_metric import BaseCMetric
+from experimentation.c_metrics.base_c_metric import BaseCMetric, NX_COMPUTATION
 
 
 class BridgingCentralityComp(BaseCMetric):
 
-    def __init__(self, triples_yielder, degree_dict, betweeness_dict, normalize=False, max_score_degree=0, max_score_betweeness=0):
+    def __init__(self, triples_yielder, degree_dict, betweeness_dict, normalize=False, max_score_degree=0,
+                 max_score_betweeness=0, shortest_paths_dict=None, shortest_paths_computation=NX_COMPUTATION,
+                 tunned_shortest_paths_dict=None, nxgraph=None):
+        super().__init__(shortest_paths_dict=shortest_paths_dict,
+                         shortest_paths_computation=shortest_paths_computation,
+                         tunned_shortest_paths_dict=tunned_shortest_paths_dict,
+                         nxgraph=nxgraph)
         self._triples_yielder = triples_yielder
         self._degree_dict = degree_dict
         self._betweeness_dict = betweeness_dict

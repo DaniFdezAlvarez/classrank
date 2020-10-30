@@ -26,6 +26,57 @@ def shortest_path(graph, origin=None, destination=None):
                             source=origin,
                             target=destination)
 
+def fill_absent_paths_with_an_all_nodes_walk(paths_dict, target_nodes, origin):
+    """
+    It expect a dict with this format:
+
+    {'d': ['e', 'd'], 'b': ['e', 'b'], 'f': ['e', 'd', 'f'], 'e': ['e'], 'c': ['e', 'b', 'c']}
+
+    key: destination_node from a given_source
+    value: path from origin to reach the destination
+
+    :param paths_dict:
+    :param target_nodes: list of every node in the graph
+    :param origin: node from which the path start
+    :return:
+    """
+    infinity_path = [an_elem for an_elem in target_nodes]  # just a copy
+    for a_node in target_nodes:
+        if a_node != origin:
+            if a_node not in paths_dict:
+                paths_dict[a_node] = infinity_path
+
+
+def shortests_paths_to_tunned_shortest_paths(shortest_paths, nxgraph):
+    """"
+    Warning!!! It modifies the shortest_paths object
+    """
+    for a_node in nxgraph.nodes:
+        fill_absent_paths_with_an_all_nodes_walk(paths_dict=shortest_paths,
+                                                 target_nodes=nxgraph.nodes,
+                                                 origin=a_node)
+        delete_auto_path(paths_dict=shortest_paths,
+                         origin=a_node)
+    return shortest_paths
+
+
+def delete_auto_path(paths_dict, origin):
+    """
+
+    It expect a dict with this format:
+
+    {'d': ['e', 'd'], 'b': ['e', 'b'], 'f': ['e', 'd', 'f'], 'e': ['e'], 'c': ['e', 'b', 'c']}
+
+    key: destination_node from a given_source
+    value: path from origin to reach the destination
+
+    :param paths_dict:
+    :param origin: node from which the path start
+    :return:
+    """
+    if origin in paths_dict:
+        del paths_dict[origin]
+
 
 MAX_AVAILABLE = -1
 
@@ -57,9 +108,17 @@ class EfficientShortPathCalculator(object):
 
     def _compute_shortest_paths(self):
         pool = mp.Pool(self._n_threads)
-        result = {a_node: pool.apply(self._shortest_path_from_a_node, args=a_node) for a_node in self._g.nodes}
+        result = {a_node: pool.apply(self._shortest_path_from_a_node, args=(a_node,)) for a_node in self._g.nodes}
         pool.close()
         return result
+        # return {self._target_node(a_result_path) : a_result_path for a_result_path in result_paths}
+        # result = {a_node: pool.apply(self._shortest_path_from_a_node, args=a_node) for a_node in self._g.nodes}
+
+    def _target_node(self, result_path):
+        for a_path in result_path.values():
+            return a_path[0]
+                # print(a_path, "----")
+                # return a_path[0]  # not a nested for, just a random access to the first element in any of the paths
 
 
 
