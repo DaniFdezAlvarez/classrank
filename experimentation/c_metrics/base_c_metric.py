@@ -20,9 +20,6 @@ class BaseCMetric(object):
         if self._shortest_paths is not None and (graph is None or graph == self._nxgraph):
             return self._shortest_paths
         else:
-            # result = self._compute_shortest_paths(g)
-            # if graph is None or graph == self._nxgraph:
-            #     self._shortest_paths = result
             return self._compute_shortest_paths(g)
 
     def _get_tunned_shortest_paths(self, graph=None):
@@ -30,12 +27,9 @@ class BaseCMetric(object):
             return self._tunned_shortest_path_dict
         g = graph if graph is not None else self._nxgraph
         result = self._get_shortest_paths(graph=g)
-        for a_node in g.nodes:
-            fill_absent_paths_with_an_all_nodes_walk(paths_dict=result,
-                                                     target_nodes=g.nodes,
-                                                     origin=a_node)
-            delete_auto_path(paths_dict=result,
-                             origin=a_node)
+        fill_absent_paths_with_an_all_nodes_walk(paths_dict=result,
+                                                 target_nodes=g.nodes)
+        delete_auto_path(paths_dict=result)
         return result
 
     def _compute_shortest_paths(self, graph=None):
