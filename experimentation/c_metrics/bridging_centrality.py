@@ -32,10 +32,19 @@ class BridgingCentralityComp(BaseCMetric):
                                    out_path=out_path)
 
     def _compute_neighborhoods(self):
+        if self._nxgraph is not None:
+            self._compute_neigh_nxgraph()
+        else:
+            self._compute_neigh_t_yielder()
+
+    def _compute_neigh_t_yielder(self):
         for a_triple in self._triples_yielder.yield_triples():
             self._neigborhoods[a_triple[0]].add(a_triple[2])
             self._neigborhoods[a_triple[2]].add(a_triple[0])
 
+    def _compute_neigh_nxgraph(self):
+        for a_node in self._nxgraph.nodes:  # If we are here, nxgraph cant be None
+            self._neigborhoods[a_node] = set(self._nxgraph.neighbors(a_node))
 
     def _init_neighborhoods_dict(self):
         result = {}
@@ -46,6 +55,8 @@ class BridgingCentralityComp(BaseCMetric):
 
 
     def _comp_bridging_coefficient(self, node):
+        if len(self._neigborhoods[node]) == 0:
+            return 0
         numerator = float(1) / self._degree_dict[node]
         denominator = 0
         for a_neig in self._neigborhoods[node]:
