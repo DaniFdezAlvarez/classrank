@@ -253,7 +253,7 @@ class EfficientShortPathCalculatorToDisk(EfficientShortPathCalculator):
 
 
     def _reset_nodes_file(self):
-        with open(self._file_nodes_completed) as out_stream:
+        with open(self._file_nodes_completed, "w") as out_stream:
             out_stream.write("")
 
     def _integrate_list_results_into_single_dict(self, target_list):
