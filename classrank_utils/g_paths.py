@@ -206,18 +206,18 @@ class EfficientShortPathCalculatorToDisk(EfficientShortPathCalculator):
                 node_slices.append(current_slice)
         return node_slices
 
-    def _compute_slices(self, queue, g_view, list_id):
+    def _compute_slices(self, queue, g_view):
+        value_file = 0
         try:
             while not queue.empty():
                 a_slice = queue.get()
                 result = self._compute_a_slice(node_slice=queue.get(),
                                                g_view=g_view)
-                value_file = list_id[0]
-                list_id += 1
                 self._serialize_result(result, value_file)
                 self._mark_nodes_computed(a_slice)
+                value_file += 1
         except MemoryError:
-            print('ERROR: I did my best! ' + mp.current_process().name + " - slices: " + str(list_id[0]),
+            print('ERROR: I did my best! ' + mp.current_process().name + " - slices: " + str(value_file),
                   file=sys.stderr)
 
     def _serialize_result(self, json_obj, value_file):
@@ -236,15 +236,13 @@ class EfficientShortPathCalculatorToDisk(EfficientShortPathCalculator):
 
 
     def _compute_shortest_paths(self):
-        manager = mp.Manager()
         self._reset_nodes_file()
         queue_result = mp.Queue()
         queue_result.empty()
-        list_value = manager.list()
         for a_slice in self._node_slices():
             queue_result.put(a_slice)
         processes = [mp.Process(target=self._compute_slices,
-                                args=(queue_result, g_view, list_value))
+                                args=(queue_result, g_view))
                      for g_view, node_section in self._g_copy_and_ranges(self._n_threads)]
         for p in processes:
             p.start()
