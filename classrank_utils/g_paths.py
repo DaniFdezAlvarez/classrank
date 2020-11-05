@@ -1,5 +1,7 @@
 import networkx as nx
 import multiprocessing as mp
+from classrank_io.json_io import write_obj_to_json
+import sys
 
 _S = 0
 _O = 2
@@ -114,11 +116,10 @@ class EfficientShortPathCalculator(object):
 
     @staticmethod
     def _shortest_path_from_a_node(graph, a_node):
-        # print("Ini", a_node)
         result = nx.shortest_path(graph,
                                   source=a_node,
                                   target=None)
-        # print("End", a_node)
+        print("End", a_node)
         return result
 
     def _g_copy_and_ranges(self, n_threads):
@@ -141,11 +142,13 @@ class EfficientShortPathCalculator(object):
             yield self._g.copy(as_view=True), a_group
 
     def _compute_section_shortests_paths(self, g_view, node_section, list_result):
-        list_result.append({a_node: self._shortest_path_from_a_node(graph=g_view, a_node=a_node) for a_node in node_section})
+        list_result.append({a_node: self._shortest_path_from_a_node(graph=g_view, a_node=a_node)
+                            for a_node in node_section})
 
     def _compute_shortest_paths(self):
         manager = mp.Manager()
         list_result = manager.list()
+
         processes = [mp.Process(target=self._compute_section_shortests_paths,
                                 args=(g_view, node_section, list_result))
                      for g_view, node_section in self._g_copy_and_ranges(self._n_threads)]
@@ -174,8 +177,95 @@ class EfficientShortPathCalculator(object):
     def _target_node(self, result_path):
         for a_path in result_path.values():
             return a_path[0]
-                # print(a_path, "----")
-                # return a_path[0]  # not a nested for, just a random access to the first element in any of the paths
+
+
+
+class EfficientShortPathCalculatorToDisk(EfficientShortPathCalculator):
+
+    def __init__(self, file_template_results, file_nodes_completed, nx_graph, n_threads=MAX_AVAILABLE, slice_size=500):
+        super().__init__(nx_graph=nx_graph,
+                         n_threads=n_threads)
+        self._file_template_results = file_template_results
+        self._slice_size = slice_size
+        self._file_nodes_completed = file_nodes_completed
+
+
+    def gen_shortest_paths(self):
+        self._compute_shortest_paths()
+
+    def _node_slices(self):
+        node_slices = []
+        current_slice = []
+        node_slices.append(current_slice)
+        n = 0
+        for a_node in self._g.nodes:
+            n += 1
+            current_slice.append(a_node)
+            if n % self._slice_size == 0:
+                current_slice = []
+                node_slices.append(current_slice)
+        return node_slices
+
+    def _compute_slices(self, queue, g_view, list_id):
+        try:
+            while not queue.empty():
+                a_slice = queue.get()
+                result = self._compute_a_slice(node_slice=queue.get(),
+                                               g_view=g_view)
+                value_file = list_id[0]
+                list_id += 1
+                self._serialize_result(result, value_file)
+                self._mark_nodes_computed(a_slice)
+        except MemoryError:
+            print('ERROR: I did my best! ' + mp.current_process().name + " - slices: " + str(list_id[0]),
+                  file=sys.stderr)
+
+    def _serialize_result(self, json_obj, value_file):
+        write_obj_to_json(target_obj=json_obj,
+                          out_path=self._file_template_results.format(mp.current_process().name + str(value_file)))
+
+    def _mark_nodes_computed(self, a_slice):
+        with open(self._file_nodes_completed, "a") as out_stream:
+            for a_node in a_slice:
+                out_stream.write(a_node+"\n")
+
+    @staticmethod
+    def _compute_a_slice(node_slice, g_view):
+        return {a_node: EfficientShortPathCalculatorToDisk._shortest_path_from_a_node(graph=g_view, a_node=a_node)
+                for a_node in node_slice}
+
+
+    def _compute_shortest_paths(self):
+        manager = mp.Manager()
+        self._reset_nodes_file()
+        queue_result = mp.Queue()
+        queue_result.empty()
+        list_value = manager.list()
+        for a_slice in self._node_slices():
+            queue_result.put(a_slice)
+        processes = [mp.Process(target=self._compute_slices,
+                                args=(queue_result, g_view, list_value))
+                     for g_view, node_section in self._g_copy_and_ranges(self._n_threads)]
+        for p in processes:
+            p.start()
+        for p in processes:
+            p.join()
+
+
+    def _reset_nodes_file(self):
+        with open(self._file_nodes_completed) as out_stream:
+            out_stream.write("")
+
+    def _integrate_list_results_into_single_dict(self, target_list):
+        result = {}
+        for a_dict in target_list:
+            for a_key, a_value in a_dict.items():
+                result[a_key] = a_value
+        return result
+
+    def _target_node(self, result_path):
+        for a_path in result_path.values():
+            return a_path[0]
 
 
 
