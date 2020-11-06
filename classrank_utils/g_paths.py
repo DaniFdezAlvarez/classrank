@@ -1,6 +1,7 @@
 import networkx as nx
 import multiprocessing as mp
 from classrank_io.json_io import write_obj_to_json
+from classrank_io.tsv_io import yield_tsv_lines
 import sys
 
 _S = 0
@@ -264,6 +265,55 @@ class EfficientShortPathCalculatorToDisk(EfficientShortPathCalculator):
     def _target_node(self, result_path):
         for a_path in result_path.values():
             return a_path[0]
+
+
+class EfficientShortPathCalculatorFailuresCollector(EfficientShortPathCalculatorToDisk):
+
+    def __init__(self, file_template_results, file_nodes_completed, nx_graph, n_threads=MAX_AVAILABLE, slice_size=500):
+        super().__init__(file_template_results=file_template_results,
+                         file_nodes_completed=file_nodes_completed,
+                         nx_graph=nx_graph,
+                         n_threads=n_threads,
+                         slice_size=slice_size)
+
+        self._target_nodes = None  # Will be filled later
+
+    def _compute_shortest_paths(self):
+        target_nodes = self._induce_target_nodes()  # difference here
+        queue_result = mp.Queue()
+        queue_result.empty()
+        for a_slice in self._node_slices_for_target_nodes(target_nodes):  # difference here
+            queue_result.put(a_slice)
+        processes = [mp.Process(target=self._compute_slices,
+                                args=(queue_result, g_view))
+                     for g_view, node_section in self._g_copy_and_ranges(self._n_threads)]
+        for p in processes:
+            p.start()
+        for p in processes:
+            p.join()
+
+    def _node_slices_for_target_nodes(self, target_nodes):
+        node_slices = []
+        current_slice = []
+        node_slices.append(current_slice)
+        n = 0
+        for a_node in target_nodes:
+            n += 1
+            current_slice.append(a_node)
+            if n % self._slice_size == 0:
+                current_slice = []
+                node_slices.append(current_slice)
+        return node_slices
+
+
+    def _induce_target_nodes(self):
+        whole_nodes = set(self._g.nodes)
+        already_computed_nodes = self._read_already_computed_nodes()
+        return list(whole_nodes - already_computed_nodes)
+
+
+    def _read_already_computed_nodes(self):
+        return set(yield_tsv_lines(file_path=self._file_nodes_completed))
 
 
 
