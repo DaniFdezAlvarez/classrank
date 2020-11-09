@@ -14,6 +14,7 @@ class WikidataLabelCollector(object):
         self._labels_dict = {}
 
 
+
     def collect_labels(self):
         self._parse_target_labels()
         self._serialize_target_labels()
@@ -30,14 +31,19 @@ class WikidataLabelCollector(object):
                           out_path=self._out_file)
 
     def _yield_json_entries(self):
+        counter = 0
         with open(self._dump_file, "r") as in_stream:
             for a_line in in_stream:
                 a_line = a_line.strip()
                 content = a_line[:-1] if a_line.endswith(",") else a_line
                 try:
                     yield json_obj_from_string(content)
+                    counter += 1
                 except:
                     print("Line with error: " + content)
+
+                if counter % 1000000 == 0:
+                    print("Processed:", counter)
 
     def _entry_label(self, json_entry):
         labels_dict = json_entry[_LABELS_ID_KEY]
