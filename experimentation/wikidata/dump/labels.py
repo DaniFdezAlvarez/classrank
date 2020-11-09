@@ -33,7 +33,7 @@ class WikidataLabelCollector(object):
         with open(self._dump_file, "r") as in_stream:
             for a_line in in_stream:
                 a_line = a_line.strip()
-                content = a_line[:-1] if a_line.endswith(",") else a_line[1:]
+                content = a_line[:-1] if a_line.endswith(",") else a_line
                 try:
                     yield json_obj_from_string(content)
                 except:
