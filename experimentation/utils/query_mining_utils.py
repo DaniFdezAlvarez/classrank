@@ -32,7 +32,10 @@ def detect_complete_uri_mentions(query):
     return [remove_corners(a_uri) for a_uri in re.findall(REGEX_WHOLE_URI, query)]
 
 
-def detect_prefixed_uri_mentions(query):
+def detect_prefixed_uri_mentions(query, complete_uris=None):
+    if complete_uris is not None:
+        for an_uri in complete_uris:
+            query = query.replace("<"+an_uri+">", " ")
     return [match[1:-1] for match in re.findall(REGEX_PREFIXED_URI, query)]
 
 
@@ -43,8 +46,9 @@ def detect_literal_spaces(str_query):
         if char == '"':
             if index == 0:
                 indexes.append(index)
-            elif str_query[index - 1] != '\\':
-                indexes.append(index)
+            elif str_query[index - 1] == '\\':
+                if index >= 2 and str_query[index - 2] == '\\':
+                    indexes.append(index)
         index += 1
     if len(indexes) % 2 != 0:
         raise ValueError("The query has an odd number of non-scaped quotes: " + str_query)
