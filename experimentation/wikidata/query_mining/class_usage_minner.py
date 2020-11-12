@@ -1,4 +1,5 @@
 from classrank_io.tsv_io import yield_tsv_lines
+from classrank_io.json_io import read_json_obj_from_path
 import urllib.parse
 from experimentation.consts import REGEX_TYPE_QUERY, re, MIN_LENGHT_PREFIX
 from classrank_io.json_io import write_obj_to_json
@@ -43,7 +44,11 @@ class WikidataClassUsageMiner(object):
         self._total_queries = 0
         self._wrong_prefixed_uris = 0
 
-
+    def mine_log(self, dest_file):
+        self._mine_lines()
+        self._adapt_results()
+        self._serialize_results(dest_file)
+        self._liberate_results_memory()
 
     def _build_classes_dict(self, target_classes):
         result = {}
@@ -56,11 +61,6 @@ class WikidataClassUsageMiner(object):
             }
         return result
 
-    def mine_log(self, dest_file):
-        self._mine_lines()
-        self._adapt_results()
-        self._serialize_results(dest_file)
-        self._liberate_results_memory()
 
     def _liberate_results_memory(self):
         # The big memory waste will be tipically the isntances dict. But does make sense to erase it, it wouldnt
@@ -190,7 +190,8 @@ class WikidataClassUsageMiner(object):
         if len(literal_spaces) != 0:
             query = replace_literal_spaces_with_blank(query=query,
                                                       literal_spaces=literal_spaces)
-        return detect_complete_uri_mentions(query), detect_prefixed_uri_mentions(query)
+        complete_uris = detect_complete_uri_mentions(query)
+        return complete_uris, detect_prefixed_uri_mentions(query=query, complete_uris=complete_uris)
 
     def _split_into_prefixes_and_query(self, raw_query):
         index_type_of_query = self._detect_index_type_of_query(raw_query)
@@ -209,3 +210,59 @@ class WikidataClassUsageMiner(object):
 
         else:
             return res.start()
+
+
+
+# class WikidataClassUsageMiner(object):
+class WikidataClassUsageMinerErrorIntegrator(WikidataClassUsageMiner):
+
+    def __init__(self, source_file, instances_dict, target_classes, wikidata_prefixes, error_entries_file,
+                 results_file, new_errors_file):
+        super().__init__(source_file=source_file,
+                         instances_dict=instances_dict,
+                         target_classes=target_classes,
+                         wikidata_prefixes=wikidata_prefixes,
+                         error_entries_file=error_entries_file)
+        self._results_file = results_file
+        self._classes_dict = self._load_current_results()
+        self._new_errors_file = new_errors_file
+
+
+    def mine_log(self, dest_file):  # will include results file + the new entries collected in errors
+        self._mine_exceptions()
+        self._adapt_results()
+        self._serialize_results(dest_file)
+        self._liberate_results_memory()
+
+    def _mine_exceptions(self):
+        for a_line in yield_tsv_lines(self._results_file):
+            try:
+                pieces = a_line.split("\t")
+                pieces = pieces[1:]
+                uris_mentioned = self._get_uris_from_raw_query(pieces[_QUERY_POSITION])
+                uris_mentioned = self._remove_wikidata_namespaces(uris_mentioned)
+                self._annotate_mentions(uris_mentioned=uris_mentioned,
+                                        organic=self._is_organic(pieces[_CATEGORY_POSITION]))
+            except BaseException as e:
+                self._log_error_entry(a_line, e)
+
+    def _load_current_results(self):
+        json_obj = read_json_obj_from_path(target_path=self._results_file)
+        self._classes_dict = {}
+        for a_class_subdict in json_obj:
+            self._classes_dict[a_class_subdict[KEY_CLASS]] = a_class_subdict
+
+    def _include_aggregated_fields(self):
+        for a_class, a_class_dict in self._classes_dict.items():
+            a_class_dict[KEY_ROBOTIC] = a_class_dict[KEY_ROBOTIC_CLASS] + a_class_dict[KEY_ROBOTIC_INSTANCE]
+            a_class_dict[KEY_ORGANIC] = a_class_dict[KEY_ORGANIC_CLASS] + a_class_dict[KEY_ORGANIC_INSTANCE]
+            a_class_dict[KEY_ALL_MENTIONS] = a_class_dict[KEY_ROBOTIC] + a_class_dict[KEY_ORGANIC]
+            # a_class_dict[KEY_CLASS] = a_class  # Already there. evrything else should be updated
+            a_class_dict[KEY_RANK] = 0
+
+    def _log_error_entry(self, entry, error):
+        with open(self._new_errors_file, "a") as out_stream:
+            out_stream.write(str(error) + "\t")
+            out_stream.write(entry + "\n")
+
+
