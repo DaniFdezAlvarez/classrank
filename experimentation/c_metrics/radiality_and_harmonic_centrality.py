@@ -1,5 +1,5 @@
 from experimentation.c_metrics.base_c_metric import BaseCMetric
-from classrank_utils.g_paths import nx_diameter, shortest_path, build_graph_for_paths
+from classrank_utils.g_paths import shortest_path, build_graph_for_paths
 from classrank_utils.scores import normalize_score
 import multiprocessing as mp
 
@@ -25,10 +25,7 @@ class ParallelRadialityAndHarmonicCentrality(BaseCMetric):
     def run(self):
         manager, queue = self._init_nodes_queue()
         self._run_processes(manager=manager,
-                            queue=queue,
-                            harm_dict=self._harmonic_dict,
-                            rad_dict=self._radiality_dict,
-                            nxgraph=self._nxgraph)
+                            queue=queue)
 
         self._recompute_radiality_with_diameter()
 
@@ -36,37 +33,37 @@ class ParallelRadialityAndHarmonicCentrality(BaseCMetric):
             self._normalize_dict(self._harmonic_dict)
             self._normalize_dict(self._radiality_dict)
 
-        self._return_result(obj_result=self._harmonic_dict,
+        self._return_result(obj_result=self._harmonic_dict.copy(),
                             string_return=False,
                             out_path=self._out_path_harmonic)
 
-        self._return_result(obj_result=self._radiality_dict,
+        self._return_result(obj_result=self._radiality_dict.copy(),
                             string_return=False,
                             out_path=self._out_path_radiality)
 
     def _recompute_radiality_with_diameter(self):
-        for a_node_key in self._radiality_dict:
+        for a_node_key in self._radiality_dict.keys():
             self._radiality_dict[a_node_key] = sum([self._diameter - (float(1) / a_len)
                                                     for a_len in self._radiality_dict[a_node_key]])
 
     def _normalize_dict(self, a_dict):
         max_score = self._find_max_score(a_dict)
-        for a_node_key in a_dict:
+        for a_node_key in a_dict.keys():
             a_dict[a_node_key] = normalize_score(score=a_dict[a_node_key],
                                                  max_score=max_score)
 
     def _find_max_score(self, a_dict):
-        return max([a_dict[an_uri] for an_uri in a_dict])
+        return max(a_dict.values())
 
-    def _run_processes(self, manager, queue, rad_dict, harm_dict, nxgraph):
+    def _run_processes(self, manager, queue):
         lock_queue = mp.Lock()
         lock_list = mp.Lock()
         list_result = manager.list()
-        list_result.append(rad_dict)  # 0
-        list_result.append(harm_dict)  # 1
+        list_result.append(manager.dict())  # 0
+        list_result.append(manager.dict())  # 1
         list_result.append(0)  # 2
         processes = [mp.Process(target=self._parallel_node_scoring,
-                                args=(queue, list_result, nxgraph.copy(as_view=True), lock_queue, lock_list)) for _ in
+                                args=(queue, list_result, self._nxgraph.copy(as_view=True), lock_queue, lock_list)) for _ in
                      range(self._n_threads)]
         for p in processes:
             p.start()
@@ -85,7 +82,6 @@ class ParallelRadialityAndHarmonicCentrality(BaseCMetric):
         return manager, queue
 
     def _parallel_node_scoring(self, queue, list_result, g_view, lock_queue, lock_list):
-        print("Weeeee")
         while True:
             lock_queue.acquire()
             if queue.empty():
@@ -101,25 +97,23 @@ class ParallelRadialityAndHarmonicCentrality(BaseCMetric):
     def _harm_and_rad_scores_of_a_node(self, a_node, list_result, g_view, lock):
         paths = shortest_path(graph=g_view,
                               origin=a_node)
+        max_length = max([len(a_path) for a_path in paths.values()])
+        if max_length > list_result[_POS_TMP_DIAMETER]:
+            lock.acquire()
+            list_result[_POS_TMP_DIAMETER] = max_length
+            lock.release()
         self._fill_absent_paths_with_an_all_nodes_walk(paths_dict=paths,
                                                        origin=a_node)
         self._delete_auto_paths(paths_dict=paths,
                                 origin=a_node)
 
-        # denominator_rad = sum([diameter - (float(1) / len(paths[a_path_key])) for a_path_key in paths])
         denominator_harm = sum([len(paths[a_path_key]) for a_path_key in paths])
-        # radiality cant be solved without a diameter.
         list_lenghts = [len(paths[a_path_key]) for a_path_key in paths]
-        max_length = max(list_lenghts)  # Correct_moment to detect diameter. Otherwise, infinite path always
-        if max_length > list_result[_POS_TMP_DIAMETER]:
-            lock.acquire()
-            list_result[_POS_TMP_DIAMETER] = max_length
-            lock.release()
         lock.acquire()
         list_result[_POS_HARM_DICT][a_node] = float(1) / denominator_harm
         list_result[_POS_RAD_DICT][a_node] = list_lenghts
         lock.release()
-        return (float(1) / denominator_harm), [len(paths[a_path_key]) for a_path_key in paths]
+
 
     def _create_infinite_walk(self):
         return [node for node in self._nxgraph.nodes]
