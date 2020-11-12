@@ -73,6 +73,10 @@ def graph_diameter(paths):
     return max_p
 
 
+def nx_diameter(nxgraph):
+    nx.diameter(nxgraph)
+
+
 def delete_auto_path(paths_dict):
     """
 
