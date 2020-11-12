@@ -1,5 +1,5 @@
 from experimentation.c_metrics.base_c_metric import BaseCMetric
-from classrank_utils.g_paths import shortest_path, build_graph_for_paths
+from classrank_utils.g_paths import shortest_path
 from classrank_utils.scores import normalize_score
 import multiprocessing as mp
 
@@ -10,9 +10,10 @@ _POS_TMP_DIAMETER = 2
 
 class ParallelRadialityAndHarmonicCentrality(BaseCMetric):
 
-    def __init__(self, triples_yielder, n_threads, out_path_harmonic, out_path_radiality, normalize=True):
+    def __init__(self, nxgraph, target_nodes, n_threads, out_path_harmonic, out_path_radiality, normalize=True):
         super().__init__()
-        self._nxgraph = build_graph_for_paths(triples_yielder=triples_yielder)
+        self._nxgraph = nxgraph
+        self._target_nodes = target_nodes
         self._infinite_walk = self._create_infinite_walk()
         self._harmonic_dict = {}
         self._radiality_dict = {}
@@ -77,11 +78,12 @@ class ParallelRadialityAndHarmonicCentrality(BaseCMetric):
     def _init_nodes_queue(self):
         manager = mp.Manager()
         queue = manager.Queue()
-        for a_node in self._nxgraph.nodes:
+        for a_node in self._target_nodes:
             queue.put(a_node)
         return manager, queue
 
     def _parallel_node_scoring(self, queue, list_result, g_view, lock_queue, lock_list):
+        counter=0
         while True:
             lock_queue.acquire()
             if queue.empty():
@@ -93,6 +95,9 @@ class ParallelRadialityAndHarmonicCentrality(BaseCMetric):
                                                 g_view=g_view,
                                                 list_result=list_result,
                                                 lock=lock_list)
+            counter += 1
+            if counter % 50 == 0:
+                print("{} nodes on my side: {}".format(counter, mp.current_process().name))
 
     def _harm_and_rad_scores_of_a_node(self, a_node, list_result, g_view, lock):
         paths = shortest_path(graph=g_view,
