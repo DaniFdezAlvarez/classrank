@@ -1,7 +1,6 @@
 from classrank_io.tsv_io import yield_tsv_lines
 import urllib.parse
-from experimentation.consts import REGEX_WHOLE_URI, REGEX_PREFIXED_URI, REGEX_TYPE_QUERY, re, MIN_LENGHT_PREFIX
-from classrank_utils.uri import remove_corners
+from experimentation.consts import REGEX_TYPE_QUERY, re, MIN_LENGHT_PREFIX
 from classrank_io.json_io import write_obj_to_json
 from experimentation.utils.query_mining_utils import parse_new_prefixes, replace_literal_spaces_with_blank, \
     detect_complete_uri_mentions, detect_prefixed_uri_mentions, detect_literal_spaces
@@ -121,8 +120,8 @@ class WikidataClassUsageMiner(object):
 
     def _log_error_entry(self, entry, error):
         with open(self._error_entries_file, "a") as out_stream:
-            out_stream.write(entry + "\n")
             out_stream.write(str(error) + "\t")
+            out_stream.write(entry + "\n")
 
 
     def _remove_wikidata_namespaces(self, uris):

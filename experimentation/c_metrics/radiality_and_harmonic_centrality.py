@@ -79,7 +79,8 @@ class ParallelRadialityAndHarmonicCentrality(BaseCMetric):
         manager = mp.Manager()
         queue = manager.Queue()
         for a_node in self._target_nodes:
-            queue.put(a_node)
+            if a_node in self._nxgraph:
+                queue.put(a_node)
         return manager, queue
 
     def _parallel_node_scoring(self, queue, list_result, g_view, lock_queue, lock_list):
