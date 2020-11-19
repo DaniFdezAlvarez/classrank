@@ -15,16 +15,10 @@ class PageRankScorer(object):
 
 
     def run(self, dest_file):
-        print("labels loaded!")
         self._filter_scores()
-        print("scores filtered and sorted!")
         self._sort_classes()
-        print("classes sorted!")
         self._add_rankings()
-        print("rankings added!")
         self._serialize(dest_file)
-        print("Serialized!")
-
 
     @staticmethod
     def _load_labels(labels_file):
@@ -59,15 +53,11 @@ class PageRankScorer(object):
         }
 
     def _yield_tuples_class_score(self):
-        counter = 0
         with open(self._pr_source_file, "r") as in_stream:
             for a_line in in_stream:
                 pieces = a_line.strip().split(":")
                 if len(pieces) == 2:
                     yield self._beautify_wd_id(pieces[0]), self._beautify_score(pieces[1])
-                counter += 1
-                if counter % 1000000 == 0:
-                    print(counter)
 
     @staticmethod
     def _beautify_wd_id(raw_id):
