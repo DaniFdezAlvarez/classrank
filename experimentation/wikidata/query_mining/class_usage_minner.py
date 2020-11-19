@@ -30,12 +30,50 @@ _ORGANIC = "organic"  # todo : find organic label in the logs. or change to robo
 
 _WIKIDATA_NAMESPACE_ENTITY = "http://www.wikidata.org/entity/"
 
+_WIKIDATA_PREFIXES = {
+    "rdf": "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>",
+    "xsd": "<http://www.w3.org/2001/XMLSchema#>",
+    "ontolex": "<http://www.w3.org/ns/lemon/ontolex#>",
+    "dct": "<http://purl.org/dc/terms/>",
+    "rdfs": "<http://www.w3.org/2000/01/rdf-schema#>",
+    "owl": "<http://www.w3.org/2002/07/owl#>",
+    "skos": "<http://www.w3.org/2004/02/skos/core#>",
+    "schema": "<http://schema.org/>",
+    "cc": "<http://creativecommons.org/ns#>",
+    "geo": "<http://www.opengis.net/ont/geosparql#>",
+    "prov": "<http://www.w3.org/ns/prov#>",
+    "wikibase": "<http://wikiba.se/ontology#>",
+    "wdata": "<http://www.wikidata.org/wiki/Special:EntityData/>",
+    "bd": "<http://www.bigdata.com/rdf#>",
+    "wd": "<http://www.wikidata.org/entity/>",
+    "wdt": "<http://www.wikidata.org/prop/direct/>",
+    "wdtn": "<http://www.wikidata.org/prop/direct-normalized/>",
+    "wds": "<http://www.wikidata.org/entity/statement/>",
+    "p": "<http://www.wikidata.org/prop/>",
+    "wdref": "<http://www.wikidata.org/reference/>",
+    "wdv": "<http://www.wikidata.org/value/>",
+    "ps": "<http://www.wikidata.org/prop/statement/>",
+    "psv": "<http://www.wikidata.org/prop/statement/value/>",
+    "psn": "<http://www.wikidata.org/prop/statement/value-normalized/>",
+    "pq": "<http://www.wikidata.org/prop/qualifier/>",
+    "pqv": "<http://www.wikidata.org/prop/qualifier/value/>",
+    "pqn": "<http://www.wikidata.org/prop/qualifier/value-normalized/>",
+    "pr": "<http://www.wikidata.org/prop/reference/>",
+    "prv": "<http://www.wikidata.org/prop/reference/value/>",
+    "prn": "<http://www.wikidata.org/prop/reference/value-normalized/>",
+    "wdno": "<http://www.wikidata.org/prop/novalue/>",
+    "hint": "<http://www.bigdata.com/queryHints#>"
+}
+
 class WikidataClassUsageMiner(object):
 
-    def __init__(self, source_file, instances_dict, target_classes, wikidata_prefixes, error_entries_file, sort_by=SORT_BY_ALL):
+    def __init__(self, source_file, instances_dict, target_classes, error_entries_file, wikidata_prefixes=None,
+                 sort_by=SORT_BY_ALL):
         self._source_file = source_file
         self._instances_dict = instances_dict
-        self._default_prefixes = wikidata_prefixes
+        self._default_prefixes = _WIKIDATA_PREFIXES
+        if wikidata_prefixes is not None:
+            self._integrate_new_prefixes(wikidata_prefixes)
         self._classes_dict = self._build_classes_dict(target_classes)
         self._sort_by = sort_by
         self._error_entries_file = error_entries_file
@@ -49,6 +87,10 @@ class WikidataClassUsageMiner(object):
         self._adapt_results()
         self._serialize_results(dest_file)
         self._liberate_results_memory()
+
+    def _integrate_new_prefixes(self, new_prefixes):
+        for a_prefix, a_uri in new_prefixes.items():
+            self._default_prefixes[a_prefix] = a_uri
 
     def _build_classes_dict(self, target_classes):
         result = {}
@@ -216,8 +258,8 @@ class WikidataClassUsageMiner(object):
 # class WikidataClassUsageMiner(object):
 class WikidataClassUsageMinerErrorIntegrator(WikidataClassUsageMiner):
 
-    def __init__(self, source_file, instances_dict, target_classes, wikidata_prefixes, error_entries_file,
-                 results_file, new_errors_file):
+    def __init__(self, source_file, instances_dict, target_classes, error_entries_file,
+                 results_file, new_errors_file, wikidata_prefixes=None):
         super().__init__(source_file=source_file,
                          instances_dict=instances_dict,
                          target_classes=target_classes,
@@ -230,17 +272,18 @@ class WikidataClassUsageMinerErrorIntegrator(WikidataClassUsageMiner):
 
     def mine_log(self, dest_file):  # will include results file + the new entries collected in errors
         self._mine_exceptions()
-        self._adapt_results()
-        self._serialize_results(dest_file)
-        self._liberate_results_memory()
+        # self._adapt_results()
+        # self._serialize_results(dest_file)
+        # self._liberate_results_memory()
 
     def _mine_exceptions(self):
-        for a_line in yield_tsv_lines(self._results_file):
+        for a_line in yield_tsv_lines(self._error_entries_file):
             try:
                 pieces = a_line.split("\t")
                 pieces = pieces[1:]
                 uris_mentioned = self._get_uris_from_raw_query(pieces[_QUERY_POSITION])
                 uris_mentioned = self._remove_wikidata_namespaces(uris_mentioned)
+                print(uris_mentioned)
                 self._annotate_mentions(uris_mentioned=uris_mentioned,
                                         organic=self._is_organic(pieces[_CATEGORY_POSITION]))
             except BaseException as e:
