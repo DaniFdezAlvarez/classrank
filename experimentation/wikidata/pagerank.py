@@ -7,8 +7,8 @@ KEY_LABEL = "lb"
 
 class PageRankScorer(object):
 
-    def __init__(self, pr_source_file, target_classes, labels_file):
-        self._pr_source_file = pr_source_file
+    def __init__(self, results_source_file, target_classes, labels_file):
+        self._results_source_file = results_source_file
         self._labels_dict = self._load_labels(labels_file)
         self._target_classes = target_classes
         self._result_list = []
@@ -53,7 +53,7 @@ class PageRankScorer(object):
         }
 
     def _yield_tuples_class_score(self):
-        with open(self._pr_source_file, "r") as in_stream:
+        with open(self._results_source_file, "r") as in_stream:
             for a_line in in_stream:
                 pieces = a_line.strip().split(":")
                 if len(pieces) == 2:

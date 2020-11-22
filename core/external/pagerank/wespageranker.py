@@ -11,7 +11,7 @@ class Wespageranker(object):
         self._damping_factor = damping_factor
         self._eps = epsilon
         self._max_iters = max_iters
-        self._iterations_performd = 0
+        self._iterations_performed = 0
         self._max_edges = max_edges
         self._base_yielder = base_triples_yielder
         self._base_edges_yielder = base_edges_yielder
@@ -27,13 +27,12 @@ class Wespageranker(object):
         p_iterator = PowerIterator(target_matrix=matrix,
                                    epsilon=self._eps,
                                    max_iters=self._max_iters)
-        result = p_iterator.calculate_page
-        rank_vector()
-        self._iterations_performd = p_iterator.iterations_performed
+        result = p_iterator.calculate_pagerank_vector()
+        self._iterations_performed = p_iterator.iterations_performed
         return result
 
 
     @property
     def iterations_performed(self):
-        return self._iterations_performd
+        return self._iterations_performed
 
