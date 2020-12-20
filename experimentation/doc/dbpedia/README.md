@@ -1,5 +1,5 @@
 # Experimenting with DBpedia
-We have applied ClassRank over the English chapter of DBpedia and compare the results with many other centrality metrics. All the obtained results are available in this repository. The dump files sused can be dowloaded in the following links:
+We have applied ClassRank over the English chapter of DBpedia and compare the results with many other centrality metrics. All the obtained results are available in this repository. The dump files used can be dowloaded in the following links:
 
 * [Mapping based objects](http://downloads.dbpedia.org/2016-10/core-i18n/en/mappingbased_objects_en.ttl.bz2)
 * [Infobox properties](http://downloads.dbpedia.org/2016-10/core-i18n/en/infobox_properties_en.ttl.bz2)
