@@ -55,7 +55,7 @@ class PageRankScorer(object):
     def _yield_tuples_class_score(self):
         with open(self._results_source_file, "r") as in_stream:
             for a_line in in_stream:
-                pieces = a_line.strip().split(":")
+                pieces = a_line.strip().split("\":")
                 if len(pieces) == 2:
                     yield self._beautify_wd_id(pieces[0]), self._beautify_score(pieces[1])
 
