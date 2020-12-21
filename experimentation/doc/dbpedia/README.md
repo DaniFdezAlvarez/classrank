@@ -1,5 +1,5 @@
 # Experimenting with DBpedia
-We have applied ClassRank over the English chapter of DBpedia and compare the results with many other centrality metrics. All the obtained results are available in this repository. The dump files used can be dowloaded in the following links:
+We have applied ClassRank over the English chapter of DBpedia and compared the results with many other centrality metrics. The dump files used can be dowloaded in the following links:
 
 * [Mapping based objects](http://downloads.dbpedia.org/2016-10/core-i18n/en/mappingbased_objects_en.ttl.bz2)
 * [Infobox properties](http://downloads.dbpedia.org/2016-10/core-i18n/en/infobox_properties_en.ttl.bz2)
@@ -19,10 +19,13 @@ We have mined log files of the official DBpedia SPARQL endpoint for detecting cl
 
 We generated two different files with mining results. These files are tsv where the different type of class mentions are annotated:
 * [Total results](total_result.tsv): Class mentions in all entries in the logs.
-* [Human results](total_result.tsv): Class mentions of those entries in the logs associated to IPS whose petition rate has been associated to human agents. 
+* [Human results](human_result.tsv): Class mentions of those entries in the logs associated to IPS whose petition rate has been associated to human agents. 
 
 ### Logs
-The logs minned can be dowloaded via FTP in [ftp://156.35.94.8/dbpedia-2017-10-logs.zip](ftp://156.35.94.8/dbpedia-2017-10-logs.zip). Please, contact the authors if you experiment any issue when dowloading the logs. 
+The logs minned can be dowloaded at the following link:
+* [DBpedia log files](http://156.35.94.8/classrank/logs/dbpedia-2017-10-logs.zip), provided by OpenLink. 
+
+Please, contact the authors if you experiment any issue when dowloading the logs. 
 
 The logs contain 14 files of queries thrown against the SPARQL endponit of DBpedia run by Openlink. Each file contain the acceses to the endpoint during a whole day in a random date of 2017. Each file is named after its date with the following pattern: access.log-YYYYmmdd.zip, where YYYY means year, mm month, and dd day.
    
@@ -35,9 +38,18 @@ We applied different techniques to rank the importance of the classes in the [DB
   * Secutiry thresghold: 0.
   * Class-pointer: rdf:type.
 
-The following JSON files share a common structure. They all contain a list of lists. Each second-level list contains the information associated to a given class with three elements that appear in thie order: class uri, score (the natura of thsi score depends on the technique used) and position in the ranking. The lists are sorted in decreasing order with regard to its rank position (most impostant ones at the top).
+The following JSON files share a common structure. They all contain a list of lists. Each second-level list contains the information associated to a given class with three elements that appear in thie order: class uri, score (the natura of thsi score depends on the technique used) and position in the ranking. Some lists include also an internal ID in the fourth position, which is usually the class URI again. The lists are sorted in decreasing order with regard to its rank position (most impostant ones at the top).
 
-* [PageRank](pagerank_ranking_dbpedia.json). Damping factor: 0.85.
+* [ClassRank](cr_dbpedia_labelled_comparable.json).
+* [Adapted ClassRank](cr_adapted_dbpedia_labelled_comparable.json).
+* [PageRank AAT](pagerank_ranking_dbpedia.json). Damping factor: 0.85.
+* [PageRank OTT](pagerank_ott_dbpedia_labelled_comparable.json). Damping factor: 0.85.
+* [Adapted PageRank AAT](pagerank_adapted_classes_dbpedia_labelled_comparable.json). Damping factor: 0.85.
+* [Adapted PageRank OTT](pagerank_ott_adapted_dbpedia_labelled_comparable.json). Damping factor: 0.85.
+* [HITS AAT](hits_classes_dbpedia_labelled_comparable.json).
+* [HITS OTT](hits_ott_dbpedia_labelled_comparable.json).
+* [Adapted HITS AAT](hits_adapted_classes_dbpedia_labelled_comparable.json).
+* [Adapted HITS OTT](hits_ott_adapted_dbpedia_labelled_comparable.json).
 * [Instance counting](instance_counting_dbpedia.json)
 * [Degree](deg_dbo_onto.json)
 * [Betweeness](betw_dbo_onto.json).
@@ -52,6 +64,6 @@ The following JSON files share a common structure. They all contain a list of li
 * [Adapted bridging centraltity](adapted_bridging_dbo_onto.json)
 
 ## Comparison
-We have compared each technique with the mining files (totals and just human log entries) using Ranking Biased Overlap giving different importance to different prefix length of each ranking. The results of this comparison are avaiable to dowload in [a csv file](comparison_all.csv).
+We have compared each technique with the mining files (totals and just human log entries) using Ranking Biased Overlap giving different importance to different prefix length of each ranking. The results of this comparison are avaiable to dowload in [a csv file](comparison_all.csv). The file contains different structures of CSV values (tip: do not parse, explore first with any spreadsheet software to keep one of the csv structures).
 
 

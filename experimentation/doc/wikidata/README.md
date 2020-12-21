@@ -56,7 +56,7 @@ All these files share a common structure. They are json structe with a root list
 * 3: rank position w.r.t. the score.
 * 4: English label (if available).
 
-The zip file contains as well a comparison with Ranking Biased Overlap between all these techniques and the rankings of class usage in logs. The file contain different structures of CSV values (tip: do not parse, explore first with any spreadsheet software to keep one of the csv structures).
+The zip file contains as well a comparison with Ranking Biased Overlap between all these techniques and the rankings of class usage in logs. The file contains different structures of CSV values (tip: do not parse, explore first with any spreadsheet software to keep one of the csv structures).
 
 We have computing ClassRank using different configurations of classpointers. For each computation we have selected all those properties which are used to point to classes above a certain ratio r of times. In order t get that data the following files are available:
  * [Properties and their ratios](http://156.35.94.8/classrank/wikidata/wikidata_classpointers_ratio.json).
