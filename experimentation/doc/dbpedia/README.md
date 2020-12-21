@@ -66,4 +66,4 @@ The following JSON files share a common structure. They all contain a list of li
 ## Comparison
 We have compared each technique with the mining files (totals and just human log entries) using Ranking Biased Overlap giving different importance to different prefix length of each ranking. The results of this comparison are avaiable to dowload in [a csv file](comparison_all.csv). The file contains different structures of CSV values (tip: do not parse, explore first with any spreadsheet software to keep one of the csv structures).
 
-
+You can dowloaded all the files mentioned in this document in a [single zip file](dbpedia_all_results.zip).
