@@ -23,7 +23,7 @@ We generated two different files with mining results. These files are tsv where 
 
 ### Logs
 The logs minned can be dowloaded at the following link:
-* [DBpedia log files](http://156.35.94.8/classrank/logs/dbpedia-2017-10-logs.zip), provided by OpenLink. 
+* [DBpedia log files](http://156.35.94.8/classrank/logs/dbpedia-2017-10-logs.zip), provided by OpenLink. These files are provided under a CC-BY-SA license (credits to OpenLink). The license is available in the download link.
 
 Please, contact the authors if you experiment any issue when dowloading the logs. 
 
