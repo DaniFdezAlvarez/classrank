@@ -7,7 +7,7 @@ We provide [an online demo of Classrank][demo_online] which also includes an ove
 Prerequisites
 -------------
 
-- Python 2.7 (64-bit version if you want to compute huge datastes)
+- Python 3 (64-bit version if you want to compute huge datastes)
 - All the libraries listed in the file requirements.txt
 
 Execution
