@@ -130,7 +130,7 @@ def generate_classrank(damping_factor=0.85, max_iters=250, threshold=15,
                        max_triples=-1, graph_format=TTL_FULL_FORMAT, output_format=JSON_FULL_OUTPUT, graph_file=None,
                        classpointers_file=None, raw_graph=None, raw_classpointers=None,
                        output_file=None, string_return=False, save_memory_mode=False, link_instances_in_output=True,
-                       serialize_pagerank=False):
+                       serialize_pagerank=False, pagerank_scores=None):
     """
 
     :param damping_factor: Damping factor for PageRank execution
@@ -141,8 +141,8 @@ def generate_classrank(damping_factor=0.85, max_iters=250, threshold=15,
      the specified amount of triples (correct ones).
     :param graph_format: format of the provided graphic
     :param output_format: format of the provided file.
-    :param graph_file: path to the file in which the target graphic is contained. If you want to
-        provide the graphic using a raw string, set to None and provide the graphic though the param raw_graph
+    :param graph_file: path to the file in which the target graph is contained. If you want to
+        provide the graph using a raw string, set to None and provide the graph using the param raw_graph
     :param classpointers_file: path to the file in which the classpointers are contained. If you want to
         provide the classpointers using a raw string, set to None and provide them though the param raw_classpointers
     :param raw_graph: string containing the target graphic. If you want to provide the graphic via file, set to
@@ -157,6 +157,9 @@ def generate_classrank(damping_factor=0.85, max_iters=250, threshold=15,
      :param link_instances_in_output: If it ser to True, the generated output will keep the relation between
         each class and its instances. Otherwise, the output will  contain mainly rankings, scores and classpointers
     :param serialize_pagerank: If True, PageRank scores will also appear in the obtained results
+    :param default None. you can pass a dictionary { URI --> score } containing pre-calculated pagerank scores. Classrank with use these
+        scores instead of computing new ones.
+
     :return:
     """
     ### Checking params
@@ -180,7 +183,8 @@ def generate_classrank(damping_factor=0.85, max_iters=250, threshold=15,
                          damping_factor=damping_factor,
                          max_iter_pagerank=250,
                          threshold=threshold,
-                         max_edges=max_triples)
+                         max_edges=max_triples,
+                         pagerank_scores=pagerank_scores)
 
     results = ranker.generate_classrank()
 
