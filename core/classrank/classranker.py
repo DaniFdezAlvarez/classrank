@@ -1,5 +1,6 @@
 __author__ = "Dani"
-from core.pagerank.pagerank_nx import calculate_pagerank
+from core.external.pagerank.pagerank_nx import calculate_pagerank
+import sys
 
 _S = 0
 _P = 1
@@ -13,7 +14,7 @@ KEY_UNDER_T_CLASS_POINTERS = "under_t_cps"
 
 class ClassRanker(object):
     def __init__(self, digraph_parser, triple_yielder, classpointers_parser, classrank_formatter, damping_factor=0.85,
-                 max_iter_pagerank=100, threshold=15, max_edges=-1):
+                 max_iter_pagerank=100, threshold=15, max_edges=-1, pagerank_scores=None):
         self._graph_parser = digraph_parser
         self._triple_yielder = triple_yielder
         self._classpointer_parser = classpointers_parser
@@ -24,35 +25,42 @@ class ClassRanker(object):
         self._number_of_classes = 0
         self._number_of_entities = 0
         self._max_iter_pagerank = max_iter_pagerank
+        self._pagerank_scores = pagerank_scores
 
     def generate_classrank(self):
         ### Collecting inputs
-        graph = self._graph_parser.parse_graph(max_edges=self._max_edges)
+        graph = self._graph_parser.parse_graph(max_edges=self._max_edges) if self._pagerank_scores is None \
+            else None
         classpointers_set = self._classpointer_parser.parse_classpointers()
         # damping factor (self)
         # threshold (self)
 
 
         ### Stage 1 - PageRank
-        print "stage 1"
+        print("stage 1")
+        sys.stdout.flush()
         raw_pagerank = calculate_pagerank(graph=graph,
                                           damping_factor=self._damping_factor,
-                                          max_iter=self._max_iter_pagerank)
+                                          max_iter=self._max_iter_pagerank) if self._pagerank_scores is None \
+            else self._pagerank_scores
         self._number_of_entities = len(raw_pagerank)
 
         ### Stage 2 - ClassDetection
-        print "Stage 2"
-        graph = None  # Here we do not need anymore the directed graph.
+        print("Stage 2")
+        sys.stdout.flush()
+        graph = None  # Here we do not need anymore the directed graphic.
         # We must free that memory
         classes_dict = self._detect_classes(self._triple_yielder, classpointers_set, self._threshold)
         self._number_of_classes = len(classes_dict)
 
         ###  Stage 3 - ClassRank calculations
-        print "stage 3"
+        print("stage 3")
+        sys.stdout.flush()
         self._calculate_classrank(classes_dict, raw_pagerank, self._threshold)
 
         ###  Outputs
-        print "Outputs"
+        print("Outputs")
+        sys.stdout.flush()
         result = self._classrank_formatter.format_classrank_dict(classes_dict, raw_pagerank)
 
         return result
@@ -103,9 +111,10 @@ class ClassRanker(object):
                         # Each instance add its score just once
                         if an_s not in classes_dict[a_class][KEY_INSTANCES]:
                             classes_dict[a_class][KEY_INSTANCES].add(an_s)
-                            classes_dict[a_class][KEY_CLASSRANK] += raw_pagerank[an_s]  # It must be there! KeyError?
+                            classes_dict[a_class][KEY_CLASSRANK] += raw_pagerank[an_s]
                 else:
-                    # print a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
+                    
+                    # print(a_p, classes_dict[a_class][KEY_CLASS_POINTERS][a_p])
                     under_threshold_props.append((a_p,classes_dict[a_class][KEY_CLASS_POINTERS][a_p]))
                     # target_obj = classes_dict[a_class][KEY_CLASS_POINTERS][a_p]
                     # del classes_dict[a_class][KEY_CLASS_POINTERS][a_p]

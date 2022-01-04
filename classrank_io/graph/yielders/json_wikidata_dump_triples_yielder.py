@@ -38,7 +38,7 @@ class JsonWikidataDumpTriplesYielder(TriplesYielderInterface):
                                 max_triples_reached = True
                                 break
                             if self._triple_count % 100000 == 0:
-                                print 'parsed ' + str(self._triple_count)
+                                print('parsed ' + str(self._triple_count))
                         else:
                             self._ignored_count += 1
 
@@ -65,6 +65,126 @@ class JsonWikidataDumpTriplesYielder(TriplesYielderInterface):
             elif event == 'number' and prefix == 'item.claims.' + str(
                     current_claim_key) + '.item.mainsnak.datavalue.value.numeric-id':
                 datavalue_num_id = value
+
+    @staticmethod
+    def _is_valid_entity_edge(subj_type, data_nature, data_type):
+        if subj_type == 'item' and data_nature == 'wikibase-item' and data_type == 'item':
+            return True
+        return False
+
+    @property
+    def yielded_triples(self):
+        return self._triple_count
+
+    @property
+    def error_triples(self):
+        return self._error_count
+
+    @property
+    def ignored_triples(self):
+        return self._ignored_count
+
+    def _reset_count(self):
+        """
+        Just to remember that the counts may be managed if the object is used to parse
+        more than one time
+        :return:
+        """
+        self._triple_count = 0
+        self._error_count = 0
+        self._ignored_count = 0
+
+###############################################################
+
+_MAP_KEY = "map_key"
+_START_MAP = "start_map"
+_END_MAP = "end_map"
+_CLAIMS = "claims"
+_END_ARRAY = "end_array"
+_STRING = "string"
+_DATATYPE = "datatype"
+_WIKIBASE_ITEM = "wikibase-item"
+_VALUE_ID = ".value.id"
+_ITEM_DATAVALUE = ".item.datavalue"
+_MAINSNAK = "mainsnak"
+_ITEM_TITLE = "item.title"
+
+
+class JsonWikidataDumpEntityTriplesYielder(TriplesYielderInterface):
+
+    def __init__(self, source_file):
+        super(JsonWikidataDumpEntityTriplesYielder, self).__init__()
+        self._triple_count = 0
+        self._error_count = 0
+        self._ignored_count = 0
+        self._source_file = source_file
+
+        # tmp values
+
+        self._current_entity = None
+        self._current_prop = None
+        self._current_objects = None
+        self._looking_for_item = False
+        self._statements_mode = False
+
+    def yield_triples(self, max_triples=-1):
+        self._reset_count()
+        json_stream = open(self._source_file, "r")
+
+
+        max_triples_reached = False
+
+        for prefix, event, value in ijson.parse(json_stream):
+            if max_triples_reached:
+                break
+            elif event == _START_MAP and prefix.endswith(_MAINSNAK):
+                self._activate_statements_mode()
+
+            elif event == _END_ARRAY and self._current_prop is not None and prefix.endswith(_CLAIMS + "." + self._current_prop):
+                for a_triple in self._yield_current_triples():
+                    yield a_triple
+            elif event == _MAP_KEY and prefix.endswith(_CLAIMS):
+                self._reset_current_prop(value)
+            elif self._statements_mode:
+                if event == _STRING:
+                    if prefix.endswith(_DATATYPE) and value == _WIKIBASE_ITEM:
+                        self._activate_looking_for_item_mode()
+                    elif self._looking_for_item and prefix.endswith(_VALUE_ID):
+                        self._store_object(value)
+                elif self._looking_for_item and event == _END_MAP and prefix.endswith(self._current_prop + _ITEM_DATAVALUE):
+                    self._deactivate_looking_for_item_mode()
+                elif event == _END_MAP and prefix.endswith(_MAINSNAK):
+                    self._deactivate_statements_mode()
+            elif event == _STRING and prefix == _ITEM_TITLE:
+                self._reset_current_entity(value)
+
+    def _reset_current_entity(self, new_entity):
+        self._current_entity = new_entity
+
+    def _activate_statements_mode(self):
+        self._statements_mode = True
+
+    def _deactivate_statements_mode(self):
+        self._statements_mode = False
+
+    def _deactivate_looking_for_item_mode(self):
+        self._looking_for_item = False
+
+    def _store_object(self, an_obj):
+        self._current_objects.append(an_obj)
+
+    def _activate_looking_for_item_mode(self):
+        self._looking_for_item = True
+
+    def _reset_current_prop(self, new_prop):
+        self._current_prop = new_prop
+        self._current_objects = []
+
+    def _yield_current_triples(self):
+        for an_obj in self._current_objects:
+            yield (self._current_entity, self._current_prop, an_obj)
+
+
 
     @staticmethod
     def _is_valid_entity_edge(subj_type, data_nature, data_type):

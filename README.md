@@ -1,18 +1,18 @@
 # ClassRank
 
-This repository contains a Python implementation of the algorithm ClassRank. ClassRank is a nowel technique handy for measuring the relevance of each class in an RDF grpah.
+This repository contains a Python implementation of the algorithm ClassRank. ClassRank is a novel technique handy for measuring the relevance of each class in a RDF graph.
 
 We provide [an online demo of Classrank][demo_online] which also includes an overview of the algorithm. 
 
 Prerequisites
 -------------
 
-- Python 2.7 (64-bit version if you want to compute huge datastes)
+- Python 3 (64-bit version if you want to compute huge datastes)
 - All the libraries listed in the file requirements.txt
 
 Execution
 ---------
-At the moment we are no providing installing methods, just the original python scripts. If you are planning to integrte this code with some other project you may have to deal with issues related to paths. We will be providing soon nicier ways to interact with this library. 
+At the moment we are not providing installing methods, just the original python scripts. If you are planning to integrate this code with some other project you may have to deal with issues related to paths. We will be providing nicer ways to interact with this library soon.
 
 Example code
 ------------
@@ -22,11 +22,11 @@ The easiest way to execute ClassRank is using the function 'generate_pagerank()'
     
     from helpers.classrank import generate_classrank
     
-    print generate_classrank(graph_file="path/to/some/file.ttl",
+    print(generate_classrank(graph_file="path/to/some/file.ttl",
                              raw_classpointers="http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
                              string_return=True,
                              instantiation_threshold=1,
-                             class_threshold=1)
+                             class_threshold=1))
 
     
 By executing the previous code providing the path to some graph with the param ``graph_file`` you will print a JSON representation of the ClassRank scores of the classes detected in the graph, as well as the list of instances pointing them with ``rdf:type``.  The function generate_classrank admits a large list of optional params to configure its behaviour:
@@ -95,7 +95,7 @@ The ClassRankers objects need 4 extra objects to read the graph/classpointers an
 
 Contributing
 ------------
-Theoretically, ClassRank can be applied to any kind of sirected graph. This prototype is ready to compute a limited set of formats. However, it has been developed following a modular architecture that allow to easily add new formats by implementing some ad-hoc parsers or formatters. If you want to analize some graph in any other format than turtle, you could implement the correspondent parsers yielders or formaters following the interfaces listed in the previous section.
+Theoretically, ClassRank can be applied to any kind of directed graph. This prototype is ready to compute a limited set of formats. However, it has been developed following a modular architecture that allows to easily add new formats by implementing some ad-hoc parsers or formatters. If you want to analize some graph in any other format than turtle, you could implement the correspondent parsers, yielders or formaters following the interfaces listed in the previous section.
 
 Contact
 -------

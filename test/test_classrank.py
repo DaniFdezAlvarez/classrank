@@ -1,17 +1,12 @@
-from classrank_io.classpointers.parsers.one_per_line_classpointer_parser import OnePerLineClasspointerParser
 from classrank_io.graph.formatters.classrank.sorted_json_classrank_formatter_several_thresholds import \
     SortedJsonClassrankFormatterSeveralThresholds
-from classrank_io.graph.parsers.json_wikidata_dump_digraph_parser import JsonWikidataDumpDiGraphParser
-from classrank_io.graph.yielders.json_wikidata_dump_triples_yielder import JsonWikidataDumpTriplesYielder
 from helpers.classrank import generate_classrank
-from core.pagerank.pageranker import PageRanker
 from classrank_io.graph.parsers.ttl_full_digraph_parser import TtlFullDigraphParser
 from classrank_io.graph.yielders.ttl_full_triples_yielder import TtlFullTriplesYielder
-from classrank_io.graph.formatters.pagerank.raw_pagerank_formatter import RawPageRankFormatter
 from core.classrank.classranker_several_thresholds import ClassrankerSeveralThresholds
 from classrank_io.classpointers.parsers.raw_classpointers_parser import RawClasspointerParser
 
-from core.pagerank.pagerank_nx import calculate_pagerank
+from core.external.pagerank import calculate_pagerank
 
 graph_str = """
 @prefix txn: <http://example.org/data/transaction/> .
@@ -150,18 +145,18 @@ raw_pagerank = calculate_pagerank(graph=TtlFullDigraphParser(string_graph=graph_
 pg_res_transaction = 0
 for ins in instances_transaction:
     pg_res_transaction += raw_pagerank[ins]
-print pg_res_transaction, "transaction"
+print(pg_res_transaction, "transaction")
 
 pg_res_A = 0
 for ins in instances_A:
     pg_res_A += raw_pagerank[ins]
 
-print pg_res_A, "A4"
-print pg_res_A + raw_pagerank["http://example.org/data/transaction/aaa"], "A1"
+print(pg_res_A, "A4")
+print(pg_res_A + raw_pagerank["http://example.org/data/transaction/aaa"], "A1")
 
 # print raw_pagerank
 # print classrank_results
-print results_several
+print(results_several)
 
 
 # pageranker_result = pageranker.generate_pagerank()

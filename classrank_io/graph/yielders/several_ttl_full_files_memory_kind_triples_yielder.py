@@ -1,5 +1,6 @@
 from classrank_io.graph.yielders.triples_yielder_interface import TriplesYielderInterface
 from classrank_io.graph.yielders.ttl_full_memory_kind_triples_yielder import TtlFullMemoryKindTriplesYielder
+import sys
 
 #  several_ttl_full_files_memory_kind_triples_yielder
 
@@ -36,14 +37,15 @@ class SeveralTtlFullFilesMemoryKindTriplesYielder(TriplesYielderInterface):
                 self._ignored_triples_of_finished_yielders += self._current_yielder.ignored_triples
             self._current_yielder = TtlFullMemoryKindTriplesYielder(a_path)
             self._yielders_count += 1
-            print "Executing new yielder! Count: ", self._yielders_count
+            print("Executing new yielder! Count: ", self._yielders_count)
             for a_triple in self._current_yielder.yield_triples():
                 yield a_triple
                 if self.yielded_triples == max_triples:
                     max_triples_reached = True
                     break
                 if self.yielded_triples % 1000000 == 0:
-                    print "Yielded: ", self.yielded_triples
+                    print("Yielded: ", self.yielded_triples)
+                    sys.stdout.flush()
 
 
     @property

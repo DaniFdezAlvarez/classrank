@@ -1,5 +1,5 @@
 __author__ = "Dani"
-from core.pagerank.pagerank_nx import calculate_pagerank
+from core.external.pagerank.pagerank_nx import calculate_pagerank
 
 
 class PageRanker(object):
@@ -11,13 +11,17 @@ class PageRanker(object):
         self._number_of_entities = 0
         self._max_iter = max_iter
 
-    def generate_pagerank(self):
+    # @profile
+    def generate_pagerank(self, raw=False):
         graph = self._graph_parser.parse_graph(max_edges=self._max_edges)
         raw_pagerank = calculate_pagerank(graph=graph,
                                           damping_factor=self._damping_factor,
                                           max_iter=self._max_iter)
         self._number_of_entities = len(raw_pagerank)
+        if raw:
+            return raw_pagerank
         return self._pagerank_formatter.format_pagerank_dict(raw_pagerank)
+
 
     @property
     def triples_analized(self):

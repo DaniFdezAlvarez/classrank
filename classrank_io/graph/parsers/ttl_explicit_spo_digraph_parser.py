@@ -7,9 +7,10 @@ _SEPARATOR = " "
 
 
 class TtlExplicitSpoDigraphParser(DiGraphParserInterface):
-    def __init__(self, source_file):
+    def __init__(self, source_file, there_are_corners=True):
         super(TtlExplicitSpoDigraphParser, self).__init__()
         self._source_file = source_file
+        self._there_are_corners = there_are_corners
         self._triple_count = 0
         self._error_count = 0
         self._ignored = 0
@@ -17,7 +18,7 @@ class TtlExplicitSpoDigraphParser(DiGraphParserInterface):
     def parse_graph(self, max_edges=-1):
         self._reset_count()
         result = nx.DiGraph()
-        with open(self._source_file, "r") as in_stream:
+        with open(self._source_file, "r", errors='ignore', encoding="utf-8") as in_stream:
             in_stream.readline()  # Just to skip the first one
             for a_line in in_stream:
                 s, o = self._get_subject_and_object_from_line(a_line)
@@ -26,14 +27,14 @@ class TtlExplicitSpoDigraphParser(DiGraphParserInterface):
                     if self._triple_count == max_edges:
                         break
                     if self._triple_count % 100000 == 0:
-                        print self._triple_count
+                        print(self._triple_count)
         return result
 
     def _get_subject_and_object_from_line(self, a_line):
         a_line = a_line.strip()
         pieces = a_line.split(_SEPARATOR)
         if pieces[-1] != ".":
-            print "Error line:", a_line
+            print("Error line:", a_line)
             self._error_count += 1
             return None, None
         elif len(pieces) != 4:
@@ -42,7 +43,8 @@ class TtlExplicitSpoDigraphParser(DiGraphParserInterface):
         elif not self._is_relevant_triple(pieces[0:3]):
             self._ignored += 1
             return None, None
-        elif not is_valid_uri(pieces[0], there_are_corners=True) or not is_valid_uri(pieces[2], there_are_corners=True):
+        elif not is_valid_uri(pieces[0], there_are_corners=self._there_are_corners) or not is_valid_uri(pieces[2],
+                                                                                                        there_are_corners=self._there_are_corners):
             log_to_error("WARNING: ignoring invalid triple: ( " + str(pieces[0]) + " , " + str(pieces[1]) + " , " + str(
                 pieces[2]) + " )")
             self._error_count += 1

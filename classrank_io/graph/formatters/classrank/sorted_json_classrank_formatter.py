@@ -2,7 +2,7 @@ import json
 
 from classrank_io.graph.formatters.classrank.classrank_formatter_interface import ClassRankFormatterInterface, KEY_ELEM
 from core.classrank.classranker import KEY_CLASSRANK, KEY_CLASS_POINTERS, KEY_UNDER_T_CLASS_POINTERS
-from core.classrank.classranker_several_thresholds import KEY_THRESHOLDS
+
 
 
 class SortedJsonClassrankFormatter(ClassRankFormatterInterface):
